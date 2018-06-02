@@ -3,6 +3,7 @@ package com.noreasonexception.datanuke.app.factory;
 import com.noreasonexception.datanuke.app.classloader.DataNukeCustomClassLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
+import com.noreasonexception.datanuke.app.factory.error.MissingResourcesException;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 
 import javax.json.Json;
@@ -29,6 +30,14 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     private ClassLoader      customClassLoader                          =null;
 
 
+    /****
+     * loadConfiguration
+     * This method loads the configurations needed to start the Factory and pass in every subsystem
+     * the proper configuration file and e.t.c
+     * Please use the .loadDefaultConfiguration()
+     * @param confProvider the data provider
+     * @return this object
+     */
     public DataNukeDefaultFactory loadConfiguration(DataProvider confProvider){
         StringBuilder stringBuilder = new StringBuilder();
         try{
@@ -67,8 +76,15 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
 
     }
     @Override
-    public AbstractThreadRunner getThreadRunner() {
-        return null;
+    public AbstractThreadRunner getThreadRunner() throws MissingResourcesException {
+        try{
+            return new AbstractThreadRunner(
+                    getDataNukeCustomClassLoader(),
+                    getThreadRunnersConfigProvider(),
+                    getThreadRunnersSourceProvider());
+        }catch (IOException e){
+            throw new MissingResourcesException(e);
+        }
     }
 
     @Override
@@ -79,7 +95,8 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
 
     @Override
     public DataProvider getThreadRunnersSourceProvider() throws IOException {
-        return new FileDataProvider(Paths.get(threadRunnerSourcesFile),300);
+        Path p;
+        return new FileDataProvider(p=Paths.get(threadRunnerSourcesFile),Files.size(p));
     }
 
     @Override

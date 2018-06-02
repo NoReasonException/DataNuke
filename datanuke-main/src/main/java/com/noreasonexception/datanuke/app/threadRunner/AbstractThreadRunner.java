@@ -7,6 +7,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.INITIALIZATION;
+import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.NONE;
+
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ThreadRunnerState currentState = null;
     private ClassLoader classLoader = null;
@@ -44,18 +47,28 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @throws NoValidStateChangeException in case of invalid request
      */
     private void changeStateTo(ThreadRunnerState state) throws NoValidStateChangeException {
-        if(!(currentState.getId()+1==state.getId()
+        if(currentState==null) {
+            if (state != NONE) {
+                throw new NoValidStateChangeException(
+                        "One of the Implementations of AbstractThreadRunner requested target(" + state.getId() + ") when currstate==null",
+                        currentState, state);
+            }
+
+        }
+        else if(!(currentState.getId()+1==state.getId()
                 || currentState.getId()*-1==state.getId())){throw new NoValidStateChangeException(
                         "One of the Implementations of AbstractThreadRunner requested a invalid state change operation.",
                         currentState,state);
         }
+        currentState=state;
     }
     /****
      * This is the main entry point for ThreadRunner
      *
      */
     public void run() {
-
+        changeStateTo(NONE);
+        eventHappened();
     }
 
     public boolean subscribeListener(ThreadRunnerListener listener) {

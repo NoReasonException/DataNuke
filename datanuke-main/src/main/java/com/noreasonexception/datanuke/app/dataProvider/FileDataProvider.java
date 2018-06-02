@@ -16,11 +16,11 @@ import static java.util.Optional.of;
 public class FileDataProvider extends DataProvider {
     ByteChannel channel = null;
     ByteBuffer  buffer=null;
-    public FileDataProvider(Path file,long buffsize) throws IOException{
+    public FileDataProvider(Path file,long buffsize){
         this.buffer=ByteBuffer.allocate((int)buffsize);//TODO : check for possible overflow
         try{
             this.channel= Files.newByteChannel(file);
-        }catch (NoSuchFileException e){
+        }catch (IOException e){
             this.channel=null;
         }
 
