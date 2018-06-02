@@ -14,7 +14,7 @@ public class App
 {
     public static void main( String[] args )throws IOException
     {
-        new DataNukeDefaultFactory().loadConfiguration(new FileDataProvider(Paths.get("conf.json"),30));
+        new DataNukeDefaultFactory().loadDefaultConfiguration();
     }
 
 }

@@ -5,7 +5,11 @@ import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import java.io.IOException;
+import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,10 +18,10 @@ import java.util.NoSuchElementException;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     ///Configuration Section
-    private final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="conf/threadRunnerConf.json";
-    private final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="conf/threadRunnerSources.json";
-    private final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="conf/dataNukeClassLoaderDir/";
-    private final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="conf/dataNukeDefaultFactoryConf.json/";
+    private final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="src/main/conf/threadRunnerConf.json";
+    private final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="src/main/conf/threadRunnerSources.json";
+    private final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="src/main/conf/dataNukeClassLoaderDir/";
+    public final  java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="src/main/conf/dataNukeDefaultFactoryConf.json/";
 
     private java.lang.String threadRunnerConfigFile                     =null;
     private java.lang.String threadRunnerSourcesFile                    =null;
@@ -29,12 +33,27 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
         StringBuilder stringBuilder = new StringBuilder();
         try{
             ByteBuffer buff=(ByteBuffer)confProvider.provide().get();
-            System.out.println(buff.toString());
+            for (int i = 0;  i<buff.limit(); i++) {
+                stringBuilder.append((char)buff.get());
+            }
+
+            JsonReader reader = Json.createReader(new StringReader(stringBuilder.toString()));
+            JsonObject object=reader.readObject();
+            object.getString("customClassLoaderPATH");
+            if((customClassLoaderPATH=object.getString("customClassLoaderPATH"))==null){
+                throw new NoSuchElementException();
+            }
+            else if((threadRunnerConfigFile=object.getString("threadRunnerConfigFile"))==null){
+                throw new NoSuchElementException();
+            }
+            else if((threadRunnerSourcesFile=object.getString("threadRunnerSourcesFile"))==null){
+                throw new NoSuchElementException();
+            }
 
         }catch (NoSuchElementException e){
-            threadRunnerConfigFile="conf/threadRunnerConf.json";
-            threadRunnerSourcesFile="conf/threadRunnerSources.json";
-            customClassLoaderPATH="conf/dataNukeClassLoaderDir/";
+            threadRunnerConfigFile=THREAD_RUNNER_CONFIG_FILE_DEFAULT;
+            threadRunnerSourcesFile=THREAD_RUNNER_SOURCES_FILE_DEFAULT;
+            customClassLoaderPATH=DATA_NUKE_CLASS_LOADER_DEFAULT_PATH;
 
         }
         return this;
