@@ -1,5 +1,8 @@
 package com.noreasonexception.datanuke.app.dataProvider;
 
-public class DataProvider {
+import java.nio.Buffer;
+import java.util.Optional;
 
+abstract public class DataProvider {
+    abstract Optional<Buffer> provide();
 }
