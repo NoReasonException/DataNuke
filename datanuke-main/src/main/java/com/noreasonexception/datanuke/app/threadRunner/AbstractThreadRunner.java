@@ -10,8 +10,8 @@ import java.util.LinkedList;
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ThreadRunnerState currentState = null;
     private ClassLoader classLoader = null;
-    private DataProvider configBuffer = null;
-    private DataProvider sourceBuffer = null;
+    private DataProvider configProvider = null;
+    private DataProvider sourceProvider = null;
     private HashMap<Date, String> classSources = null;
     private LinkedList<ThreadRunnerListener> listeners = null;
 
@@ -62,8 +62,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return this.listeners.add(listener);
     }
 
-    public AbstractThreadRunner() {
+    public AbstractThreadRunner(ClassLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
         this.listeners = new LinkedList<>();
+        this.classLoader=classLoader;
+        this.configProvider=configProvider;
+        this.sourceProvider=sourceProvider;
+
 
     }
 }
