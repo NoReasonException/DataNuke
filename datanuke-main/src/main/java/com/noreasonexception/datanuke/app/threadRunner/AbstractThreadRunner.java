@@ -1,6 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 
 import java.nio.Buffer;
 import java.util.Date;
@@ -21,7 +22,13 @@ public class AbstractThreadRunner implements Runnable , Observable {
 
         }
     }
-
+    private void changeStateTo(ThreadRunnerState state) throws NoValidStateChangeException {
+        if(!(currentState.getId()+1==state.getId()
+                || currentState.getId()*-1==state.getId())){throw new NoValidStateChangeException(
+                        "One of the Implementations of AbstractThreadRunner requested a invalid state change operation.",
+                        currentState,state);
+        }
+    }
     /****
      * This is the main entry point for ThreadRunner
      *
