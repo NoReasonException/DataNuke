@@ -6,7 +6,9 @@ import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.channels.ByteChannel;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import static java.util.Optional.of;
@@ -14,19 +16,24 @@ import static java.util.Optional.of;
 public class FileDataProvider extends DataProvider {
     ByteChannel channel = null;
     ByteBuffer  buffer=null;
-    public FileDataProvider(Path file,int buffsize) throws IOException{
-        this.buffer=ByteBuffer.allocate(buffsize);
-        this.channel= Files.newByteChannel(file);
+    public FileDataProvider(Path file,long buffsize) throws IOException{
+        this.buffer=ByteBuffer.allocate((int)buffsize);//TODO : check for possible overflow
+        try{
+            this.channel= Files.newByteChannel(file);
+        }catch (NoSuchFileException e){
+            this.channel=null;
+        }
+
     }
 
     @Override
-    Optional<Buffer> provide() {
+    public Optional<Buffer> provide() {
         try {
             this.channel.read(this.buffer);
             this.buffer.rewind();
             return Optional.of(this.buffer);
 
-        }catch (IOException e){
+        }catch (IOException|NullPointerException e){
             return Optional.empty();
         }
 

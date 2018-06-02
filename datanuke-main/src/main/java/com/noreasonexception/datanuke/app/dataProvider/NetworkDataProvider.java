@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class NetworkDataProvider extends DataProvider {
     @Override
-    Optional<Buffer> provide() {
+    public Optional<Buffer> provide() {
         return Optional.empty();
     }
 }

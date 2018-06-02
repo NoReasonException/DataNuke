@@ -4,5 +4,5 @@ import java.nio.Buffer;
 import java.util.Optional;
 
 abstract public class DataProvider {
-    abstract Optional<Buffer> provide();
+    abstract public Optional<Buffer> provide();
 }
