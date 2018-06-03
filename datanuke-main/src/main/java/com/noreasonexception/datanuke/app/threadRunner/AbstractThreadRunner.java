@@ -1,14 +1,14 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.INITIALIZATION;
-import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.NONE;
+import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ThreadRunnerState currentState = null;
@@ -17,19 +17,19 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private DataProvider sourceProvider = null;
     private HashMap<Date, String> classSources = null;
     private LinkedList<ThreadRunnerListener> listeners = null;
+    private final ThreadRunnerDispacher             eventDispacher;
 
+    private void loadConfiguration() throws ConfigurationLoaderException{
+        //throw new ConfigurationLoaderException("test",new JsonException("Test"));
+    }
     /***
      * eventHappened
      * This method activated in every state change of AbstractThreadRunner . it informs all
      * the subscribed observers about the event
+     * Thread-Safe
      */
     private void eventHappened() {
-        synchronized (currentState){
-            for (ThreadRunnerListener listener : this.listeners) {
-                new Thread(listener.setState(currentState)).start();
-
-            }
-        }
+        eventDispacher.submitEvent(currentState);
 
     }
 
@@ -53,7 +53,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                         "One of the Implementations of AbstractThreadRunner requested target(" + state.getId() + ") when currstate==null",
                         currentState, state);
             }
-
         }
         else if(!(currentState.getId()+1==state.getId()
                 || currentState.getId()*-1==state.getId())){throw new NoValidStateChangeException(
@@ -61,14 +60,25 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                         currentState,state);
         }
         currentState=state;
+        eventHappened();
     }
     /****
      * This is the main entry point for ThreadRunner
      *
      */
     public void run() {
-        changeStateTo(NONE);
-        eventHappened();
+        changeStateTo(INITIALIZATION);
+        changeStateTo(LOAD_CONF);
+        try{
+            loadConfiguration();
+            changeStateTo(LOAD_CONF_SUCC);
+        }catch (ConfigurationLoaderException e){
+
+            changeStateTo(LOAD_CONF_ERR);
+            return;
+        }
+        //changeStateTo(LOAD_CONF_SUCC);
+
     }
 
     public boolean subscribeListener(ThreadRunnerListener listener) {
@@ -80,7 +90,18 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
+        this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
+        changeStateTo(NONE);
+        this.eventDispacher.start();
+    }
 
+    public ThreadRunnerState getCurrentState() {
+        return currentState;
+    }
 
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        this.eventDispacher.interrupt();
     }
 }

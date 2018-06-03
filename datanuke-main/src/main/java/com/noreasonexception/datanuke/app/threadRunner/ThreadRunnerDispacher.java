@@ -1,0 +1,42 @@
+package com.noreasonexception.datanuke.app.threadRunner;
+
+import java.util.LinkedList;
+import java.util.concurrent.LinkedBlockingQueue;
+
+public class ThreadRunnerDispacher extends Thread {
+    private final LinkedList<ThreadRunnerListener> listeners;
+    private final AbstractThreadRunner runner;
+    private boolean onSchedule=false;
+    LinkedBlockingQueue<ThreadRunnerState> states;
+
+    public ThreadRunnerDispacher submitEvent(ThreadRunnerState state){
+        while(!states.offer(state)){
+            System.out.println("FAILED");
+        }
+        return this;
+    }
+    @Override
+    public void run() {
+        while (true){
+            synchronized (this){
+                synchronized (listeners){
+                    ThreadRunnerState state=null;
+                    try{
+                        state= states.take();
+
+                    }catch (InterruptedException e){e.printStackTrace();Thread.currentThread().interrupt();}
+                    for (ThreadRunnerListener l:listeners) {
+                        l.setState(state).run();
+                    }
+                }
+            }
+        }
+
+
+    }
+    public ThreadRunnerDispacher(AbstractThreadRunner runner,LinkedList<ThreadRunnerListener> listeners) {
+        this.runner=runner;
+        this.listeners=listeners;
+        this.states=new LinkedBlockingQueue<>();
+    }
+}
