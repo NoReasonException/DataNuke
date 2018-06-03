@@ -6,9 +6,10 @@ public enum ThreadRunnerState {
     LOAD_CONF       ("ThreadRunner initializes configurations...",2),
     LOAD_CONF_ERR   ("ThreadRunner initialization failed",-2),
     LOAD_CONF_SUCC  ("ThreadRunner initialization of configurations , okay",3),
-    LOAD_SOURCES    ("ThreadRunner initializes the site's classes...",4),
-    LOAD_SOURCES_ERR("ThreadRunner initialization of sources failed",-4),
-    LOAD_CLASS_ERR  ("ThreadRunner : Class Not found event",5);
+    LOAD_SRC    ("ThreadRunner initializes the site's classes...",4),
+    LOAD_SRC_ERR("ThreadRunner initialization of sources failed",-4),
+    LOAD_SRC_SUCC("ThreadRunner initialization of sources okay",5),
+    LOAD_CLASS_ERR  ("ThreadRunner : Class Not found event",6);
 
     private java.lang.String message=null;
     private int id=0;

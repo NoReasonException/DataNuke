@@ -3,6 +3,7 @@ package com.noreasonexception.datanuke.app.threadRunner;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
+import com.noreasonexception.datanuke.app.threadRunner.error.SourcesLoaderException;
 
 import javax.json.Json;
 import javax.json.JsonException;
@@ -28,21 +29,39 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private final ThreadRunnerDispacher             eventDispacher;
     private int initializationTime;
 
-    private void loadConfiguration() throws ConfigurationLoaderException{
+    private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
+            throws NoSuchElementException,JsonParsingException,JsonException{
         java.lang.StringBuilder builder = new StringBuilder();
         String str;
         JsonObject object;
+        str=DataProvider.Utills.DataProviderToString(dataProvider);
+        JsonReader reader= Json.createReader(new StringReader(str));
+        object=reader.readObject();
+        return object;
+
+
+    }
+
+    private void loadConfiguration() throws ConfigurationLoaderException{
+        JsonObject obj;
         try{
-            str=DataProvider.Utills.DataProviderToString(configProvider);
-            JsonReader reader= Json.createReader(new StringReader(str));
-            object=reader.readObject();
+            obj=AbstractThreadRunner.dataProviderToJsonObject(configProvider);
         }
         catch(NoSuchElementException e){throw new ConfigurationLoaderException("DataProvider returned nothing",e);}
-        catch (JsonParsingException e){ throw new ConfigurationLoaderException("Configuration file corrupted",e);}
-        catch (JsonException e){        throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
+        catch(JsonParsingException e){  throw new ConfigurationLoaderException("Configuration file corrupted",e);}
+        catch(JsonException e){         throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
+        initializationTime=obj.getInt("initializationTime");
 
-        initializationTime=object.getInt("initializationTime");
-        System.out.println(initializationTime);
+
+    }
+    private void loadSources() throws SourcesLoaderException{
+        JsonObject obj;
+        try{
+            obj=AbstractThreadRunner.dataProviderToJsonObject(sourceProvider);
+        }
+        catch(NoSuchElementException e){throw new SourcesLoaderException("DataProvider returned nothing",e);}
+        catch(JsonParsingException e){  throw new SourcesLoaderException("Configuration file corrupted",e);}
+        catch(JsonException e){         throw new SourcesLoaderException("Configuration load failed due to unnown IO error",e);}
 
 
     }
@@ -94,6 +113,8 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
         try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
+        changeStateTo(LOAD_SRC);
+        try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
 
     }
 
