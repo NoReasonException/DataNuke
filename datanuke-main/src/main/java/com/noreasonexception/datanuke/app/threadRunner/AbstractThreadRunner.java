@@ -4,6 +4,12 @@ import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 
+import javax.json.Json;
+import javax.json.JsonException;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.stream.JsonParsingException;
+import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,16 +27,23 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private LinkedList<ThreadRunnerListener> listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
     private int initializationTime;
+
     private void loadConfiguration() throws ConfigurationLoaderException{
         java.lang.StringBuilder builder = new StringBuilder();
-        ByteBuffer buff;
+        String str;
+        JsonObject object;
         try{
-            buff = (ByteBuffer)configProvider.provide().get();}
-                catch(NoSuchElementException e){ throw new ConfigurationLoaderException("Config Provider returned empty Optional<ByteByffer>",e);
+            str=DataProvider.Utills.DataProviderToString(configProvider);
+            JsonReader reader= Json.createReader(new StringReader(str));
+            object=reader.readObject();
         }
-        for (int i = 0; i < buff.limit(); i++) {
+        catch(NoSuchElementException e){throw new ConfigurationLoaderException("DataProvider returned nothing",e);}
+        catch (JsonParsingException e){ throw new ConfigurationLoaderException("Configuration file corrupted",e);}
+        catch (JsonException e){        throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
 
-        }
+        initializationTime=object.getInt("initializationTime");
+        System.out.println(initializationTime);
+
 
     }
     /***
@@ -80,15 +93,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     public void run() {
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
-        try{
-            loadConfiguration();
-            changeStateTo(LOAD_CONF_SUCC);
-        }catch (ConfigurationLoaderException e){
-
-            changeStateTo(LOAD_CONF_ERR);
-            return;
-        }
-        //changeStateTo(LOAD_CONF_SUCC);
+        try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
 
     }
 
