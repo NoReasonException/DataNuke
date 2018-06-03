@@ -2,8 +2,11 @@ package com.noreasonexception.datanuke.app.threadRunner;
 
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
+import com.noreasonexception.datanuke.app.threadRunner.error.LoopPrepareException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 import com.noreasonexception.datanuke.app.threadRunner.error.SourcesLoaderException;
+import com.noreasonexception.datanuke.app.threadRunner.etc.DateClassPair;
+import jdk.internal.util.xml.impl.Pair;
 
 import javax.json.Json;
 import javax.json.JsonException;
@@ -12,10 +15,7 @@ import javax.json.JsonReader;
 import javax.json.stream.JsonParsingException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
@@ -24,7 +24,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ClassLoader classLoader = null;
     private DataProvider configProvider = null;
     private DataProvider sourceProvider = null;
-    private HashMap<Date, String> classSources = null;
+    private ArrayList<DateClassPair> classSources = null;
     private LinkedList<ThreadRunnerListener> listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
     private int initializationTime;
@@ -53,6 +53,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         initializationTime=obj.getInt("initializationTime");
 
 
+
     }
     private void loadSources() throws SourcesLoaderException{
         JsonObject obj;
@@ -62,9 +63,13 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         catch(NoSuchElementException e){throw new SourcesLoaderException("DataProvider returned nothing",e);}
         catch(JsonParsingException e){  throw new SourcesLoaderException("Configuration file corrupted",e);}
         catch(JsonException e){         throw new SourcesLoaderException("Configuration load failed due to unnown IO error",e);}
-
-
+        DateClassPair pair;
+        for (String string: obj.keySet()) {
+            this.classSources.add(pair=new DateClassPair(string,obj.getString(string)));
+            System.out.println(string+" LOADED on" +pair.getDate().toString());
+        }
     }
+    private void prepareLoop() throws LoopPrepareException {return;}
     /***
      * eventHappened
      * This method activated in every state change of AbstractThreadRunner . it informs all
@@ -115,6 +120,8 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
         changeStateTo(LOAD_SRC);
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
+        changeStateTo(PREPARE_LOOP);
+        try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
 
     }
 
@@ -127,6 +134,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
+        this.classSources=new ArrayList<>();
         this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
         changeStateTo(NONE);
         this.eventDispacher.start();
