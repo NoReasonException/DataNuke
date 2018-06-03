@@ -4,9 +4,11 @@ import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 
+import java.nio.ByteBuffer;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
@@ -18,9 +20,18 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private HashMap<Date, String> classSources = null;
     private LinkedList<ThreadRunnerListener> listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
-
+    private int initializationTime;
     private void loadConfiguration() throws ConfigurationLoaderException{
-        //throw new ConfigurationLoaderException("test",new JsonException("Test"));
+        java.lang.StringBuilder builder = new StringBuilder();
+        ByteBuffer buff;
+        try{
+            buff = (ByteBuffer)configProvider.provide().get();}
+                catch(NoSuchElementException e){ throw new ConfigurationLoaderException("Config Provider returned empty Optional<ByteByffer>",e);
+        }
+        for (int i = 0; i < buff.limit(); i++) {
+
+        }
+
     }
     /***
      * eventHappened
