@@ -1,3 +1,4 @@
 {
-  "initializationTime":40000
+  "initializationTime":40000,
+  "startupTarget":60000
 }

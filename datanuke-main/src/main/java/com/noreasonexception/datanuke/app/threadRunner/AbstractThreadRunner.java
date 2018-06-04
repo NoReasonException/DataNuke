@@ -28,6 +28,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private LinkedList<ThreadRunnerListener> listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
     private int initializationTime;
+    private int startupTarget;
 
     private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
             throws NoSuchElementException,JsonParsingException,JsonException{
@@ -51,6 +52,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         catch(JsonParsingException e){  throw new ConfigurationLoaderException("Configuration file corrupted",e);}
         catch(JsonException e){         throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
         initializationTime=obj.getInt("initializationTime");
+        startupTarget=obj.getInt("startupTarget");
 
 
 
@@ -66,10 +68,26 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         DateClassPair pair;
         for (String string: obj.keySet()) {
             this.classSources.add(pair=new DateClassPair(string,obj.getString(string)));
-            System.out.println(string+" LOADED on" +pair.getDate().toString());
         }
     }
-    private void prepareLoop() throws LoopPrepareException {return;}
+    private void prepareLoop() throws LoopPrepareException {
+        Collections.sort(classSources);
+        long i=(java.lang.System.currentTimeMillis())+startupTarget;
+        System.out.println("Startup target in "+new Date(i).toString());
+        classSources.stream().filter((e)->{return e.getDate().getTime()>i; }).forEach((e)->{
+            System.out.println("class "+e.getClassname()+" is about to start in "+new Date(e.getDate().getTime()-initializationTime) +" to take samples close to "+e.getDate());
+        });
+
+    }
+    synchronized private void loop() {
+        while (!classSources.isEmpty()){
+            try{
+                System.out.println("SLEEP");
+                wait((classSources.get(0).getDate().getTime()-initializationTime)-System.currentTimeMillis());
+
+            }catch (InterruptedException e){e.printStackTrace();}
+        }
+    }
     /***
      * eventHappened
      * This method activated in every state change of AbstractThreadRunner . it informs all
@@ -122,7 +140,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
         changeStateTo(PREPARE_LOOP);
         try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
-
+        loop();
     }
 
     public boolean subscribeListener(ThreadRunnerListener listener) {
