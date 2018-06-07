@@ -5,31 +5,33 @@ import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoader
 import com.noreasonexception.datanuke.app.threadRunner.error.LoopPrepareException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
 import com.noreasonexception.datanuke.app.threadRunner.error.SourcesLoaderException;
-import com.noreasonexception.datanuke.app.threadRunner.etc.DateClassPair;
-import jdk.internal.util.xml.impl.Pair;
+import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 
-import javax.json.Json;
-import javax.json.JsonException;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
+import javax.json.*;
 import javax.json.stream.JsonParsingException;
 import java.io.StringReader;
-import java.nio.ByteBuffer;
+import java.security.InvalidParameterException;
 import java.util.*;
 
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
-    private ThreadRunnerState currentState = null;
-    private ClassLoader classLoader = null;
-    private DataProvider configProvider = null;
-    private DataProvider sourceProvider = null;
-    private ArrayList<DateClassPair> classSources = null;
-    private LinkedList<ThreadRunnerListener> listeners = null;
+    private Date                                    scheduledStart=null;
+    private ThreadRunnerState                       currentState = null;
+    private ClassLoader                             classLoader = null;
+    private DataProvider                            configProvider = null;
+    private DataProvider                            sourceProvider = null;
+    private ArrayList<ClassInfo>                    classSources = null;
+    private LinkedList<ThreadRunnerListener>        listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
-    private int initializationTime;
-    private int startupTarget;
-
+    private int                                     initializationTime;
+    private int                                     startupTarget;
+    private static long millsToSec(long mills){return mills/1000;}
+    private static long secToMills(long sec){return sec/1000;}
+    private static long getRemainingTime(long then){
+        if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past ");
+        return then-System.currentTimeMillis();
+    }
     private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
             throws NoSuchElementException,JsonParsingException,JsonException{
         java.lang.StringBuilder builder = new StringBuilder();
@@ -51,8 +53,8 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         catch(NoSuchElementException e){throw new ConfigurationLoaderException("DataProvider returned nothing",e);}
         catch(JsonParsingException e){  throw new ConfigurationLoaderException("Configuration file corrupted",e);}
         catch(JsonException e){         throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
-        initializationTime=obj.getInt("initializationTime");
-        startupTarget=obj.getInt("startupTarget");
+        initializationTime=obj.getInt("initializationTime");            //remember , values in mils
+        startupTarget=obj.getInt("startupTarget");                      //remember , values in mils
 
 
 
@@ -65,27 +67,35 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         catch(NoSuchElementException e){throw new SourcesLoaderException("DataProvider returned nothing",e);}
         catch(JsonParsingException e){  throw new SourcesLoaderException("Configuration file corrupted",e);}
         catch(JsonException e){         throw new SourcesLoaderException("Configuration load failed due to unnown IO error",e);}
-        DateClassPair pair;
+        ClassInfo pair;
         for (String string: obj.keySet()) {
-            this.classSources.add(pair=new DateClassPair(string,obj.getString(string)));
+            JsonArray array=obj.getJsonArray(string);
+            ClassInfo i;
+            this.classSources.add(i=new ClassInfo(
+                    new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
+                    array.getInt(1),
+                    string));
+            System.out.println(i.getClassname());
         }
     }
     private void prepareLoop() throws LoopPrepareException {
         Collections.sort(classSources);
-        long i=(java.lang.System.currentTimeMillis())+startupTarget;
-        System.out.println("Startup target in "+new Date(i).toString());
-        classSources.stream().filter((e)->{return e.getDate().getTime()>i; }).forEach((e)->{
+        scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
+        classSources.stream().filter((e)->{return e.getDate().getTime()>scheduledStart.getTime(); }).forEach((e)->{
             System.out.println("class "+e.getClassname()+" is about to start in "+new Date(e.getDate().getTime()-initializationTime) +" to take samples close to "+e.getDate());
         });
 
     }
     synchronized private void loop() {
+        System.out.println("STARTED");
         while (!classSources.isEmpty()){
             try{
-                System.out.println("SLEEP");
-                wait((classSources.get(0).getDate().getTime()-initializationTime)-System.currentTimeMillis());
+                wait(getRemainingTime(classSources.get(0).getDate().getTime()-initializationTime));
+            }catch (InterruptedException e){
+                classSources.get(0).getDate().toString();
 
-            }catch (InterruptedException e){e.printStackTrace();}
+                e.printStackTrace();
+            }
         }
     }
     /***
@@ -132,7 +142,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * This is the main entry point for ThreadRunner
      *
      */
-    public void run() {
+    synchronized public void run() {
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
         try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
@@ -140,6 +150,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
         changeStateTo(PREPARE_LOOP);
         try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
+        try{wait(getRemainingTime(scheduledStart.getTime()));}catch (InterruptedException e){}
         loop();
     }
 

@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.factory;
 
+import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.factory.error.MissingResourcesException;
@@ -101,7 +102,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     @Override
     public ClassLoader getDataNukeCustomClassLoader() {
         return customClassLoader!=null?
-                customClassLoader:(customClassLoader=new DataNukeCustomClassLoader());
+                customClassLoader:(customClassLoader=AtlasLoader.getInstance());
     }
 
     @Override

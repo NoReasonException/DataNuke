@@ -39,7 +39,10 @@ import java.util.Hashtable;
 public class AtlasLoader extends ClassLoader{
     private Hashtable<String, SingleClassLoader> classes;
     private ClassLoader parent;
-
+    static AtlasLoader siglenton=null;
+    public static AtlasLoader getInstance(){
+        return siglenton!=null?siglenton:(siglenton=new AtlasLoader());
+    }
     protected AtlasLoader(ClassLoader classLoader) {
         parent=classLoader;
         classes=new Hashtable<>();
