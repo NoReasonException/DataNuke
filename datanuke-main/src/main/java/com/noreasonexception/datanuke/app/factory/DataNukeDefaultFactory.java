@@ -1,6 +1,5 @@
 package com.noreasonexception.datanuke.app.factory;
 
-import com.noreasonexception.datanuke.app.classloader.DataNukeCustomClassLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.factory.error.MissingResourcesException;
