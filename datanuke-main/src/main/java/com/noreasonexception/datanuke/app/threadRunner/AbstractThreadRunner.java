@@ -21,7 +21,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ClassLoader                             classLoader = null;
     private DataProvider                            configProvider = null;
     private DataProvider                            sourceProvider = null;
-    private ArrayList<ClassInfo>                    classSources = null;
+    private Queue<ClassInfo>                    classSources = null;
     private LinkedList<ThreadRunnerListener>        listeners = null;
     private final ThreadRunnerDispacher             eventDispacher;
     private int                                     initializationTime;
@@ -83,7 +83,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
     }
     private void prepareLoop() throws LoopPrepareException {
-        Collections.sort(classSources);
+        Collections.sort((LinkedList<ClassInfo>)classSources);
         scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
         classSources.stream().forEach((e)->{
             e.setDate(new Date());
@@ -92,8 +92,10 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
     }
     synchronized private void loop() {
+        ClassInfo tmp;
         while (!classSources.isEmpty()){
-            try{wait(getWaitTime(classSources.get(0).getDate().getTime(),System.currentTimeMillis(),classSources.get(0).getInterval()));
+            tmp=classSources.remove();
+            try{wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
             }catch (InterruptedException e){
                 e.printStackTrace();
             }
@@ -166,7 +168,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
-        this.classSources=new ArrayList<>();
+        this.classSources=new LinkedList<>();
         this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
         changeStateTo(NONE);
         this.eventDispacher.start();
