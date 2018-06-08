@@ -29,8 +29,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private static long millsToSec(long mills){return mills/1000;}
     private static long secToMills(long sec){return sec/1000;}
     private static long getRemainingTime(long then){
-        if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past ");
+        if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past "+new Date(System.currentTimeMillis())+new Date(then));
         return then-System.currentTimeMillis();
+    }
+    private static long getWaitTime(long p,long c,long i ){
+        System.out.println("WAIT FOR "+String.valueOf(((p+(((int)(c-p)/i))*i)+i)-c));
+        return (((p+(((int)(c-p)/i))*i)+i)-c);
     }
     private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
             throws NoSuchElementException,JsonParsingException,JsonException{
@@ -73,7 +77,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             ClassInfo i;
             this.classSources.add(i=new ClassInfo(
                     new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
-                    array.getInt(1),
+                    Integer.valueOf(array.getString(1)),
                     string));
             System.out.println(i.getClassname());
         }
@@ -81,21 +85,20 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private void prepareLoop() throws LoopPrepareException {
         Collections.sort(classSources);
         scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
-        classSources.stream().filter((e)->{return e.getDate().getTime()>scheduledStart.getTime(); }).forEach((e)->{
+        classSources.stream().forEach((e)->{
+            e.setDate(new Date());
             System.out.println("class "+e.getClassname()+" is about to start in "+new Date(e.getDate().getTime()-initializationTime) +" to take samples close to "+e.getDate());
         });
 
     }
     synchronized private void loop() {
-        System.out.println("STARTED");
         while (!classSources.isEmpty()){
-            try{
-                wait(getRemainingTime(classSources.get(0).getDate().getTime()-initializationTime));
+            try{wait(getWaitTime(classSources.get(0).getDate().getTime(),System.currentTimeMillis(),classSources.get(0).getInterval()));
             }catch (InterruptedException e){
-                classSources.get(0).getDate().toString();
-
                 e.printStackTrace();
             }
+            System.out.println("DONE");
+
         }
     }
     /***

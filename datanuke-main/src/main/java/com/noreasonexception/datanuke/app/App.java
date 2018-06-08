@@ -6,6 +6,7 @@ import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerListener;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -17,12 +18,14 @@ public class App
 {
     public static void main( String[] args )throws IOException
     {
+
+        System.out.println("diff timestamp "+(((Long.valueOf("1528414428000")+((System.currentTimeMillis()-Long.valueOf("1528414428000"))/300000)*300000)+300000)-System.currentTimeMillis()));
         AbstractThreadRunner runner;
         runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
         runner.subscribeListener(new ThreadRunnerListener() {
             @Override
             public void run() {
-                System.out.println(getState().getMessage());
+                //System.out.println(getState().getMessage());
             }
         });
         new Thread(runner).start();

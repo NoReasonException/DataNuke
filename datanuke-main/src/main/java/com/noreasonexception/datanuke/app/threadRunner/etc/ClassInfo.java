@@ -29,4 +29,8 @@ public class ClassInfo implements Comparable<ClassInfo> {
     public String getClassname() {
         return classname;
     }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }
