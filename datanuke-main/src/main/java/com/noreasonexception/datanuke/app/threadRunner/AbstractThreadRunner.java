@@ -1,6 +1,8 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
+import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
 import com.noreasonexception.datanuke.app.threadRunner.error.LoopPrepareException;
 import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
@@ -16,16 +18,17 @@ import java.util.*;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
-    private Date                                    scheduledStart=null;
-    private ThreadRunnerState                       currentState = null;
-    private ClassLoader                             classLoader = null;
-    private DataProvider                            configProvider = null;
-    private DataProvider                            sourceProvider = null;
-    private Queue<ClassInfo>                    classSources = null;
-    private LinkedList<ThreadRunnerListener>        listeners = null;
-    private final ThreadRunnerDispacher             eventDispacher;
-    private int                                     initializationTime;
-    private int                                     startupTarget;
+    private Date                                        scheduledStart=null;
+    private ThreadRunnerState                           currentState = null;
+    private ClassLoader                                 classLoader = null;
+    private DataProvider                                configProvider = null;
+    private DataProvider                                sourceProvider = null;
+    private Queue<ClassInfo>                            classSources = null;
+    private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
+    private LinkedList<ThreadRunnerListener>            listeners = null;
+    private final ThreadRunnerDispacher                 eventDispacher;
+    private int                                         initializationTime;
+    private int                                         startupTarget;
     private static long millsToSec(long mills){return mills/1000;}
     private static long secToMills(long sec){return sec/1000;}
     private static long getRemainingTime(long then){
@@ -34,6 +37,9 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     }
     private static long getDeadline(long p ,long c,long i){
         return ((p+(((int)(c-p)/i))*i)+i);
+    }
+    private long getDeadlineFromScheduledStart(long p,long i){
+        return getDeadline(p,scheduledStart.getTime(),i);
     }
     private static long getWaitTime(long p,long c,long i ){
         return getDeadline(p,c,i)-c;
@@ -65,6 +71,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         catch(JsonException e){         throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
         initializationTime=obj.getInt("initializationTime");            //remember , values in mils
         startupTarget=obj.getInt("startupTarget");                      //remember , values in mils
+        scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
 
 
 
@@ -86,6 +93,17 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     Integer.valueOf(array.getString(1)),
                     string));
             System.out.println(i.getClassname());
+            this.classSourcesDT.insert(
+                    getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))),
+                    new ClassInfo(
+                        new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
+                        Integer.valueOf(array.getString(1)),
+                        string));
+            long j;
+            System.out.println(string+"have deadline in "+
+                    (j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))))+" wait ->"+
+                    (j-scheduledStart.getTime()));
+
         }
     }
     private void prepareLoop() throws LoopPrepareException {
@@ -97,6 +115,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 return -1;
             }
         });
+
         scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
         classSources.stream().forEach((e)->{
             e.setDate(new Date());
@@ -182,6 +201,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
         this.classSources=new LinkedList<>();
+        this.classSourcesDT=new BST_EDF();
         this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
         changeStateTo(NONE);
         this.eventDispacher.start();
