@@ -107,26 +107,14 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
     }
     private void prepareLoop() throws LoopPrepareException {
-        Collections.sort((LinkedList<ClassInfo>) classSources, new Comparator<ClassInfo>() {
-            @Override
-            public int compare(ClassInfo t0, ClassInfo t1) {
-                if(getWaitTime(t0)==getWaitTime(t1))return 0;
-                else if(getWaitTime(t0)>getWaitTime(t1))return 1;
-                return -1;
-            }
-        });
 
-        scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
-        classSources.stream().forEach((e)->{
-            e.setDate(new Date());
-            System.out.println("class "+e.getClassname()+" is about to start in "+new Date(e.getDate().getTime()-initializationTime) +" to take samples close to "+e.getDate());
-        });
 
     }
     synchronized private void loop() {
         ClassInfo tmp;
-        while (!classSources.isEmpty()){
-            tmp=classSources.remove();
+        while (true){
+            tmp=classSourcesDT.pollMin();
+            classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             try{wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
             }catch (InterruptedException e){
                 e.printStackTrace();

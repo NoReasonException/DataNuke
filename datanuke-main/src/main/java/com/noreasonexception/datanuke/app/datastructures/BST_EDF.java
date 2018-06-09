@@ -22,8 +22,8 @@ public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements Earliest
         Node min, newMin,retval;
         min = (retval=_getMin(root)).getParent();
         if (min == null) {
-            root = root.getRight();
             root.setParent(null);
+            root = root.getRight();
 
         }
         else {
