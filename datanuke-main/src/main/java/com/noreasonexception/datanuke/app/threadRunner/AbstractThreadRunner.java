@@ -23,12 +23,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ClassLoader                                 classLoader = null;
     private DataProvider                                configProvider = null;
     private DataProvider                                sourceProvider = null;
-    private Queue<ClassInfo>                            classSources = null;
     private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
     private LinkedList<ThreadRunnerListener>            listeners = null;
     private final ThreadRunnerDispacher                 eventDispacher;
     private int                                         initializationTime;
     private int                                         startupTarget;
+    
     private static long millsToSec(long mills){return mills/1000;}
     private static long secToMills(long sec){return sec/1000;}
     private static long getRemainingTime(long then){
@@ -88,11 +88,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         for (String string: obj.keySet()) {
             JsonArray array=obj.getJsonArray(string);
             ClassInfo i;
-            this.classSources.add(i=new ClassInfo(
-                    new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
-                    Integer.valueOf(array.getString(1)),
-                    string));
-            System.out.println(i.getClassname());
             this.classSourcesDT.insert(
                     getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))),
                     new ClassInfo(
@@ -188,7 +183,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
-        this.classSources=new LinkedList<>();
         this.classSourcesDT=new BST_EDF();
         this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
         changeStateTo(NONE);
