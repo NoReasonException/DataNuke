@@ -19,7 +19,6 @@ public class App
     public static void main( String[] args )throws IOException
     {
 
-        System.out.println("diff timestamp "+(((Long.valueOf("1528414428000")+((System.currentTimeMillis()-Long.valueOf("1528414428000"))/300000)*300000)+300000)-System.currentTimeMillis()));
         AbstractThreadRunner runner;
         runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
         runner.subscribeListener(new ThreadRunnerListener() {

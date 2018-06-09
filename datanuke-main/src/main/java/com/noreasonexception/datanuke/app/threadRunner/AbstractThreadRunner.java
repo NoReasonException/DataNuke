@@ -32,9 +32,15 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past "+new Date(System.currentTimeMillis())+new Date(then));
         return then-System.currentTimeMillis();
     }
+    private static long getDeadline(long p ,long c,long i){
+        return ((p+(((int)(c-p)/i))*i)+i);
+    }
     private static long getWaitTime(long p,long c,long i ){
-        System.out.println("WAIT FOR "+String.valueOf(((p+(((int)(c-p)/i))*i)+i)-c));
-        return (((p+(((int)(c-p)/i))*i)+i)-c);
+        return getDeadline(p,c,i)-c;
+    }
+
+    private static long getWaitTime(ClassInfo e ){
+        return getWaitTime(e.getDate().getTime(),System.currentTimeMillis(),e.getInterval());
     }
     private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
             throws NoSuchElementException,JsonParsingException,JsonException{
@@ -83,7 +89,14 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
     }
     private void prepareLoop() throws LoopPrepareException {
-        Collections.sort((LinkedList<ClassInfo>)classSources);
+        Collections.sort((LinkedList<ClassInfo>) classSources, new Comparator<ClassInfo>() {
+            @Override
+            public int compare(ClassInfo t0, ClassInfo t1) {
+                if(getWaitTime(t0)==getWaitTime(t1))return 0;
+                else if(getWaitTime(t0)>getWaitTime(t1))return 1;
+                return -1;
+            }
+        });
         scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
         classSources.stream().forEach((e)->{
             e.setDate(new Date());
