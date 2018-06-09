@@ -28,26 +28,81 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private final ThreadRunnerDispacher                 eventDispacher;
     private int                                         initializationTime;
     private int                                         startupTarget;
-    
+
+    /*****
+     * Simple tool to convert milliseconds to seconds
+     * @param mills the milliseconds to convert
+     * @return a long value , the seconds
+     */
     private static long millsToSec(long mills){return mills/1000;}
+
+    /****
+     * Simple tool to convert seconds to milliseconds
+     * @param sec the seconds to convert
+     * @return a long value , the milliseconds
+     */
     private static long secToMills(long sec){return sec/1000;}
+
+    /****
+     * Simple tool to get the remaining time from now on.
+     * @param then the future timestamp
+     * @return the time until @param then
+     */
     private static long getRemainingTime(long then){
         if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past "+new Date(System.currentTimeMillis())+new Date(then));
         return then-System.currentTimeMillis();
     }
+
+    /****
+     * Get Deadline based on previous event timestamp,the current timestamp and event interval
+     *
+     * @param p any previous event
+     * @param c the current timestamp
+     * @param i the interval
+     * @return the next time a event will occur
+     */
     private static long getDeadline(long p ,long c,long i){
         return ((p+(((int)(c-p)/i))*i)+i);
     }
+
+    /****
+     * Get Deadline just defined above , but with the scheduled timestamp instead of current one!
+     * @param p the previous timestamp
+     * @param i the interval
+     * @return the next deadline that the event will occur
+     */
     private long getDeadlineFromScheduledStart(long p,long i){
         return getDeadline(p,scheduledStart.getTime(),i);
     }
+
+    /****
+     * Get the wait time from the future timestamp
+     * @param p the previous timestamp
+     * @param c the current timestamp
+     * @param i the event's interval
+     * @return the wait time (to use in this.wait() method)
+     */
     private static long getWaitTime(long p,long c,long i ){
         return getDeadline(p,c,i)-c;
     }
 
+    /****
+     * A simple wrapper over getWaitTime that accepts a @see ClassInfo object
+     * @param e
+     * @return
+     */
     private static long getWaitTime(ClassInfo e ){
         return getWaitTime(e.getDate().getTime(),System.currentTimeMillis(),e.getInterval());
     }
+
+    /***
+     * Builds a JsonObject using a DataProvider object
+     * @param dataProvider the @see DataProvider Object used to construct the Json String and pass it in JsonObject
+     * @return a JsonObject
+     * @throws NoSuchElementException if DataProvider return no data
+     * @throws JsonParsingException if a JSON object cannot be created due to incorrect representation
+     * @throws JsonException  if a JSON object cannot be created due to i/o error (IOException would be cause of JsonException)
+     */
     private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
             throws NoSuchElementException,JsonParsingException,JsonException{
         java.lang.StringBuilder builder = new StringBuilder();
@@ -61,6 +116,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
     }
 
+    /**
+     * Loads the fields with proper values loaded by configuration file
+     *
+     * @throws ConfigurationLoaderException in case of any error
+     * @apiNote ConfiguratuonLoaderException causes may be NoSuchElementException (ConfigProvider returns no data) , JsonParsingException in case of invalid JSON syndax or JsonException for generic I/O error)
+     */
     private void loadConfiguration() throws ConfigurationLoaderException{
         JsonObject obj;
         try{
