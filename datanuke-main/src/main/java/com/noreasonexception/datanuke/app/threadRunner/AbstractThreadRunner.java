@@ -3,10 +3,7 @@ package com.noreasonexception.datanuke.app.threadRunner;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
-import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoaderException;
-import com.noreasonexception.datanuke.app.threadRunner.error.LoopPrepareException;
-import com.noreasonexception.datanuke.app.threadRunner.error.NoValidStateChangeException;
-import com.noreasonexception.datanuke.app.threadRunner.error.SourcesLoaderException;
+import com.noreasonexception.datanuke.app.threadRunner.error.*;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 
 import javax.json.*;
@@ -103,14 +100,19 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @throws JsonParsingException if a JSON object cannot be created due to incorrect representation
      * @throws JsonException  if a JSON object cannot be created due to i/o error (IOException would be cause of JsonException)
      */
-    private static JsonObject dataProviderToJsonObject(DataProvider dataProvider)
-            throws NoSuchElementException,JsonParsingException,JsonException{
+    private static JsonObject dataProviderToJsonObject(DataProvider dataProvider) throws ConvertException {
+
         java.lang.StringBuilder builder = new StringBuilder();
         String str;
         JsonObject object;
-        str=DataProvider.Utills.DataProviderToString(dataProvider);
-        JsonReader reader= Json.createReader(new StringReader(str));
-        object=reader.readObject();
+        try{
+            str=DataProvider.Utills.DataProviderToString(dataProvider);
+            JsonReader reader= Json.createReader(new StringReader(str));
+            object=reader.readObject();
+        }catch(NoSuchElementException e){throw new ConvertException("DataProvider returned nothing",e);}
+        catch(JsonParsingException e){  throw new ConvertException("Configuration file corrupted",e);}
+        catch(JsonException e){         throw new ConvertException("Configuration load failed due to I/O error",e);}
+
         return object;
 
 
@@ -127,9 +129,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{
             obj=AbstractThreadRunner.dataProviderToJsonObject(configProvider);
         }
-        catch(NoSuchElementException e){throw new ConfigurationLoaderException("DataProvider returned nothing",e);}
-        catch(JsonParsingException e){  throw new ConfigurationLoaderException("Configuration file corrupted",e);}
-        catch(JsonException e){         throw new ConfigurationLoaderException("Configuration load failed due to unnown IO error",e);}
+        catch(ConvertException e){throw new ConfigurationLoaderException("Convert DataProvider to JsonObject gone bad :( ",e);}
         initializationTime=obj.getInt("initializationTime");            //remember , values in mils
         startupTarget=obj.getInt("startupTarget");                      //remember , values in mils
         scheduledStart=new Date(java.lang.System.currentTimeMillis()+startupTarget);
@@ -142,9 +142,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{
             obj=AbstractThreadRunner.dataProviderToJsonObject(sourceProvider);
         }
-        catch(NoSuchElementException e){throw new SourcesLoaderException("DataProvider returned nothing",e);}
-        catch(JsonParsingException e){  throw new SourcesLoaderException("Configuration file corrupted",e);}
-        catch(JsonException e){         throw new SourcesLoaderException("Configuration load failed due to unnown IO error",e);}
+        catch(ConvertException e){throw new SourcesLoaderException("Convert DataProvider to JsonObject gone bad :(",e);}
         ClassInfo pair;
         for (String string: obj.keySet()) {
             JsonArray array=obj.getJsonArray(string);
