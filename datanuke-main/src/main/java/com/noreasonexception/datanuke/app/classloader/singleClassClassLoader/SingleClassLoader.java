@@ -1,7 +1,6 @@
 package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader;
 
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
 import java.io.*;
 import java.net.URL;
@@ -123,5 +122,10 @@ public class SingleClassLoader extends ClassLoader {
     @Override
     public String findLibrary(String s) {
         return super.findLibrary(s);
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        System.out.println("FINALIZE CLASSLOADER OF "+singleClass.getName());
     }
 }

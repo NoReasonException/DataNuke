@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
@@ -19,7 +20,7 @@ import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private Date                                        scheduledStart=null;
     private ThreadRunnerState                           currentState = null;
-    private ClassLoader                                 classLoader = null;
+    private AtlasLoader                                 classLoader = null;
     private DataProvider                                configProvider = null;
     private DataProvider                                sourceProvider = null;
     private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
@@ -167,21 +168,29 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     }
     synchronized private void loop() {
         ClassInfo tmp;
-        Class t;
-        Runnable runnable;
+        String tmpclassname;
+        Class kl;
         while (true){
             tmp=classSourcesDT.pollMin();
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             try{
                 wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
-                new Thread((Runnable)(t=classLoader.loadClass(tmp.getClassname())).newInstance()).start();
-                System.out.println(t.getName());
+                new Thread((Runnable)(kl=classLoader.loadClass(tmp.getClassname())).newInstance()).start();
+                tmpclassname=kl.getName();
+                kl=null;
+                System.out.println("class "+tmpclassname+"released"+classLoader.removeClass(tmpclassname,true));
             }catch (InterruptedException|ClassNotFoundException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 
             }
+            System.gc();
             System.out.println("DONE");
+            try{
+                Thread.currentThread().sleep(2000);
+
+            }catch (InterruptedException e){}
+            return;
 
         }
     }
@@ -244,7 +253,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return this.listeners.add(listener);
     }
 
-    public AbstractThreadRunner(ClassLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
+    public AbstractThreadRunner(AtlasLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
         this.listeners = new LinkedList<>();
         this.classLoader=classLoader;
         this.configProvider=configProvider;

@@ -27,7 +27,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     private java.lang.String threadRunnerConfigFile                     =null;
     private java.lang.String threadRunnerSourcesFile                    =null;
     private java.lang.String customClassLoaderPATH                      =null;
-    private ClassLoader      customClassLoader                          =null;
+    private AtlasLoader      customClassLoader                          =null;
 
 
     /****
@@ -100,7 +100,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     }
 
     @Override
-    public ClassLoader getDataNukeCustomClassLoader() {
+    public AtlasLoader getDataNukeCustomClassLoader() {
         return customClassLoader!=null?
                 customClassLoader:(customClassLoader=AtlasLoader.getInstance());
     }

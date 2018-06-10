@@ -151,11 +151,12 @@ public class AtlasLoader extends ClassLoader{
      * @return true in success
      */
     public boolean removeClass(String name,boolean blocking){
-
         synchronized (getClassLoadingLock(name)){
             SingleClassLoader klass;
             boolean retval;
             if(retval=((klass=classes.remove(name))!=null)){
+                System.out.println("Attempt to remove class "+name);
+
                 if(blocking){
                     WeakReference<SingleClassLoader> weakref=new WeakReference<SingleClassLoader>(klass);
                     klass=null;
