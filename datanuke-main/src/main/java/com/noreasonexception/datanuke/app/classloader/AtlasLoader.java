@@ -114,8 +114,8 @@ public class AtlasLoader extends ClassLoader{
         synchronized (getClassLoadingLock(s)) {
             Class<?> klass;
             if ((klass = findLoadedKlass(s)) != null) return klass;
-            SingleClassLoader classLoader = new SingleClassLoader(b);
-            klass=classLoader.loadClass(s);
+            SingleClassLoader classLoader = new SingleClassLoader();
+            klass=classLoader.loadClass(s,b);
             classes.put(klass.getName(), classLoader);
             return klass;
         }

@@ -2,35 +2,26 @@ package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader;
 
 
 import com.noreasonexception.datanuke.app.classloader.singleClassClassLoader.error.AlreadyLoadedClassException;
+import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Enumeration;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class SingleClassLoader extends ClassLoader {
+    private final static java.lang.String PATH_PREFIX="src/main/java/com/noreasonexception/loadable/childs/";
+    private final static java.lang.String CLASS_PREFIX="com.noreasonexception.loadable.childs";
     Class<?> singleClass                =null;
     boolean haveAlreadyLoadClass        =false;
-    boolean resolveFlag                 =false;
-    private static Pattern classVerifier=null;
-
-    static{
-        classVerifier=Pattern.compile("^com\\.noreasonexception\\.loadable\\.childs.*");
-
-    }
-    public SingleClassLoader(boolean resolveFlag) {
-        this.resolveFlag = resolveFlag;
-    }
 
     public Class<?> getSingleClass() {
 
         return singleClass;
     }
-    public static boolean verifyClassNamespace(java.lang.String str){
-        return classVerifier.matcher(str).matches();
-    }
+
     /***
      * Only one class Is allowed (with depedencies!)
      * @param s the class string
@@ -40,13 +31,33 @@ public class SingleClassLoader extends ClassLoader {
      */
     @Override
     public Class<?> loadClass(String s) throws ClassNotFoundException {
-        try{
-            super.findSystemClass(s);
-        }catch (ClassNotFoundException e){;}
-        if(haveAlreadyLoadClass) throw new AlreadyLoadedClassException();
-        haveAlreadyLoadClass=true;
-        return singleClass=super.loadClass(s,resolveFlag);
+        return this.loadClass(s,true);
 
+    }
+
+    /****
+     * load class data from /loadable
+     * @param s name
+     * @return
+     */
+    protected byte[] loadClassBinaryData(String s) throws ClassNotFoundException{
+
+        try{
+            InputStream is = new FileInputStream(PATH_PREFIX+s+".class");
+            ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
+            //write into byte
+            int len =0;
+            try {
+                while((len=is.read())!=-1){
+                    byteSt.write(len);
+                }
+            } catch (IOException e) {
+                throw new ClassNotFoundException("IO Error ",e);
+            }
+            //convert into byte array
+            return byteSt.toByteArray();
+
+        }catch (FileNotFoundException e){throw new ClassNotFoundException("File not found ",e);}
     }
 
 
@@ -60,7 +71,18 @@ public class SingleClassLoader extends ClassLoader {
 
     @Override
     public Class<?> loadClass(String s, boolean b) throws ClassNotFoundException {
-        return super.loadClass(s, b);
+        System.out.println("LOAD CLASS CALLED on "+s);
+        byte[]binaryData=null;
+        String realName=CLASS_PREFIX+"."+s;
+        try{
+            super.findSystemClass(realName);
+        }catch (ClassNotFoundException e){;}
+
+        if(haveAlreadyLoadClass) throw new AlreadyLoadedClassException();
+        haveAlreadyLoadClass=true;
+        singleClass=defineClass(realName,binaryData=loadClassBinaryData(s),0,binaryData.length);
+        if(b)resolveClass(singleClass);
+        return singleClass;
     }
 
     @Override

@@ -21,8 +21,8 @@ public class App
 {
     public static void main( String[] args )throws IOException
     {
-
-        /*AbstractThreadRunner runner;
+        System.out.println(System.getProperty("user.dir"));
+        AbstractThreadRunner runner;
         runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
         runner.subscribeListener(new ThreadRunnerListener() {
             @Override
@@ -30,8 +30,8 @@ public class App
                 //System.out.println(getState().getMessage());
             }
         });
-        new Thread(runner).start();*/
-        System.out.println(SingleClassLoader.verifyClassNamespace("com.noreasonexception.loadable.childs.TestClass"));
+        new Thread(runner).start();
     }
+
 
 }
