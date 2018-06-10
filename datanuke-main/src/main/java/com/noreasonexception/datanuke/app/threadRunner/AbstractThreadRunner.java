@@ -161,17 +161,23 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
     }
     private void prepareLoop() throws LoopPrepareException {
-
+        try{wait(getRemainingTime(scheduledStart.getTime()));}catch (InterruptedException e){throw new LoopPrepareException("Interrupted on startup wait() call",e);}
 
     }
     synchronized private void loop() {
         ClassInfo tmp;
+        Runnable runnable;
         while (true){
             tmp=classSourcesDT.pollMin();
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
-            try{wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
-            }catch (InterruptedException e){
+            try{
+                wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
+                new Thread((Runnable)classLoader.loadClass(tmp.getClassname()).newInstance()).start();
+
+            }catch (InterruptedException|ClassNotFoundException e){
                 e.printStackTrace();
+            }catch (InstantiationException|IllegalAccessException e){
+
             }
             System.out.println("DONE");
 
@@ -229,7 +235,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
         changeStateTo(PREPARE_LOOP);
         try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
-        try{wait(getRemainingTime(scheduledStart.getTime()));}catch (InterruptedException e){}
         loop();
     }
 

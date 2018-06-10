@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader;
+package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader.error;
 
 public  class AlreadyLoadedClassException extends Error {
     public AlreadyLoadedClassException() {
