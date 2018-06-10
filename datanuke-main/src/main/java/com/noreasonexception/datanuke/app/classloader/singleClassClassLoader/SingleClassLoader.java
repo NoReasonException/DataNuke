@@ -78,7 +78,7 @@ public class SingleClassLoader extends ClassLoader {
             super.findSystemClass(realName);
         }catch (ClassNotFoundException e){;}
 
-        if(haveAlreadyLoadClass) throw new AlreadyLoadedClassException();
+        if(haveAlreadyLoadClass) return super.loadClass(s,b);
         haveAlreadyLoadClass=true;
         singleClass=defineClass(realName,binaryData=loadClassBinaryData(s),0,binaryData.length);
         if(b)resolveClass(singleClass);
