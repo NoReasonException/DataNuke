@@ -113,7 +113,7 @@ public class AtlasLoader extends ClassLoader{
     protected Class<?> loadClass(String s, boolean b) throws ClassNotFoundException {
         synchronized (getClassLoadingLock(s)) {
             Class<?> klass;
-            if ((klass = findLoadedKlass(s)) != null) return klass;
+            if ((klass = findLoadedKlass(s)) != null) { return klass; }
             SingleClassLoader classLoader = new SingleClassLoader();
             klass=classLoader.loadClass(s,b);
             classes.put(klass.getName(), classLoader);

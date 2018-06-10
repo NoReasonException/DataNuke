@@ -1,7 +1,6 @@
 package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader;
 
 
-import com.noreasonexception.datanuke.app.classloader.singleClassClassLoader.error.AlreadyLoadedClassException;
 import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
 import java.io.*;
@@ -27,7 +26,6 @@ public class SingleClassLoader extends ClassLoader {
      * @param s the class string
      * @return the Class object
      * @throws ClassNotFoundException if not found
-     * @throws AlreadyLoadedClassException if loadClass is called for more than 1 time
      */
     @Override
     public Class<?> loadClass(String s) throws ClassNotFoundException {
@@ -43,7 +41,8 @@ public class SingleClassLoader extends ClassLoader {
     protected byte[] loadClassBinaryData(String s) throws ClassNotFoundException{
 
         try{
-            InputStream is = new FileInputStream(PATH_PREFIX+s+".class");
+            String[]split;
+            InputStream is = new FileInputStream(PATH_PREFIX+(split=s.split("\\."))[split.length-1]+".class");
             ByteArrayOutputStream byteSt = new ByteArrayOutputStream();
             //write into byte
             int len =0;
@@ -73,14 +72,13 @@ public class SingleClassLoader extends ClassLoader {
     public Class<?> loadClass(String s, boolean b) throws ClassNotFoundException {
         System.out.println("LOAD CLASS CALLED on "+s);
         byte[]binaryData=null;
-        String realName=CLASS_PREFIX+"."+s;
         try{
-            super.findSystemClass(realName);
+            super.findSystemClass(s);
         }catch (ClassNotFoundException e){;}
 
         if(haveAlreadyLoadClass) return super.loadClass(s,b);
         haveAlreadyLoadClass=true;
-        singleClass=defineClass(realName,binaryData=loadClassBinaryData(s),0,binaryData.length);
+        singleClass=defineClass(s,binaryData=loadClassBinaryData(s),0,binaryData.length);
         if(b)resolveClass(singleClass);
         return singleClass;
     }

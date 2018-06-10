@@ -167,14 +167,15 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     }
     synchronized private void loop() {
         ClassInfo tmp;
+        Class t;
         Runnable runnable;
         while (true){
             tmp=classSourcesDT.pollMin();
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             try{
                 wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
-                new Thread((Runnable)classLoader.loadClass(tmp.getClassname()).newInstance()).start();
-
+                new Thread((Runnable)(t=classLoader.loadClass(tmp.getClassname())).newInstance()).start();
+                System.out.println(t.getName());
             }catch (InterruptedException|ClassNotFoundException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
