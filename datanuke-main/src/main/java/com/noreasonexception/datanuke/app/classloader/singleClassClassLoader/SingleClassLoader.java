@@ -7,12 +7,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SingleClassLoader extends ClassLoader {
     Class<?> singleClass                =null;
     boolean haveAlreadyLoadClass        =false;
     boolean resolveFlag                 =false;
+    private static Pattern classVerifier=null;
 
+    static{
+        classVerifier=Pattern.compile("^com\\.noreasonexception\\.loadable\\.childs.*");
+
+    }
     public SingleClassLoader(boolean resolveFlag) {
         this.resolveFlag = resolveFlag;
     }
@@ -20,6 +27,9 @@ public class SingleClassLoader extends ClassLoader {
     public Class<?> getSingleClass() {
 
         return singleClass;
+    }
+    public static boolean verifyClassNamespace(java.lang.String str){
+        return classVerifier.matcher(str).matches();
     }
     /***
      * Only one class Is allowed (with depedencies!)
@@ -38,6 +48,7 @@ public class SingleClassLoader extends ClassLoader {
         return singleClass=super.loadClass(s,resolveFlag);
 
     }
+
 
     public SingleClassLoader(ClassLoader classLoader) {
         super(classLoader);
