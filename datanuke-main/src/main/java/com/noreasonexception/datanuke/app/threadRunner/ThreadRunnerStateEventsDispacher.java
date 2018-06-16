@@ -5,7 +5,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadRunnerStateEventsDispacher extends Thread {
     private final LinkedList<ThreadRunnerStateListener> listeners;
-    private final AbstractThreadRunner runner;
     private boolean onSchedule=false;
     LinkedBlockingQueue<ThreadRunnerState> states;
 
@@ -31,8 +30,8 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
             }
         }
     }
-    public ThreadRunnerStateEventsDispacher(AbstractThreadRunner runner, LinkedList<ThreadRunnerStateListener> listeners) {
-        this.runner=runner;
+    public ThreadRunnerStateEventsDispacher(LinkedList<ThreadRunnerStateListener> listeners) {
+
         this.listeners=listeners;
         this.states=new LinkedBlockingQueue<>();
     }

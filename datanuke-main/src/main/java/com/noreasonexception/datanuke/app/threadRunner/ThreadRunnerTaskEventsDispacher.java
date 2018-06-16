@@ -93,7 +93,8 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                     try{
                         ev=events.take();
                         java.lang.String methodname=ev.getMethodName();
-                        m=klass.getMethod(methodname);
+                        System.out.println(methodname);
+                        m=klass.getMethod(methodname,java.lang.String.class);
                         for (ThreadRunnerTaskListener subsciber:listeners){
                             m.invoke(subsciber,ev.getClassname());
                         }

@@ -22,8 +22,11 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private DataProvider                                configProvider = null;
     private DataProvider                                sourceProvider = null;
     private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
-    private LinkedList<ThreadRunnerStateListener>            listeners = null;
-    private final ThreadRunnerStateEventsDispacher eventDispacher;
+    private LinkedList<ThreadRunnerStateListener>       stateListeners = null;
+    private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;
+    private LinkedList<ThreadRunnerTaskListener>       taskListeners = null;
+    private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;
+
     private int                                         initializationTime;
     private int                                         startupTarget;
     /*****
@@ -153,6 +156,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                         new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
                         Integer.valueOf(array.getString(1)),
                         string));
+            this.taskEventsDispacher.submitClassReadInfoEvent(string);
             long j;
             System.out.println(string+"have deadline in "+
                     (j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))))+" wait ->"+
@@ -180,6 +184,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         String tmpclassname;
         Class kl;
         while (true){
+
             tmp=classSourcesDT.pollMin();
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             try{
@@ -209,7 +214,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * Thread-Safe
      */
     private void stateEventHappened() {
-        eventDispacher.submitEvent(currentState);
+        stateEventsDispacher.submitEvent(currentState);
 
     }
 
@@ -259,21 +264,26 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
 
     public boolean subscribeStateListener(ThreadRunnerStateListener listener) {
-        return this.listeners.add(listener);
+        return this.stateListeners.add(listener);
     }
-    public boolean subscribeClassListener(ThreadRunnerTaskListener listener){
-        return true;
+    public boolean subscribeTaskListener(ThreadRunnerTaskListener listener){
+
+        return taskListeners.add(listener);
     }
 
     public AbstractThreadRunner(AtlasLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
-        this.listeners = new LinkedList<>();
+        this.stateListeners = new LinkedList<>();
+        this.taskListeners=new LinkedList<>();
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
         this.classSourcesDT=new BST_EDF();
-        this.eventDispacher=new ThreadRunnerStateEventsDispacher(this,listeners);
+
+        this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
+        this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
         changeStateTo(NONE);
-        this.eventDispacher.start();
+        this.stateEventsDispacher.start();
+        this.taskEventsDispacher.start();
     }
 
     public ThreadRunnerState getCurrentState() {
@@ -283,6 +293,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        this.eventDispacher.interrupt();
+        this.stateEventsDispacher.interrupt();
     }
 }
