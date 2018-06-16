@@ -1,97 +1,101 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import com.noreasonexception.datanuke.app.threadRunner.etc.TaskEvent;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadRunnerTaskEventsDispacher extends Thread {
-    LinkedBlockingQueue<java.lang.String> events;
+    LinkedBlockingQueue<TaskEvent> events;
     private final LinkedList<ThreadRunnerTaskListener> listeners;
 
     public ThreadRunnerTaskEventsDispacher(LinkedList<ThreadRunnerTaskListener> tasks){
         this.listeners=tasks;
-        events=new LinkedBlockingQueue<java.lang.String> ();
+        events=new LinkedBlockingQueue<TaskEvent> ();
     }
-    public void submitClassReadInfoEvent(){
-        while(!events.offer("onClassReadInfo"));
+    public void submitClassReadInfoEvent(String classname){
+        while(!events.offer(new TaskEvent("onClassReadInfo",classname)));
     }
 
     /***
      * Called when the AbstractThreadRunner waits until the deadline of class
      */
-    public void submitClassWaitUntillDeadlineEvent(){
-        while(!events.offer("onClassWaitUntillDeadline"));
+    public void submitClassWaitUntillDeadlineEvent(String classname){
+        while(!events.offer(new TaskEvent("onClassWaitUntillDeadline",classname)));
 
     }
 
     /***
      * Called when the classloader is loading the class in memory
      */
-    public void submitClassLoadingEvent(){
-        while(!events.offer("onClassLoadingEvent"));
+    public void submitClassLoadingEvent(String classname){
+        while(!events.offer(new TaskEvent("onClassLoadingEvent",classname)));
 
     }
 
     /***
      * Called when the class instance is created
      */
-    public void submitClassInstanceCreatedEvent(){
-        while(!events.offer("onClassInstanceCreated"));
+    public void submitClassInstanceCreatedEvent(String classname){
+        while(!events.offer(new TaskEvent("onClassInstanceCreated",classname)));
 
     }
 
     /***
      * Called when the thread is started
      */
-    public void submitTaskThreadStartedEvent(){
-        while(!events.offer("onTaskThreadStarted"));
+    public void submitTaskThreadStartedEvent(String classname){
+        while(!events.offer(new TaskEvent("onTaskThreadStarted",classname)));
 
     }
 
     /***
      * Called when the new value is retrieved
      */
-    public void submitTaskThreadValueRetrievedEvent(){
-        while(!events.offer("onTaskThreadValueRetrieved"));
+    public void submitTaskThreadValueRetrievedEvent(String classname){
+        while(!events.offer(new TaskEvent("onTaskThreadValueRetrieved",classname)));
 
     }
 
     /***
      * Called when the task is terminated
      */
-    public void submitTaskThreadTerminatedEvent(){
-        while(!events.offer("onTaskThreadTerminate"));
+    public void submitTaskThreadTerminatedEvent(String classname){
+        while(!events.offer(new TaskEvent("onTaskThreadTerminate",classname)));
 
     }
 
     /***
      * Called when the garbage collector releases the thread object
      */
-    public void submitTaskThreadReleasedEvent(){
-        while(!events.offer("onTaskThreadReleased"));
+    public void submitTaskThreadReleasedEvent(String classname){
+        while(!events.offer(new TaskEvent("onTaskThreadReleased",classname)));
 
     }
 
     /***
      * Called when the gerbage collector releases the class object
      */
-    public void submitClassReleasedEvent(){
-        while(!events.offer("onClassReleased"));
+    public void submitClassReleasedEvent(String classname){
+        while(!events.offer(new TaskEvent("onClassReleased",classname)));
 
     }
     @Override
     public void run() {
         Class<ThreadRunnerTaskListener>klass=ThreadRunnerTaskListener.class;
         Method m=null;
+        TaskEvent ev;
         while(true){
             synchronized (this){
                 synchronized (listeners){
                     try{
-                        java.lang.String methodname=events.take();
+                        ev=events.take();
+                        java.lang.String methodname=ev.getMethodName();
                         m=klass.getMethod(methodname);
                         for (ThreadRunnerTaskListener subsciber:listeners){
-                            m.invoke(subsciber);
+                            m.invoke(subsciber,ev.getClassname());
                         }
                     }
                     catch (InterruptedException e){e.printStackTrace();}
