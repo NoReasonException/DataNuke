@@ -17,7 +17,7 @@ public class App
         System.out.println(System.getProperty("user.dir"));
         AbstractThreadRunner runner;
         runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
-        runner.subscribeListener(new ThreadRunnerStateListener() {
+        runner.subscribeStateListener(new ThreadRunnerStateListener() {
             @Override
             public void run() {
                 //System.out.println(getState().getMessage());

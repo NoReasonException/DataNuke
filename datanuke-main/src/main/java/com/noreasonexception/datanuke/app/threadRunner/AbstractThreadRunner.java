@@ -23,7 +23,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private DataProvider                                sourceProvider = null;
     private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
     private LinkedList<ThreadRunnerStateListener>            listeners = null;
-    private final ThreadRunnerDispacher                 eventDispacher;
+    private final ThreadRunnerStateEventsDispacher eventDispacher;
     private int                                         initializationTime;
     private int                                         startupTarget;
     /*****
@@ -187,14 +187,13 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 new Thread((Runnable)(kl=classLoader.loadClass(tmp.getClassname())).newInstance()).start();
                 tmpclassname=kl.getName();
                 kl=null;
-                System.out.println("class "+tmpclassname+"released"+classLoader.removeClass(tmpclassname,true));
+                classLoader.removeClass(tmpclassname,true);
             }catch (InterruptedException|ClassNotFoundException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 
             }
             System.gc();
-            System.out.println("DONE");
             try{
                 Thread.currentThread().sleep(2000);
 
@@ -204,12 +203,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
     }
     /***
-     * eventHappened
+     * stateEventHappened
      * This method activated in every state change of AbstractThreadRunner . it informs all
      * the subscribed observers about the event
      * Thread-Safe
      */
-    private void eventHappened() {
+    private void stateEventHappened() {
         eventDispacher.submitEvent(currentState);
 
     }
@@ -241,7 +240,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                         currentState,state);
         }
         currentState=state;
-        eventHappened();
+        stateEventHappened();
     }
     /****
      * This is the main entry point for ThreadRunner
@@ -258,8 +257,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         loop();
     }
 
-    public boolean subscribeListener(ThreadRunnerStateListener listener) {
+
+    public boolean subscribeStateListener(ThreadRunnerStateListener listener) {
         return this.listeners.add(listener);
+    }
+    public boolean subscribeClassListener(ThreadRunnerTaskListener listener){
+        return true;
     }
 
     public AbstractThreadRunner(AtlasLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
@@ -268,7 +271,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
         this.classSourcesDT=new BST_EDF();
-        this.eventDispacher=new ThreadRunnerDispacher(this,listeners);
+        this.eventDispacher=new ThreadRunnerStateEventsDispacher(this,listeners);
         changeStateTo(NONE);
         this.eventDispacher.start();
     }

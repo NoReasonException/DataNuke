@@ -4,10 +4,7 @@ package com.noreasonexception.datanuke.app.classloader.singleClassClassLoader;
 
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.Enumeration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SingleClassLoader extends ClassLoader {
     private final static java.lang.String PATH_PREFIX="src/main/java/com/noreasonexception/loadable/childs/";
@@ -69,7 +66,7 @@ public class SingleClassLoader extends ClassLoader {
 
     @Override
     public Class<?> loadClass(String s, boolean b) throws ClassNotFoundException {
-        System.out.println("LOAD CLASS CALLED on "+s);
+
         byte[]binaryData=null;
         try{
             super.findSystemClass(s);
@@ -124,8 +121,4 @@ public class SingleClassLoader extends ClassLoader {
         return super.findLibrary(s);
     }
 
-    @Override
-    protected void finalize() throws Throwable {
-        System.out.println("FINALIZE CLASSLOADER OF "+singleClass.getName());
-    }
 }
