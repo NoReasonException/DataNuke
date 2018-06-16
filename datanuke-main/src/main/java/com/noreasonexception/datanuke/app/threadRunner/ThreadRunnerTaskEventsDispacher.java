@@ -1,5 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -80,7 +82,24 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
     }
     @Override
     public void run() {
+        Class<ThreadRunnerTaskListener>klass=ThreadRunnerTaskListener.class;
+        Method m=null;
+        while(true){
+            synchronized (this){
+                synchronized (listeners){
+                    try{
+                        java.lang.String methodname=events.take();
+                        m=klass.getMethod(methodname);
+                        for (ThreadRunnerTaskListener subsciber:listeners){
+                            m.invoke(subsciber);
+                        }
+                    }
+                    catch (InterruptedException e){e.printStackTrace();}
+                    catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e){e.printStackTrace();}
 
+                }
+            }
+        }
     }
 
 }
