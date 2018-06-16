@@ -6,5 +6,5 @@ package com.noreasonexception.datanuke.app.threadRunner;
  *
  */
 public interface ThreadRunnerObservable {
-    public boolean subscribeListener(ThreadRunnerListener listener);
+    public boolean subscribeListener(ThreadRunnerStateListener listener);
 }

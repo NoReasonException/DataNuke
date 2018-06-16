@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class ThreadRunnerDispacher extends Thread {
-    private final LinkedList<ThreadRunnerListener> listeners;
+    private final LinkedList<ThreadRunnerStateListener> listeners;
     private final AbstractThreadRunner runner;
     private boolean onSchedule=false;
     LinkedBlockingQueue<ThreadRunnerState> states;
@@ -25,7 +25,7 @@ public class ThreadRunnerDispacher extends Thread {
                         state= states.take();
 
                     }catch (InterruptedException e){e.printStackTrace();Thread.currentThread().interrupt();}
-                    for (ThreadRunnerListener l:listeners) {
+                    for (ThreadRunnerStateListener l:listeners) {
                         l.setState(state).run();
                     }
                 }
@@ -34,7 +34,7 @@ public class ThreadRunnerDispacher extends Thread {
 
 
     }
-    public ThreadRunnerDispacher(AbstractThreadRunner runner,LinkedList<ThreadRunnerListener> listeners) {
+    public ThreadRunnerDispacher(AbstractThreadRunner runner,LinkedList<ThreadRunnerStateListener> listeners) {
         this.runner=runner;
         this.listeners=listeners;
         this.states=new LinkedBlockingQueue<>();

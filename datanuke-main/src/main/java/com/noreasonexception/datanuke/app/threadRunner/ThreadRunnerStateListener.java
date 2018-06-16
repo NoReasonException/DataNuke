@@ -1,6 +1,6 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
-abstract public class ThreadRunnerListener implements Runnable {
+abstract public class ThreadRunnerStateListener implements Runnable {
     private ThreadRunnerState state=null;
     abstract public void run() ;
 
@@ -8,7 +8,7 @@ abstract public class ThreadRunnerListener implements Runnable {
         return state;
     }
 
-    public ThreadRunnerListener setState(ThreadRunnerState state) {
+    public ThreadRunnerStateListener setState(ThreadRunnerState state) {
         this.state = state;
         return this;
     }

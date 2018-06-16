@@ -6,8 +6,6 @@ import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
 import com.noreasonexception.datanuke.app.threadRunner.error.*;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
-import com.noreasonexception.loadable.base.AbstractParser;
-import com.noreasonexception.loadable.base.HtmlParser;
 
 import javax.json.*;
 import javax.json.stream.JsonParsingException;
@@ -24,7 +22,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private DataProvider                                configProvider = null;
     private DataProvider                                sourceProvider = null;
     private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
-    private LinkedList<ThreadRunnerListener>            listeners = null;
+    private LinkedList<ThreadRunnerStateListener>            listeners = null;
     private final ThreadRunnerDispacher                 eventDispacher;
     private int                                         initializationTime;
     private int                                         startupTarget;
@@ -166,6 +164,17 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         try{wait(getRemainingTime(scheduledStart.getTime()));}catch (InterruptedException e){throw new LoopPrepareException("Interrupted on startup wait() call",e);}
 
     }
+
+    /****
+     * This is the main loop of AbstractThreadRunner
+     * The performed operations is listed below
+     * 1) Removes the task with the earliest deadline
+     * 2) Calculates the tasks next deadline and re-insert it in the tree
+     * 3) Waits untill deadline
+     * 4) Load the desired class
+     * 5) runs it in new thread
+     * LOOP;
+     */
     synchronized private void loop() {
         ClassInfo tmp;
         String tmpclassname;
@@ -249,7 +258,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         loop();
     }
 
-    public boolean subscribeListener(ThreadRunnerListener listener) {
+    public boolean subscribeListener(ThreadRunnerStateListener listener) {
         return this.listeners.add(listener);
     }
 

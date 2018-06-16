@@ -1,17 +1,10 @@
 package com.noreasonexception.datanuke.app;
 
-import com.noreasonexception.datanuke.app.classloader.singleClassClassLoader.SingleClassLoader;
-import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
-import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerListener;
-import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 
-import java.awt.*;
 import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Hello world!
@@ -24,7 +17,7 @@ public class App
         System.out.println(System.getProperty("user.dir"));
         AbstractThreadRunner runner;
         runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
-        runner.subscribeListener(new ThreadRunnerListener() {
+        runner.subscribeListener(new ThreadRunnerStateListener() {
             @Override
             public void run() {
                 //System.out.println(getState().getMessage());
