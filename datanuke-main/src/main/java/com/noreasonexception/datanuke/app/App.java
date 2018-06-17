@@ -64,12 +64,11 @@ public class App
 
             @Override
             public void onTaskThreadTerminated(String classname) {
-                super.onTaskThreadTerminated(classname);
+                System.out.println("onTaskThreadTerminated "+classname);
             }
 
             @Override
             public void onTaskThreadReleased(String classname) {
-                super.onTaskThreadReleased(classname);
             }
 
             @Override

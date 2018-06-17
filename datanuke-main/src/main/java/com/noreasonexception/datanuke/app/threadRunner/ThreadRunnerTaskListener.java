@@ -16,10 +16,21 @@ public abstract class ThreadRunnerTaskListener  {
      */
     public void onClassLoading(String classname){}
 
+    /****
+     * Called when something went wrong in class loading stuff..
+     */
+    public void onClassLoadingFailed(String classname,Throwable e){}
+
     /***
      * Called when the class instance is created
      */
     public void onClassInstanceCreated(String classname){}
+
+    /****
+     * Called when something gone wrong about creating instance
+     *
+     */
+    public void onClassInstanceCreatedFailed(String classname,Throwable e){}
 
     /***
      * Called when the thread is started
@@ -30,6 +41,11 @@ public abstract class ThreadRunnerTaskListener  {
      * Called when the new value is retrieved
      */
     public void onTaskThreadValueRetrieved(String classname){}
+
+    /****
+     * Called when something gone wrong about retrieving some value
+     */
+    public void onTaskThreadValueRetrievedFailed(String classname,Throwable e){}
 
     /***
      * Called when the task is terminated

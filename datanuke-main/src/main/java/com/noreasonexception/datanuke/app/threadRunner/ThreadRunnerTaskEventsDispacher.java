@@ -63,7 +63,7 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
      * Called when the task is terminated
      */
     public void submitTaskThreadTerminatedEvent(String classname){
-        while(!events.offer(new TaskEvent("onTaskThreadTerminate",classname)));
+        while(!events.offer(new TaskEvent("onTaskThreadTerminated",classname)));
 
     }
 
@@ -76,7 +76,7 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
     }
 
     /***
-     * Called when the gerbage collector releases the class object
+     * Called when the garbage collector releases the class object
      */
     public void submitClassReleasedEvent(String classname){
         while(!events.offer(new TaskEvent("onClassReleased",classname)));
@@ -93,10 +93,13 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                     try{
                         ev=events.take();
                         java.lang.String methodname=ev.getMethodName();
-                        m=klass.getMethod(methodname,java.lang.String.class);
-                        for (ThreadRunnerTaskListener subsciber:listeners){
-                            m.invoke(subsciber,ev.getClassname());
+                        if(!methodname.endsWith("Failed")){
+                            m=klass.getMethod(methodname,java.lang.String.class);
+                            for (ThreadRunnerTaskListener subsciber:listeners){
+                                m.invoke(subsciber,ev.getClassname());
+                            }
                         }
+
                     }
                     catch (InterruptedException e){e.printStackTrace();}
                     catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e){e.printStackTrace();}

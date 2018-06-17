@@ -10,7 +10,7 @@ public class TestClass extends HtmlParser {
 
     @Override
     protected void finalize() throws Throwable {
-        getDispacher().submitClassReleasedEvent(getClass().getName());
+        getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
 
     @Override
