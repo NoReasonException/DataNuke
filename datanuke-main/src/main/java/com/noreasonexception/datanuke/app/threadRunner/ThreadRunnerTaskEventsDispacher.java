@@ -1,6 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
 import com.noreasonexception.datanuke.app.threadRunner.etc.TaskEvent;
+import com.noreasonexception.datanuke.app.threadRunner.etc.TaskEventException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -34,12 +35,27 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
         while(!events.offer(new TaskEvent("onClassLoading",classname)));
 
     }
+    /***
+     * Called if the classloader encounters some error in the proccess of loading some class into memory
+     */
+    public void submitClassLoadingEventFailed(String classname,Throwable e){
+        while(!events.offer(new TaskEventException("onClassLoadingFailed",classname,e)));
+
+    }
 
     /***
      * Called when the class instance is created
      */
     public void submitClassInstanceCreatedEvent(String classname){
         while(!events.offer(new TaskEvent("onClassInstanceCreated",classname)));
+
+    }
+
+    /***
+     * Called when the class instance creation encounters some error
+     */
+    public void submitClassInstanceCreatedEventFailed(String classname,Throwable e){
+        while(!events.offer(new TaskEventException("onClassInstanceCreatedFailed",classname,e)));
 
     }
 
@@ -56,6 +72,13 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
      */
     public void submitTaskThreadValueRetrievedEvent(String classname){
         while(!events.offer(new TaskEvent("onTaskThreadValueRetrieved",classname)));
+
+    }
+    /***
+     * Called when the new value is not retrieved due to some error
+     */
+    public void submitTaskThreadValueRetrievedEventFailed(String classname,Throwable e){
+        while(!events.offer(new TaskEventException("onTaskThreadValueRetrievedFailed",classname,e)));
 
     }
 
@@ -86,18 +109,27 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
     public void run() {
         Class<ThreadRunnerTaskListener>klass=ThreadRunnerTaskListener.class;
         Method m=null;
-        TaskEvent ev;
+        TaskEvent event;
+        TaskEventException eventException;
         while(true){
             synchronized (this){
                 synchronized (listeners){
                     try{
-                        ev=events.take();
-                        java.lang.String methodname=ev.getMethodName();
+                        event=events.take();
+                        java.lang.String methodname=event.getMethodName();
                         if(!methodname.endsWith("Failed")){
                             m=klass.getMethod(methodname,java.lang.String.class);
                             for (ThreadRunnerTaskListener subsciber:listeners){
-                                m.invoke(subsciber,ev.getClassname());
+                                m.invoke(subsciber,event.getClassname());
                             }
+                        }
+                        else{
+                            eventException=(TaskEventException)event;
+                            m=klass.getMethod(methodname,java.lang.String.class,java.lang.Throwable.class);
+                            for (ThreadRunnerTaskListener subsciber:listeners){
+                                m.invoke(subsciber,eventException.getClassname(),eventException.getError());
+                            }
+
                         }
 
                     }
