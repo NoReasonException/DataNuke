@@ -6,10 +6,12 @@ import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
 import com.noreasonexception.datanuke.app.threadRunner.error.*;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
+import com.noreasonexception.loadable.base.AbstractParser;
 
 import javax.json.*;
 import javax.json.stream.JsonParsingException;
 import java.io.StringReader;
+import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidParameterException;
 import java.util.*;
 
@@ -195,14 +197,20 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
-                task=(Runnable) kl.newInstance();
+                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class).newInstance(this.taskEventsDispacher);
                 taskThread=new Thread(task);
                 this.taskEventsDispacher.submitTaskThreadStartedEvent(tmp.getClassname());
                 taskThread.start();
                 tmpclassname=kl.getName();
                 kl=null;
-                classLoader.removeClass(tmpclassname);
-            }catch (InterruptedException|ClassNotFoundException e){
+                task=null;
+                taskThread=null;
+                tmp=null;
+                new Thread(()->{
+                    AbstractThreadRunner.this.classLoader.removeClass(tmpclassname);
+                }).start();
+
+            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 

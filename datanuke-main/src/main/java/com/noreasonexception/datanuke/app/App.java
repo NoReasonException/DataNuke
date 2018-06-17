@@ -74,7 +74,7 @@ public class App
 
             @Override
             public void onClassReleased(String classname) {
-                super.onClassReleased(classname);
+                System.out.println("onClassReleased "+classname);
             }
         });
         new Thread(runner).start();
