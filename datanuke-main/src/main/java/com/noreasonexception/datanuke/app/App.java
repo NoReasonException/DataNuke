@@ -28,7 +28,7 @@ public class App
         runner.subscribeTaskListener(new ThreadRunnerTaskListener() {
             @Override
             public void onClassReadInfo(String classname) {
-                System.out.println("ON CLASS READ INFO");
+                System.out.println("ON CLASS READ INFO" + classname);
             }
         });
         new Thread(runner).start();
