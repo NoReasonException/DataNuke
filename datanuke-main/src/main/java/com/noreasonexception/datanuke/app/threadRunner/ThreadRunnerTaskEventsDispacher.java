@@ -31,7 +31,7 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
      * Called when the classloader is loading the class in memory
      */
     public void submitClassLoadingEvent(String classname){
-        while(!events.offer(new TaskEvent("onClassLoadingEvent",classname)));
+        while(!events.offer(new TaskEvent("onClassLoading",classname)));
 
     }
 
@@ -93,7 +93,6 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                     try{
                         ev=events.take();
                         java.lang.String methodname=ev.getMethodName();
-                        System.out.println(methodname);
                         m=klass.getMethod(methodname,java.lang.String.class);
                         for (ThreadRunnerTaskListener subsciber:listeners){
                             m.invoke(subsciber,ev.getClassname());

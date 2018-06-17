@@ -183,16 +183,25 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         ClassInfo tmp;
         String tmpclassname;
         Class kl;
+        Thread taskThread;
+        Runnable task;
         while (true){
 
             tmp=classSourcesDT.pollMin();
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
+            this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
                 wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
-                new Thread((Runnable)(kl=classLoader.loadClass(tmp.getClassname())).newInstance()).start();
+                this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
+                kl=classLoader.loadClass(tmp.getClassname());
+                this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
+                task=(Runnable) kl.newInstance();
+                taskThread=new Thread(task);
+                this.taskEventsDispacher.submitTaskThreadStartedEvent(tmp.getClassname());
+                taskThread.start();
                 tmpclassname=kl.getName();
                 kl=null;
-                classLoader.removeClass(tmpclassname,true);
+                classLoader.removeClass(tmpclassname);
             }catch (InterruptedException|ClassNotFoundException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
