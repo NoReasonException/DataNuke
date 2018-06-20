@@ -2,6 +2,12 @@ package com.noreasonexception.datanuke.app.threadRunner.etc;
 
 import java.util.Date;
 
+/****
+ * ClassInfo class
+ * this class represents a www node , where we want to retrieve information
+ * every node has a an previous point in history , witch the changing value event happened , an interval , and the associated
+ * class name
+ */
 public class ClassInfo implements Comparable<ClassInfo> {
     private  Date   date;
     private  long   interval;

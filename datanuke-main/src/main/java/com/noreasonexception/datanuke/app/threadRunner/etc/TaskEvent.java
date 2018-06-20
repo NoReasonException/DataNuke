@@ -1,5 +1,9 @@
 package com.noreasonexception.datanuke.app.threadRunner.etc;
 
+/****
+ * This object is submitted in Task Notifier dispacher as event . the dispacher looks the methodname and calls the right
+ * handler on every listener
+ */
 public class TaskEvent {
     private String methodName;
     private String classname;
