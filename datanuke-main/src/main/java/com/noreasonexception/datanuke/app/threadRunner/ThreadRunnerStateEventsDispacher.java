@@ -14,15 +14,17 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
         }
         return this;
     }
+    //TODO :ConcurrentModificationException but not deterministic , fix
     @Override
     public void run() {
         while (true){
             synchronized (this){
+                ThreadRunnerState state=null;
+                try{
+                    state= states.take();
+                }catch (InterruptedException e){e.printStackTrace();Thread.currentThread().interrupt();}
+
                 synchronized (listeners){
-                    ThreadRunnerState state=null;
-                    try{
-                        state= states.take();
-                    }catch (InterruptedException e){e.printStackTrace();Thread.currentThread().interrupt();}
                     for (ThreadRunnerStateListener l:listeners) {
                         l.setState(state).run();
                     }

@@ -27,12 +27,20 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     private java.lang.String            filename;
     private DataProvider                fileDataProvider;
 
+
+    public CsvValueFilter(int ensureCapacity,String filename){
+        this.classIDs=new Hashtable<>();
+        this.classValues=new ArrayList<>(ensureCapacity);
+        this.filename=filename;
+
+    }   
     /****
      * Return the contexts of value file as a string using the utills provided by @see DataProvider
      * @return the text of the file
      * @throws IOException
      */
-    private  String fileContextToString() throws IOException{
+
+    /*Package-Private*/String fileContextToString() throws IOException{
         Path p;
         return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
                 p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
@@ -43,7 +51,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      * @return the actual data as ArrayList
      * @throws IOException in case of any error
      */
-    private ArrayList<Double> fileContextToArray()throws CsvValueFilterException {
+    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws CsvValueFilterException {
         try{
             String str = fileContextToString();
             ArrayList<Double> retval=new ArrayList<>();
@@ -57,14 +65,6 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         }catch (IOException e){
             throw new CsvValueFilterException("File IO Error (missing file/permissions maybe?)",e);
         }
-
-    }
-    private static ArrayList<Double>    stringToContext(java.lang.String str){
-        return null;
-    }
-    public CsvValueFilter(int ensureCapacity){
-        this.classIDs=new Hashtable<>();
-        this.classValues=new ArrayList<>(ensureCapacity);
 
     }
     /****

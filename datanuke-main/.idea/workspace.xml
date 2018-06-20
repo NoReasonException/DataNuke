@@ -44,20 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ValueFilterable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/ValueFilterable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="51" selection-start-line="15" selection-start-column="51" selection-end-line="15" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CsvValueFilter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CsvValueFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="55" column="96" selection-start-line="55" selection-start-column="96" selection-end-line="55" selection-end-column="96" />
+            <state relative-caret-position="-27">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1049#1050#0" expanded="true" />
@@ -121,26 +112,42 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+            <state relative-caret-position="508">
+              <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
+              <folding>
+                <element signature="e#759#933#0" expanded="true" />
+                <element signature="e#932#933#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file leaf-file-name="CsvValueFilterTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="19" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+            <state relative-caret-position="340">
+              <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="datanuke-main.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/datanuke-main.iml">
+      <file leaf-file-name="Hey.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Hey.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            <state>
+              <caret column="9" selection-start-column="9" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadRunnerStateEventsDispacher.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateEventsDispacher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -165,9 +172,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/conf/dataNukeDefaultFactoryConf.json" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/error/MissingResourcesException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/ConfigurationLoaderException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerListener.java" />
@@ -200,7 +204,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/XlsParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateEventsDispacher.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerTaskListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/TestClass.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
@@ -211,11 +214,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/TaskEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/TaskEventException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/ValueFilterable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/FileDataProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/error/CsvFilterException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/error/CsvFilterMailformedFileException.java" />
+        <option value="$PROJECT_DIR$/Hey.txt" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateEventsDispacher.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/test/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java" />
       </list>
     </option>
   </component>
@@ -346,6 +353,36 @@
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
               <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="ValueFilter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -406,7 +443,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.CsvValueFilterTest (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -436,6 +473,52 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.noreasonexception.datanuke.app" />
       <option name="MAIN_CLASS_NAME" value="com.noreasonexception.datanuke.app.AppTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="CsvValueFilterTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="datanuke-main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.noreasonexception.datanuke.app.ValueFilter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.noreasonexception.datanuke.app.ValueFilter" />
+      <option name="MAIN_CLASS_NAME" value="com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilterTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="CsvValueFilterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="datanuke-main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.test.noreasonexception.datanuke.app.ValueFilter.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.test.noreasonexception.datanuke.app.ValueFilter" />
+      <option name="MAIN_CLASS_NAME" value="com.test.noreasonexception.datanuke.app.ValueFilter.CsvValueFilterTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -488,9 +571,13 @@
     <list>
       <item itemvalue="JUnit.AppTest" />
       <item itemvalue="Application.App" />
+      <item itemvalue="JUnit.CsvValueFilterTest" />
+      <item itemvalue="JUnit.CsvValueFilterTest (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CsvValueFilterTest (1)" />
+        <item itemvalue="JUnit.CsvValueFilterTest" />
         <item itemvalue="Application.App" />
         <item itemvalue="JUnit.AppTest" />
       </list>
@@ -533,26 +620,11 @@
       <workItem from="1529488504550" duration="1184000" />
       <workItem from="1529504772386" duration="491000" />
       <workItem from="1529518085334" duration="127000" />
-      <workItem from="1529519348432" duration="4929000" />
+      <workItem from="1529519348432" duration="9893000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AppTest - 2018.05.31 at 23h 35m 11s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AppTest - 2018.05.31 at 23h 36m 04s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AppTest - 2018.05.31 at 23h 36m 20s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AppTest - 2018.05.31 at 23h 41m 43s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="AppTest - 2018.06.01 at 00h 02m 27s.xml">
-      <configuration name="AppTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="AppTest - 2018.06.01 at 00h 03m 56s.xml">
       <configuration name="AppTest" configurationId="JUnit" />
     </history-entry>
@@ -568,9 +640,24 @@
     <history-entry file="AppTest - 2018.06.01 at 00h 36m 03s.xml">
       <configuration name="AppTest" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="CsvValueFilterTest - 2018.06.20 at 23h 52m 11s.xml">
+      <configuration name="CsvValueFilterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CsvValueFilterTest_(1) - 2018.06.20 at 23h 53m 44s.xml">
+      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CsvValueFilterTest_(1) - 2018.06.20 at 23h 55m 13s.xml">
+      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CsvValueFilterTest_(1) - 2018.06.21 at 00h 42m 21s.xml">
+      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="CsvValueFilterTest_(1) - 2018.06.21 at 00h 42m 34s.xml">
+      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99050000" />
+    <option name="totallyTimeSpent" value="104014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1919" y="-1" width="1282" height="1029" extended-state="6" />
@@ -578,6 +665,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.19652551" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
@@ -585,11 +673,11 @@
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29750273" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.29750273" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2875" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2875" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -603,7 +691,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.56134635" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -625,27 +712,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/ConfigurationLoaderException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="72" selection-start-line="3" selection-start-column="72" selection-end-line="3" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/SourcesLoaderException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/NoValidStateChangeException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/Pair.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/LoopPrepareException.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -780,13 +846,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateEventsDispacher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/TestClass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -871,13 +930,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="40" column="36" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/ValueFilterable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -896,13 +948,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/DataProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
         </state>
       </provider>
     </entry>
@@ -938,10 +983,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Hey.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateEventsDispacher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="21" column="16" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter/ValueFilter/CsvValueFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
+          <folding>
+            <element signature="e#759#933#0" expanded="true" />
+            <element signature="e#932#933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/DataProvider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="20" column="47" lean-forward="true" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="55" column="96" selection-start-line="55" selection-start-column="96" selection-end-line="55" selection-end-column="96" />
+        <state relative-caret-position="-27">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1049#1050#0" expanded="true" />
@@ -950,6 +1034,16 @@
             <element signature="e#1932#1933#0" expanded="true" />
             <element signature="e#2794#2795#0" expanded="true" />
             <element signature="e#2856#2857#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="33" column="56" selection-start-line="33" selection-start-column="56" selection-end-line="33" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
