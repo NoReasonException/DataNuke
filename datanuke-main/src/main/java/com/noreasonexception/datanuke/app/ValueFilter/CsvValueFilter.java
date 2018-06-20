@@ -1,6 +1,8 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
 
 
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterMailformedFileException;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 
@@ -25,10 +27,37 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     private java.lang.String            filename;
     private DataProvider                fileDataProvider;
 
-    private  String contextToString(ArrayList<Double> d) throws IOException{
+    /****
+     * Return the contexts of value file as a string using the utills provided by @see DataProvider
+     * @return the text of the file
+     * @throws IOException
+     */
+    private  String fileContextToString() throws IOException{
         Path p;
         return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
                 p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
+    }
+
+    /****
+     * Parser of csv file , returns the data as ArrayList of doubles
+     * @return the actual data as ArrayList
+     * @throws IOException in case of any error
+     */
+    private ArrayList<Double> fileContextToArray()throws CsvValueFilterException {
+        try{
+            String str = fileContextToString();
+            ArrayList<Double> retval=new ArrayList<>();
+            for (String s:str.split(",")){ //NumberFormatException
+                retval.add(Double.valueOf(s));
+            }
+            return retval;
+        }catch (NumberFormatException e){
+            throw new CsvValueFilterMailformedFileException(
+                    "The parser detected something that we cannot say for sure that is an number",e);
+        }catch (IOException e){
+            throw new CsvValueFilterException("File IO Error (missing file/permissions maybe?)",e);
+        }
+
     }
     private static ArrayList<Double>    stringToContext(java.lang.String str){
         return null;
