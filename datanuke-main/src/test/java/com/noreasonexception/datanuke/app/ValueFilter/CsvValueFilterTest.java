@@ -1,7 +1,7 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
-
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import static org.junit.Assert.*;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,21 +30,42 @@ public class CsvValueFilterTest {
         this.filterFoundFile=new CsvValueFilter(2,FOUND_FILE);
     }
 
-    @Test(expected = CsvValueFilterException.class)
-    public void FileContextToArray_fileNotExistException() throws CsvValueFilterException{
+    @Test(expected = CsvValueFilterInconsistentStateException.class)
+    public void invalidStateCheck() throws CsvValueFilterException{
 
-        CsvValueFilter filter=new CsvValueFilter(2,NOTFOUND_FILE);
-
-        System.out.println(filter.fileContextToArray());
+        System.out.println(filterFoundFile.getIdByClassObj(String.class));
 
     }
-    @Test(expected = IOException.class)
-    public void fileContextToString_fileNotExistException() throws IOException{
+    @Test
+    public void buildTest() throws CsvValueFilterException{
 
-        CsvValueFilter filter=new CsvValueFilter(2,NOTFOUND_FILE);
+        filterFoundFile.buildFromFile();
 
-        System.out.println(filter.fileContextToString());
+    }
 
+    /***
+     * Tests if the builder method will throw Exception in case of any error(example nonexistent file)
+     * @throws CsvValueFilterException
+     */
+    @Test(expected = CsvValueFilterException.class)
+    public void buildTestFail() throws CsvValueFilterException{
+
+        filterNonFoundFile.buildFromFile();
+
+    }
+    @Test(expected = CsvValueFilterInconsistentStateException.class)
+    public void classNotRegisteredTest() throws CsvValueFilterException{
+        filterFoundFile.buildFromFile().submitValue(String.class,0d);
+    }
+
+    @Test
+    public void registerValuesWithConsistentStateTest() throws CsvValueFilterException{
+        filterFoundFile.buildFromFile();
+        filterFoundFile.submitClass(String.class);
+        filterFoundFile.submitClass(Integer.class);
+
+        assertTrue(filterFoundFile.submitValue(String.class,1d));
+        assertFalse(filterFoundFile.submitValue(Integer.class,0d)); //when we submitClass , the initial value is zero
     }
 
 }

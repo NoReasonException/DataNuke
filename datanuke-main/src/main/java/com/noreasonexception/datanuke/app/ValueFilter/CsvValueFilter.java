@@ -1,39 +1,37 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
 
 
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterClassNotRegisteredException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterMailformedFileException;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 
-import javax.naming.OperationNotSupportedException;
-import javax.xml.crypto.Data;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.PosixFileAttributes;
 import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.Optional;
 
 public class CsvValueFilter implements ValueFilterable<Double> {
-    private Hashtable<Class<?>,Integer> classIDs;
+    private Hashtable<String,Integer> classIDs;
     private ArrayList<Double>           classValues;
     private java.lang.String            filename;
     private DataProvider                fileDataProvider;
+    private static int                  cnt=0;
 
 
     public CsvValueFilter(int ensureCapacity,String filename){
         this.classIDs=new Hashtable<>();
-        this.classValues=new ArrayList<>(ensureCapacity);
         this.filename=filename;
-
-    }   
+    }
+    public CsvValueFilter buildFromFile() throws CsvValueFilterException{
+        this.classValues=this.fileContextToArray();
+        return this;
+    }
     /****
      * Return the contexts of value file as a string using the utills provided by @see DataProvider
      * @return the text of the file
@@ -69,12 +67,13 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     }
     /****
      * Get the order in csv file of the submitted class provided by parameter @param classObj
-     * @param classObj the class object
+     * @param className the class object
      * @return the id , this id will be used as index in csv array of values
      */
-    private int getIdByClassObject(Class<?>classObj){
+    /*Package-Private*/ int getIdByClassObj(Class className) throws CsvValueFilterException{
+        if (this.classValues==null)throw new CsvValueFilterInconsistentStateException("please call .build() first!");
         Integer id;
-        if((id=classIDs.get(classObj))==null)return -1;
+        if((id=classIDs.get(className.getName()))==null)return -1;
         return id;
 
     }
@@ -125,14 +124,26 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      * @return
      */
     @Override
-    public boolean submitValue(Class<?> classObj, Double value) {
-        ArrayList<Double> tmp=getCSVContext();
+    public boolean submitValue(Class<?> classObj, Double value) throws CsvValueFilterException {
         int id;
-        if(tmp.get(id=getIdByClassObject(classObj)).compareTo(value)!=0){
+        if(this.classValues.size()!=this.classIDs.size())
+            throw new CsvValueFilterInconsistentStateException("");
+        if((id= getIdByClassObj(classObj))==-1){
+            throw new CsvValueFilterClassNotRegisteredException("");
+        }
+        ArrayList<Double> tmp=getCSVContext();
+        if(tmp.get(id= getIdByClassObj(classObj)).compareTo(value)!=0){
             tmp.set(id,value);
             saveCSVContext(tmp);
             return true;
         }
         return false;
+    }
+
+    public boolean submitClass(Class<?> klass){
+        this.classIDs.put(klass.getName(),cnt);
+        this.classValues.set(cnt,0d);
+        cnt+=1;
+        return true;
     }
 }
