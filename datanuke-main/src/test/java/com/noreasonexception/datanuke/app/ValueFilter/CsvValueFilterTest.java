@@ -64,7 +64,7 @@ public class CsvValueFilterTest {
         filterFoundFile.submitClass(String.class);
         filterFoundFile.submitClass(Integer.class);
 
-        assertTrue(filterFoundFile.submitValue(String.class,1d));
+        assertTrue(filterFoundFile.submitValue(String.class,2d));
         assertFalse(filterFoundFile.submitValue(Integer.class,0d)); //when we submitClass , the initial value is zero
     }
 

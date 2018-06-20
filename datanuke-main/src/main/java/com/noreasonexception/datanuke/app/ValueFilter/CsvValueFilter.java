@@ -9,11 +9,16 @@ import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 
 import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.channels.FileChannel;
+import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 
 public class CsvValueFilter implements ValueFilterable<Double> {
@@ -102,18 +107,30 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     }
 
     /****
-     * Apply the Values set by setCSVContext into actual file
-     * @return true on success, false otherwise
-     */
-    protected boolean  applyCSVContext(){return false;}
-
-    /****
-     * a simple wrapper over setCSVContext()+applyCSVContext()
-     * @param values
+     * saves everything in file, converts the actual values into .csv format
      * @return
      */
-    protected boolean  saveCSVContext(ArrayList<Double> values){
-        return setCSVContext(values).applyCSVContext();
+    synchronized protected boolean  saveCSVContext() {
+        ByteBuffer buffer = ByteBuffer.allocate((122 * getCSVContext().size()));
+
+        try {
+            FileChannel byteChannel = (FileChannel) FileChannel.open(Paths.get(filename),StandardOpenOption.WRITE);
+
+            byteChannel.write(
+                    ByteBuffer.wrap(
+                            Arrays.toString(
+                                    this.classValues.toArray()).
+                                    replace("[","").replace("]","").getBytes())
+            );
+
+            byteChannel.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+
     }
 
 
@@ -125,24 +142,25 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      */
     @Override
     public boolean submitValue(Class<?> classObj, Double value) throws CsvValueFilterException {
-        int id;
-        if(this.classValues.size()!=this.classIDs.size())
-            throw new CsvValueFilterInconsistentStateException("");
-        if((id= getIdByClassObj(classObj))==-1){
-            throw new CsvValueFilterClassNotRegisteredException("");
+        synchronized (getLockObject()){
+            int id;
+            if(this.classValues.size()!=this.classIDs.size())
+                throw new CsvValueFilterInconsistentStateException("");
+            if((id= getIdByClassObj(classObj))==-1){
+                throw new CsvValueFilterClassNotRegisteredException("");
+            }
+            if(getCSVContext().get(id= getIdByClassObj(classObj)).compareTo(value)!=0){
+                getCSVContext().set(id,value);
+                saveCSVContext();
+                return true;
+            }
+            return false;
         }
-        ArrayList<Double> tmp=getCSVContext();
-        if(tmp.get(id= getIdByClassObj(classObj)).compareTo(value)!=0){
-            tmp.set(id,value);
-            saveCSVContext(tmp);
-            return true;
-        }
-        return false;
+
     }
 
     public boolean submitClass(Class<?> klass){
         this.classIDs.put(klass.getName(),cnt);
-        this.classValues.set(cnt,0d);
         cnt+=1;
         return true;
     }
