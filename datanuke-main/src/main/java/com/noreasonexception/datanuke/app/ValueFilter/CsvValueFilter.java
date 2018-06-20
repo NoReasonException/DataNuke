@@ -1,24 +1,64 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
 
 
+import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
+
 import javax.naming.OperationNotSupportedException;
+import javax.xml.crypto.Data;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.ByteBuffer;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.PosixFileAttributes;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Optional;
 
 public class CsvValueFilter implements ValueFilterable<Double> {
+    private Hashtable<Class<?>,Integer> classIDs;
+    private ArrayList<Double>           classValues;
+    private java.lang.String            filename;
+    private DataProvider                fileDataProvider;
+
+    private  String contextToString(ArrayList<Double> d) throws IOException{
+        Path p;
+        return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
+                p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
+    }
+    private static ArrayList<Double>    stringToContext(java.lang.String str){
+        return null;
+    }
+    public CsvValueFilter(int ensureCapacity){
+        this.classIDs=new Hashtable<>();
+        this.classValues=new ArrayList<>(ensureCapacity);
+
+    }
     /****
      * Get the order in csv file of the submitted class provided by parameter @param classObj
      * @param classObj the class object
      * @return the id , this id will be used as index in csv array of values
      */
     private int getIdByClassObject(Class<?>classObj){
-        return 0;
+        Integer id;
+        if((id=classIDs.get(classObj))==null)return -1;
+        return id;
+
     }
 
+    protected Object getLockObject(){return this;}
     /****
      * Gets the context of csv file and translate it into Double[]
      * @implSpec if you change something , then saveCSVContext must be called
      * @return
      */
-    protected Double[] getCSVContext(){return null;}
+    protected ArrayList<Double> getCSVContext(){
+        return this.classValues;
+    }
 
     /****
      * set the context of @param values into file
@@ -28,7 +68,10 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      *
      * @return this(fluent Interface)
      */
-    protected CsvValueFilter  setCSVContext(Double [] values){return this;}
+    protected CsvValueFilter  setCSVContext(ArrayList<Double> values){
+        this.classValues=values;
+        return this;
+    }
 
     /****
      * Apply the Values set by setCSVContext into actual file
@@ -41,7 +84,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      * @param values
      * @return
      */
-    protected boolean  saveCSVContext(Double [] values){
+    protected boolean  saveCSVContext(ArrayList<Double> values){
         return setCSVContext(values).applyCSVContext();
     }
 
@@ -54,10 +97,10 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      */
     @Override
     public boolean submitValue(Class<?> classObj, Double value) {
-        Double [] tmp=getCSVContext();
+        ArrayList<Double> tmp=getCSVContext();
         int id;
-        if(tmp[id=getIdByClassObject(classObj)].compareTo(value)!=0){
-            tmp[id]=value;
+        if(tmp.get(id=getIdByClassObject(classObj)).compareTo(value)!=0){
+            tmp.set(id,value);
             saveCSVContext(tmp);
             return true;
         }

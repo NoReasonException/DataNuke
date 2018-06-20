@@ -12,59 +12,57 @@ import java.lang.reflect.Method;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )throws IOException
-    {
+public class App {
+    public static void main(String[] args) throws IOException {
         System.out.println(System.getProperty("user.dir"));
         AbstractThreadRunner runner;
-        runner=new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
+        runner = new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
         runner.subscribeStateListener(new ThreadRunnerStateListener() {
             @Override
             public void run() {
                 //System.out.println(getState().getMessage());
             }
         });
-            runner.subscribeTaskListener(new ThreadRunnerTaskListener() {
+        runner.subscribeTaskListener(new ThreadRunnerTaskListener() {
 
             @Override
             public void onClassReadInfo(String classname) {
-                System.out.println("onClassReadInfo "+classname +classname.length());
+                System.out.println("onClassReadInfo " + classname + classname.length());
             }
 
             @Override
             public void onClassWaitUntillDeadline(String classname) {
-                System.out.println("onClassWaitUntillDeadline "+classname);
+                System.out.println("onClassWaitUntillDeadline " + classname);
 
             }
 
             @Override
             public void onClassLoading(String classname) {
-                System.out.println("onClassLoading "+classname);
+                System.out.println("onClassLoading " + classname);
 
             }
 
             @Override
             public void onClassInstanceCreated(String classname) {
-                System.out.println("onClassInstanceCreated "+classname);
+                System.out.println("onClassInstanceCreated " + classname);
 
             }
 
             @Override
             public void onTaskThreadStarted(String classname) {
-                System.out.println("onTaskThreadStarted "+classname);
+                System.out.println("onTaskThreadStarted " + classname);
 
             }
 
             @Override
             public void onTaskThreadValueRetrieved(String classname) {
-                System.out.println("onTaskThreadValueRetrieved "+classname);
+                System.out.println("onTaskThreadValueRetrieved " + classname);
 
             }
 
             @Override
             public void onTaskThreadTerminated(String classname) {
-                System.out.println("onTaskThreadTerminated "+classname);
+                System.out.println("onTaskThreadTerminated " + classname);
             }
 
             @Override
@@ -73,7 +71,7 @@ public class App
 
             @Override
             public void onClassReleased(String classname) {
-                System.out.println("onClassReleased "+classname);
+                System.out.println("onClassReleased " + classname);
             }
         });
         new Thread(runner).start();
