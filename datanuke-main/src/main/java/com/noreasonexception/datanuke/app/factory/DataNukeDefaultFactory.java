@@ -1,5 +1,7 @@
 package com.noreasonexception.datanuke.app.factory;
 
+import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
@@ -19,16 +21,19 @@ import java.util.NoSuchElementException;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     ///Configuration Section
-    private final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="src/main/conf/threadRunnerConf.json";
-    private final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="src/main/conf/threadRunnerSources.json";
-    private final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="src/main/conf/dataNukeClassLoaderDir/";
-    public final  java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="src/main/conf/dataNukeDefaultFactoryConf.json/";
-
+    private static final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="src/main/conf/threadRunnerConf.json";
+    private static final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="src/main/conf/threadRunnerSources.json";
+    private static final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="src/main/conf/dataNukeClassLoaderDir/";
+    public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="src/main/conf/dataNukeDefaultFactoryConf.json/";
+    public static  final java.lang.String CSV_VALUE_FILTER_FILE_PATH_DEFAULT               ="dat.csv";
+    ///===========================Configuration================================================\\\
     private java.lang.String threadRunnerConfigFile                     =null;
     private java.lang.String threadRunnerSourcesFile                    =null;
     private java.lang.String customClassLoaderPATH                      =null;
+    private java.lang.String csvValueFilterFile                         =null;
+    //===========================Siglentons======================================================\\\
+    private CsvValueFilter   valueFilter                                =null;
     private AtlasLoader      customClassLoader                          =null;
-
 
     /****
      * loadConfiguration
@@ -38,6 +43,8 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
      * @param confProvider the data provider
      * @return this object
      */
+    ///TODO make it with DataProvider
+    ////TODO custom Exception maybe?
     public DataNukeDefaultFactory loadConfiguration(DataProvider confProvider){
         StringBuilder stringBuilder = new StringBuilder();
         try{
@@ -58,12 +65,16 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
             else if((threadRunnerSourcesFile=object.getString("threadRunnerSourcesFile"))==null){
                 throw new NoSuchElementException();
             }
+            else if((csvValueFilterFile=object.getString("CsvValueFilterFileDestination"))==null){
+                throw new NoSuchElementException();
+            }
+            System.out.println(csvValueFilterFile);
 
         }catch (NoSuchElementException e){
             threadRunnerConfigFile=THREAD_RUNNER_CONFIG_FILE_DEFAULT;
             threadRunnerSourcesFile=THREAD_RUNNER_SOURCES_FILE_DEFAULT;
             customClassLoaderPATH=DATA_NUKE_CLASS_LOADER_DEFAULT_PATH;
-
+            csvValueFilterFile=CSV_VALUE_FILTER_FILE_PATH_DEFAULT;
         }
         return this;
 
@@ -108,5 +119,12 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     @Override
     public DataProvider getDataNukeCustomClassLoaderDataProvider() throws IOException{
         return new FileDataProvider(Paths.get(customClassLoaderPATH),300);
+    }
+
+    @Override
+    public CsvValueFilter getDataNukeCSVvalueFilter() throws CsvValueFilterException {
+        return (this.valueFilter!=null)?
+                (this.valueFilter):
+                (this.valueFilter=(new CsvValueFilter(this.csvValueFilterFile).buildFromFile()));
     }
 }

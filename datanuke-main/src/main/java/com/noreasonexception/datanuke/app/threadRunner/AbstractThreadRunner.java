@@ -29,6 +29,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private LinkedList<ThreadRunnerTaskListener>       taskListeners = null;
     private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;
 
+
     private int                                         initializationTime;
     private int                                         startupTarget;
     /*****
