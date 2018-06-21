@@ -1,7 +1,12 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
 
 /****
- * This interface will be implemented by the save subsystem . only a value per class
+ * This interface will be implemented by Save subsystem .
+ * How it works?
+ * This Interface , has only one method . the .submitValue()
+ * This method updates the value associated with the classname given
+ *
+ * If the value is different , then automatically will saved in file , in the expected position .
  *
  * @param <T> the type of value to save
  */

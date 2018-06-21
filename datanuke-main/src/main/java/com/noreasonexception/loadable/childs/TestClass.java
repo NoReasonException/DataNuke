@@ -13,7 +13,7 @@ public class TestClass extends HtmlParser {
     }
 
     @Override
-    protected void finalize() throws Throwable {
+    protected void finalize() {
         getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
 

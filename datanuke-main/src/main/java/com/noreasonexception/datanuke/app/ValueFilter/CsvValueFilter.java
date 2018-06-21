@@ -2,25 +2,41 @@ package com.noreasonexception.datanuke.app.ValueFilter;
 
 
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterClassNotRegisteredException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterMailformedFileException;
-import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
+import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 
-import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.FileChannel;
-import java.nio.channels.SeekableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.channels.FileChannel;
+import java.nio.ByteBuffer;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Hashtable;
+import java.nio.file.Path;
+import java.util.Arrays;
 
+/***
+ * This is the main implementation of Save Subsystem
+ * Saves the values into a .csv file , just numbers seperated by commas!
+ *
+ * How it works?
+ *
+ * At first The CsvValueFilter reads all the contexts of the file given in constructor
+ * Lets suppose that the file contains n values
+ *
+ * Now , the object has n values but 0 classes . so it is in Invalid State .
+ * When the object is in invalid state ,every operation ,except .submitClass(),
+ * will throw an CsvValueFilterInconsistentStateException .
+ *
+ * The object , to be consistent , expect n .submitClass() calls
+ * The first call will correlate the first class into the first value came from file and vice versa
+ *
+ * =====================================================================================================================
+ * Every call into .submitValue() will return true if the AbstractParser class finds an new value
+ *
+ */
 public class CsvValueFilter implements ValueFilterable<Double> {
     private Hashtable<String,Integer> classIDs;
     private ArrayList<Double>           classValues;
@@ -33,6 +49,12 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         this.classIDs=new Hashtable<>();
         this.filename=filename;
     }
+
+    /****
+     * Call always before any operation , otherwise , a CsvValueFilterInconsistentStateException will be thrown.
+     * @return this object
+     * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
+     */
     public CsvValueFilter buildFromFile() throws CsvValueFilterException{
         this.classValues=this.fileContextToArray();
         return this;
@@ -151,6 +173,14 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         }
 
     }
+
+    /****
+     * Submit a class by his name before use
+     *
+     * @param klassName the class name
+     * @return  true for success
+     * @throws CsvValueFilterInconsistentStateException
+     */
     public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
         if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         this.classIDs.put(klassName,cnt);
