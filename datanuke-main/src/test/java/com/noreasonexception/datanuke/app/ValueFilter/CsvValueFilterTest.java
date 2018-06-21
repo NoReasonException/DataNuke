@@ -26,8 +26,8 @@ public class CsvValueFilterTest {
                 Files.createFile(p);
             }
         }catch (IOException e){}
-        this.filterNonFoundFile=new CsvValueFilter(2,NOTFOUND_FILE);
-        this.filterFoundFile=new CsvValueFilter(2,FOUND_FILE);
+        this.filterNonFoundFile=new CsvValueFilter(NOTFOUND_FILE);
+        this.filterFoundFile=new CsvValueFilter(FOUND_FILE);
     }
 
     @Test(expected = CsvValueFilterInconsistentStateException.class)
@@ -64,8 +64,12 @@ public class CsvValueFilterTest {
         filterFoundFile.submitClass(String.class);
         filterFoundFile.submitClass(Integer.class);
 
-        assertTrue(filterFoundFile.submitValue(String.class,2d));
-        assertFalse(filterFoundFile.submitValue(Integer.class,0d)); //when we submitClass , the initial value is zero
+        filterFoundFile.submitValue(String.class,2d);
+        filterFoundFile.submitValue(Integer.class,0d); //when we submitClass , the initial value is zero
+    }
+    @Test(expected = CsvValueFilterInconsistentStateException.class)
+    public void registerClassInInvalidState()throws CsvValueFilterInconsistentStateException{
+        filterFoundFile.submitClass(String.class);
     }
 
 }

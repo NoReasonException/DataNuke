@@ -29,7 +29,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     private static int                  cnt=0;
 
 
-    public CsvValueFilter(int ensureCapacity,String filename){
+    public CsvValueFilter(String filename){
         this.classIDs=new Hashtable<>();
         this.filename=filename;
     }
@@ -37,24 +37,32 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         this.classValues=this.fileContextToArray();
         return this;
     }
-    /****
-     * Return the contexts of value file as a string using the utills provided by @see DataProvider
-     * @return the text of the file
-     * @throws IOException
-     */
 
-    /*Package-Private*/String fileContextToString() throws IOException{
-        Path p;
-        return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
-                p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
+    /****
+     * .fileContextToString()
+     * just reads the initial file data returs it as plain string
+     * @return the contexts of file as String
+     * @throws CsvValueFilterException in case any type of IOException
+     */
+    /*Package-Private*/String fileContextToString() throws CsvValueFilterException{
+        try{
+            Path p;
+            return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
+                    p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
+        }catch (IOException e){
+            throw new CsvValueFilterException("IO error during reading the file...",e);
+        }
+
     }
 
     /****
-     * Parser of csv file , returns the data as ArrayList of doubles
-     * @return the actual data as ArrayList
-     * @throws IOException in case of any error
+     * parser of .csv files , returns a ArrayList with the values per-class
+     * @return the ArrayList with the values
+     * @throws CsvValueFilterMailformedFileException in case of error in sundax of file
+     * @throws CsvValueFilterException in case of any IOException
      */
-    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws CsvValueFilterException {
+    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws    CsvValueFilterException,
+                                                                        CsvValueFilterMailformedFileException {
         try{
             String str = fileContextToString();
             ArrayList<Double> retval=new ArrayList<>();
@@ -65,50 +73,37 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         }catch (NumberFormatException e){
             throw new CsvValueFilterMailformedFileException(
                     "The parser detected something that we cannot say for sure that is an number",e);
-        }catch (IOException e){
-            throw new CsvValueFilterException("File IO Error (missing file/permissions maybe?)",e);
         }
 
     }
+
     /****
-     * Get the order in csv file of the submitted class provided by parameter @param classObj
-     * @param className the class object
-     * @return the id , this id will be used as index in csv array of values
+     * gets the id of a class by using its name
+     *
+     * @param classObj the class object
+     * @return the class id to be used in this.classValues
+     * @throws CsvValueFilterInconsistentStateException in case of calling this method without call .buildFromFile() first
      */
-    /*Package-Private*/ int getIdByClassObj(Class className) throws CsvValueFilterException{
-        if (this.classValues==null)throw new CsvValueFilterInconsistentStateException("please call .build() first!");
+    /*Package-Private*/ int getIdByClassObj(Class classObj) throws CsvValueFilterException{
+        if (this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         Integer id;
-        if((id=classIDs.get(className.getName()))==null)return -1;
+        if((id=classIDs.get(classObj.getName()))==null)return -1;
         return id;
 
     }
 
     protected Object getLockObject(){return this;}
-    /****
-     * Gets the context of csv file and translate it into Double[]
-     * @implSpec if you change something , then saveCSVContext must be called
-     * @return
+
+    /***
+     * just a funky getter
      */
     protected ArrayList<Double> getCSVContext(){
         return this.classValues;
     }
 
     /****
-     * set the context of @param values into file
-     * @implNote WARNING! setCSVContext is not saves actually the data , only affects the corresponding member
-     * you must manually call .applyCSVContext() or call .saveCSVContext()
-     * (a simple wrapper over setCSVContext()+applyCSVContext)
-     *
-     * @return this(fluent Interface)
-     */
-    protected CsvValueFilter  setCSVContext(ArrayList<Double> values){
-        this.classValues=values;
-        return this;
-    }
-
-    /****
-     * saves everything in file, converts the actual values into .csv format
-     * @return
+     * saves every value of this.classValues into actual file
+     * @return true on success
      */
     synchronized protected boolean  saveCSVContext() {
         ByteBuffer buffer = ByteBuffer.allocate((122 * getCSVContext().size()));
@@ -120,7 +115,8 @@ public class CsvValueFilter implements ValueFilterable<Double> {
                     ByteBuffer.wrap(
                             Arrays.toString(
                                     this.classValues.toArray()).
-                                    replace("[","").replace("]","").getBytes())
+                                    replace("[","").
+                                    replace("]","").getBytes())
             );
 
             byteChannel.close();
@@ -128,6 +124,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
         return true;
 
@@ -138,16 +135,16 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      * .submitValue()
      * @param classObj the class submitted the value
      * @param value the actual value
-     * @return
+     * @return true in success.
      */
     @Override
     public boolean submitValue(Class<?> classObj, Double value) throws CsvValueFilterException {
         synchronized (getLockObject()){
             int id;
             if(this.classValues.size()!=this.classIDs.size())
-                throw new CsvValueFilterInconsistentStateException("");
+                throw new CsvValueFilterInconsistentStateException();
             if((id= getIdByClassObj(classObj))==-1){
-                throw new CsvValueFilterClassNotRegisteredException("");
+                throw new CsvValueFilterClassNotRegisteredException(classObj.getName());
             }
             if(getCSVContext().get(id= getIdByClassObj(classObj)).compareTo(value)!=0){
                 getCSVContext().set(id,value);
@@ -159,7 +156,13 @@ public class CsvValueFilter implements ValueFilterable<Double> {
 
     }
 
-    public boolean submitClass(Class<?> klass){
+    /***
+     *
+     * @param klass
+     * @return
+     */
+    public boolean submitClass(Class<?> klass) throws CsvValueFilterInconsistentStateException{
+        if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         this.classIDs.put(klass.getName(),cnt);
         cnt+=1;
         return true;
