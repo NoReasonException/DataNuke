@@ -142,7 +142,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
             if((id= getIdByClassObj(className))==-1){
                 throw new CsvValueFilterClassNotRegisteredException(className);
             }
-            if(getCSVContext().get(id= getIdByClassObj(className)).compareTo(value)!=0){
+            if(getCSVContext().get(id).compareTo(value)!=0){
                 getCSVContext().set(id,value);
                 saveCSVContext();
                 return true;

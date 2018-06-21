@@ -22,7 +22,7 @@ public class TestClass extends HtmlParser {
     public void run() {
         try{
             Random r=new Random();
-            getValueFilter().submitValue(getClass().getName(),r.nextDouble());
+            getValueFilter().submitValue(new String(getClass().getName()),r.nextDouble());
             System.out.println("OK");
 
         }catch (Exception e){throw new Error();

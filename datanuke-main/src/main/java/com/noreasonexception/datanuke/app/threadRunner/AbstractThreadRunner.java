@@ -216,7 +216,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 taskThread=null;
                 tmp=null;
                 new Thread(()->{
-                    AbstractThreadRunner.this.classLoader.removeClass(tmpclassname);
+                    AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
             }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
