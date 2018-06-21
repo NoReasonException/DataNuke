@@ -45,7 +45,7 @@ import java.util.*;
  */
 // TODO ThreadRunnerTaskListener consider making abstract parent class
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
-    private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF 
+    private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside ThreadRunner
     private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside ThreadRunner)

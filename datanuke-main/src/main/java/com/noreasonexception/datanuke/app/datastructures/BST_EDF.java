@@ -7,13 +7,13 @@ public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements ITree<Lo
 
     @Override
     public void insert(Long aLong, ClassInfo classInfo) {
-        _insert(root,aLong,classInfo);
+        super.insert(aLong,classInfo);
     }
 
     @Override
     public ClassInfo search(Long aLong) {
 
-        return _search(root,aLong);
+        return search(aLong);
     }
 
     @Override
@@ -23,22 +23,12 @@ public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements ITree<Lo
 
     @Override
     public ClassInfo pollMin() {
+        Node min;
+        ClassInfo classInfo=(min=_getMin(root)).getValue();
+        delete(min.getKey());
+        return classInfo;
 
-        Node min, newMin,retval;
-        min = (retval=_getMin(root)).getParent();
-        if (min == null) {
-            root.setParent(null);
-            root = root.getRight();
 
-        }
-        else {
-            min.setLeft(newMin=min.getLeft().getRight());
-            if(newMin!=null){
-                min.getLeft().setParent(min);
-
-            }
-        }
-        return retval.getValue();
 
     }
 }
