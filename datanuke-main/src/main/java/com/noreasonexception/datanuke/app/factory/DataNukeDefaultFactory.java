@@ -82,8 +82,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     public DataNukeDefaultFactory loadDefaultConfiguration()throws IOException{
         Path p;
         return loadConfiguration(
-                new FileDataProvider(p=Paths.get(DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT),
-                Files.size(p)));
+                new FileDataProvider(p=Paths.get(DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT)));
 
     }
     @Override
@@ -102,13 +101,13 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     @Override
     public DataProvider getThreadRunnersConfigProvider() throws IOException {
         Path p;
-        return new FileDataProvider((p=Paths.get(threadRunnerConfigFile)), Files.size(p));
+        return new FileDataProvider((p=Paths.get(threadRunnerConfigFile)));
     }
 
     @Override
     public DataProvider getThreadRunnersSourceProvider() throws IOException {
         Path p;
-        return new FileDataProvider(p=Paths.get(threadRunnerSourcesFile),Files.size(p));
+        return new FileDataProvider(p=Paths.get(threadRunnerSourcesFile));
     }
 
     @Override
@@ -119,7 +118,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
 
     @Override
     public DataProvider getDataNukeCustomClassLoaderDataProvider() throws IOException{
-        return new FileDataProvider(Paths.get(customClassLoaderPATH),300);
+        return new FileDataProvider(Paths.get(customClassLoaderPATH));
     }
 
     @Override

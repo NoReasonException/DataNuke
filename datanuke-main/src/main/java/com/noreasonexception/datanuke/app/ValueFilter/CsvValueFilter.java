@@ -44,14 +44,10 @@ public class CsvValueFilter implements ValueFilterable<Double> {
      * @return the contexts of file as String
      * @throws CsvValueFilterException in case any type of IOException
      */
-    /*Package-Private*/String fileContextToString() throws CsvValueFilterException{
-        try{
-            Path p;
-            return DataProvider.Utills.DataProviderToString(this.fileDataProvider=new FileDataProvider(
-                    p=Paths.get(this.filename),Files.readAttributes(p,BasicFileAttributes.class).size()));
-        }catch (IOException e){
-            throw new CsvValueFilterException("IO error during reading the file...",e);
-        }
+    /*Package-Private*/String fileContextToString() throws CsvValueFilterException {
+        Path p;
+        return DataProvider.Utills.DataProviderToString(this.fileDataProvider = new FileDataProvider(
+                p = Paths.get(this.filename)));
 
     }
 

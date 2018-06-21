@@ -8,6 +8,7 @@ import java.nio.channels.ByteChannel;
 import java.nio.file.Files;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.nio.file.attribute.BasicFileAttributes;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -17,9 +18,9 @@ public class FileDataProvider extends DataProvider {
     ByteChannel channel = null;
     ByteBuffer  buffer=null;
     //refactor , remove buffsize TODO
-    public FileDataProvider(Path file,long buffsize){
-        this.buffer=ByteBuffer.allocate((int)buffsize);//TODO : check for possible overflow
+    public FileDataProvider(Path file){
         try{
+            this.buffer=ByteBuffer.allocate((int)Files.readAttributes(file,BasicFileAttributes.class).size());//TODO : check for possible overflow
             this.channel= Files.newByteChannel(file);
         }catch (IOException e){
             this.channel=null;

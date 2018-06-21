@@ -15,7 +15,10 @@ public class AbstractParser implements Runnable{
     }
 
     protected ThreadRunnerTaskEventsDispacher getDispacher() {
-        return dispacher;
+        return this.dispacher;
+    }
+    protected CsvValueFilter getValueFilter() {
+        return this.valueFilter;
     }
     @Override
     public void run() {
