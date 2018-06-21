@@ -80,14 +80,14 @@ public class CsvValueFilter implements ValueFilterable<Double> {
     /****
      * gets the id of a class by using its name
      *
-     * @param classObj the class object
+     * @param className the class name as string
      * @return the class id to be used in this.classValues
      * @throws CsvValueFilterInconsistentStateException in case of calling this method without call .buildFromFile() first
      */
-    /*Package-Private*/ int getIdByClassObj(Class classObj) throws CsvValueFilterException{
+    /*Package-Private*/ int getIdByClassObj(String className) throws CsvValueFilterException{
         if (this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         Integer id;
-        if((id=classIDs.get(classObj.getName()))==null)return -1;
+        if((id=classIDs.get(className))==null)return -1;
         return id;
 
     }
@@ -133,20 +133,20 @@ public class CsvValueFilter implements ValueFilterable<Double> {
 
     /****
      * .submitValue()
-     * @param classObj the class submitted the value
+     * @param className the class submitted the value
      * @param value the actual value
      * @return true in success.
      */
     @Override
-    public boolean submitValue(Class<?> classObj, Double value) throws CsvValueFilterException {
+    public boolean submitValue(String className, Double value) throws CsvValueFilterException {
         synchronized (getLockObject()){
             int id;
             if(this.classValues.size()!=this.classIDs.size())
                 throw new CsvValueFilterInconsistentStateException();
-            if((id= getIdByClassObj(classObj))==-1){
-                throw new CsvValueFilterClassNotRegisteredException(classObj.getName());
+            if((id= getIdByClassObj(className))==-1){
+                throw new CsvValueFilterClassNotRegisteredException(className);
             }
-            if(getCSVContext().get(id= getIdByClassObj(classObj)).compareTo(value)!=0){
+            if(getCSVContext().get(id= getIdByClassObj(className)).compareTo(value)!=0){
                 getCSVContext().set(id,value);
                 saveCSVContext();
                 return true;
@@ -155,15 +155,9 @@ public class CsvValueFilter implements ValueFilterable<Double> {
         }
 
     }
-
-    /***
-     *
-     * @param klass
-     * @return
-     */
-    public boolean submitClass(Class<?> klass) throws CsvValueFilterInconsistentStateException{
+    public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
         if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
-        this.classIDs.put(klass.getName(),cnt);
+        this.classIDs.put(klassName,cnt);
         cnt+=1;
         return true;
     }

@@ -1,13 +1,17 @@
 package com.noreasonexception.loadable.base;
 
+import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 
 public class AbstractParser implements Runnable{
 
     private ThreadRunnerTaskEventsDispacher dispacher;
-    public AbstractParser(ThreadRunnerTaskEventsDispacher disp){
+    private CsvValueFilter valueFilter;
+    public AbstractParser(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter)
+    {
         this.dispacher=disp;
+        this.valueFilter=valueFilter;
     }
 
     protected ThreadRunnerTaskEventsDispacher getDispacher() {

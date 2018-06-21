@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class CsvValueFilterTest {
     @Test(expected = CsvValueFilterInconsistentStateException.class)
     public void invalidStateCheck() throws CsvValueFilterException{
 
-        System.out.println(filterFoundFile.getIdByClassObj(String.class));
+        System.out.println(filterFoundFile.getIdByClassObj(String.class.getName()));
 
     }
     @Test
@@ -55,21 +56,21 @@ public class CsvValueFilterTest {
     }
     @Test(expected = CsvValueFilterInconsistentStateException.class)
     public void classNotRegisteredTest() throws CsvValueFilterException{
-        filterFoundFile.buildFromFile().submitValue(String.class,0d);
+        filterFoundFile.buildFromFile().submitValue(String.class.getName(),0d);
     }
 
     @Test
     public void registerValuesWithConsistentStateTest() throws CsvValueFilterException{
         filterFoundFile.buildFromFile();
-        filterFoundFile.submitClass(String.class);
-        filterFoundFile.submitClass(Integer.class);
+        filterFoundFile.submitClass(String.class.getName());
+        //filterFoundFile.submitClass(Integer.class);
 
-        filterFoundFile.submitValue(String.class,2d);
-        filterFoundFile.submitValue(Integer.class,0d); //when we submitClass , the initial value is zero
+        System.out.println(filterFoundFile.submitValue(String.class.getName(),3d));
+        //filterFoundFile.submitValue(Integer.class,0d); //when we submitClass , the initial value is zero
     }
     @Test(expected = CsvValueFilterInconsistentStateException.class)
     public void registerClassInInvalidState()throws CsvValueFilterInconsistentStateException{
-        filterFoundFile.submitClass(String.class);
+        filterFoundFile.submitClass(String.class.getName());
     }
 
 }

@@ -1,5 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
@@ -28,7 +30,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;
     private LinkedList<ThreadRunnerTaskListener>       taskListeners = null;
     private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;
-
+    private CsvValueFilter                              valueFilter=null;
 
     private int                                         initializationTime;
     private int                                         startupTarget;
@@ -143,7 +145,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
 
     }
-    private void loadSources() throws SourcesLoaderException{
+    private void loadSources() throws SourcesLoaderException {
         JsonObject obj;
         try{
             obj=AbstractThreadRunner.dataProviderToJsonObject(sourceProvider);
@@ -160,6 +162,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                         Integer.valueOf(array.getString(1)),
                         string));
             this.taskEventsDispacher.submitClassReadInfoEvent(string);
+            try{
+                this.valueFilter.submitClass(string);
+
+            }catch (CsvValueFilterInconsistentStateException e){
+                throw new RuntimeException("valueFilter in invalid state");
+            }
             long j;
             System.out.println(string+"have deadline in "+
                     (j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))))+" wait ->"+
@@ -198,7 +206,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
-                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class).newInstance(this.taskEventsDispacher);
+                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,CsvValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
                 this.taskEventsDispacher.submitTaskThreadStartedEvent(tmp.getClassname());
                 taskThread.start();
@@ -289,13 +297,14 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return taskListeners.add(listener);
     }
 
-    public AbstractThreadRunner(AtlasLoader classLoader,DataProvider configProvider,DataProvider sourceProvider) {
+    public AbstractThreadRunner(AtlasLoader classLoader, DataProvider configProvider, DataProvider sourceProvider, CsvValueFilter valueFilter) {
         this.stateListeners = new LinkedList<>();
         this.taskListeners=new LinkedList<>();
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
         this.classSourcesDT=new BST_EDF();
+        this.valueFilter=valueFilter;
 
         this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
         this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
@@ -312,5 +321,6 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     protected void finalize() throws Throwable {
         super.finalize();
         this.stateEventsDispacher.interrupt();
+        this.taskEventsDispacher.interrupt();
     }
 }

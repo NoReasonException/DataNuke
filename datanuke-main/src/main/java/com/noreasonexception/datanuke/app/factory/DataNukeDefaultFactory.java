@@ -92,8 +92,9 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
             return new AbstractThreadRunner(
                     getDataNukeCustomClassLoader(),
                     getThreadRunnersConfigProvider(),
-                    getThreadRunnersSourceProvider());
-        }catch (IOException e){
+                    getThreadRunnersSourceProvider(),
+                    getDataNukeCSVvalueFilter());
+        }catch (IOException|CsvValueFilterException e){
             throw new MissingResourcesException(e);
         }
     }

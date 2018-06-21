@@ -79,7 +79,9 @@ public class App {
             }
         });
 
+        new Thread(runner).start();
     }
+
 
 
 }
