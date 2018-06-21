@@ -1,9 +1,9 @@
 package com.noreasonexception.datanuke.app.datastructures;
 
-import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
+import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 
-public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements EarliestDeadlineFirst_able<Long,ClassInfo> {
+public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements ITree<Long,ClassInfo> {
 
     @Override
     public void insert(Long aLong, ClassInfo classInfo) {
@@ -14,6 +14,11 @@ public class BST_EDF extends BinarySearchTree<Long,ClassInfo>implements Earliest
     public ClassInfo search(Long aLong) {
 
         return _search(root,aLong);
+    }
+
+    @Override
+    public void delete(Long aLong) {
+
     }
 
     @Override
