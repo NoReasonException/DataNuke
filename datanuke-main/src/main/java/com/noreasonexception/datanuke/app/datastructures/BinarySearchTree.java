@@ -6,6 +6,7 @@ import java.security.InvalidParameterException;
 /****
  * Simple Binary Search Tree
  * TODO this problem need balanced tree , consider make a 2-3 Tree in future!
+ * TODO write some tests
 
  */
 public class BinarySearchTree<Key extends Comparable<Key>,Value> {
@@ -119,7 +120,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> {
      * tree consistent
      * @param k the key to delete
      */
-    protected void delete(Key k){
+    public void delete(Key k){
         Node n ;
         if(isLeaf(n= _search(root,k))){
             removeMe(cachedParent,n);
