@@ -1,14 +1,17 @@
 package com.noreasonexception.datanuke.app.datastructures;
 
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
+import com.sun.istack.internal.NotNull;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.security.InvalidParameterException;
 
 /***
  * Balanced 2-3 tree (worst time log(n))
  * @param <Key>
  * @param <Value>
  */
-public class Tree23<Key,Value> implements ITree<Key,Value> {
+public class Tree23<Key extends Comparable<Key>,Value> implements ITree<Key,Value> {
     protected Node2 root;
     protected class Node2{
         public                  Node2   (Key key, Value value) { this.key = key;this.value = value;}
@@ -52,6 +55,12 @@ public class Tree23<Key,Value> implements ITree<Key,Value> {
 
     @Override
     public Value search(Key k) {
+        Node2 node2=_search(k);
+        if(node2.getKey().compareTo(k)==0)return node2.value;
+        else if(isNode3(node2))return ((Node3)node2).getValue2();
+        throw new InvalidParameterException("neither node 2 or 3 ...?");
+    }
+    protected Node2 _search(Key k){
         throw new NotImplementedException();
 
     }
