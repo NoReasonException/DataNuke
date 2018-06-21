@@ -1,39 +1,66 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
-import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
-import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
-import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.EarliestDeadlineFirst_able;
-import com.noreasonexception.datanuke.app.threadRunner.error.*;
+import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
+import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
-;
+import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
+import com.noreasonexception.datanuke.app.datastructures.BST_EDF;
+import com.noreasonexception.datanuke.app.threadRunner.error.*;
 
-import javax.json.*;
-import javax.json.stream.JsonParsingException;
-import java.io.StringReader;
 import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidParameterException;
+import javax.json.stream.JsonParsingException;
+
+import java.io.StringReader;
+import javax.json.*;
 import java.util.*;
 
-import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
-
+/****
+ * The ThreadRunner
+ * What is this "ThreadRunner" stuff?
+ * The ThreadRunner is a subsystem , which is responsible for
+ * 1) Starts the parsers , to fetch a new value
+ * 2) Informs the observers (The GUI probably) for events
+ * ====================================================== Task Events vs State Events============================================
+ * What is a Task Event?
+ * The whole point in ThreadRunner's operation is ..
+ *
+ * 0)fetch the class , who their deadline is the smallest
+ * 1)Wait untill it is time to load the class (untill deadline - initialization time)
+ * 2)Load the class
+ * 3)Calculate when this class will be re-started
+ * 4)GOTO 0
+ *
+ * So , a Task event is an event about a loadable class. if the class x is loaded , then onClassLoading() will be called on every task-observer
+ * so remember ! Task = Loadable class
+ *
+ * What is State event?
+ *
+ * The state events is about the progress of ThreadRunner itself. for example if initialization just started , then the INITIALIZATION
+ * state will be emitted to every state-observer
+ *
+ */
+// TODO ThreadRunnerTaskListener consider making abstract parent class
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
-    private Date                                        scheduledStart=null;
-    private ThreadRunnerState                           currentState = null;
-    private AtlasLoader                                 classLoader = null;
-    private DataProvider                                configProvider = null;
-    private DataProvider                                sourceProvider = null;
-    private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;
-    private LinkedList<ThreadRunnerStateListener>       stateListeners = null;
-    private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;
-    private LinkedList<ThreadRunnerTaskListener>       taskListeners = null;
-    private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;
-    private CsvValueFilter                              valueFilter=null;
+    private EarliestDeadlineFirst_able<Long,ClassInfo>  classSourcesDT=null;    //The Data Structure to implement EDF //TODO Rename This
+    private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside ThreadRunner
+    private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
+    private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside ThreadRunner)
+    private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
+    private ThreadRunnerState                           currentState = null;    //Current state of ThreadRunner subsystem
+    private CsvValueFilter                              valueFilter=null;       //The value filter subsystem
+    private DataProvider                                configProvider = null;  //The Configuration Data Provider
+    private DataProvider                                sourceProvider = null;  //The Sources Data Provider
+    private AtlasLoader                                 classLoader = null;     //The ClassLoader of ThreadRunner , responsible for removing everything after finish
+    private Date                                        scheduledStart=null;    //Scheduled start of ThreadRunners main loop
+    private int                                         initializationTime;     //initializationTime
+    private int                                         startupTarget;          //--
 
-    private int                                         initializationTime;
-    private int                                         startupTarget;
+
+
     /*****
      * Simple tool to convert milliseconds to seconds
      * @param mills the milliseconds to convert
@@ -145,6 +172,11 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
 
     }
+
+    /****
+     * This method loads the sources file , witch the classes information exists about the location , name , interval e.t.c
+     * @throws SourcesLoaderException
+     */
     private void loadSources() throws SourcesLoaderException {
         JsonObject obj;
         try{
