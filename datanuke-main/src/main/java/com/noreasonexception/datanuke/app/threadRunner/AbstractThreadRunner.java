@@ -188,10 +188,10 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             JsonArray array=obj.getJsonArray(string);
             ClassInfo i;
             this.classSourcesDT.insert(
-                    getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))),
+                    getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1))),
                     new ClassInfo(
                         new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
-                        Integer.valueOf(array.getString(1)),
+                        Long.valueOf(array.getString(1)),
                         string));
             this.taskEventsDispacher.submitClassReadInfoEvent(string);
             try{
@@ -202,7 +202,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             }
             long j;
             System.out.println(string+"have deadline in "+
-                    (j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Integer.valueOf(array.getString(1))))+" wait ->"+
+                    (new Date(j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))))+" wait ->"+
                     (j-scheduledStart.getTime()));
 
         }
@@ -234,7 +234,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
-                wait(getWaitTime(tmp.getDate().getTime(),System.currentTimeMillis(),tmp.getInterval()));
+                System.out.println((getWaitTime(tmp)));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
@@ -251,7 +251,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
-            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
+            }catch (/*InterruptedException|*/ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 
