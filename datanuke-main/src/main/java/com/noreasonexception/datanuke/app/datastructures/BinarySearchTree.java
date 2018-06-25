@@ -2,6 +2,7 @@ package com.noreasonexception.datanuke.app.datastructures;
 
 
 import java.security.InvalidParameterException;
+import java.security.spec.InvalidParameterSpecException;
 
 /****
  * Simple Binary Search Tree
@@ -121,8 +122,10 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> {
      * @param k the key to delete
      */
     public void delete(Key k){
+        if(root==null)throw new InvalidParameterException("There is no values inside");
         Node n ;
         if(isLeaf(n= _search(root,k))){
+            if(isRoot(n)){root=null;return;}
             removeMe(cachedParent,n);
         }
         else if(hasOnlyOneChild(n)){
@@ -148,6 +151,9 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> {
 
 
     }
+    protected boolean isRoot(BinarySearchTree.Node n){
+        return n==root;
+    }
     ///==================Utills section
     /***
      * Returns true if the given node is leaf
@@ -158,6 +164,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> {
         if(n.getLeft()==null&&n.getRight()==null)return true;
         return false;
     }
+
 
     /****
      * Returns true if has the given node has only one child
