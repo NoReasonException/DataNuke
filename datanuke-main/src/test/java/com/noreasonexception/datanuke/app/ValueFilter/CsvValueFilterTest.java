@@ -48,7 +48,7 @@ public class CsvValueFilterTest {
      * Tests if the builder method will throw Exception in case of any error(example nonexistent file)
      * @throws CsvValueFilterException
      */
-    @Test(expected = CsvValueFilterException.class)
+    @Test(expected = CsvValueFilterException.class )
     public void buildTestFail() throws CsvValueFilterException{
 
         filterNonFoundFile.buildFromFile();

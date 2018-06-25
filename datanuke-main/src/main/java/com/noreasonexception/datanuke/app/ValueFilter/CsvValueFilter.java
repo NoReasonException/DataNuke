@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 /***
  * This is the main implementation of Save Subsystem
@@ -88,7 +89,7 @@ public class CsvValueFilter implements ValueFilterable<Double> {
                 retval.add(Double.valueOf(s));
             }
             return retval;
-        }catch (NumberFormatException e){
+        }catch (NumberFormatException|NoSuchElementException e){
             throw new CsvValueFilterMailformedFileException(
                     "The parser detected something that we cannot say for sure that is an number",e);
         }
