@@ -61,9 +61,10 @@ public class CsvValueFilterTest {
 
     @Test
     public void registerValuesWithConsistentStateTest() throws CsvValueFilterException{
+        //TODO make test independent from real dat.csv file
         filterFoundFile.buildFromFile();
         filterFoundFile.submitClass(String.class.getName());
-        //filterFoundFile.submitClass(Integer.class);
+        filterFoundFile.submitClass(Integer.class.getName());
 
         System.out.println(filterFoundFile.submitValue(String.class.getName(),3d));
         //filterFoundFile.submitValue(Integer.class,0d); //when we submitClass , the initial value is zero
