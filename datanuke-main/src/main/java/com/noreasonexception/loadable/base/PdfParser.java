@@ -38,34 +38,10 @@ abstract public class PdfParser extends AbstractParser {
 
     }
 
-    @Override
-    protected boolean loop() {
-        setPattern(onPatternLoad());
-        System.out.println(getPattern()+" set pattern");
-        String temp;
-        Double tempValue;
-        while(true){
-            temp=convertSourceToText();
-            System.out.println("BLABLABLA");
 
-            tempValue=onValueExtract(temp);
-            System.out.println(tempValue+"he");
-            if(informValueFilter(tempValue)){
-                //inform that value finded!
-                //exit
-            }
-        }
-    }
 
-    @Override
-    protected boolean informValueFilter(Double value) {
-        try{
-            getValueFilter().submitValue(getClass().getName(),value);
-            return true;
-        }catch (CsvValueFilterException e){
-            return false;
-        }
-    }
+
+
 
     abstract protected String onPdfFileNameGet();
 

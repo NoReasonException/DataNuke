@@ -40,7 +40,7 @@ public class TestClass extends PdfParser {
         Matcher m = p.matcher(tmpString);
         if(!m.find()){
             System.out.println("not found"); return null;/* throw exception that changhed pattern*/ }
-        return Double.valueOf(m.group(3));
+        return Double.valueOf(m.group(3).replace(",","."));
     }
 
     @Override
@@ -50,27 +50,7 @@ public class TestClass extends PdfParser {
 
     @Override
     public void run() {
-        System.out.println("Run");
-        try{
-            System.out.println("Enter on ");
-            URL l = new URL("https://www.census.gov/construction/nrs/pdf/newressales.pdf");
-            HttpsURLConnection c = (HttpsURLConnection) (l).openConnection();
-            c.setInstanceFollowRedirects(true);
-            InputStream s=c.getInputStream();
-            System.out.println("Connected");
-            Document pdf = PDF.open(s,"newressales.pdf");
-            StringBuilder text = new StringBuilder(1024);
-            pdf.pipe(new OutputTarget(text));
-            System.out.println("completed");
-            pdf.close();
-            //System.out.println(text);
-            Pattern p = Pattern.compile("(.*)(New Houses Sold1:)\\s*(\\d*,\\d*)(.*)");
-            Matcher m;
-            System.out.println((m=p.matcher(text)).find());
-            System.out.println(m.group(3));
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());e.printStackTrace();}
+       loop();
 
     }
 }

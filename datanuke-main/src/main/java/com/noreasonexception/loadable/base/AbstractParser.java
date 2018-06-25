@@ -1,6 +1,7 @@
 package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.snowtide.pdf.V;
@@ -36,8 +37,6 @@ abstract public class AbstractParser implements Runnable{
     private java.util.regex.Pattern                         pattern;
     private String                          nameofSource;
     abstract protected String         convertSourceToText();
-    abstract protected boolean        loop();
-    abstract protected boolean        informValueFilter(Double value);
     abstract protected java.util.regex.Pattern        onPatternLoad();
     abstract protected String         onUrlLoad();
     abstract protected Double         onValueExtract(String tmpString);
@@ -64,5 +63,30 @@ abstract public class AbstractParser implements Runnable{
 
     protected void setPattern(Pattern pattern) {
         this.pattern = pattern;
+    }
+
+    protected boolean loop() {
+        setPattern(onPatternLoad());
+        String temp;
+        Double tempValue;
+
+        while(true){
+            temp=convertSourceToText();
+            tempValue=onValueExtract(temp);
+            if(informValueFilter(tempValue)){
+                //inform that value finded!
+                //exit
+            }
+            System.out.println(tempValue);
+            return true;
+        }
+    }
+    protected boolean informValueFilter(Double value) {
+        try{
+            getValueFilter().submitValue(getClass().getName(),value);
+            return true;
+        }catch (CsvValueFilterException e){
+            return false;
+        }
     }
 }
