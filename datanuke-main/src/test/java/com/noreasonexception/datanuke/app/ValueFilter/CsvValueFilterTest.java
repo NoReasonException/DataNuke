@@ -1,5 +1,4 @@
 package com.noreasonexception.datanuke.app.ValueFilter;
-import static org.junit.Assert.*;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import org.junit.Before;

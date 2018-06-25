@@ -19,14 +19,14 @@ import javax.json.*;
 import java.util.*;
 
 /****
- * The ThreadRunner
- * What is this "ThreadRunner" stuff?
- * The ThreadRunner is a subsystem , which is responsible for
+ * The threadRunner
+ * What is this "threadRunner" stuff?
+ * The threadRunner is a subsystem , which is responsible for
  * 1) Starts the parsers , to fetch a new value
  * 2) Informs the observers (The GUI probably) for events
  * ====================================================== Task Events vs State Events============================================
  * What is a Task Event?
- * The whole point in ThreadRunner's operation is ..
+ * The whole point in threadRunner's operation is ..
  *
  * 0)fetch the class , who their deadline is the smallest
  * 1)Wait untill it is time to load the class (untill deadline - initialization time)
@@ -39,22 +39,22 @@ import java.util.*;
  *
  * What is State event?
  *
- * The state events is about the progress of ThreadRunner itself. for example if initialization just started , then the INITIALIZATION
+ * The state events is about the progress of threadRunner itself. for example if initialization just started , then the INITIALIZATION
  * state will be emitted to every state-observer
  *
  */
 // TODO ThreadRunnerTaskListener consider making abstract parent class
 public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
-    private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside ThreadRunner
+    private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
     private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
-    private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside ThreadRunner)
+    private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
     private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
-    private ThreadRunnerState                           currentState = null;    //Current state of ThreadRunner subsystem
+    private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
     private CsvValueFilter                              valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
-    private AtlasLoader                                 classLoader = null;     //The ClassLoader of ThreadRunner , responsible for removing everything after finish
+    private AtlasLoader                                 classLoader = null;     //The ClassLoader of threadRunner , responsible for removing everything after finish
     private Date                                        scheduledStart=null;    //Scheduled start of ThreadRunners main loop
     private int                                         initializationTime;     //initializationTime
     private int                                         startupTarget;          //--
@@ -66,21 +66,21 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @param mills the milliseconds to convert
      * @return a long value , the seconds
      */
-    private static long millsToSec(long mills){return mills/1000;}
+    static long millsToSec(long mills){return mills/1000;}
 
     /****
      * Simple tool to convert seconds to milliseconds
      * @param sec the seconds to convert
      * @return a long value , the milliseconds
      */
-    private static long secToMills(long sec){return sec/1000;}
+    static long secToMills(long sec){return sec*1000;}
 
     /****
      * Simple tool to get the remaining time from now on.
      * @param then the future timestamp
      * @return the time until @param then
      */
-    private static long getRemainingTime(long then){
+    static long getRemainingTime(long then){
         if(System.currentTimeMillis()>then)throw new InvalidParameterException("desired target belongs to past "+new Date(System.currentTimeMillis())+new Date(then));
         return then-System.currentTimeMillis();
     }
@@ -93,7 +93,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @param i the interval
      * @return the next time a event will occur
      */
-    private static long getDeadline(long p ,long c,long i){
+    static long getDeadline(long p ,long c,long i){
         return ((p+(((int)(c-p)/i))*i)+i);
     }
 
@@ -114,7 +114,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @param i the event's interval
      * @return the wait time (to use in this.wait() method)
      */
-    private static long getWaitTime(long p,long c,long i ){
+    static long getWaitTime(long p,long c,long i ){
         return getDeadline(p,c,i)-c;
     }
 
@@ -123,7 +123,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @param e
      * @return
      */
-    private static long getWaitTime(ClassInfo e ){
+    static long getWaitTime(ClassInfo e ){
         return getWaitTime(e.getDate().getTime(),System.currentTimeMillis(),e.getInterval());
     }
 
@@ -306,7 +306,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         stateEventHappened();
     }
     /****
-     * This is the main entry point for ThreadRunner
+     * This is the main entry point for threadRunner
      *
      */
     synchronized public void run() {
