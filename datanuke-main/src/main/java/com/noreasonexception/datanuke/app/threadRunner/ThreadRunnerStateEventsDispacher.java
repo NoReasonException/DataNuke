@@ -22,7 +22,7 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
                 ThreadRunnerState state=null;
                 try{
                     state= states.take();
-                }catch (InterruptedException e){e.printStackTrace();Thread.currentThread().interrupt();}
+                }catch (InterruptedException e){e.printStackTrace();}
 
                 synchronized (listeners){
                     for (ThreadRunnerStateListener l:listeners) {

@@ -69,7 +69,7 @@ public class SingleClassLoader extends ClassLoader {
 
         byte[]binaryData=null;
         try{
-            super.findSystemClass(s);
+           return super.findSystemClass(s);
         }catch (ClassNotFoundException e){;}
 
         if(haveAlreadyLoadClass) return super.loadClass(s,b);

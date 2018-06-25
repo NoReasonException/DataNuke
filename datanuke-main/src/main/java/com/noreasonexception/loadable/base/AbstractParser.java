@@ -3,6 +3,13 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.snowtide.pdf.V;
+
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.regex.Pattern;
 
 /***
  * AbstractParser
@@ -17,15 +24,28 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDis
  * 5) When the @4 happens , the Parser must kill himself
  * @implNote In some steps , the ThreadRunnerTaskEventsDispacher must informed by corresponding methods
  */
-public class AbstractParser implements Runnable{
+abstract public class AbstractParser implements Runnable{
+
+
 
     private ThreadRunnerTaskEventsDispacher dispacher;
-    private CsvValueFilter valueFilter;
-    public AbstractParser(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter)
-    {
-        this.dispacher=disp;
-        this.valueFilter=valueFilter;
+    private HttpURLConnection               connection;
+    private CsvValueFilter                  valueFilter;
+
+
+    private java.util.regex.Pattern                         pattern;
+    private String                          nameofSource;
+    abstract protected String         convertSourceToText();
+    abstract protected boolean        loop();
+    abstract protected boolean        informValueFilter(Double value);
+    abstract protected java.util.regex.Pattern        onPatternLoad();
+    abstract protected String         onUrlLoad();
+    abstract protected Double         onValueExtract(String tmpString);
+    protected HttpURLConnection       onConnection() throws MalformedURLException,IOException{
+        return (HttpURLConnection)(new URL("https://www.census.gov/construction/nrs/pdf/newressales.pdf")).openConnection();
     }
+
+
 
     protected ThreadRunnerTaskEventsDispacher getDispacher() {
         return this.dispacher;
@@ -33,9 +53,16 @@ public class AbstractParser implements Runnable{
     protected CsvValueFilter getValueFilter() {
         return this.valueFilter;
     }
-    @Override
-    public void run() {
-        System.out.println("RUN COMPLETED");
+    public AbstractParser(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter)
+    {
+        this.dispacher=disp;
+        this.valueFilter=valueFilter;
+    }
+    protected Pattern getPattern() {
+        return pattern;
+    }
 
+    protected void setPattern(Pattern pattern) {
+        this.pattern = pattern;
     }
 }
