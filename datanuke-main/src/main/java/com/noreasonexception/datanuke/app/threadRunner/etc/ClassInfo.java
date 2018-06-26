@@ -39,4 +39,11 @@ public class ClassInfo implements Comparable<ClassInfo> {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    @Override
+    public String toString() {
+        return "(ClassInfo )"+classname+"\n"+
+               "(i)Interval = "+this.interval+"\n"+
+               "(p)Previous = "+this.date.getTime()+"("+this.date+")";
+    }
 }
