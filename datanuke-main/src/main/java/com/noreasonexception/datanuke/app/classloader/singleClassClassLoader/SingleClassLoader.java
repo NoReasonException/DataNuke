@@ -12,6 +12,8 @@ public class SingleClassLoader extends ClassLoader {
     Class<?> singleClass                =null;
     boolean haveAlreadyLoadClass        =false;
 
+
+
     public Class<?> getSingleClass() {
 
         return singleClass;

@@ -16,26 +16,19 @@ import java.security.spec.InvalidParameterSpecException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TestClass extends PdfParser {
-    public TestClass(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter) {
+public final class Census_NewHomeSales_pdf extends PdfParser {
+    public Census_NewHomeSales_pdf(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter) {
         super(disp,valueFilter);
     }
 
-    @Override
-    protected void finalize() {
-        getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
-    }
-
-
-
     protected Pattern        onPatternLoad(){
         return Pattern.compile("(.*)(New Houses Sold1:)\\s*(\\d*,\\d*)(.*)");
+
     }
     protected String         onUrlLoad(){
         return "\"https://www.census.gov/construction/nrs/pdf/newressales.pdf\"";
     }
     protected Double         onValueExtract(String tmpString){
-        System.out.println("onValueExtract");
         Pattern p = getPattern();
         Matcher m = p.matcher(tmpString);
         if(!m.find()){
@@ -48,9 +41,4 @@ public class TestClass extends PdfParser {
         return "newressales.pdf";
     }
 
-    @Override
-    public void run() {
-       loop();
-
-    }
 }

@@ -19,6 +19,11 @@ abstract public class PdfParser extends AbstractParser {
         super(disp,valueFilter);
     }
 
+
+    /***
+     * @implNote TODO com.snowtide.pdf.Document class for some reason keeps a reference
+     * @return
+     */
     @Override
     protected String convertSourceToText() {
         HttpURLConnection c;
@@ -29,8 +34,12 @@ abstract public class PdfParser extends AbstractParser {
             com.snowtide.pdf.Document pdf = PDF.open(s,onPdfFileNameGet());
             StringBuilder text = new StringBuilder();
             pdf.pipe(new OutputTarget(text));
-
             pdf.close();
+            pdf=null;
+            c.disconnect();
+            c=null;
+            s.close();
+            s=null;
             return text.toString();
 
         }catch (IOException e){e.printStackTrace();return null;}

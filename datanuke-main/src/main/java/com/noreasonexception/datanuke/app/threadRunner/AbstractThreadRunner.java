@@ -67,6 +67,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @return a long value , the seconds
      */
     static long millsToSec(long mills){return mills/1000;}
+    /*****
+     * Simple tool to convert milliseconds to seconds
+     * @param mills the milliseconds to convert
+     * @return a long value , the seconds
+     */
+    static long millsToMins(long mills){return mills/1000;}
 
     /****
      * Simple tool to convert seconds to milliseconds
@@ -203,7 +209,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             long j;
             System.out.println(string+"have deadline in "+
                     (new Date(j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))))+" wait ->"+
-                    (j-scheduledStart.getTime()));
+                    getWaitTime(Long.valueOf(array.getString(0)),System.currentTimeMillis(),Long.valueOf(array.getString(1)))/1000/60/60/24);
 
         }
     }
@@ -234,7 +240,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
-                System.out.println((getWaitTime(tmp)));
+                //wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
@@ -330,6 +336,13 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     }
 
     public AbstractThreadRunner(AtlasLoader classLoader, DataProvider configProvider, DataProvider sourceProvider, CsvValueFilter valueFilter) {
+        try{
+            getClass().getClassLoader().loadClass("java.util.regex.Pattern");
+            getClass().getClassLoader().loadClass("java.util.regex.Matcher");
+            getClass().getClassLoader().loadClass("com.snowtide.pdf.Document");
+
+
+        }catch (Exception e){}
         this.stateListeners = new LinkedList<>();
         this.taskListeners=new LinkedList<>();
         this.classLoader=classLoader;

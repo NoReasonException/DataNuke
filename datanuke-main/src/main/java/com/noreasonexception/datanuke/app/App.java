@@ -28,54 +28,14 @@ public class App {
             }
         });
         runner.subscribeTaskListener(new ThreadRunnerTaskListener() {
-
-            @Override
-            public void onClassReadInfo(String classname) {
-                System.out.println("onClassReadInfo " + classname + classname.length());
-            }
-
-            @Override
-            public void onClassWaitUntillDeadline(String classname) {
-                System.out.println("onClassWaitUntillDeadline " + classname);
-
-            }
-
-            @Override
-            public void onClassLoading(String classname) {
-                System.out.println("onClassLoading " + classname);
-
-            }
-
-            @Override
-            public void onClassInstanceCreated(String classname) {
-                System.out.println("onClassInstanceCreated " + classname);
-
-            }
-
-            @Override
-            public void onTaskThreadStarted(String classname) {
-                System.out.println("onTaskThreadStarted " + classname);
-
-            }
-
-            @Override
-            public void onTaskThreadValueRetrieved(String classname) {
-                System.out.println("onTaskThreadValueRetrieved " + classname);
-
-            }
-
             @Override
             public void onTaskThreadTerminated(String classname) {
-                System.out.println("onTaskThreadTerminated " + classname);
+                System.out.println("terminated");
             }
 
             @Override
             public void onTaskThreadReleased(String classname) {
-            }
-
-            @Override
-            public void onClassReleased(String classname) {
-                System.out.println("onClassReleased " + classname);
+                System.out.println("released");
             }
         });
 
