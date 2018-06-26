@@ -25,7 +25,7 @@
       <file leaf-file-name="App.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
+            <state relative-caret-position="459">
               <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
             </state>
           </provider>
@@ -34,16 +34,10 @@
       <file leaf-file-name="AbstractThreadRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="137" column="11" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="11" />
+            <state relative-caret-position="1003">
+              <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4945#4946#0" expanded="true" />
-                <element signature="e#4994#4995#0" expanded="true" />
-                <element signature="e#5301#5302#0" expanded="true" />
-                <element signature="e#5365#5366#0" expanded="true" />
-                <element signature="e#5669#5670#0" expanded="true" />
-                <element signature="e#5712#5713#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -52,12 +46,22 @@
       <file leaf-file-name="ThreadRunnerStaticTests.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStaticTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="748">
-              <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+            <state relative-caret-position="561">
+              <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#475#476#0" expanded="true" />
-                <element signature="e#544#545#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ThreadRunnerStaticTestException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/error/ThreadRunnerStaticTestException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+              <folding>
+                <element signature="e#218#219#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -66,7 +70,7 @@
       <file leaf-file-name="BinarySearchTreeTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BinarySearchTreeTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="85">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -78,11 +82,8 @@
       <file leaf-file-name="BST_EDF_Test.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="119">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -90,8 +91,8 @@
       <file leaf-file-name="CsvValueFilterTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
+            <state relative-caret-position="51">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -102,7 +103,7 @@
       <file leaf-file-name="CsvValueFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
+            <state relative-caret-position="2482">
               <caret line="163" selection-start-line="163" selection-end-line="163" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -116,15 +117,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret column="7" selection-start-column="7" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileDataProvider.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/FileDataProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -158,7 +150,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/classloader/singleClassClassLoader/AlreadyLoadedClassException.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerState.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/datastructures/interfaces/EarliestDeadlineFirst_able.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/error/ConvertException.java" />
@@ -203,11 +194,12 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/FileDataProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BinarySearchTreeTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java" />
         <option value="$PROJECT_DIR$/dat.csv" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ThreadRunner/ThreadRunnerStaticTests.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/error/ThreadRunnerStaticTestException.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStaticTests.java" />
       </list>
     </option>
@@ -239,7 +231,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -331,6 +324,17 @@
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
               <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -365,6 +369,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
+              <item name="error" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
@@ -414,8 +428,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -449,7 +462,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.App">
+  <component name="RunManager" selected="JUnit.ThreadRunnerStaticTests">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -583,7 +596,7 @@
       <method>
         <option name="RunConfigurationTask" enabled="true" run_configuration_name="BinarySearchTreeTest" run_configuration_type="JUnit" />
         <option name="RunConfigurationTask" enabled="true" run_configuration_name="BST_EDF_Test" run_configuration_type="JUnit" />
-        <option name="RunConfigurationTask" enabled="true" run_configuration_name="CsvValueFilterTest (1)" run_configuration_type="JUnit" />
+        <option name="RunConfigurationTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="ThreadRunnerStaticTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -671,6 +684,7 @@
       <listeners />
     </configuration>
     <list>
+      <item itemvalue="JUnit.CsvValueFilterTest" />
       <item itemvalue="JUnit.CsvValueFilterTest " />
       <item itemvalue="JUnit.BinarySearchTreeTest" />
       <item itemvalue="JUnit.BST_EDF_Test" />
@@ -681,8 +695,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.ThreadRunnerStaticTests" />
+        <item itemvalue="Application.App" />
         <item itemvalue="JUnit.ThreadRunnerStaticTests.millsToSec" />
       </list>
     </recent_temporary>
@@ -733,52 +747,51 @@
       <workItem from="1529874671479" duration="2588000" />
       <workItem from="1529904807189" duration="3586000" />
       <workItem from="1529908435080" duration="11509000" />
-      <workItem from="1529956325210" duration="1240000" />
+      <workItem from="1529956325210" duration="2208000" />
+      <workItem from="1530003279967" duration="597000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="CsvValueFilterTest - 2018.06.25 at 22h 54m 45s.xml">
-      <configuration name="CsvValueFilterTest" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 20m 49s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BinarySearchTreeTest - 2018.06.25 at 22h 55m 11s.xml">
-      <configuration name="BinarySearchTreeTest" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 09s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BST_EDF_Test - 2018.06.25 at 22h 55m 13s.xml">
-      <configuration name="BST_EDF_Test" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 17s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CsvValueFilterTest - 2018.06.25 at 22h 55m 15s.xml">
-      <configuration name="CsvValueFilterTest" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 20s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CsvValueFilterTest_(1) - 2018.06.25 at 22h 55m 24s.xml">
-      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 24s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CsvValueFilterTest_(1) - 2018.06.25 at 22h 55m 26s.xml">
-      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 28s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BinarySearchTreeTest - 2018.06.25 at 22h 55m 55s.xml">
-      <configuration name="BinarySearchTreeTest" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 26m 39s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BST_EDF_Test - 2018.06.25 at 22h 55m 58s.xml">
-      <configuration name="BST_EDF_Test" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 29m 22s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="CsvValueFilterTest_(1) - 2018.06.25 at 22h 56m 00s.xml">
-      <configuration name="CsvValueFilterTest (1)" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 29m 33s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="Whole_project - 2018.06.25 at 22h 56m 01s.xml">
-      <configuration name="Whole project" configurationId="JUnit" />
+    <history-entry file="ThreadRunnerStaticTests - 2018.06.25 at 23h 29m 41s.xml">
+      <configuration name="ThreadRunnerStaticTests" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147221000" />
+    <option name="totallyTimeSpent" value="148786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.2" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -792,46 +805,47 @@
       <window_info id="Designer" order="3" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24765626" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.38757062" />
       <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3296875" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.2" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28338763" />
       <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01015625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28338763" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984799" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984799" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.20124805" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info id="Favorites" order="5" side_tool="true" />
@@ -859,13 +873,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/TaskEventException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="24" selection-start-column="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jrt:///usr/lib/jvm/java-1.11.0-openjdk-amd64!/java.base/java/lang/String.class" />
     <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter/ValueFilter/CsvValueFilterTest.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/error/CsvValueFilterInconsistentStateException.java">
@@ -1151,16 +1158,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="17" column="57" selection-start-line="17" selection-start-column="57" selection-end-line="17" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dat.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1170,7 +1167,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
+        <state relative-caret-position="2482">
           <caret line="163" selection-start-line="163" selection-end-line="163" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1180,14 +1177,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
+        <state relative-caret-position="459">
           <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BinarySearchTreeTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="85">
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1197,38 +1194,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="137" column="11" selection-start-line="137" selection-start-column="4" selection-end-line="137" selection-end-column="11" />
+        <state relative-caret-position="1003">
+          <caret line="75" column="48" selection-start-line="75" selection-start-column="48" selection-end-line="75" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4945#4946#0" expanded="true" />
-            <element signature="e#4994#4995#0" expanded="true" />
-            <element signature="e#5301#5302#0" expanded="true" />
-            <element signature="e#5365#5366#0" expanded="true" />
-            <element signature="e#5669#5670#0" expanded="true" />
-            <element signature="e#5712#5713#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/error/ThreadRunnerStaticTestException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+          <folding>
+            <element signature="e#218#219#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="51">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStaticTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="748">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+        <state relative-caret-position="561">
+          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#475#476#0" expanded="true" />
-            <element signature="e#544#545#0" expanded="true" />
           </folding>
         </state>
       </provider>
