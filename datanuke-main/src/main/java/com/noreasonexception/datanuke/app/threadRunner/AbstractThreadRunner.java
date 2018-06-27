@@ -218,6 +218,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
         }
     }
+
+    /****
+     * .prepareLoop() method has the responsibility to set the scene for .loop() method
+     * Also must wait until scheduled start
+     * @throws LoopPrepareException in case of every error , InterruptedException mostly
+     */
     private void prepareLoop() throws LoopPrepareException {
         try{wait(getRemainingTime(scheduledStart.getTime()));}catch (InterruptedException e){throw new LoopPrepareException("Interrupted on startup wait() call",e);}
 
@@ -367,6 +373,11 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return currentState;
     }
 
+    /***
+     * //TODO because of deprecation in after 9+ versions , find a way avoiding the .finalize()
+     * Terminate the StateEventDispacher and TaskEventDispacher
+     * @throws Throwable in case of any error..
+     */
     @Override
     protected void finalize() throws Throwable {
         super.finalize();

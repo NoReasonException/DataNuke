@@ -129,16 +129,17 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                             for (ThreadRunnerTaskListener subsciber:listeners){
                                 m.invoke(subsciber,eventException.getClassname(),eventException.getError());
                             }
-
                         }
-
                     }
-                    catch (InterruptedException e){e.printStackTrace();}
-                    catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e){e.printStackTrace();}
+                    catch (NoSuchMethodException|
+                            IllegalAccessException|
+                            InvocationTargetException|
+                            InterruptedException e){
+                        e.printStackTrace();
+                    }
 
                 }
             }
         }
     }
-
 }

@@ -15,6 +15,12 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
         return this;
     }
     //TODO :ConcurrentModificationException but not deterministic , fix
+
+    /****
+     * Entry point of ThreadRunnerStateEventDispacher
+     * This method basically waits for incoming events (via LinkedBlockingQueue )
+     * And transmits the details in subscribers
+     */
     @Override
     public void run() {
         while (true){
@@ -33,7 +39,6 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
         }
     }
     public ThreadRunnerStateEventsDispacher(LinkedList<ThreadRunnerStateListener> listeners) {
-
         this.listeners=listeners;
         this.states=new LinkedBlockingQueue<>();
     }
