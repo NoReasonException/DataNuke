@@ -17,7 +17,6 @@ import static java.util.Optional.of;
 public class FileDataProvider extends DataProvider {
     ByteChannel channel = null;
     ByteBuffer  buffer=null;
-    //refactor , remove buffsize TODO
     public FileDataProvider(Path file){
         try{
             this.buffer=ByteBuffer.allocate((int)Files.readAttributes(file,BasicFileAttributes.class).size());//TODO : check for possible overflow

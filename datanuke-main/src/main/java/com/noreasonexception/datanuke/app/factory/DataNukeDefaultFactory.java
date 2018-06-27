@@ -43,8 +43,6 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
      * @param confProvider the data provider
      * @return this object
      */
-    ///TODO make it with DataProvider
-    ////TODO custom Exception maybe?
     public DataNukeDefaultFactory loadConfiguration(DataProvider confProvider){
         StringBuilder stringBuilder = new StringBuilder();
         try{

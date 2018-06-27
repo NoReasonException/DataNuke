@@ -161,7 +161,9 @@ abstract public class AbstractParser implements Runnable{
     public void run() {
         System.out.println("run \t"+getClass().getName());
         if(!loop()){
-            getDispacher().submitTaskThreadValueRetrievedEventFailed(getClass().getName(),new CsvValueFilterException("Value Not found after 1000 request , a broken pattern maybe?"));
+            getDispacher().submitTaskThreadValueRetrievedEventFailed(
+                    getClass().getName(),
+                    new CsvValueFilterException("Value Not found after 1000 request , a broken pattern maybe?"));
         }
         getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
