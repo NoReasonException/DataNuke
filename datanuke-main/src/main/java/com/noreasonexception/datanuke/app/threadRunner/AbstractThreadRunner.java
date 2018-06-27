@@ -99,12 +99,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
      * @param i the interval
      * @return the next time a event will occur
      */
-    /*static long getDeadline(long p ,long c,long i){
-        return (p+(((int)((c-p)/i))*i));
-    }*/
     static long getDeadline(long p ,long c,long i){
-        return c+(i-(i-(c-(p+(((int)((c-p)/i))*i)))));
+        return (p+(((int)((c-p)/i))*i))+i;
     }
+    /*static long getDeadline(long p ,long c,long i){
+        return c+(i-(i-(c-(p+(((int)((c-p)/i))*i)))));
+    }*/
     /****
      * Get Deadline just defined above , but with the scheduled timestamp instead of current one!
      * @param p the previous timestamp
@@ -214,7 +214,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     getWaitTime(
                             Long.valueOf(array.getString(0)),
                             System.currentTimeMillis(),
-                            Long.valueOf(array.getString(1)))/1000/60/60);
+                            Long.valueOf(array.getString(1)))/1000/60/60/24);
 
         }
     }
@@ -251,7 +251,8 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
-                //wait(getWaitTime(tmp));
+                System.out.println("will wait "+getWaitTime(tmp)/1000/60/60+"min");
+                wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
@@ -268,7 +269,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
-            }catch (/*InterruptedException|*/ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
+            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 

@@ -38,7 +38,7 @@ import java.util.NoSuchElementException;
  * Every call into .submitValue() will return true if the AbstractParser class finds an new value
  *
  */
-public class CsvValueFilter implements ValueFilterable<Double> {
+public class CsvValueFilter extends AbstractValueFilter<Double> {
     private Hashtable<String,Integer> classIDs;
     private ArrayList<Double>           classValues;
     private java.lang.String            filename;
