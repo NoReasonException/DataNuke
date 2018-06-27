@@ -126,18 +126,20 @@ abstract public class AbstractParser implements Runnable{
         System.out.println("started");
         String temp;
         Double tempValue;
+        int i=0;
+
         while(true){
             temp=convertSourceToText();
             System.out.println(temp);
             tempValue=onValueExtract(temp);
             if(informValueFilter(tempValue)){
-                //inform that value finded!
-                //exit
-                System.out.println("New value!");
+                getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName());
                 return true;
             }
-
+            if(i>1000)break;
+            i+=1;
         }
+        return false;
     }
 
     /***
@@ -158,11 +160,14 @@ abstract public class AbstractParser implements Runnable{
     @Override
     public void run() {
         System.out.println("run \t"+getClass().getName());
-        loop();
+        if(!loop()){
+            getDispacher().submitTaskThreadValueRetrievedEventFailed(getClass().getName(),new CsvValueFilterException("Value Not found after 1000 request , a broken pattern maybe?"));
+        }
+        getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
     @Override
     protected void finalize() {
-        getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
+        getDispacher().submitTaskThreadReleasedEvent(getClass().getName());
     }
 
 }

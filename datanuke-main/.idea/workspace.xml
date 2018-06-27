@@ -29,11 +29,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CsvValueFilter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CsvValueFilter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+            <state relative-caret-position="-1514">
+              <caret line="55" column="26" lean-forward="true" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -95,16 +95,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AbstractParser.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AbstractParser.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="84" selection-start-line="3" selection-start-column="84" selection-end-line="3" selection-end-column="84" />
+            <state relative-caret-position="636">
+              <caret line="163" column="179" selection-start-line="163" selection-start-column="179" selection-end-line="163" selection-end-column="179" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#3980#3981#0" expanded="true" />
                 <element signature="e#4017#4018#0" expanded="true" />
                 <element signature="e#4196#4197#0" expanded="true" />
                 <element signature="e#4235#4236#0" expanded="true" />
+                <element signature="e#6087#6088#0" expanded="true" />
+                <element signature="e#6169#6170#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,9 +116,10 @@
       <file leaf-file-name="AbstractThreadRunner.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+            <state relative-caret-position="202">
+              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#5136#5137#0" expanded="true" />
                 <element signature="e#5185#5186#0" expanded="true" />
               </folding>
@@ -180,7 +184,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/ValueFilterable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/AbstractValueFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/HtmlParser.java" />
@@ -188,6 +191,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java" />
       </list>
     </option>
   </component>
@@ -282,46 +286,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="classloader" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="dataProvider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="ValueFilter" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="loadable" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -333,16 +297,6 @@
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="loadable" type="462c0819:PsiDirectoryNode" />
               <item name="base" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="loadable" type="462c0819:PsiDirectoryNode" />
-              <item name="childs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -652,12 +606,12 @@
       <workItem from="1530037957769" duration="6448000" />
       <workItem from="1530044801334" duration="9482000" />
       <workItem from="1530055639766" duration="2539000" />
-      <workItem from="1530098232576" duration="8324000" />
+      <workItem from="1530098232576" duration="8882000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178217000" />
+    <option name="totallyTimeSpent" value="178775000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
@@ -665,7 +619,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.2" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.2" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
@@ -679,6 +633,7 @@
       <window_info id="Designer" order="3" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26796874" />
       <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="4" />
@@ -691,7 +646,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
@@ -1015,30 +969,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="84" selection-start-line="3" selection-start-column="84" selection-end-line="3" selection-end-column="84" />
-          <folding>
-            <element signature="e#3980#3981#0" expanded="true" />
-            <element signature="e#4017#4018#0" expanded="true" />
-            <element signature="e#4196#4197#0" expanded="true" />
-            <element signature="e#4235#4236#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
-          <folding>
-            <element signature="e#5136#5137#0" expanded="true" />
-            <element signature="e#5185#5186#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1086,8 +1016,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="37" column="16" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
+        <state relative-caret-position="-1514">
+          <caret line="55" column="26" lean-forward="true" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5136#5137#0" expanded="true" />
+            <element signature="e#5185#5186#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="636">
+          <caret line="163" column="179" selection-start-line="163" selection-start-column="179" selection-end-line="163" selection-end-column="179" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3980#3981#0" expanded="true" />
+            <element signature="e#4017#4018#0" expanded="true" />
+            <element signature="e#4196#4197#0" expanded="true" />
+            <element signature="e#4235#4236#0" expanded="true" />
+            <element signature="e#6087#6088#0" expanded="true" />
+            <element signature="e#6169#6170#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
