@@ -56,6 +56,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      * @return this object
      * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
      */
+    @Override
     public CsvValueFilter buildFromFile() throws CsvValueFilterException{
         this.classValues=this.fileContextToArray();
         return this;
@@ -182,6 +183,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      * @return  true for success
      * @throws CsvValueFilterInconsistentStateException
      */
+    @Override
     public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
         if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         this.classIDs.put(klassName,cnt);
