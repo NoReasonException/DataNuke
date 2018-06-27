@@ -2,8 +2,11 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.AbstractParser;
 import com.noreasonexception.loadable.base.PdfParser;
 
+import java.security.InvalidParameterException;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
@@ -11,28 +14,26 @@ public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
         super(disp, valueFilter);
     }
 
-    @Override
-    protected Double onValueExtract(String tmpString) {
-        return null;
+    protected Pattern        onPatternLoad(){
+        return Pattern.compile("(.*\\d+[.]\\d+\\s+)");
+
+    }
+    protected String         onUrlLoad(){
+        return "https://www.census.gov/manufacturing/m3/adv/pdf/table1a.pdf";
+    }
+    protected Double         onValueExtract(String tmpString){
+        Pattern p = getPattern();
+        Matcher m = p.matcher(tmpString);
+        AbstractParser.Utills.triggerMacherMethodFindNTimes(m,41);
+        if(!m.find()){
+            System.out.println("not found");
+            throw new InvalidParameterException("Pattern is not find anything!");/* throw exception that changhed pattern*/ }
+        return Double.valueOf(m.group(0).replace(",","."));
     }
 
     @Override
     protected String onPdfFileNameGet() {
-        return null;
-    }
-
-    @Override
-    protected Pattern onPatternLoad() {
-        return null;
-    }
-
-    @Override
-    protected String onUrlLoad() {
-        return null;
-    }
-
-    @Override
-    public void run() {
-        System.out.println("RUNN!");
+        return "table1a.pdf";
     }
 }
+//here

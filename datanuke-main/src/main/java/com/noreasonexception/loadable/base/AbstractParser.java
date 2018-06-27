@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /***
@@ -36,6 +37,13 @@ abstract public class AbstractParser implements Runnable{
 
     private java.util.regex.Pattern          pattern;
     private String                          nameofSource;
+    public static class Utills{
+        public static void triggerMacherMethodFindNTimes(Matcher m,int n){
+            for (int i = 0; i < n; i++) {
+                m.find();
+            }
+        }
+    }
     /****
      * convertSourceToText
      * this routine has the responsibility to transform the source to plain String
@@ -76,7 +84,7 @@ abstract public class AbstractParser implements Runnable{
      * @throws IOException           in case of any IOE (not internet found for example)
      */
     protected HttpURLConnection       onConnection() throws MalformedURLException,IOException{
-        return (HttpURLConnection)(new URL("https://www.census.gov/construction/nrs/pdf/newressales.pdf")).openConnection();
+        return (HttpURLConnection)(new URL(onUrlLoad())).openConnection();
     }
 
     /****
@@ -121,13 +129,15 @@ abstract public class AbstractParser implements Runnable{
         Double tempValue;
         while(true){
             temp=convertSourceToText();
+            System.out.println(temp);
             tempValue=onValueExtract(temp);
             if(informValueFilter(tempValue)){
                 //inform that value finded!
                 //exit
+                System.out.println("New value!");
+                return true;
             }
-            System.out.println(tempValue);
-            return true;
+
         }
     }
 
@@ -138,8 +148,8 @@ abstract public class AbstractParser implements Runnable{
      */
     protected boolean informValueFilter(Double value) {
         try{
-            getValueFilter().submitValue(getClass().getName(),value);
-            return true;
+            return getValueFilter().submitValue(getClass().getName(),value);
+
         }catch (CsvValueFilterException e){
             e.printStackTrace();
             return false;
