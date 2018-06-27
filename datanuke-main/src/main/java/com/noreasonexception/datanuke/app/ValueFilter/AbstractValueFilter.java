@@ -20,7 +20,7 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
      * @param value the actual value
      * @return true if submit is completed(old!=new) else false
      */
-    abstract boolean submitValue(String className,T value) throws Exception;
+    abstract public boolean submitValue(String className,T value) throws CsvValueFilterException;
     /****
      * Submit a class by his name before use
      *
@@ -34,5 +34,5 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
      * @return this object
      * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
      */
-    abstract public CsvValueFilter buildFromFile() throws CsvValueFilterException;
+    abstract public AbstractValueFilter<Double> buildFromFile() throws CsvValueFilterException;
 }

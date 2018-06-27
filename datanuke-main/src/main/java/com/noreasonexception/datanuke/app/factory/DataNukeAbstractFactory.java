@@ -1,6 +1,6 @@
 package com.noreasonexception.datanuke.app.factory;
 
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.factory.error.MissingResourcesException;
@@ -57,7 +57,7 @@ abstract public class DataNukeAbstractFactory {
      * @return a @CsvValueFilter
      * @throws CsvValueFilterException
      */
-    abstract public CsvValueFilter          getDataNukeCSVvalueFilter() throws CsvValueFilterException;
+    abstract public AbstractValueFilter<Double> getDataNukeValueFilter() throws CsvValueFilterException;
 
 
 }

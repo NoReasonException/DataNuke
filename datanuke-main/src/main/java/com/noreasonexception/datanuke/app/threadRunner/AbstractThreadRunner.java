@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
@@ -51,7 +52,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
     private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
     private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
-    private CsvValueFilter                              valueFilter=null;       //The value filter subsystem
+    private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
     private AtlasLoader                                 classLoader = null;     //The ClassLoader of threadRunner , responsible for removing everything after finish
@@ -347,7 +348,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return taskListeners.add(listener);
     }
 
-    public AbstractThreadRunner(AtlasLoader classLoader, DataProvider configProvider, DataProvider sourceProvider, CsvValueFilter valueFilter) {
+    public AbstractThreadRunner(AtlasLoader classLoader, DataProvider configProvider, DataProvider sourceProvider, AbstractValueFilter<Double> valueFilter) {
         try{
             getClass().getClassLoader().loadClass("java.util.regex.Pattern");
             getClass().getClassLoader().loadClass("java.util.regex.Matcher");

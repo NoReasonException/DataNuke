@@ -1,8 +1,7 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.snowtide.pdf.V;
 
@@ -32,7 +31,7 @@ abstract public class AbstractParser implements Runnable{
 
     private ThreadRunnerTaskEventsDispacher dispacher;
     private HttpURLConnection               connection;
-    private CsvValueFilter                  valueFilter;
+    private AbstractValueFilter<Double>     valueFilter;
 
 
     private java.util.regex.Pattern          pattern;
@@ -99,10 +98,10 @@ abstract public class AbstractParser implements Runnable{
      * Returns the value filter , to inform the .csv file with the new values!
      * @return the CsvValueFilter
      */
-    protected CsvValueFilter getValueFilter() {
+    protected AbstractValueFilter<Double> getValueFilter() {
         return this.valueFilter;
     }
-    public AbstractParser(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter)
+    public AbstractParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter)
     {
         this.dispacher=disp;
         this.valueFilter=valueFilter;

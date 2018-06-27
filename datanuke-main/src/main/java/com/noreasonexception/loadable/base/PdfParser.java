@@ -1,21 +1,15 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.snowtide.PDF;
 import com.snowtide.pdf.OutputTarget;
-
-import javax.swing.text.Document;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.regex.Pattern;
 
 abstract public class PdfParser extends AbstractParser {
-    public PdfParser(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter) {
+    public PdfParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp,valueFilter);
     }
 

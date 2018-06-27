@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.factory;
 
+import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
@@ -14,7 +15,6 @@ import javax.json.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
@@ -27,13 +27,13 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="src/main/conf/dataNukeDefaultFactoryConf.json/";
     public static  final java.lang.String CSV_VALUE_FILTER_FILE_PATH_DEFAULT               ="dat.csv";
     ///===========================Configuration================================================\\\
-    private java.lang.String threadRunnerConfigFile                     =null;
-    private java.lang.String threadRunnerSourcesFile                    =null;
-    private java.lang.String customClassLoaderPATH                      =null;
-    private java.lang.String csvValueFilterFile                         =null;
+    private java.lang.String threadRunnerConfigFile                                =null;
+    private java.lang.String threadRunnerSourcesFile                               =null;
+    private java.lang.String customClassLoaderPATH                                 =null;
+    private java.lang.String csvValueFilterFile                                    =null;
     //===========================Siglentons======================================================\\\
-    private CsvValueFilter   valueFilter                                =null;
-    private AtlasLoader      customClassLoader                          =null;
+    private AbstractValueFilter<Double> valueFilter                                =null;
+    private AtlasLoader                 customClassLoader                          =null;
 
     /****
      * loadConfiguration
@@ -92,7 +92,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
                     getDataNukeCustomClassLoader(),
                     getThreadRunnersConfigProvider(),
                     getThreadRunnersSourceProvider(),
-                    getDataNukeCSVvalueFilter());
+                    getDataNukeValueFilter());
         }catch (IOException|CsvValueFilterException e){
             throw new MissingResourcesException(e);
         }
@@ -122,7 +122,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     }
 
     @Override
-    public CsvValueFilter getDataNukeCSVvalueFilter() throws CsvValueFilterException {
+    public AbstractValueFilter<Double> getDataNukeValueFilter() throws CsvValueFilterException {
         return (this.valueFilter!=null)?
                 (this.valueFilter):
                 (this.valueFilter=(new CsvValueFilter(this.csvValueFilterFile).buildFromFile()));
