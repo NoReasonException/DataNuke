@@ -1,16 +1,13 @@
 import java.lang.reflect.Array;
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
+import java.util.*;
 
 import jdk.nashorn.api.tree.Tree;
 import org.w3c.dom.Node;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.NoSuchElementException;
 
 /***
  * Balanced 2-3 tree (worst time log(n))
@@ -51,7 +48,30 @@ public class Tree23<Key extends Comparable<Key>,Value>{
         private Tree23.Node2    left,right;
         private Value           value;
         private Key             key;
+        @SuppressWarnings("unchecked")
+        public Node2    swapLinks(String one,String two){
+            try{
+                Method onesGet=getClass().getMethod("get"+one);
+                Method twosGet=getClass().getMethod("get"+two);
+                Method onesSet=getClass().getMethod("set"+one,Tree23.Node2.class);
+                Method twosSet=getClass().getMethod("set"+two,Tree23.Node2.class);
+                Node2 oneNode=(Tree23.Node2)onesGet.invoke(this);
+                Node2 twoNode=(Tree23.Node2)twosGet.invoke(this);
 
+                System.out.println(oneNode.getKey()+"<->"+twoNode.getKey());
+                onesSet.invoke(this,twoNode);
+                System.out.println(onesSet.getName()+"("+twoNode+")");
+                twosSet.invoke(this,oneNode);
+                System.out.println(twosSet.getName()+"("+oneNode+")");
+
+                return this;
+
+            }catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e){
+                e.printStackTrace();
+            }
+            return null;
+
+        }
         @Override
         public String toString() {
             return "Node2{" +
@@ -85,7 +105,16 @@ public class Tree23<Key extends Comparable<Key>,Value>{
         public Value    getValue2   () { return value2; }
         public Key      getKey2     () { return key2; }
         public Node2    getMid()    { return mid; }
-        public Node2    swapKeysAndValues(){
+
+        @Override public Tree23.Node2 setRight(Tree23.Node2 right) { return super.setRight(right); }
+
+        @Override public Tree23.Node2 setLeft(Tree23.Node2 left) { return super.setLeft(left); }
+
+        @Override public Tree23.Node2 getLeft() { return super.getLeft(); }
+
+        @Override public Tree23.Node2 getRight() { return super.getRight(); }
+
+        public Tree23.Node2    swapKeysAndValues(){
             Key k=getKey2();
             Value v=getValue2();
             setKey2(getKey());
@@ -94,24 +123,7 @@ public class Tree23<Key extends Comparable<Key>,Value>{
             setValue(v);
             return this;
         }
-        @SuppressWarnings("unchecked")
-        public Node2    swapLinks(String one,String two){
-            try{
-                Method onesGet=getClass().getMethod("get"+one);
-                Method twosGet=getClass().getMethod("get"+two);
-                Method onesSet=getClass().getMethod("set"+one);
-                Method twosSet=getClass().getMethod("set"+two);
-                Node2 oneNode=(Tree23.Node2)onesGet.invoke(this);
-                Node2 twoNode=(Tree23.Node2)twosGet.invoke(this);
-                onesSet.invoke(this,twoNode);
-                twosSet.invoke(this,oneNode);
-                return this;
 
-            }catch (NoSuchMethodException|IllegalAccessException|InvocationTargetException e){
-                throw new InvalidParameterException(".swapLinks faild due to "+e.getMessage());
-            }
-
-        }
 
         @Override
         public String toString() {
@@ -154,6 +166,14 @@ public class Tree23<Key extends Comparable<Key>,Value>{
         public Key getKey2(){return super.getKey2();}
         public Node3 setValue2(Value v){return super.setValue2(v);}
         public Value getValue2(){return super.getValue2();}
+
+        @Override
+        public Tree23.Node2 setRight(Tree23.Node2 right) { return super.setRight(right); }
+        @Override public Tree23.Node2 setLeft(Tree23.Node2 left) { return super.setLeft(left); }
+        @Override public Tree23.Node2 getLeft() { return super.getLeft(); }
+        @Override public Tree23.Node2 getRight() { return super.getRight(); }
+        @Override public Tree23.Node3 setMid(Tree23.Node2 mid) { return super.setMid(mid); }
+        @Override public Tree23.Node2 getMid() { return super.getMid(); }
 
         /***
          * swapKeysAndValues does exactly what her name suggests .
@@ -236,6 +256,31 @@ public class Tree23<Key extends Comparable<Key>,Value>{
                     '}';
         }
     }
+
+    /***
+     * delete all nodes child's
+     * @param node the node to delete
+     */
+    protected void dismissAllChildsOfNode(Tree23.Node2 node){
+        Node4 node4=(Tree23.Node4)node;
+        node4.setLeft(null);
+        node4.setMid(null);
+        node4.setMidToLeftLink(null);
+        node4.setRight(null);
+    }
+    protected boolean isChildlessNode(Tree23.Node2 node2){
+        Tree23.Node4 node4=(Tree23.Node4)node2;
+        return node4.getLeft()==null&&
+                node4.getMid()==null&&
+                node4.getMidToLeftLink()==null&&
+                node4.getRight()==null;
+    }
+    /***
+     * deletes the node given in @param child from their parent , given in @param parent
+     * @param parent the parent
+     * @param child the child
+     * @return true in success , false in case that any of the @param parent childen is not the given @param children
+     */
     protected static boolean deleteChild(Tree23.Node2 parent,Tree23.Node2 child){
         Tree23.Node3 ref=(Tree23.Node3)parent;
         if(parent==null||child==null)return false;
@@ -244,13 +289,75 @@ public class Tree23<Key extends Comparable<Key>,Value>{
         else if(ref.getRight()==child){ref.setRight(null);return true;}
         return false;
     }
+
+    /***
+     * Add the given child in the parent node(of any type)
+     * @Note if we just assign childs like that , the tree will be inconsistent ! remember to call always the makeNodeXConsistent()
+     * to perform the needeed transofrmations to the node!
+     * @param parent the parent node
+     * @param child the child to be added
+     * @return true on success , false if the @param parent has the maximum amount of children by its type
+     */
+    protected static boolean addChild(Tree23.Node2 parent,Tree23.Node2 child){
+        if(parent.getLeft()==null){parent.setLeft(child);return true;}
+        if(parent.getLeft()==null){parent.setRight(child);return true;}
+        if(isNode3(parent))return _addChild3(getNode3Ref(parent),child);
+        if(isNode4(parent))return _addChild4(getNode4Ref(parent),child);
+        return false;
+    }
+
+    /****
+     * tool method to add a child in Node3 parent , DONT call it directly , instead call .addChild()
+     * @param parent the parent
+     * @param child the child
+     * @return true on success
+     */
+    protected static boolean _addChild3(Tree23.Node3 parent,Tree23.Node2 child){
+        if(parent.getMid()==null){parent.setMid(child);return true;}
+        return false;
+    }
+
+    /****
+     * tool method to add a child in Node3 parent , DONT call it directly , instead call .addChild()
+     * @param parent the parent
+     * @param child the child
+     * @return true on success
+     */
+    protected static boolean _addChild4(Tree23.Node4 parent,Tree23.Node2 child){
+        if(_addChild3(parent,child))return true;
+        if(parent.getMidToLeftLink()==null){parent.setMidToLeftLink(child);return true;}
+        return false;
+    }
+
+    /***
+     * checks if the given Node2 reference is a Node2 node
+     * @param node2 the node to check
+     * @return true if the given parameter is a node2
+     */
     protected static boolean isNode2(Tree23.Node2 node2){
         return node2!=null&&node2.getNodeType()==2;
     }
+
+    /***
+     * returns the given parameter if it is a Node2
+     * @param node2 the parameter node
+     * @return the @param node2 or NULL
+     */
     protected static Tree23.Node2 getNode2Ref(Tree23.Node2 node2){
         return isNode2(node2)?(Tree23.Node2)node2:null;
     }
 
+    /***
+     * makes all the needed transformations to ensure that the node given is consistent
+     * @param node2
+     */
+    private Tree23.Node2 makeNode2Consistent(Node2 node2) {
+        Node2 tmp1,tmp2;
+        if((tmp1=node2.getLeft())!=null&&(tmp2=node2.getRight())!=null){
+            if(tmp1.compareTo(tmp2)>0)node2.swapLinks("Left","Right");
+        }
+        return node2;
+    }
     /***
      * Why we remove the instanceof implementation?
      * Because is SOOOOOO EASY to transform a Node2 to Node3! just change a member
@@ -270,60 +377,70 @@ public class Tree23<Key extends Comparable<Key>,Value>{
     protected static boolean isNode3(Tree23.Node2 node2){
         return node2!=null&&node2.getNodeType()==3;
     }
+
+    /***
+     * returns the given parameter if it is a Node3
+     * @param node2 the parameter node
+     * @return the @param node2 or NULL
+     */
     protected static Tree23.Node3 getNode3Ref(Tree23.Node2 node2){
         return isNode3(node2)?(Tree23.Node3)node2:null;
     }
+
+    /***
+     * makes the given @param node2 a node3 node
+     * @param node2 the given node to transform
+     * @return the @param node2 casted to Tree23.Node3
+     */
     protected static Tree23.Node3 transformIntoNode3(Tree23.Node2 node2){
         if(isNode3(node2))throw new InvalidParameterException("already node3");
         return (Tree23.Node3)node2.setNodeType(3);
     }
+
+    /***
+     * Makes all the needed transformations to ensure that the node3 given is consistent
+     * it performs
+     *          1)Key swaps if needed
+     *          2) Link swaps if needed
+     * @param node3
+     * @return the parameter given
+     */
     protected Tree23.Node3 makeNode3Consistent(Tree23.Node3 node3){
-        if(!isNode3(node3))throw new InvalidParameterException("is no node3 actually");
 
         if(node3.getKey().compareTo(node3.getKey2())>0){ node3.swapKeysAndValues(); }
 
         return makeNode3LinksConsistent(node3);
     }
-    protected Tree23.Node3 makeNode3LinksConsistent(Tree23.Node3 node){
-        ArrayList<Tree23.Node2> childs=getChildsOfNode3(node);
-        Node2 tmp1,tmp2,tmp3;
-        switch (childs.size()){
-            case 0:return node;
-            case 1:{node.setLeft(childs.get(0));return node;}
-            case 2:{
-                tmp1=Collections.min(childs);
-                tmp2=Collections.max(childs);
-                dismissAllChildsOfNode3(node);
-                node.setLeft(tmp1);
-                node.setRight(tmp2);
-                return node;
-            }
-            case 3:{
-                childs.remove(tmp1=Collections.min(childs));
-                childs.remove(tmp2=Collections.max(childs));
-                dismissAllChildsOfNode3(node);
-                tmp3=childs.get(0);
-                node.setLeft(tmp1);
-                node.setRight(tmp2);
-                node.setMid(tmp3);
-                return node;
-            }
 
-        }
-        return null;
-    }
     protected ArrayList<Tree23.Node2> getChildsOfNode3(Tree23.Node3 node3){
-        ArrayList<Tree23.Node2> retval=new ArrayList<>();
+        ArrayList<Tree23.Node2> retval=new ArrayList<>(3);
         Node2 tmp;
         if((tmp=node3.getLeft())!=null)retval.add(tmp);
         if((tmp=node3.getMid())!=null)retval.add(tmp);
         if((tmp=node3.getRight())!=null)retval.add(tmp);
         return retval;
     }
-    protected void dismissAllChildsOfNode3(Tree23.Node3 node3){
-        node3.setLeft(null);
-        node3.setMid(null);
-        node3.setRight(null);
+    /****
+     * Make the node3 links consistent
+     * @param node the node3 to perform consistency transformations
+     * @return the @param node
+     */
+
+    protected Tree23.Node3 makeNode3LinksConsistent(Tree23.Node3 node){
+        Node2 min, max, tmp1, tmp2;
+        try{
+            ArrayList<Tree23.Node2> childs = getChildsOfNode3(node);
+            dismissAllChildsOfNode(node);
+            childs.remove(tmp1 = Collections.min(childs));//left is already at right position
+            node.setLeft(tmp1);
+            childs.remove(tmp1 = Collections.min(childs)); //the second lowest will set at MidToLeft
+            node.setMid(tmp1);
+            childs.remove(tmp1 = Collections.min(childs)); //the second max will set at Mid!
+            node.setRight(tmp1);
+        }catch (NoSuchElementException e){}
+
+
+        return node;
     }
     protected static boolean isNode4(Tree23.Node2 node2){
         return node2!=null&&node2.getNodeType()==4;
@@ -331,21 +448,82 @@ public class Tree23<Key extends Comparable<Key>,Value>{
     protected static Tree23.Node4 getNode4Ref(Tree23.Node2 node2){
         return isNode4(node2)?(Tree23.Node4)node2:null;
     }
+
+    /***
+     * get all children of node 4 given
+     * @param node4
+     * @return a ArrayList<Tree23.Node2> object
+     */
+    protected ArrayList<Tree23.Node2> getChildsOfNode4(Tree23.Node4 node4){
+        ArrayList<Tree23.Node2> childs=new ArrayList<>(4);
+        Tree23.Node2 node2;
+        if((node2=node4.getLeft())!=null)childs.add(node2);
+        if((node2=node4.getMidToLeftLink())!=null)childs.add(node2);
+        if((node2=node4.getMid())!=null)childs.add(node2);
+        if((node2=node4.getRight())!=null)childs.add(node2);
+        return childs;
+    }
+
+    /***
+     * convert a node3 into node4
+     * @param node3
+     * @return
+     */
     protected static Tree23.Node4 transformIntoNode4(Tree23.Node3 node3){
         if(isNode4(node3))throw new InvalidParameterException("already node4");
         return (Tree23.Node4)node3.setNodeType(4);
     }
 
+    /***
+     * makes all the needed transformations to ensure the node4 given consistency
+     * @param node4
+     * @return the @param node4
+     */
     protected Tree23.Node4 makeNode4Consistent(Tree23.Node4 node4){
-        if(!isNode4(node4))throw new InvalidParameterException("is no node4 actually");
-
+        makeNode3Consistent(node4);
         if(node4.getKey3().compareTo(node4.getKey())<0) node4.swapKeysAndValues(0,2);
         if(node4.getKey3().compareTo(node4.getKey2())<0) node4.swapKeysAndValues(1,2);
+        makeNode4LinksConsistent(node4);
+
+
         return node4;
     }
+
+    /***
+     * utill method who ensures that the links of the node4 given will be in right order
+     * @param node4
+     * @return the parameter given
+     */
+    private Node4 makeNode4LinksConsistent(Node4 node4) {
+        Node2 min, max, tmp1, tmp2;
+        try{
+            ArrayList<Tree23.Node2> childs = getChildsOfNode4(node4);
+            dismissAllChildsOfNode(node4);
+            childs.remove(tmp1 = Collections.min(childs));//left is already at right position
+            node4.setLeft(tmp1);
+            childs.remove(tmp1 = Collections.min(childs));//right is already at right position
+            node4.setMidToLeftLink(tmp1);
+            childs.remove(tmp1 = Collections.min(childs)); //the second lowest will set at MidToLeft
+            node4.setMid(tmp1);
+            childs.remove(tmp1 = Collections.min(childs)); //the second max will set at Mid!
+            node4.setRight(tmp1);
+        }catch (NoSuchElementException e){}
+
+
+        return node4;
+
+    }
+
+    /****
+     * transform a valid node4 into node2
+     * @param node4 the node 4 to be transform
+     * @return the Node2
+     */
     @SuppressWarnings("unchecked")
     protected Tree23.Node2 transformNode4IntoNode2(Tree23.Node4 node4){
         if(!isNode4(node4))throw new InvalidParameterException("node given is not type of Tree23.Node4");
+        node4.setMid(null);
+        node4.setMidToLeftLink(null);
         return node4.
                 setKey3(0).
                 setValue3(0).
@@ -353,26 +531,42 @@ public class Tree23<Key extends Comparable<Key>,Value>{
                 setValue2(0).
                 setNodeType(2);
     }
+
+    /***
+     * splits a valid and consistent Node4 into a Node2 subtree
+     *               (x,y,z)
+     *               / |  | \
+     *             (1)(2)(3)(4)
+     *=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
+     *                    (y)
+     *                  /    \
+     *                (x)    (z)
+     *               / \    /  \
+     *            (1)  (2)(3)  (4)
+     *
+     * @param node4 the node4 to be split
+     * @return the node2 root of subtree
+     */
     @SuppressWarnings("unchecked")
     protected Tree23.Node2 transformNode4IntoNode2Subtree(Tree23.Node4 node4){
         if(!isNode4(node4)) throw new InvalidParameterException("node given is not type of Tree23.Node4");
-        node4.setLeft(getInstance2((Key)node4.getKey(),(Value) node4.getValue()));
-        node4.setRight(getInstance2((Key)node4.getKey3(),(Value)node4.getValue3()));
+        node4.setLeft(getInstance2((Key)node4.getKey(),(Value) node4.getValue())
+                .setLeft(node4.getLeft())
+                .setRight(node4.getMidToLeftLink()));
+        node4.setRight(getInstance2((Key)node4.getKey3(),(Value)node4.getValue3())
+                .setLeft(node4.getMid())
+                .setRight(node4.getRight()));
         node4.swapKeysAndValues(0,1);
         return transformNode4IntoNode2(node4);
 
     }
-    public void insert(Key k, Value v) {
-        _insert(k,v,false);
-    }
 
-    public void insert(Key k, Value v,boolean trace) {
-        _insert(k,v,trace);
-    }
-
-    public Node2 getCachedParent() {
-        return cachedParent;
-    }
+    /***
+     * the real insert operation
+     * @param k the key
+     * @param v the value
+     * @param trace if true , prints messages about stuff
+     */
     @SuppressWarnings("unchecked")
     protected void _insert(Key k, Value v,boolean trace){
         try{search(k);return; /*in case that exists , then will immidiatelly return */}catch (InvalidParameterException e){ }
@@ -385,8 +579,8 @@ public class Tree23<Key extends Comparable<Key>,Value>{
             return;
         }
 
-        else if(isNode3(root)){
-            System.out.println("root is node3");
+        else if(isChildlessNode(root)&&isNode3(root)){
+            if(trace)System.out.println("root is node3");
             root=transformNode4IntoNode2Subtree(
                     makeNode4Consistent(
                             node4ref0=transformIntoNode4(
@@ -396,7 +590,7 @@ public class Tree23<Key extends Comparable<Key>,Value>{
             return;
         }
         else if(!isNode3(getPathElement(0))){
-            System.out.println("parent is no node3");
+            if(trace)System.out.println("parent is no node3");
             makeNode3Consistent(
                     transformIntoNode3(getPathElement(0))
                             .setKey2(k)
@@ -407,15 +601,129 @@ public class Tree23<Key extends Comparable<Key>,Value>{
         else if(isNode3(node3ref0=(Node3)getPathElement(0))&&isNode2(node2ref0=getPathElement(1))){
             if(deleteChild(node2ref0,node3ref0)){
                 node4ref0=(makeNode4Consistent(transformIntoNode4(node3ref0).setKey3(k).setValue3(v)));
-                node2ref1=(transformNode4IntoNode2Subtree(node4ref0));
-                node3ref0=(makeNode3Consistent((Node3)transformIntoNode3(node2ref0)
-                        .setKey2(node2ref1.getKey())
-                        .setMid(node2ref1.getLeft())
-                        .setRight(node2ref1.getRight())));
+                migrateNode4IntoNode2Parent(node4ref0,node2ref0);
             }
+        }
+        else if(isNode3(node3ref0=(Node3)getPathElement(0))&& //child
+                isNode3(node3ref1=(Node3)getPathElement(1))){ //parent
+
+            if(deleteChild(node3ref1,node3ref0)){               //delete child from parent
+
+                //insert in child the new values
+                node4ref0=makeNode4Consistent(transformIntoNode4(node3ref0).setKey3(k).setValue3(v));
+                //smash the new node4 into a node2 subtree
+                node2ref0=transformNode4IntoNode2Subtree(node4ref0);
+
+
+                //make parent node4 by inserting the node2 subtree
+                node4ref0=(migrateNode2IntoNode3Parent(node2ref0,node3ref1));
+                for (int i = 1; i < cachedPath.size(); i++) {
+                    if(trace)System.out.print(cachedPath.get(i));
+                    if(cachedPath.get(i)==root){
+                        if(trace)System.out.println("split on root");
+                        root=transformNode4IntoNode2Subtree(getNode4Ref(root));
+                        break;
+
+                    }
+                    else if(isNode2(cachedPath.get(i+1))){
+                        if(trace)System.out.println("migrate on node2");
+                        migrateNode4IntoNode2Parent(getNode4Ref(cachedPath.get(i)),cachedPath.get(i+1));
+                        break;
+                    }
+                    else if(deleteChild(cachedPath.get(i+1),cachedPath.get(i))){
+                        if(trace)System.out.println("migrate on node3");
+                        node2ref0=transformNode4IntoNode2Subtree(getNode4Ref(cachedPath.get(i)));
+                        migrateNode2IntoNode3Parent(node2ref0,getNode3Ref(cachedPath.get(i+1)));
+                    }
+                    else{ throw new InvalidParameterException("corrupt tree due to invalid state");}
+                }
+
+
+
+            }
+
         }
         return;
 
+    }
+
+    /***
+     * migrate node2 given into node3(also given) by transform the parent into node4
+     *                       (x,y)         <- the parent
+     *                      /  |  \
+     *       the child -> (a) (b) (c)
+     *                   /  \
+     *                 (1)  (2)
+     *
+     *              <(a,x,y)>
+     *             /  |   |  \
+     *           (1) (2) (b)  (c)
+     *
+     *
+     *
+     * @param child
+     * @param parent
+     * @return
+     */
+    protected Tree23.Node4 migrateNode2IntoNode3Parent(Tree23.Node2 child,Tree23.Node3 parent){
+        Tree23.Node4 newParent=transformIntoNode4(parent);
+        newParent.setKey3(child.getKey());
+        newParent.setValue3(child.getValue());
+
+        //====
+        if(addChild(newParent,child.getLeft())&&addChild(newParent,child.getRight()))return makeNode4Consistent(newParent);
+        throw new InvalidParameterException("imposssible state , after deletion of 1 child and converting any node of" +
+                "Node3 to Node4 must have at least 2 empty links!");
+
+    }
+
+    /****
+     * migrate a Node4 into a node2 parent
+     *                       (x)         <- the parent
+     *                      /  \
+     *                    (a)  (b)
+     *
+     *              <(f,g,i)>       <-the child
+     *             /  |   |  \
+     *           (1) (2) (3)  (4)
+     *
+     *
+     *
+     *=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
+     *
+     *                       (x)         <- the parent
+     *                      /  \
+     *               (5)--(a)  (b)
+     *
+     *
+     *
+     *                    (g)
+     *                  /    \
+     *                (f)    (i)
+     *               / \    /  \
+     *            (1)  (2)(3)  (4)
+     *
+     *=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/=/
+     *                       (x)         <- the parent
+     *                      /  \
+     *               (5)--(a,g)  (b)
+     *                   /    \
+     *                 (f)    (i)
+     *                 / \    /  \
+     *              (1)  (2)(3)  (4)
+     * @param child
+     * @param parent
+     * @return
+     */
+    protected Tree23.Node3 migrateNode4IntoNode2Parent(Node4 child,Node2 parent){
+        Node2 node2ref1;
+        Node3 node3ref0;
+        node2ref1=(transformNode4IntoNode2Subtree(child));
+        node3ref0=(makeNode3Consistent((Node3)transformIntoNode3(parent)
+                .setKey2(node2ref1.getKey())
+                .setValue2(node2ref1.getValue())
+                .setMid(node2ref1.getLeft())));
+        return addChild(node3ref0,node2ref1.getRight())?node3ref0:null;
     }
     public void delete(Key k) {
         throw new InvalidParameterException();
@@ -461,21 +769,41 @@ public class Tree23<Key extends Comparable<Key>,Value>{
 
         }catch (IndexOutOfBoundsException e){return null;}
     }
-    public static Tree23<Integer,String> _test_node2parent_node3child(){
+
+    public void insert(Key k, Value v) {
+        _insert(k,v,false);
+    }
+
+    public void insert(Key k, Value v,boolean trace) {
+        _insert(k,v,trace);
+    }
+    public  Tree23<Integer,String> _test_node2parent_node3child(){
         Tree23<Integer,String> s=new Tree23<>();
-        s.root=s.getInstance2(10,"hey!");
-        s.root.setLeft(s.getInstance3(3,"he",5,"ho"));
+        s.root=s.getInstance3(100,"A",200,"b");
+        s.root.setLeft(s.getInstance3(9,"he",2,"se"));
+        s.root.getLeft().setLeft(s.getInstance3(7,"he",1,"se"));
+        s.root.getLeft().getLeft().setLeft(s.getInstance3(5,"lalal",9,"PSOFA"));
         return s;
     }
-    public void print(){
-        bfs(root);
+
+
+    public void test(){
+        System.out.println(getNode2Ref(root).getLeft().getKey());
+        System.out.println(getNode2Ref(root).getRight().getKey());
     }
-    private void bfs(Node2 root){
+    public void print(){
+        bfs(root,0);
+    }
+    private void bfs(Node2 root,int i){
         if(root==null)return;
-        bfs(root.getLeft());
-        if(root.getNodeType()==3)bfs(((Node3)root).getMid());
-        System.out.println(root);
-        bfs(root.getRight());
+        bfs(root.getLeft(),i+1);
+        if(root.getNodeType()==3)bfs(((Node3)root).getMid(),i+1);
+        if(root.getNodeType()==4)bfs(((Node4)root).getMidToLeftLink(),i+1);
+        for (int j = 0; j < i; j++) {
+            System.out.print("--");
+        }
+        System.out.print("("+i+")"+root+"\n");
+        bfs(root.getRight(),i+1);
     }
     public Tree23() {
         this.root = null;
