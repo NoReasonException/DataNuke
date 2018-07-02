@@ -28,7 +28,7 @@ public class App {
 
             @Override
             public void onClassReadInfo(String classname) {
-                System.out.println(classname+"loaded!");
+                System.out.println(classname+" loaded!");
             }
         });
 

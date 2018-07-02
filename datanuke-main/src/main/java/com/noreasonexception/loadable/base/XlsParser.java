@@ -7,4 +7,9 @@ abstract public class XlsParser extends AbstractParser {
     public XlsParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp,valueFilter);
     }
+
+    @Override
+    protected String convertSourceToText() {
+        return null;
+    }
 }

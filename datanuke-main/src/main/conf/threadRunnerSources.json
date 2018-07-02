@@ -15,10 +15,49 @@
     "1296000000"
 
   ],
+
+  "com.noreasonexception.loadable.childs.A3_Statcan_CanadianInternationalMerchandiseTrade_CAN":[
+    "1530032400004",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_AllIndustries_CAN":[
+    "1530032400005",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN":[
+    "1530032400006",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A6_Statcan_UnemploymentRate_CAN":[
+    "1530032400007",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN":[
+    "1530032400008",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US":[
+    "1530032400009",
+    "1296000000"
+
+  ],
+
   "com.noreasonexception.loadable.childs.Census_CoreDurableGoodsOrders_pdf":[
         "1524843000000",
         "2592000000"
   ],
+
 
   "com.noreasonexception.loadable.childs.Census_NewHomeSales_pdf":[
     "1530032400000",
