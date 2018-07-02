@@ -25,6 +25,11 @@ public class App {
             public void onTaskThreadReleased(String classname) {
                 System.out.println("released");
             }
+
+            @Override
+            public void onClassReadInfo(String classname) {
+                System.out.println(classname+"loaded!");
+            }
         });
 
         new Thread(runner).start();

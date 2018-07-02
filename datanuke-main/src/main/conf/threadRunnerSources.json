@@ -1,6 +1,29 @@
 {
+  "com.noreasonexception.loadable.childs.A1_Statcan_CrossDomesticProduct_CAN":[
+    "1530032400001",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A2_1_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400002",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A2_2_Statcan_RetailSales_RetailSalesByIndustry_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400003",
+    "1296000000"
+
+  ],
   "com.noreasonexception.loadable.childs.Census_CoreDurableGoodsOrders_pdf":[
         "1524843000000",
-        "2592000000"]
+        "2592000000"
+  ],
+
+  "com.noreasonexception.loadable.childs.Census_NewHomeSales_pdf":[
+    "1530032400000",
+    "1296000000"
+
+  ]
 
 }

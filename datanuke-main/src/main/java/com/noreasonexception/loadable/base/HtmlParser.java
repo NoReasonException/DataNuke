@@ -7,4 +7,9 @@ abstract public class HtmlParser extends AbstractParser{
     public HtmlParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp,valueFilter);
     }
+
+    @Override
+    protected String convertSourceToText() {
+        return null;
+    }
 }

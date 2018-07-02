@@ -1,8 +1,10 @@
+package com.noreasonexception.datanuke.app.datastructures.Tree23;
 import java.lang.reflect.Array;
 import java.security.InvalidParameterException;
 import java.util.*;
 
-import jdk.nashorn.api.tree.Tree;
+import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
+
 import org.w3c.dom.Node;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * @param <Key>
  * @param <Value>
  */
-public class Tree23<Key extends Comparable<Key>,Value>{
+public class Tree23<Key extends Comparable<Key>,Value> implements ITree<Key,Value> {
     protected Node2 root;
     protected Node2 cachedParent;
     protected ArrayList<Node2> cachedPath;
