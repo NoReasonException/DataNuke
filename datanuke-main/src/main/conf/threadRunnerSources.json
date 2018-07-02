@@ -28,7 +28,6 @@
 
   ],
 
-
   "com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN":[
     "1530032400006",
     "1296000000"
@@ -46,13 +45,23 @@
 
   ],
 
-
   "com.noreasonexception.loadable.childs.A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US":[
     "1530032400009",
     "1296000000"
 
   ],
 
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
   "com.noreasonexception.loadable.childs.Census_CoreDurableGoodsOrders_pdf":[
         "1524843000000",
         "2592000000"
