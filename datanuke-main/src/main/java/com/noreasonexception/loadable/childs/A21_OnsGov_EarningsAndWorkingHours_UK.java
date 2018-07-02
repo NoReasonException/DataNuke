@@ -2,14 +2,15 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.CsvParser;
+import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK extends CsvParser {
-    public A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class A21_OnsGov_EarningsAndWorkingHours_UK extends HtmlParser {
+    public A21_OnsGov_EarningsAndWorkingHours_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
+
     protected Pattern onPatternLoad(){
         return null;
 
