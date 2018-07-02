@@ -17,76 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="threadRunnerSources.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/conf/threadRunnerSources.json">
+      <file leaf-file-name="A15_2_AbsGov_RetailTradeAustralia_AU.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_2_AbsGov_RetailTradeAustralia_AU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="59" column="3" selection-start-line="59" selection-start-column="3" selection-end-line="59" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A10_Census_AdvanceMonthlySales_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A10_Census_AdvanceMonthlySales_US.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#785#786#0" expanded="true" />
-                <element signature="e#812#813#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#879#880#0" expanded="true" />
-                <element signature="e#906#907#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A12_1_Census_NewResidentalSales_NewHousesSold1_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A12_1_Census_NewResidentalSales_NewHousesSold1_US.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="82" lean-forward="true" selection-start-line="8" selection-start-column="82" selection-end-line="8" selection-end-column="82" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#837#838#0" expanded="true" />
-                <element signature="e#864#865#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="25" column="8" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#851#852#0" expanded="true" />
-                <element signature="e#878#879#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A13_AbsGov_UnemploymentRate_AU.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A13_AbsGov_UnemploymentRate_AU.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+            <state relative-caret-position="306">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,13 +29,101 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US.java">
+      <file leaf-file-name="A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+            <state>
+              <caret column="25" selection-start-column="25" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="A17_1_AbsGov_SeasonallyAjusted_Coll3_AU.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_1_AbsGov_SeasonallyAjusted_Coll3_AU.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="A18_OnsGov_CrossDomesticProduct.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A18_OnsGov_CrossDomesticProduct.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CsvParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/CsvParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="20" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#467#468#0" expanded="true" />
+                <element signature="e#494#495#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenDocumentParser.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/OpenDocumentParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="110" selection-start-line="12" selection-start-column="110" selection-end-line="12" selection-end-column="110" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#325#326#0" expanded="true" />
+                <element signature="e#352#353#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -109,31 +132,8 @@
       <file leaf-file-name="PdfParser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="19" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A9_Census_ExclusiveMotorVehicleAndParts_US.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A9_Census_ExclusiveMotorVehicleAndParts_US.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#840#841#0" expanded="true" />
-                <element signature="e#867#868#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="A2_2_Statcan_RetailSales_RetailSalesByIndustry_ExcludingMotorVehicleAndPartsDealers_CAN.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A2_2_Statcan_RetailSales_RetailSalesByIndustry_ExcludingMotorVehicleAndPartsDealers_CAN.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="20" lean-forward="true" selection-start-line="15" selection-end-line="25" />
+            <state relative-caret-position="183">
+              <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -155,18 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ThreadRunner/ThreadRunnerStaticTests.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilterTest.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/error/ThreadRunnerStaticTestException.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/datastructures/BST_EDF_Test.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStaticTests.java" />
-        <option value="$PROJECT_DIR$/src/main/conf/threadRunnerSources.json___jb_old___" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_Newressales_pdf.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_CoreDurableGoodsOrders.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/classloader/AtlasLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/classloader/singleClassClassLoader/SingleClassLoader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_NewHomeSales_pdf.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/ClassInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_CoreDurableGoodsOrders_pdf.java" />
         <option value="$PROJECT_DIR$/dat.csv" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/ValueFilterable.java" />
@@ -206,6 +194,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A12_1_Census_NewResidentalSales_NewHousesSold1_US.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_AbsGov_SeasonallyAdjusted_Change_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_1_AbsGov_SeasonallyAdjusted_Change_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_2_AbsGov_RetailTradeAustralia_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_1_AbsGov_SeasonallyAjusted_Coll3_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/OpenDocumentParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A18_OnsGov_CrossDomesticProduct.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/CsvParser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK.java" />
       </list>
     </option>
   </component>
@@ -709,12 +709,12 @@
       <workItem from="1530055639766" duration="2539000" />
       <workItem from="1530098232576" duration="11057000" />
       <workItem from="1530526696290" duration="962000" />
-      <workItem from="1530529349984" duration="8685000" />
+      <workItem from="1530529349984" duration="10333000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="190597000" />
+    <option name="totallyTimeSpent" value="192245000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
@@ -788,76 +788,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/javax/json/javax.json-api/1.1.2/javax.json-api-1.1.2.jar!/javax/json/JsonArray.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_CoreDurableGoodsOrders_pdf.class">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9180" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Hey.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dat.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="3" lean-forward="true" selection-start-column="3" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_NewHomeSales_pdf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/AbstractValueFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="13" column="36" lean-forward="true" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/ValueFilter/CsvValueFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1514">
-          <caret line="55" column="26" lean-forward="true" selection-start-line="55" selection-start-column="26" selection-end-line="55" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1631">
-          <caret line="165" column="20" selection-start-line="165" selection-start-column="20" selection-end-line="165" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3980#3981#0" expanded="true" />
-            <element signature="e#4017#4018#0" expanded="true" />
-            <element signature="e#4196#4197#0" expanded="true" />
-            <element signature="e#4235#4236#0" expanded="true" />
-            <element signature="e#6087#6088#0" expanded="true" />
-            <element signature="e#6169#6170#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/classloader/singleClassClassLoader/SingleClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="90" column="30" selection-start-line="90" selection-start-column="21" selection-end-line="90" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/classloader/singleClassClassLoader/SingleClassLoader.class">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1139,13 +1069,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="11" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A9_Census_ExclusiveMotorVehicleAndParts_US.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -1154,16 +1077,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#840#841#0" expanded="true" />
             <element signature="e#867#868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1216,10 +1129,144 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="4" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A13_AbsGov_UnemploymentRate_AU.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="4" selection-start-line="12" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_1_AbsGov_SeasonallyAdjusted_Change_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_2_AbsGov_RetailTradeAustralia_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" selection-start-column="25" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PdfParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="41" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/OpenDocumentParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="110" selection-start-line="12" selection-start-column="110" selection-end-line="12" selection-end-column="110" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#325#326#0" expanded="true" />
+            <element signature="e#352#353#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_1_AbsGov_SeasonallyAjusted_Coll3_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="5" lean-forward="true" selection-start-line="11" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A18_OnsGov_CrossDomesticProduct.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="22" column="5" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/CsvParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#467#468#0" expanded="true" />
+            <element signature="e#494#495#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" lean-forward="true" selection-start-line="9" selection-start-column="4" selection-end-line="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_AbsGov_CpiAnnualRate_ChangeOver12Months_UK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
