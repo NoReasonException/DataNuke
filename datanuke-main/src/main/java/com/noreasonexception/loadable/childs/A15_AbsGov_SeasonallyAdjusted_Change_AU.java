@@ -2,12 +2,12 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.PdfParser;
+import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US extends PdfParser {
-    public A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class A15_AbsGov_SeasonallyAdjusted_Change_AU extends HtmlParser {
+    public A15_AbsGov_SeasonallyAdjusted_Change_AU(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){
@@ -21,8 +21,4 @@ public class A12_2_Census_NewHomeSales_SalesOfNewSingleFamilyHouses_US extends P
         return null;
     }
 
-    @Override
-    protected String onPdfFileNameGet() {
-        return null;
-    }
 }

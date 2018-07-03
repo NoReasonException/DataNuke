@@ -57,6 +57,248 @@
 
   ],
 
+  "com.noreasonexception.loadable.childs.A10_Census_AdvanceMonthlySales_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A12_Census_NewResidentalSales_NewHousesSold1_US":[
+    "1530032400001",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A13_AbsGov_UnemploymentRate_AU":[
+    "1530032400002",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU":[
+    "1530032400003",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A15_AbsGov_SeasonallyAdjusted_Change_AU":[
+    "1530032400004",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU":[
+    "1530032400005",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A17_AbsGov_SeasonallyAjusted_Coll3_AU":[
+    "1530032400006",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A18_OnsGov_CrossDomesticProduct":[
+    "1530032400007",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A19_OnsGov_ManufacturingProductionMomm_Percent_UK":[
+    "1530032400008",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK":[
+    "1530032400009",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A21_OnsGov_EarningsAndWorkingHours_UK":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A1_Statcan_CrossDomesticProduct_CAN":[
+    "1530032400001",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A2_1_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400002",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A2_2_Statcan_RetailSales_RetailSalesByIndustry_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400003",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A3_Statcan_CanadianInternationalMerchandiseTrade_CAN":[
+    "1530032400004",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_AllIndustries_CAN":[
+    "1530032400005",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN":[
+    "1530032400006",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A6_Statcan_UnemploymentRate_CAN":[
+    "1530032400007",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN":[
+    "1530032400008",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US":[
+    "1530032400009",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A1_Statcan_CrossDomesticProduct_CAN":[
+    "1530032400001",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A2_1_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400002",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A2_2_Statcan_RetailSales_RetailSalesByIndustry_ExcludingMotorVehicleAndPartsDealers_CAN":[
+    "1530032400003",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A3_Statcan_CanadianInternationalMerchandiseTrade_CAN":[
+    "1530032400004",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_AllIndustries_CAN":[
+    "1530032400005",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN":[
+    "1530032400006",
+    "1296000000"
+
+  ],
+  "com.noreasonexception.loadable.childs.A6_Statcan_UnemploymentRate_CAN":[
+    "1530032400007",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN":[
+    "1530032400008",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US":[
+    "1530032400009",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US":[
+    "1530032400009",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+  "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
+    "1530032400010",
+    "1296000000"
+
+  ],
+
+
   "com.noreasonexception.loadable.childs.A9_Census_ExclusiveMotorVehicleAndParts_US":[
     "1530032400010",
     "1296000000"

@@ -6,19 +6,23 @@ import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU extends HtmlParser {
-    public A17_2_AbsGov_InternationalTradeInGoodsAndServices_AU(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class A41_BankOfEngland_BankRate_UK extends HtmlParser {
+    public A41_BankOfEngland_BankRate_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
-    protected Pattern onPatternLoad(){
+    @Override
+    protected Pattern onPatternLoad() {
         return null;
+    }
 
-    }
-    protected String    onUrlLoad(){
+    @Override
+    protected String onUrlLoad() {
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+
+    @Override
+    protected Double onValueExtract(String tmpString) {
         return null;
     }
 }
