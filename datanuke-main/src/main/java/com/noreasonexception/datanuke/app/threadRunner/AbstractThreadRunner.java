@@ -55,6 +55,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
     private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
+    private Random                                      randomGenerator=null;
     private AtlasLoader                                 classLoader = null;     //The ClassLoader of threadRunner , responsible for removing everything after finish
     private Date                                        scheduledStart=null;    //Scheduled start of ThreadRunners main loop
     private int                                         initializationTime;     //initializationTime
@@ -62,6 +63,9 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
 
 
 
+    int getEnsureOffset(){
+        return (randomGenerator.nextInt()%5)+5;
+    }
     /*****
      * Simple tool to convert milliseconds to seconds
      * @param mills the milliseconds to convert
@@ -196,12 +200,28 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         for (String string: obj.keySet()) {
             JsonArray array=obj.getJsonArray(string);
             ClassInfo i;
-            this.classSourcesDT.insert(
-                    getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1))),
-                    i=new ClassInfo(
-                        new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
-                        Long.valueOf(array.getString(1)),
-                        string));
+            //ensure offset will ensure that the same specific deadline will not exists 2 times , in order to be
+            //succeed the operation of insert
+            //
+
+            int ensureOffset=0;
+            while(true){
+                try{
+
+                    this.classSourcesDT.insert(
+                            getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))-ensureOffset,
+                            i=new ClassInfo(
+                                    new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
+                                    Long.valueOf(array.getString(1)),
+                                    string));
+                    ensureOffset=0;
+                    break;
+                }catch (InvalidParameterException e){
+                    ensureOffset=getEnsureOffset();
+                    System.out.println("SAME");
+                }
+            }
+
             this.taskEventsDispacher.submitClassReadInfoEvent(string);
             try{
                 this.valueFilter.submitClass(string);
@@ -367,7 +387,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         this.sourceProvider=sourceProvider;
         this.classSourcesDT=new BST_EDF();
         this.valueFilter=valueFilter;
-
+        this.randomGenerator=random;
         this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
         this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
         changeStateTo(NONE);
