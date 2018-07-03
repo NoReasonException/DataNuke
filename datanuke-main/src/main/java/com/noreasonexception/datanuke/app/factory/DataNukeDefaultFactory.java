@@ -18,6 +18,7 @@ import java.nio.ByteBuffer;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
+import java.util.Random;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     ///Configuration Section
@@ -90,9 +91,12 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
                     getDataNukeCustomClassLoader(),
                     getThreadRunnersConfigProvider(),
                     getThreadRunnersSourceProvider(),
-                    getDataNukeValueFilter());
+                    getDataNukeValueFilter(),
+                    getThreadRunnersRandomGenerator());
         }catch (IOException|CsvValueFilterException e){
             throw new MissingResourcesException(e);
+        }catch (Exception e){
+            throw new MissingResourcesException(e); //TODO fix
         }
     }
 
@@ -124,5 +128,10 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
         return (this.valueFilter!=null)?
                 (this.valueFilter):
                 (this.valueFilter=(new CsvValueFilter(this.csvValueFilterFile).buildFromFile()));
+    }
+
+    @Override
+    public Random getThreadRunnersRandomGenerator() throws Exception {
+        return new Random();
     }
 }

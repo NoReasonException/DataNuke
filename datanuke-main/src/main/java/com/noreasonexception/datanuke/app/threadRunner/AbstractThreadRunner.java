@@ -348,7 +348,11 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         return taskListeners.add(listener);
     }
 
-    public AbstractThreadRunner(AtlasLoader classLoader, DataProvider configProvider, DataProvider sourceProvider, AbstractValueFilter<Double> valueFilter) {
+    public AbstractThreadRunner(AtlasLoader classLoader,
+                                DataProvider configProvider,
+                                DataProvider sourceProvider,
+                                AbstractValueFilter<Double> valueFilter,
+                                Random random) {
         try{
             getClass().getClassLoader().loadClass("java.util.regex.Pattern");
             getClass().getClassLoader().loadClass("java.util.regex.Matcher");

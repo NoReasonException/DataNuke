@@ -7,6 +7,7 @@ import com.noreasonexception.datanuke.app.factory.error.MissingResourcesExceptio
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 
 import java.io.IOException;
+import java.util.Random;
 
 /****
  * The main factory class
@@ -37,6 +38,8 @@ abstract public class DataNukeAbstractFactory {
      * @throws IOException
      */
     abstract public DataProvider            getThreadRunnersSourceProvider() throws IOException;
+
+    abstract public Random                  getThreadRunnersRandomGenerator() throws Exception;
 
     /***
      * Constructs and returns the DataNukesCustomClassLoaderDataProvider , is also an depedency
