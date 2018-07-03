@@ -6,8 +6,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class Α44_RbnzGovt_OCR_NZD extends HtmlParser {
-    public Α44_RbnzGovt_OCR_NZD(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class A44_RbnzGovt_OCR_NZD extends HtmlParser {
+    public A44_RbnzGovt_OCR_NZD(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
