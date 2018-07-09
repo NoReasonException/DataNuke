@@ -273,7 +273,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
                 System.out.println("will wait "+getWaitTime(tmp)/1000/60/60+"hrs("+tmp.getClassname()+")");
-                //wait(getWaitTime(tmp));
+                wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
@@ -290,7 +290,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
-            }catch (/*InterruptedException|*/ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
+            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 
