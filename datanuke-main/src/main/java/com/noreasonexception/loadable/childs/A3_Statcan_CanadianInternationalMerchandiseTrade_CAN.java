@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 public class A3_Statcan_CanadianInternationalMerchandiseTrade_CAN extends HtmlParser {
 
-    public A3_Statcan_CanadianInternationalMerchandiseTrade_CAN(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A3_Statcan_CanadianInternationalMerchandiseTrade_CAN(ThreadRunnerTaskEventsDispacher disp,
+                                                                AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

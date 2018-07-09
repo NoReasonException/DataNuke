@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 public class A12_Census_NewResidentalSales_NewHousesSold1_US extends PdfParser {
 
-    public A12_Census_NewResidentalSales_NewHousesSold1_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A12_Census_NewResidentalSales_NewHousesSold1_US(ThreadRunnerTaskEventsDispacher disp,
+                                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A39_StatsGov_EconomicIndicatorsCPI_NZD extends HtmlParser {
-    public A39_StatsGov_EconomicIndicatorsCPI_NZD(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A39_StatsGov_EconomicIndicatorsCPI_NZD(ThreadRunnerTaskEventsDispacher disp,
+                                                  AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

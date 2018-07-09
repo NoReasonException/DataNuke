@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A18_OnsGov_CrossDomesticProduct extends HtmlParser {
-    public A18_OnsGov_CrossDomesticProduct(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A18_OnsGov_CrossDomesticProduct(ThreadRunnerTaskEventsDispacher disp,
+                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

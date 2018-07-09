@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A28_MarkitEconomics_IHSMarkitCipsUkManufacturingPMI_UK extends HtmlParser {
-    public A28_MarkitEconomics_IHSMarkitCipsUkManufacturingPMI_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A28_MarkitEconomics_IHSMarkitCipsUkManufacturingPMI_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                                  AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A23_BlsGov_TotalNonfarmPayrollEmployment_US extends HtmlParser {
-    public A23_BlsGov_TotalNonfarmPayrollEmployment_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A23_BlsGov_TotalNonfarmPayrollEmployment_US(ThreadRunnerTaskEventsDispacher disp,
+                                                       AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

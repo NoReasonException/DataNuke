@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.PdfParser;
 import java.util.regex.Pattern;
 
 public class A10_Census_AdvanceMonthlySales_US extends PdfParser {
-    public A10_Census_AdvanceMonthlySales_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A10_Census_AdvanceMonthlySales_US(ThreadRunnerTaskEventsDispacher disp,
+                                             AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

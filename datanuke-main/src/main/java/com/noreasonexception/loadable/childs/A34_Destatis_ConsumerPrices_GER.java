@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A34_Destatis_ConsumerPrices_GER extends HtmlParser {
-    public A34_Destatis_ConsumerPrices_GER(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A34_Destatis_ConsumerPrices_GER(ThreadRunnerTaskEventsDispacher disp,
+                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

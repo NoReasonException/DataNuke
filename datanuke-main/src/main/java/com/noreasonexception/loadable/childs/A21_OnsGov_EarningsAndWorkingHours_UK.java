@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A21_OnsGov_EarningsAndWorkingHours_UK extends HtmlParser {
-    public A21_OnsGov_EarningsAndWorkingHours_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A21_OnsGov_EarningsAndWorkingHours_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                 AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

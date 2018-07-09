@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A37_FederalReserveGov_InterestRate_US extends HtmlParser {
-    public A37_FederalReserveGov_InterestRate_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A37_FederalReserveGov_InterestRate_US(ThreadRunnerTaskEventsDispacher disp,
+                                                 AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

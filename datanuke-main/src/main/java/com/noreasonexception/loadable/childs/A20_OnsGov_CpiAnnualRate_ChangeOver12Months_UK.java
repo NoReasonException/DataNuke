@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.CsvParser;
 import java.util.regex.Pattern;
 
 public class A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK extends CsvParser {
-    public A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                          AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

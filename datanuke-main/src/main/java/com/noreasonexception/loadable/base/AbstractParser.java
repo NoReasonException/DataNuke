@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
 abstract public class AbstractParser implements Runnable{
 
 
-
+    private final int REQUESTS_MAX=5000;
     private ThreadRunnerTaskEventsDispacher dispacher;
     private HttpURLConnection               connection;
     private AbstractValueFilter<Double>     valueFilter;
@@ -130,14 +130,20 @@ abstract public class AbstractParser implements Runnable{
 
         while(true){
             temp=convertSourceToText();
-            System.out.println(temp);
-            tempValue=onValueExtract(temp);
-            if(informValueFilter(tempValue)){
-                getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName());
-                return true;
+            System.out.println("attempt on -> "+getClass().getName());
+            try{
+                tempValue=onValueExtract(temp);
+                if(informValueFilter(tempValue)){
+                    getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName());
+                    System.out.println("temp -> "+tempValue);
+                    return true;
+                }
+                if(i>REQUESTS_MAX)break;
+                i+=1;
+            }catch (NumberFormatException e){
+                System.out.println(getClass().getName()+"Encountes an error...recovering");
             }
-            if(i>1000)break;
-            i+=1;
+
         }
         return false;
     }
@@ -163,7 +169,7 @@ abstract public class AbstractParser implements Runnable{
         if(!loop()){
             getDispacher().submitTaskThreadValueRetrievedEventFailed(
                     getClass().getName(),
-                    new CsvValueFilterException("Value Not found after 1000 request , a broken pattern maybe?"));
+                    new CsvValueFilterException("Value Not found after 10000 request , a broken pattern maybe?"));
         }
         getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }

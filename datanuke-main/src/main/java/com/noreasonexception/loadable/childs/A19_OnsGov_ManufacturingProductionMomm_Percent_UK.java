@@ -2,12 +2,14 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.CsvParser;
 import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends HtmlParser {
-    public A19_OnsGov_ManufacturingProductionMomm_Percent_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends CsvParser {
+    public A19_OnsGov_ManufacturingProductionMomm_Percent_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                             AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
@@ -16,10 +18,11 @@ public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends HtmlParse
 
     }
     protected String    onUrlLoad(){
-        return null;
+        return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/economicoutputandproductivity/output/timeseries/k27y/diop";
     }
     protected Double    onValueExtract(String tmpString){
-        return null;
+        String e[];
+        return Double.valueOf((e = tmpString.toString().split(","))[e.length - 1].replace("\"",""));
     }
 
 }

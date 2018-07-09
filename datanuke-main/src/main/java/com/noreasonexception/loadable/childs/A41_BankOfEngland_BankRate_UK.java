@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A41_BankOfEngland_BankRate_UK extends HtmlParser {
-    public A41_BankOfEngland_BankRate_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A41_BankOfEngland_BankRate_UK(ThreadRunnerTaskEventsDispacher disp,
+                                         AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

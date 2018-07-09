@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.XlsParser;
 import java.util.regex.Pattern;
 
 public class A22_OnsGov_RetailSalesRevisionsTriangles_UK extends XlsParser {
-    public A22_OnsGov_RetailSalesRevisionsTriangles_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A22_OnsGov_RetailSalesRevisionsTriangles_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                       AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

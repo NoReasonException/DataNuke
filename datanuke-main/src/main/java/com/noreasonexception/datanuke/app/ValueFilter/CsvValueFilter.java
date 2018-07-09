@@ -83,16 +83,17 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      */
     /*Package-Private*/ ArrayList<Double> fileContextToArray()throws    CsvValueFilterException,
                                                                         CsvValueFilterMailformedFileException {
+        String tmp="none";
         try{
             String str = fileContextToString();
             ArrayList<Double> retval=new ArrayList<>();
             for (String s:str.split(",")){ //NumberFormatException
-                retval.add(Double.valueOf(s));
+                retval.add(Double.valueOf(tmp=s));
             }
             return retval;
         }catch (NumberFormatException|NoSuchElementException e){
             throw new CsvValueFilterMailformedFileException(
-                    "The parser detected something that we cannot say for sure that is an number",e);
+                    "The parser detected something that we cannot say for sure that is an number "+e.getMessage()+"("+tmp+")",e);
         }
 
     }
@@ -162,7 +163,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         synchronized (getLockObject()){
             int id;
             if(this.classValues.size()!=this.classIDs.size())
-                throw new CsvValueFilterInconsistentStateException();
+                throw new CsvValueFilterInconsistentStateException(classValues.size()+"-"+classIDs.size());
             if((id= getIdByClassObj(className))==-1){
                 throw new CsvValueFilterClassNotRegisteredException(className);
             }

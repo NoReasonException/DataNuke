@@ -6,9 +6,10 @@ import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A2_1_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN extends HtmlParser {
+public class A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN extends HtmlParser {
 
-    public A2_1_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN(ThreadRunnerTaskEventsDispacher disp,
+                                                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

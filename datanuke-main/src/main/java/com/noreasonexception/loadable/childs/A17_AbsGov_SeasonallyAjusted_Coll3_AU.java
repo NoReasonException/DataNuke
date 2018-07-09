@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A17_AbsGov_SeasonallyAjusted_Coll3_AU extends HtmlParser {
-    public A17_AbsGov_SeasonallyAjusted_Coll3_AU(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A17_AbsGov_SeasonallyAjusted_Coll3_AU(ThreadRunnerTaskEventsDispacher disp,
+                                                 AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

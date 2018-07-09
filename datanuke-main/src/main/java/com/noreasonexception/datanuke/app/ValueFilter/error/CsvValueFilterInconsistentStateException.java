@@ -4,4 +4,7 @@ public class CsvValueFilterInconsistentStateException extends CsvValueFilterExce
     public CsvValueFilterInconsistentStateException() {
         super("Please call .buildFromFile() first");
     }
+    public CsvValueFilterInconsistentStateException(String extramsg) {
+        super("Please call .buildFromFile() first("+extramsg+")");
+    }
 }

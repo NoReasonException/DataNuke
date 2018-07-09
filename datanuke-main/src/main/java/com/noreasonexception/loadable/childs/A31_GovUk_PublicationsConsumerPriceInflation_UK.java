@@ -22,7 +22,8 @@ public class A31_GovUk_PublicationsConsumerPriceInflation_UK extends HtmlParser 
         return null;
     }
 
-    public A31_GovUk_PublicationsConsumerPriceInflation_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A31_GovUk_PublicationsConsumerPriceInflation_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 }

@@ -272,12 +272,12 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
-                System.out.println("will wait "+getWaitTime(tmp)/1000/60/60+"hrs");
-                wait(getWaitTime(tmp));
+                System.out.println("will wait "+getWaitTime(tmp)/1000/60/60+"hrs("+tmp.getClassname()+")");
+                //wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
-                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,CsvValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
+                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
                 this.taskEventsDispacher.submitTaskThreadStartedEvent(tmp.getClassname());
                 taskThread.start();
@@ -290,7 +290,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
-            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
+            }catch (/*InterruptedException|*/ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 

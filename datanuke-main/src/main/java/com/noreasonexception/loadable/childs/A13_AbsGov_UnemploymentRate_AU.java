@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A13_AbsGov_UnemploymentRate_AU extends HtmlParser {
-    public A13_AbsGov_UnemploymentRate_AU(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A13_AbsGov_UnemploymentRate_AU(ThreadRunnerTaskEventsDispacher disp,
+                                          AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected Pattern onPatternLoad(){

@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A38_FederalReserveGov_IndustrialProduction_US extends HtmlParser {
-    public A38_FederalReserveGov_IndustrialProduction_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A38_FederalReserveGov_IndustrialProduction_US(ThreadRunnerTaskEventsDispacher disp,
+                                                         AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

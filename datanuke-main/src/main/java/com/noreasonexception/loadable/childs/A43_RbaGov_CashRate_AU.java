@@ -22,7 +22,8 @@ public class A43_RbaGov_CashRate_AU extends HtmlParser {
         return null;
     }
 
-    public A43_RbaGov_CashRate_AU(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A43_RbaGov_CashRate_AU(ThreadRunnerTaskEventsDispacher disp,
+                                  AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 }

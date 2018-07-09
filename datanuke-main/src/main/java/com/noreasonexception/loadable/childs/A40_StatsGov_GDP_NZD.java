@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A40_StatsGov_GDP_NZD extends HtmlParser {
-    public A40_StatsGov_GDP_NZD(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A40_StatsGov_GDP_NZD(ThreadRunnerTaskEventsDispacher disp,
+                                AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

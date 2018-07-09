@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A24_BlsGov_ConsumerPriceIndex_US extends HtmlParser {
-    public A24_BlsGov_ConsumerPriceIndex_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A24_BlsGov_ConsumerPriceIndex_US(ThreadRunnerTaskEventsDispacher disp,
+                                            AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

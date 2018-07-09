@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A42_EcbEuropa_MainRefinancingOperations_EUR extends HtmlParser {
-    public A42_EcbEuropa_MainRefinancingOperations_EUR(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A42_EcbEuropa_MainRefinancingOperations_EUR(ThreadRunnerTaskEventsDispacher disp,
+                                                       AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

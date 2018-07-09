@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US extends HtmlParser {
-    public A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US(ThreadRunnerTaskEventsDispacher disp,
+                                                                                  AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

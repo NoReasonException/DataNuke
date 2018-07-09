@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A35_InstituteForSupplyManagment_mostRecentPMIReport_US extends HtmlParser {
-    public A35_InstituteForSupplyManagment_mostRecentPMIReport_US(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A35_InstituteForSupplyManagment_mostRecentPMIReport_US(ThreadRunnerTaskEventsDispacher disp,
+                                                                  AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

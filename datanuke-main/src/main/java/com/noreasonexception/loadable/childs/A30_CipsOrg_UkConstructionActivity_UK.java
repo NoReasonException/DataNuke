@@ -7,7 +7,8 @@ import com.noreasonexception.loadable.base.HtmlParser;
 import java.util.regex.Pattern;
 
 public class A30_CipsOrg_UkConstructionActivity_UK extends HtmlParser {
-    public A30_CipsOrg_UkConstructionActivity_UK(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public A30_CipsOrg_UkConstructionActivity_UK(ThreadRunnerTaskEventsDispacher disp,
+                                                 AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
