@@ -123,7 +123,7 @@ abstract public class AbstractParser implements Runnable{
      */
     protected boolean loop() {
         setPattern(onPatternLoad());
-        System.out.println("started");
+        System.out.println("started"+getClass().getName());
         String temp;
         Double tempValue;
         int i=0;

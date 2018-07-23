@@ -272,7 +272,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
             try{
-                System.out.println("will wait "+getWaitTime(tmp)/1000/60/60+"hrs("+tmp.getClassname()+")");
+                System.out.println("will wait "+getWaitTime(tmp)/1000/60/60/24+"d("+tmp.getClassname()+")");
                 wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());

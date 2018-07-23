@@ -1,41 +1,41 @@
 {
   "com.noreasonexception.loadable.childs.A1_Statcan_CrossDomesticProduct_CAN":[
-    "1530032400001",
-    "1296000000"
+    "1530275400000",
+    "2505600000"
 
   ],
   "com.noreasonexception.loadable.childs.A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN":[
-    "1530032400002",
-    "1296000000"
+    "1532089800000",
+    "2419200000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A3_Statcan_CanadianInternationalMerchandiseTrade_CAN":[
-    "1530032400004",
-    "1296000000"
+    "1530880200000",
+    "2592000000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_AllIndustries_CAN":[
-    "1530032400005",
-    "1296000000"
+    "1530880200000",
+    "2419200000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN":[
-    "1530032400006",
-    "1296000000"
+    "1531225800000",
+    "2937600000"
 
   ],
   "com.noreasonexception.loadable.childs.A6_Statcan_UnemploymentRate_CAN":[
-    "1530032400007",
-    "1296000000"
+    "1530880200000",
+    "2419200000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN":[
-    "1530032400008",
-    "1296000000"
+    "1532089800000",
+    "2419200000"
 
   ],
 
