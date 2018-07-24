@@ -220,30 +220,30 @@
   ],
 
   "com.noreasonexception.loadable.childs.A40_StatsGov_GDP_NZD":[
-    "1530032400041",
-    "1296000000"
+    "1529534700000",
+    "8463600000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A41_BankOfEngland_BankRate_UK":[
-    "1530032400042",
-    "1296000000"
+    "1529578800000",
+    "3628800000"
 
   ],
   "com.noreasonexception.loadable.childs.A42_EcbEuropa_MainRefinancingOperations_EUR":[
-    "1530032400043",
-    "1296000000"
+    "1532605500000",
+    "3628800000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A43_RbaGov_CashRate_AU":[
-    "1530032400044",
-    "1296000000"
+    "1530592200000",
+    "2419200000"
 
   ],
 
   "com.noreasonexception.loadable.childs.A44_RbnzGovt_OCR_NZD":[
-    "1530032400045",
-    "1296000000"
+    "1530133200000",
+    "4233600000"
   ]
 }
