@@ -9,6 +9,9 @@ public class TaskEvent {
     private String classname;
     private Object[]call_args;
 
+    public Object[] getCall_args() {
+        return call_args;
+    }
 
     public String getMethodName() {
         return methodName;

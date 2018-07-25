@@ -23,8 +23,10 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
     /***
      * Called when the AbstractThreadRunner waits until the deadline of class
      */
-    public void submitClassWaitUntillDeadlineEvent(String classname){
-        while(!events.offer(new TaskEvent("onClassWaitUntillDeadline",classname)));
+    public void submitClassWaitUntillDeadlineEvent(String classname,Long deadline){
+        while(!events.offer(new TaskEvent("onClassWaitUntillDeadline",
+                                                        classname,
+                                                        new Object[]{deadline})));
 
     }
 
@@ -70,8 +72,10 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
     /***
      * Called when the new value is retrieved
      */
-    public void submitTaskThreadValueRetrievedEvent(String classname){
-        while(!events.offer(new TaskEvent("onTaskThreadValueRetrieved",classname)));
+    public void submitTaskThreadValueRetrievedEvent(String classname,Double newVal){
+        while(!events.offer(new TaskEvent("onTaskThreadValueRetrieved",
+                                                        classname,
+                                                        new Object[]{newVal})));
 
     }
     /***
@@ -120,14 +124,14 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                         if(!methodname.endsWith("Failed")){
                             m=klass.getMethod(methodname,java.lang.String.class,java.lang.Object[].class);
                             for (ThreadRunnerTaskListener subsciber:listeners){
-                                m.invoke(subsciber,event.getClassname(),null);
+                                m.invoke(subsciber,event.getClassname(),event.getCall_args());
                             }
                         }
                         else{
                             eventException=(TaskEventException)event;
                             m=klass.getMethod(methodname,java.lang.String.class,java.lang.Throwable.class,java.lang.Object[].class);
                             for (ThreadRunnerTaskListener subsciber:listeners){
-                                m.invoke(subsciber,eventException.getClassname(),eventException.getError(),null);
+                                m.invoke(subsciber,eventException.getClassname(),eventException.getError(),event.getCall_args());
                             }
                         }
                     }

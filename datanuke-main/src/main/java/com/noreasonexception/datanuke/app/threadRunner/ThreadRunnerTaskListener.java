@@ -8,6 +8,9 @@ public abstract class ThreadRunnerTaskListener  {
 
     /***
      * Called when the AbstractThreadRunner waits until the deadline of class
+     * it passes as argument(index 0 , @param args)the amount of mills untill deadline as Long object
+     * so it safe to do
+     *                  new Date((Long)args[0])
      */
     public void onClassWaitUntillDeadline(String classname,Object[]args){}
 
@@ -39,6 +42,7 @@ public abstract class ThreadRunnerTaskListener  {
 
     /***
      * Called when the new value is retrieved
+     * it returns the new value in args[0] as Double Object
      */
     public void onTaskThreadValueRetrieved(String classname,Object[]args){}
 
