@@ -4,7 +4,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
@@ -45,7 +45,9 @@ import java.util.*;
  *
  */
 // TODO ThreadRunnerTaskListener consider making abstract parent class
-public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
+public class AbstractThreadRunner implements    Runnable ,
+                                                ThreadRunnerStateObservable,
+                                                ThreadRunnerTaskObservable{
     private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
     private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events

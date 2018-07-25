@@ -5,6 +5,6 @@ package com.noreasonexception.datanuke.app.threadRunner;
  * AbstractThreadRunner events , to subscribe a handler.
  *
  */
-public interface ThreadRunnerObservable {
+public interface ThreadRunnerStateObservable {
     public boolean subscribeStateListener(ThreadRunnerStateListener listener);
 }
