@@ -197,8 +197,8 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
         }
         catch(ConvertException e){throw new SourcesLoaderException("Convert DataProvider to JsonObject gone bad :(",e);}
         ClassInfo pair;
-        for (String string: obj.keySet()) {
-            JsonArray array=obj.getJsonArray(string);
+        for (String klass: obj.keySet()) {
+            JsonArray array=obj.getJsonArray(klass);
             ClassInfo i;
             //ensure offset will ensure that the same specific deadline will not exists 2 times , in order to be
             //succeed the operation of insert
@@ -213,7 +213,7 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                             i=new ClassInfo(
                                     new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
                                     Long.valueOf(array.getString(1)),
-                                    string));
+                                    klass));
                     ensureOffset=0;
                     break;
                 }catch (InvalidParameterException e){
@@ -222,15 +222,15 @@ public class AbstractThreadRunner implements Runnable , ThreadRunnerObservable {
                 }
             }
 
-            this.taskEventsDispacher.submitClassReadInfoEvent(string);
+            this.taskEventsDispacher.submitClassReadInfoEvent(klass);
             try{
-                this.valueFilter.submitClass(string);
+                this.valueFilter.submitClass(klass);
 
             }catch (CsvValueFilterInconsistentStateException e){
                 throw new RuntimeException("valueFilter in invalid state");
             }
             long j;
-            System.out.println(string+"have deadline in "+
+            System.out.println(klass+"have deadline in "+
                     (new Date(j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))))+" wait ->"+
                     getWaitTime(
                             Long.valueOf(array.getString(0)),

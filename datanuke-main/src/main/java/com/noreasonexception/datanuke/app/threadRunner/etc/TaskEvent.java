@@ -7,6 +7,8 @@ package com.noreasonexception.datanuke.app.threadRunner.etc;
 public class TaskEvent {
     private String methodName;
     private String classname;
+    private Object[]call_args;
+
 
     public String getMethodName() {
         return methodName;
@@ -25,7 +27,12 @@ public class TaskEvent {
     }
 
     public TaskEvent(String methodName, String classname) {
+        this(methodName,classname,null);
+    }
+    public TaskEvent(String methodName, String classname,Object[]call_args) {
         this.methodName = methodName;
         this.classname = classname;
+        this.call_args=call_args;
     }
+
 }
