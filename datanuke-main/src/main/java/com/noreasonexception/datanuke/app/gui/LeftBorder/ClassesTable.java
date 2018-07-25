@@ -9,28 +9,20 @@ import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.util.Callback;
+
 import java.util.Date;
 
 public class ClassesTable extends TableView<ClassInfo> {
-    public ClassesTable() {
-        int i=0;
-        ObservableList<ClassInfo>s=FXCollections.observableArrayList();
-        setItems(s);
-        TableColumn<ClassInfo,String> str=new TableColumn<>("ID");
-        TableColumn<ClassInfo,String> str2=new TableColumn<>("Date");
-        TableColumn<ClassInfo,Button> strbtn=new TableColumn<>("Status");
-        getColumns().add(str);
-        //getColumns().add(str2);
-        getColumns().add(strbtn);
-        setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
-        str2.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, String>, ObservableValue<String>>() {
+    private ObservableList<ClassInfo> items;
+    private TableColumn<ClassInfo,String> id;
+    private TableColumn<ClassInfo,Button> status;
+
+    private TableColumn<ClassInfo,String> getIdColumn(){
+        id=new TableColumn<>("ID");
+        id.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<ClassInfo, String> param) {
                 return new ObservableStringValue() {
@@ -48,7 +40,7 @@ public class ClassesTable extends TableView<ClassInfo> {
                     @Override
                     public String getValue() {
                         if(param.getValue().getInterval()==0)return null;
-                        return param.getValue().getDate().toString();
+                        return param.getValue().getClassname();
                     }
 
                     @Override
@@ -59,38 +51,25 @@ public class ClassesTable extends TableView<ClassInfo> {
                 };
             }
         });
-        str.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<ClassInfo, String> param) {
 
-                return new ObservableStringValue() {
-                    @Override
-                    public String get() {
-                        return param.getValue().getClassname();
+        id.setCellFactory((coll)->{
+            return new TableCell<ClassInfo,String>(){
+                @Override
+                public void updateItem(String ci,boolean se){
+                    super.updateItem(ci,se);
+                    if(getIndex()==0){
+                        setTextFill(Color.rgb(255,0,0));
                     }
-
-                    @Override
-                    public void addListener(ChangeListener<? super String> listener) { }
-
-                    @Override
-                    public void removeListener(ChangeListener<? super String> listener) { }
-
-                    @Override
-                    public String getValue() {
-                        return param.getValue().getClassname();
-                    }
-
-                    @Override
-                    public void addListener(InvalidationListener listener) { }
-
-                    @Override
-                    public void removeListener(InvalidationListener listener) { }
-                };
-
-            }
+                    System.out.println(getIndex());
+                    setText(ci);
+                }
+            };
         });
-
-        strbtn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, Button>, ObservableValue<Button>>() {
+        return id;
+    }
+    private TableColumn<ClassInfo,Button> getStatusColumn(){
+        status=new TableColumn<>("Status");
+        status.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, Button>, ObservableValue<Button>>() {
             @Override
             public ObservableValue<Button> call(TableColumn.CellDataFeatures<ClassInfo, Button> param) {
 
@@ -130,22 +109,18 @@ public class ClassesTable extends TableView<ClassInfo> {
 
             }
         });
-        str.setCellFactory((coll)->{
-            return new TableCell<ClassInfo,String>(){
-                @Override
-                public void updateItem(String ci,boolean se){
-                    super.updateItem(ci,se);
-                    if(getIndex()==0){
-                        setTextFill(Color.rgb(255,0,0));
-                    }
-                    System.out.println(getIndex());
-                    setText(ci);
-                }
-            };
-        });
-        s.add(new ClassInfo(new Date(),12,"A1"));
-        s.add(new ClassInfo(new Date(),0,"A2"));
-        s.add(new ClassInfo(new Date(),12,"A3"));
+        return status;
+    }
+    public ClassesTable() {
+        items=FXCollections.observableArrayList();
+        setItems(items);
+        setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
+        getColumns().addAll(getIdColumn(),
+                            getStatusColumn());
+
+        items.add(new ClassInfo(new Date(),12,"A1"));
+        items.add(new ClassInfo(new Date(),0,"A2"));
+        items.add(new ClassInfo(new Date(),12,"A3"));
     }
     public ThreadRunnerTaskListener getCoreTaskListener(){
         return new ThreadRunnerTaskListener() {
