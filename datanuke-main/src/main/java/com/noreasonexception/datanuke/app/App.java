@@ -20,8 +20,8 @@ import static javafx.application.Application.launch;
 
 
 public class App extends Application {
-    DataNukeAbstractFactory coreFactory;
-    DataNukeAbstractGuiFactory guiFactory;
+    DataNukeAbstractFactory coreFactory=null;
+    DataNukeAbstractGuiFactory guiFactory=null;
     public static void main(String[] args) throws Exception {
         launch(args);
 
@@ -29,41 +29,8 @@ public class App extends Application {
 
     @Override
     public void init() throws Exception {
-        coreFactory=new DataNukeDefaultFactory();
+        coreFactory=new DataNukeDefaultFactory().loadDefaultConfiguration();
         guiFactory=new DataNukeDefaultGuiFactory(coreFactory);
-        //System.out.println(System.getProperty("user.dir"));
-        AbstractThreadRunner runner;
-        runner = new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
-        runner.subscribeStateListener(new ThreadRunnerStateListener() {
-            @Override
-            public void run() {
-                //System.out.println(getState().getMessage());
-            }
-        });
-        runner.subscribeTaskListener(new ThreadRunnerTaskListener() {
-            @Override
-            public void onTaskThreadTerminated(String classname,Object ...e) {
-                System.out.println("terminated");
-            }
-
-            @Override
-            public void onTaskThreadReleased(String classname,Object...e) {
-                System.out.println("released");
-            }
-
-            @Override
-            public void onClassReadInfo(String classname,Object...e) {
-                System.out.println(classname+" loaded!");
-            }
-
-            @Override
-            public void onClassWaitUntillDeadline(String classname, Object[] args) {
-                System.out.println("ON CLASS WAIT"+new Date((Long)args[0]));
-            }
-        });
-
-        Thread a=new Thread(runner);
-        a.start();
     }
 
     @Override

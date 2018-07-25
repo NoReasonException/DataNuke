@@ -356,6 +356,8 @@ public class AbstractThreadRunner implements    Runnable ,
      *
      */
     synchronized public void run() {
+        this.stateEventsDispacher.start();
+        this.taskEventsDispacher.start();
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
         try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
@@ -398,8 +400,6 @@ public class AbstractThreadRunner implements    Runnable ,
         this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
         this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
         changeStateTo(NONE);
-        this.stateEventsDispacher.start();
-        this.taskEventsDispacher.start();
     }
 
     public ThreadRunnerState getCurrentState() {
