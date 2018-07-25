@@ -7,6 +7,8 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.Date;
+
 import static javafx.application.Application.launch;
 
 
@@ -41,6 +43,11 @@ public class App extends Application {
             @Override
             public void onClassReadInfo(String classname,Object...e) {
                 System.out.println(classname+" loaded!");
+            }
+
+            @Override
+            public void onClassWaitUntillDeadline(String classname, Object[] args) {
+                System.out.println("ON CLASS WAIT"+new Date((Long)args[0]));
             }
         });
 

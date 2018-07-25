@@ -134,7 +134,7 @@ abstract public class AbstractParser implements Runnable{
             try{
                 tempValue=onValueExtract(temp);
                 if(informValueFilter(tempValue)){
-                    getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName());
+                    getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
                     System.out.println("temp -> "+tempValue);
                     return true;
                 }

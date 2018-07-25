@@ -270,9 +270,14 @@ public class AbstractThreadRunner implements    Runnable ,
         Runnable task;
         while (true){
 
-            tmp=classSourcesDT.pollMin();
+            tmp=classSourcesDT.pollMin();//TODO fix , maybe need update the tmp.date!?
             classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
-            this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(tmp.getClassname());
+            this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(
+                    tmp.getClassname(),
+                    getDeadline(
+                            tmp.getDate().getTime(),
+                            System.currentTimeMillis(),
+                            tmp.getInterval()));
             try{
                 System.out.println("will wait "+getWaitTime(tmp)/1000/60+"min(s)"+tmp.getClassname()+")");
                 wait(getWaitTime(tmp));
