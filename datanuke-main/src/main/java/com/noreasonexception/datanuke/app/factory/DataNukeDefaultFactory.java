@@ -35,7 +35,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     //===========================Siglentons======================================================\\\
     private AbstractValueFilter<Double> valueFilter                                =null;
     private AtlasLoader                 customClassLoader                          =null;
-
+    private AbstractThreadRunner        threadRunner                               =null;
     /****
      * loadConfiguration
      * This method loads the configurations needed to start the Factory and pass in every subsystem
@@ -87,12 +87,14 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     @Override
     public AbstractThreadRunner getThreadRunner() throws MissingResourcesException {
         try{
-            return new AbstractThreadRunner(
+            return threadRunner!=null?
+                    threadRunner:
+                    (threadRunner=new AbstractThreadRunner(
                     getDataNukeCustomClassLoader(),
                     getThreadRunnersConfigProvider(),
                     getThreadRunnersSourceProvider(),
                     getDataNukeValueFilter(),
-                    getThreadRunnersRandomGenerator());
+                    getThreadRunnersRandomGenerator()));
         }catch (IOException|CsvValueFilterException e){
             throw new MissingResourcesException(e);
         }catch (Exception e){

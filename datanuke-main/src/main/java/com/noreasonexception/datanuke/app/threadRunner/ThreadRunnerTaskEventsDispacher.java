@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
+import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import com.noreasonexception.datanuke.app.threadRunner.etc.TaskEvent;
 import com.noreasonexception.datanuke.app.threadRunner.etc.TaskEventException;
 
@@ -16,8 +17,8 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
         this.listeners=tasks;
         events=new LinkedBlockingQueue<TaskEvent> ();
     }
-    public void submitClassReadInfoEvent(String classname){
-        while(!events.offer(new TaskEvent("onClassReadInfo",classname)));
+    public void submitClassReadInfoEvent(String classname, ClassInfo info){
+        while(!events.offer(new TaskEvent("onClassReadInfo",classname,new Object[]{info})));
     }
 
     /***

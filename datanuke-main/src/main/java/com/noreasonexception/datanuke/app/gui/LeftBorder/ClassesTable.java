@@ -117,14 +117,13 @@ public class ClassesTable extends TableView<ClassInfo> {
         setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
         getColumns().addAll(getIdColumn(),
                             getStatusColumn());
-
-        items.add(new ClassInfo(new Date(),12,"A1"));
-        items.add(new ClassInfo(new Date(),0,"A2"));
-        items.add(new ClassInfo(new Date(),12,"A3"));
     }
     public ThreadRunnerTaskListener getCoreTaskListener(){
         return new ThreadRunnerTaskListener() {
-
+            @Override
+            public void onClassReadInfo(String classname, Object[] args) {
+                items.add((ClassInfo) args[0]);
+            }
         };
     }
 
@@ -132,7 +131,6 @@ public class ClassesTable extends TableView<ClassInfo> {
         return new ThreadRunnerStateListener() {
             @Override
             public void run() {
-
             }
         };
     }

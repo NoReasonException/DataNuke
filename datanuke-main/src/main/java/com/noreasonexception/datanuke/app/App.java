@@ -47,5 +47,6 @@ public class App extends Application {
         p.setLeft(guiFactory.getLeftBorder());
         primaryStage.setScene(new Scene(p,600,400));
         primaryStage.show();
+        new Thread(coreFactory.getThreadRunner()).start();
     }
 }
