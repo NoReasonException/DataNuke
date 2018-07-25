@@ -1,5 +1,8 @@
 package com.noreasonexception.datanuke.app;
+import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
+import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.gui.Factory.DataNukeDefaultGuiFactory;
 import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
@@ -17,6 +20,8 @@ import static javafx.application.Application.launch;
 
 
 public class App extends Application {
+    DataNukeAbstractFactory coreFactory;
+    DataNukeAbstractGuiFactory guiFactory;
     public static void main(String[] args) throws Exception {
         launch(args);
 
@@ -24,6 +29,8 @@ public class App extends Application {
 
     @Override
     public void init() throws Exception {
+        coreFactory=new DataNukeDefaultFactory();
+        guiFactory=new DataNukeDefaultGuiFactory(coreFactory);
         //System.out.println(System.getProperty("user.dir"));
         AbstractThreadRunner runner;
         runner = new DataNukeDefaultFactory().loadDefaultConfiguration().getThreadRunner();
@@ -67,11 +74,11 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane p = new BorderPane();
-        p.setTop(new MainMenu());
-        p.setLeft(new ClassesTable());
-        primaryStage.setScene(new Scene(p,600,400));
-        primaryStage.show();
         primaryStage.setMinHeight(350);
         primaryStage.setMinWidth(350);
+        p.setTop(guiFactory.getTopBorder());
+        p.setLeft(guiFactory.getLeftBorder());
+        primaryStage.setScene(new Scene(p,600,400));
+        primaryStage.show();
     }
 }

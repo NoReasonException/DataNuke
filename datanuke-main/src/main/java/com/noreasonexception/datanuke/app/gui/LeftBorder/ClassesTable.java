@@ -1,6 +1,9 @@
 package com.noreasonexception.datanuke.app.gui.LeftBorder;
 
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
+import com.sun.source.util.TaskListener;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
@@ -146,5 +149,19 @@ public class ClassesTable extends TableView<ClassInfo> {
         s.add(new ClassInfo(new Date(),12,"A1"));
         s.add(new ClassInfo(new Date(),0,"A2"));
         s.add(new ClassInfo(new Date(),12,"A3"));
+    }
+    public ThreadRunnerTaskListener getCoreTaskListener(){
+        return new ThreadRunnerTaskListener() {
+
+        };
+    }
+
+    public ThreadRunnerStateListener getCoreStateListener(){
+        return new ThreadRunnerStateListener() {
+            @Override
+            public void run() {
+
+            }
+        };
     }
 }

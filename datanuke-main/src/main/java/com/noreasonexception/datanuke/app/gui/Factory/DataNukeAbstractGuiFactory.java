@@ -8,6 +8,7 @@ import javafx.scene.control.TableView;
 
 
 abstract public class DataNukeAbstractGuiFactory {
+
     abstract public Node getTopBorder();
     abstract public Node getLeftBorder();
     abstract public Node getCenterBorder();
