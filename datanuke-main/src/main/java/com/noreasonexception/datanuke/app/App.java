@@ -1,10 +1,13 @@
 package com.noreasonexception.datanuke.app;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
+import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.util.Date;
@@ -51,7 +54,8 @@ public class App extends Application {
             }
         });
 
-        new Thread(runner).start();
+        Thread a=new Thread(runner);
+        a.start();
     }
 
     @Override
@@ -61,6 +65,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        BorderPane p = new BorderPane();
+        p.setTop(new MainMenu());
+        primaryStage.setScene(new Scene(p,200,200));
+        primaryStage.show();
+        primaryStage.setMinHeight(350);
+        primaryStage.setMinWidth(350);
     }
 }
