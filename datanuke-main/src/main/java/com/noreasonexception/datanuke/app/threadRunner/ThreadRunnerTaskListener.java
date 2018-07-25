@@ -4,61 +4,61 @@ public abstract class ThreadRunnerTaskListener  {
     /***
      * Called when a class info read from config file
      */
-    public void onClassReadInfo(String classname){}
+    public void onClassReadInfo(String classname,Object...varargs){}
 
     /***
      * Called when the AbstractThreadRunner waits until the deadline of class
      */
-    public void onClassWaitUntillDeadline(String classname){}
+    public void onClassWaitUntillDeadline(String classname,Object...varargs){}
 
     /***
      * Called when the classloader is loading the class in memory
      */
-    public void onClassLoading(String classname){}
+    public void onClassLoading(String classname,Object...varargs){}
 
     /****
      * Called when something went wrong in class loading stuff..
      */
-    public void onClassLoadingFailed(String classname,Throwable e){}
+    public void onClassLoadingFailed(String classname,Throwable e,Object...varargs){}
 
     /***
      * Called when the class instance is created
      */
-    public void onClassInstanceCreated(String classname){}
+    public void onClassInstanceCreated(String classname,Object...varargs){}
 
     /****
      * Called when something gone wrong about creating instance
      *
      */
-    public void onClassInstanceCreatedFailed(String classname,Throwable e){}
+    public void onClassInstanceCreatedFailed(String classname,Throwable e,Object...varargs){}
 
     /***
      * Called when the thread is started
      */
-    public void onTaskThreadStarted(String classname){}
+    public void onTaskThreadStarted(String classname,Object...varargs){}
 
     /***
      * Called when the new value is retrieved
      */
-    public void onTaskThreadValueRetrieved(String classname){}
+    public void onTaskThreadValueRetrieved(String classname,Object...varargs){}
 
     /****
      * Called when something gone wrong about retrieving some value
      */
-    public void onTaskThreadValueRetrievedFailed(String classname,Throwable e){}
+    public void onTaskThreadValueRetrievedFailed(String classname,Throwable e,Object...varargs){}
 
     /***
      * Called when the task is terminated
      */
-    public void onTaskThreadTerminated(String classname){}
+    public void onTaskThreadTerminated(String classname,Object...varargs){}
 
     /***
      * Called when the garbage collector releases the thread object
      */
-    public void onTaskThreadReleased(String classname){}
+    public void onTaskThreadReleased(String classname,Object...varargs){}
 
     /***
      * Called when the gerbage collector releases the class object
      */
-    public void onClassReleased(String classname){}
+    public void onClassReleased(String classname,Object...varargs){}
 }

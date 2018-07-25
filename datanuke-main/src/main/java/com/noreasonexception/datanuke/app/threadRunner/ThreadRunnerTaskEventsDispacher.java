@@ -118,16 +118,16 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                         event=events.take();
                         java.lang.String methodname=event.getMethodName();
                         if(!methodname.endsWith("Failed")){
-                            m=klass.getMethod(methodname,java.lang.String.class);
+                            m=klass.getMethod(methodname,java.lang.String.class,java.lang.Object[].class);
                             for (ThreadRunnerTaskListener subsciber:listeners){
-                                m.invoke(subsciber,event.getClassname());
+                                m.invoke(subsciber,event.getClassname(),null);
                             }
                         }
                         else{
                             eventException=(TaskEventException)event;
-                            m=klass.getMethod(methodname,java.lang.String.class,java.lang.Throwable.class);
+                            m=klass.getMethod(methodname,java.lang.String.class,java.lang.Throwable.class,java.lang.Object[].class);
                             for (ThreadRunnerTaskListener subsciber:listeners){
-                                m.invoke(subsciber,eventException.getClassname(),eventException.getError());
+                                m.invoke(subsciber,eventException.getClassname(),eventException.getError(),null);
                             }
                         }
                     }
