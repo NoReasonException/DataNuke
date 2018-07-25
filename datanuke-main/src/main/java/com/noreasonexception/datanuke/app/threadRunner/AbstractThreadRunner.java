@@ -202,7 +202,7 @@ public class AbstractThreadRunner implements    Runnable ,
         for (String klass: obj.keySet()) {
             JsonArray array=obj.getJsonArray(klass);
             //ensure offset will ensure that the same specific deadline will not exists 2 times , in order to be
-            //succeed the operation of insert
+            //succeed the insert operation
             //
 
             int ensureOffset=0;
@@ -211,7 +211,7 @@ public class AbstractThreadRunner implements    Runnable ,
 
                     this.classSourcesDT.insert(
                             getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))-ensureOffset,
-                            info=new ClassInfo(
+                            info=new ClassInfo(array.getString(2),
                                     new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
                                     Long.valueOf(array.getString(1)),
                                     klass));

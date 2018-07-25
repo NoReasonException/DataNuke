@@ -11,6 +11,7 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -41,11 +42,14 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         BorderPane p = new BorderPane();
+        Scene scene;
         primaryStage.setMinHeight(350);
         primaryStage.setMinWidth(350);
         p.setTop(guiFactory.getTopBorder());
         p.setLeft(guiFactory.getLeftBorder());
-        primaryStage.setScene(new Scene(p,600,400));
+        primaryStage.setScene(scene=new Scene(p,600,400));
+        primaryStage.setTitle("DataNuke");
+        primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
         primaryStage.show();
         new Thread(coreFactory.getThreadRunner()).start();
     }

@@ -19,10 +19,10 @@ public class BST_EDF_Test {
      */
     @Test
     public void pollMinTest(){
-        ref.insert(10l,new ClassInfo(new Date(),120,"ten"));
-        ref.insert(20l,new ClassInfo(new Date(),240,"twenty"));
-        ref.insert(50l,new ClassInfo(new Date(),360,"fifty"));
-        ref.insert(1l,new ClassInfo(new Date(),480,"one"));
+        ref.insert(10l,new ClassInfo("A1",new Date(),120,"ten"));
+        ref.insert(20l,new ClassInfo("A2",new Date(),240,"twenty"));
+        ref.insert(50l,new ClassInfo("A3",new Date(),360,"fifty"));
+        ref.insert(1l,new ClassInfo("A4",new Date(),480,"one"));
         assertEquals(ref.pollMin().getClassname(),"one");
 
     }

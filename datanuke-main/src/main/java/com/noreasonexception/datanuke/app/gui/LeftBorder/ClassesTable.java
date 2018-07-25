@@ -40,7 +40,7 @@ public class ClassesTable extends TableView<ClassInfo> {
                     @Override
                     public String getValue() {
                         if(param.getValue().getInterval()==0)return null;
-                        return param.getValue().getClassname();
+                        return param.getValue().getID();
                     }
 
                     @Override

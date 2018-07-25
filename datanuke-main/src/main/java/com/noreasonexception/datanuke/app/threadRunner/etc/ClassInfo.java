@@ -9,11 +9,14 @@ import java.util.Date;
  * class name
  */
 public class ClassInfo implements Comparable<ClassInfo> {
+
+    private final String  ID;
     private  Date   date;
     private  long   interval;
     private  String classname;
 
-    public ClassInfo(Date date,long interval, String classname) {
+    public ClassInfo(String ID,Date date,long interval, String classname) {
+        this.ID=ID;
         this.interval=interval;
         this.date = date;
         this.classname = classname;
@@ -40,6 +43,7 @@ public class ClassInfo implements Comparable<ClassInfo> {
         this.date = date;
     }
 
+    public String getID() { return ID; }
     @Override
     public String toString() {
         return "(ClassInfo )"+classname+"\n"+
