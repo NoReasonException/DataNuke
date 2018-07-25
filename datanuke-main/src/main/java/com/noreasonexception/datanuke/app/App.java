@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
+import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
@@ -67,7 +68,8 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
         BorderPane p = new BorderPane();
         p.setTop(new MainMenu());
-        primaryStage.setScene(new Scene(p,200,200));
+        p.setLeft(new ClassesTable());
+        primaryStage.setScene(new Scene(p,600,400));
         primaryStage.show();
         primaryStage.setMinHeight(350);
         primaryStage.setMinWidth(350);
