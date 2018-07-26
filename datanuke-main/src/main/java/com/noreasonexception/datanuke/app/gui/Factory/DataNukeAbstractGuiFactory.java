@@ -8,6 +8,14 @@ import javafx.scene.control.TableView;
 
 
 abstract public class DataNukeAbstractGuiFactory {
+    private DataNukeAbstractFactory coreFactory;
+    public DataNukeAbstractGuiFactory(DataNukeAbstractFactory coreFactory) {
+        this.coreFactory=coreFactory;
+    }
+
+    public DataNukeAbstractFactory getCoreFactory() {
+        return coreFactory;
+    }
 
     abstract public Node getTopBorder();
     abstract public Node getLeftBorder();

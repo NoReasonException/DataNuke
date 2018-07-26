@@ -14,12 +14,18 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 
+import java.awt.event.ActionEvent;
+import java.beans.EventHandler;
 import java.util.Date;
 
 public class OptionsTable extends TableView<DataNukeGuiOption> {
     private ObservableList<DataNukeGuiOption> items;
     private final java.lang.String configNameColumnString = "Name";
     private final java.lang.String configNodeColumnString = "Option";
+    private final java.lang.String statusOptionNameString = "Status";
+        private final java.lang.String statusOptionONString = "ON";
+        private final java.lang.String statusOptionOFFString = "OFF";
+
     private TableColumn<DataNukeGuiOption,String>      configName;
     private TableColumn<DataNukeGuiOption,Node>        configNode;
     private DataNukeAbstractGuiFactory parentfactory =null;
@@ -106,6 +112,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         ObservableList<DataNukeGuiOption> options=FXCollections.observableArrayList();
         HBox box=new HBox();
         ComboBox<String> e = new ComboBox<>();
+        e.setOnAction(getStatusComboBoxHandler());
         e.getItems().add("ON");
         e.getItems().add("OFF");
         box.getChildren().add(e);
@@ -117,6 +124,23 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         options.add(new DataNukeGuiOption("Next Event(Time)",new Label(new Date().toString())));
         return options;
     }
+    protected javafx.event.EventHandler<javafx.event.ActionEvent> getStatusComboBoxHandler(){
+        return new javafx.event.EventHandler<javafx.event.ActionEvent>() {
+            @Override
+            public void handle(javafx.event.ActionEvent event) {
+                String res;
+                System.out.println(res=((ComboBox<String>)event.getSource()).getValue());
+                if(res!=null&&res.equals(statusOptionONString))
+                    getParentfactory().getCoreFactory().getThreadRunner().startMainThread();
+                else getParentfactory().getCoreFactory().getThreadRunner().stopMainThread();
+            }
+        };
+    }
+
+    public DataNukeAbstractGuiFactory getParentfactory() {
+        return parentfactory;
+    }
+
     public OptionsTable(DataNukeAbstractGuiFactory factory) {
         this.parentfactory=factory;
         items=FXCollections.observableArrayList();

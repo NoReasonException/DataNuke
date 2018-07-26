@@ -50,14 +50,15 @@ public class AbstractThreadRunner implements    Runnable ,
                                                 ThreadRunnerTaskObservable{
     private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
-    private final ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
+    private ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
-    private final ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
+    private ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
     private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
     private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
     private Random                                      randomGenerator=null;
+    private Thread                                      mainThread=null;
     private AtlasLoader                                 classLoader = null;     //The ClassLoader of threadRunner , responsible for removing everything after finish
     private Date                                        scheduledStart=null;    //Scheduled start of ThreadRunners main loop
     private int                                         initializationTime;     //initializationTime
@@ -279,6 +280,7 @@ public class AbstractThreadRunner implements    Runnable ,
                             tmp.getInterval()));
             try{
                 System.out.println("will wait "+getWaitTime(tmp)/1000/60+"min(s)"+tmp.getClassname()+")");
+                
                 wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
@@ -296,7 +298,12 @@ public class AbstractThreadRunner implements    Runnable ,
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
                 }).start();
 
-            }catch (InterruptedException|ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
+            }catch (InterruptedException e){
+                //interrupted by user
+                System.out.println("Interrupted by user");
+                Thread.currentThread().interrupt();
+            }
+            catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
             }catch (InstantiationException|IllegalAccessException e){
 
@@ -330,6 +337,7 @@ public class AbstractThreadRunner implements    Runnable ,
      * In another case , the x+1 state will occur!
      * @Note that no every state defines this behavior . for example every state with _SUCC lastfix (succeed)
      * has not -x (because if it succeed ,then it cant failure!)
+     * @implNote we can reset the state of AbstractThreadRunner to NONE exceptionally , the previous state dont matter
      * @see ThreadRunnerState
      *
      * @throws NoValidStateChangeException in case of invalid request
@@ -343,7 +351,7 @@ public class AbstractThreadRunner implements    Runnable ,
             }
         }
         else if(!(currentState.getId()+1==state.getId()
-                || currentState.getId()*-1==state.getId())){throw new NoValidStateChangeException(
+                || currentState.getId()*-1==state.getId()) && state!=NONE){throw new NoValidStateChangeException(
                         "One of the Implementations of AbstractThreadRunner requested a invalid state change operation.",
                         currentState,state);
         }
@@ -359,11 +367,13 @@ public class AbstractThreadRunner implements    Runnable ,
         this.taskEventsDispacher.start();
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
-        try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);return; }
+        try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);e.printStackTrace();return; }
         changeStateTo(LOAD_SRC);
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
         changeStateTo(PREPARE_LOOP);
         try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
+        System.out.println("run");
+
         loop();
     }
 
@@ -393,14 +403,20 @@ public class AbstractThreadRunner implements    Runnable ,
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
-        this.classSourcesDT=new BST_EDF();
         this.valueFilter=valueFilter;
         this.randomGenerator=random;
-        this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
-        this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
-        changeStateTo(NONE);
+        reset();
     }
 
+
+    private void reset(){
+        this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
+        this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
+        this.classSourcesDT=new BST_EDF();
+        changeStateTo(NONE);
+
+
+    }
     public ThreadRunnerState getCurrentState() {
         return currentState;
     }
@@ -415,5 +431,19 @@ public class AbstractThreadRunner implements    Runnable ,
         super.finalize();
         this.stateEventsDispacher.interrupt();
         this.taskEventsDispacher.interrupt();
+    }
+    public void startMainThread(){
+        System.out.println("Starting the main thread...");
+        this.mainThread=new Thread(this);
+        reset();
+        mainThread.start();
+    }
+    public void stopMainThread(){
+        System.out.println("Stopping the main thread...");
+        if(mainThread==null)return;
+        stateEventsDispacher.interrupt();
+        taskEventsDispacher.interrupt();
+        mainThread.interrupt();
+        mainThread=null;
     }
 }

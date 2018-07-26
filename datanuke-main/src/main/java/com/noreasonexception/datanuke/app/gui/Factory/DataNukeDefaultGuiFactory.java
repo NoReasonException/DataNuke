@@ -18,9 +18,9 @@ import java.util.Date;
 
 public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
-    DataNukeAbstractFactory coreFactory=null;
+
     public DataNukeDefaultGuiFactory(DataNukeAbstractFactory coreFactory) {
-        this.coreFactory = coreFactory;
+        super(coreFactory);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
     public Node getLeftBorder() {
         ClassesTable classesTable = new ClassesTable();
         //make sure that ClassesTable will be able to hear about core changes...
-        coreFactory.getThreadRunner().subscribeStateListener(classesTable.getCoreStateListener());
-        coreFactory.getThreadRunner().subscribeTaskListener(classesTable.getCoreTaskListener());
+        getCoreFactory().getThreadRunner().subscribeStateListener(classesTable.getCoreStateListener());
+        getCoreFactory().getThreadRunner().subscribeTaskListener(classesTable.getCoreTaskListener());
         return classesTable;
     }
 

@@ -53,6 +53,5 @@ public class App extends Application {
         primaryStage.setTitle("DataNuke");
         primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
         primaryStage.show();
-        new Thread(coreFactory.getThreadRunner()).start();
     }
 }
