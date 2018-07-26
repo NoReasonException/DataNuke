@@ -3,6 +3,7 @@ package com.noreasonexception.datanuke.app.gui.Factory;
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
+import com.noreasonexception.datanuke.app.gui.RightBorder.OptionsTable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,6 +44,6 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
     @Override
     public Node getRightBorder() {
-        return new ClassesTable();
+        return new OptionsTable();
     }
 }
