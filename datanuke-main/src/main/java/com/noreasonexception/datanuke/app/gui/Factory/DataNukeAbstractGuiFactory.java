@@ -11,6 +11,7 @@ abstract public class DataNukeAbstractGuiFactory {
 
     abstract public Node getTopBorder();
     abstract public Node getLeftBorder();
+    abstract public Node getRightBorder();
     abstract public Node getCenterBorder();
     abstract public Node getBottomBorder();
 

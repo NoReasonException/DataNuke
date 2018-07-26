@@ -161,18 +161,23 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     @Override
     public boolean submitValue(String className, Double value) throws CsvValueFilterException {
         synchronized (getLockObject()){
-            int id;
-            if(this.classValues.size()!=this.classIDs.size())
-                throw new CsvValueFilterInconsistentStateException(classValues.size()+"-"+classIDs.size());
-            if((id= getIdByClassObj(className))==-1){
-                throw new CsvValueFilterClassNotRegisteredException(className);
+            try {
+                int id;
+                if(this.classValues.size()!=this.classIDs.size())
+                    throw new CsvValueFilterInconsistentStateException(classValues.size()+"-"+classIDs.size());
+                if((id= getIdByClassObj(className))==-1){
+                    throw new CsvValueFilterClassNotRegisteredException(className);
+                }
+                if(getCSVContext().get(id).compareTo(value)!=0){
+                    getCSVContext().set(id,value);
+                    saveCSVContext();
+                    return true;
+                }
+                return false;
+            }catch (Exception e){
+                //TODO : Fix
+                return false;
             }
-            if(getCSVContext().get(id).compareTo(value)!=0){
-                getCSVContext().set(id,value);
-                saveCSVContext();
-                return true;
-            }
-            return false;
         }
 
     }

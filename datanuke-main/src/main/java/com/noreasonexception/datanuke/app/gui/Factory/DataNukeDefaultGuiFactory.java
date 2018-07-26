@@ -4,6 +4,11 @@ import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+
+import java.util.Date;
 
 public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
@@ -34,5 +39,10 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
     @Override
     public Node getBottomBorder() {
         return null;
+    }
+
+    @Override
+    public Node getRightBorder() {
+        return new ClassesTable();
     }
 }
