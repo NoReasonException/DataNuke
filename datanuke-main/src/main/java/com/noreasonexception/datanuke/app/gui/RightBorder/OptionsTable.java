@@ -11,23 +11,24 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.paint.Color;
 import javafx.util.Callback;
 
-public class OptionsTable extends TableView<ClassInfo> {
-    private ObservableList<ClassInfo> items;
-    private TableColumn<ClassInfo,String> ConfigName;
-    private TableColumn<ClassInfo,Node> option;
+public class OptionsTable extends TableView<DataNukeOption> {
+    private ObservableList<DataNukeOption> items;
+    private final java.lang.String configNameColumnString = "Name";
+    private final java.lang.String configNodeColumnString = "Option";
+    private TableColumn<DataNukeOption,String>      configName;
+    private TableColumn<DataNukeOption,Node>        configNode;
 
-    private TableColumn<ClassInfo,String> getOptionColumn(){
-        ConfigName =new TableColumn<>("Name");
-        ConfigName.setSortable(false);
-        ConfigName.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<ClassInfo, String>, ObservableValue<String>>() {
+    private TableColumn<DataNukeOption,String> getConfigName(){
+        configName =new TableColumn<>(configNameColumnString);
+        configName.setSortable(false);
+        configName.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<DataNukeOption, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<ClassInfo, String> param) {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<DataNukeOption, String> param) {
                 return new ObservableStringValue() {
                     @Override
                     public String get() {
@@ -35,68 +36,52 @@ public class OptionsTable extends TableView<ClassInfo> {
                     }
 
                     @Override
-                    public void addListener(ChangeListener<? super String> listener) { }
+                    public void addListener(ChangeListener<? super String> listener) {
+
+                    }
 
                     @Override
-                    public void removeListener(ChangeListener<? super String> listener) { }
+                    public void removeListener(ChangeListener<? super String> listener) {
+
+                    }
 
                     @Override
                     public String getValue() {
-                        if(param.getValue().getInterval()==0)return null;
-                        return param.getValue().getID();
+                        return param.getValue().getName();
                     }
 
                     @Override
-                    public void addListener(InvalidationListener listener) { }
+                    public void addListener(InvalidationListener listener) {
+
+                    }
 
                     @Override
-                    public void removeListener(InvalidationListener listener) { }
+                    public void removeListener(InvalidationListener listener) {
+
+                    }
                 };
             }
         });
-
-        ConfigName.setCellFactory((coll)->{
-            return new TableCell<ClassInfo,String>(){
-                @Override
-                public void updateItem(String ci,boolean se){
-                    super.updateItem(ci,se);
-                    if(getIndex()==0){
-                        setTextFill(Color.rgb(255,0,0));
-                    }
-                    System.out.println(getIndex());
-                    setText(ci);
-                }
-            };
-        });
-        return ConfigName;
+        return this.configName;
     }
-    private TableColumn<ClassInfo,Node> getConfigColumn(){
-        option =new TableColumn<>("option");
+    private TableColumn<DataNukeOption,Node> getConfigNode(){
+        configNode =new TableColumn<>(configNodeColumnString);
 
-        return option;
+        return configNode;
     }
     public OptionsTable() {
         items=FXCollections.observableArrayList();
         setItems(items);
         setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
-        getColumns().addAll(getOptionColumn(),
-                getConfigColumn());
+        getColumns().addAll(getConfigName(),
+                            getConfigNode());
 
     }
     public ThreadRunnerTaskListener getCoreTaskListener(){
-        return new ThreadRunnerTaskListener() {
-            @Override
-            public void onClassReadInfo(String classname, Object[] args) {
-                items.add((ClassInfo) args[0]);
-            }
-        };
+        return null;
     }
 
     public ThreadRunnerStateListener getCoreStateListener(){
-        return new ThreadRunnerStateListener() {
-            @Override
-            public void run() {
-            }
-        };
+        return null;
     }
 }
