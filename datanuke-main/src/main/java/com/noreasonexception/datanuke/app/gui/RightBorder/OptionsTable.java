@@ -1,17 +1,20 @@
 package com.noreasonexception.datanuke.app.gui.RightBorder;
 
 
+import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Orientation;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.util.Callback;
+
+import java.util.Date;
 
 public class OptionsTable extends TableView<DataNukeGuiOption> {
     private ObservableList<DataNukeGuiOption> items;
@@ -19,7 +22,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
     private final java.lang.String configNodeColumnString = "Option";
     private TableColumn<DataNukeGuiOption,String>      configName;
     private TableColumn<DataNukeGuiOption,Node>        configNode;
-
+    private DataNukeAbstractGuiFactory parentfactory =null;
     private TableColumn<DataNukeGuiOption,String> getConfigName(){
         configName =new TableColumn<>(configNameColumnString);
         configName.setSortable(false);
@@ -81,9 +84,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
 
                     @Override
                     public Node getValue() {
-                        Button retval=new Button("Test");
-
-                        return retval;
+                        return param.getValue().getNode();
                     }
 
                     @Override
@@ -101,13 +102,28 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         });
         return configNode;
     }
-    public OptionsTable() {
+    protected ObservableList<DataNukeGuiOption> getOptions(){
+        ObservableList<DataNukeGuiOption> options=FXCollections.observableArrayList();
+        HBox box=new HBox();
+        ComboBox<String> e = new ComboBox<>();
+        e.getItems().add("ON");
+        e.getItems().add("OFF");
+        box.getChildren().add(e);
+        box.getChildren().add(new Separator(Orientation.HORIZONTAL));
+        box.getChildren().add(new Button("OFF"));
+        options.add(new DataNukeGuiOption("Status",box));
+        options.add(new DataNukeGuiOption("Uptime",new Label(new Date().toString())));
+        options.add(new DataNukeGuiOption("Next Event",new Label("A12")));
+        options.add(new DataNukeGuiOption("Next Event(Time)",new Label(new Date().toString())));
+        return options;
+    }
+    public OptionsTable(DataNukeAbstractGuiFactory factory) {
+        this.parentfactory=factory;
         items=FXCollections.observableArrayList();
         setItems(items);
-        setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
+            setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
         getColumns().addAll(getConfigName(),
                             getConfigNode());
-
-
+        items.addAll(getOptions());
     }
 }

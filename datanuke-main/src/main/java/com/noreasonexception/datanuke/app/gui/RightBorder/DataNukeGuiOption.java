@@ -8,6 +8,7 @@ public class DataNukeGuiOption {
 
     public DataNukeGuiOption(String name, Node node) {
         this.name = name;
+        this.node=node;
     }
 
     public String getName() {

@@ -44,10 +44,11 @@ public class App extends Application {
         BorderPane p = new BorderPane();
         Scene scene;
         primaryStage.setMinHeight(350);
-        primaryStage.setMinWidth(350);
+        primaryStage.setMinWidth(850);
         p.setTop(guiFactory.getTopBorder());
         p.setLeft(guiFactory.getLeftBorder());
         p.setRight(guiFactory.getRightBorder());
+        p.setCenter(guiFactory.getCenterBorder());
         primaryStage.setScene(scene=new Scene(p,600,400));
         primaryStage.setTitle("DataNuke");
         primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
