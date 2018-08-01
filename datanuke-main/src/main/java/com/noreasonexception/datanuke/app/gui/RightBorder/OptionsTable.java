@@ -1,6 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.RightBorder;
 
 
+import com.noreasonexception.datanuke.app.gui.Colors;
 import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
@@ -12,15 +13,11 @@ import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
-
-import java.awt.event.ActionEvent;
-import java.beans.EventHandler;
 import java.util.Date;
 
 public class OptionsTable extends TableView<DataNukeGuiOption> {
@@ -35,6 +32,8 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
     private TableColumn<DataNukeGuiOption,Node>        configNode;
     private DataNukeAbstractGuiFactory parentfactory =null;
     private Button                     onOffBtn=null;
+    private Label                     nextEventTaskNameLabel=null;
+    private Label                     nextEventTaskTimeLabel=null;
     private TableColumn<DataNukeGuiOption,String> getConfigName(){
         configName =new TableColumn<>(configNameColumnString);
         configName.setSortable(false);
@@ -123,11 +122,12 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         e.getItems().add("OFF");
         box.getChildren().add(e);
         box.getChildren().add(new Separator(Orientation.HORIZONTAL));
-        box.getChildren().add(onOffBtn=new Button("OFF"));
+        box.getChildren().add(onOffBtn=new Button(statusOptionOFFString));
+        onOffBtn.setStyle("-fx-background-color:"+Colors.ΟFF_COLOR);
         options.add(new DataNukeGuiOption("Status",box));
         options.add(new DataNukeGuiOption("Uptime",new Label(new Date().toString())));
-        options.add(new DataNukeGuiOption("Next Event",new Label("A12")));
-        options.add(new DataNukeGuiOption("Next Event(Time)",new Label(new Date().toString())));
+        options.add(new DataNukeGuiOption("Next Event",nextEventTaskNameLabel=new Label("A12")));
+        options.add(new DataNukeGuiOption("Next Event(Time)",nextEventTaskTimeLabel=new Label(new Date().toString())));
         return options;
     }
     protected javafx.event.EventHandler<javafx.event.ActionEvent> getStatusComboBoxHandler(){
@@ -161,7 +161,6 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         return new ThreadRunnerStateListener(){
             @Override
             public void run() {
-                System.out.println("on offfff");
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -171,9 +170,13 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
                             public void run() {
                                 if(currState.equals(ThreadRunnerState.NONE)){
                                     onOffBtn.setText(statusOptionOFFString);
+                                    onOffBtn.setStyle("-fx-background-color:"+Colors.ΟFF_COLOR);
+
                                 }
                                 else{
                                     onOffBtn.setText(statusOptionONString);
+                                    onOffBtn.setStyle("-fx-background-color:"+Colors.ON_COLOR);
+
                                 }
                             }
                             public Runnable init(ThreadRunnerState currState){
@@ -184,6 +187,27 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
                     }
                 }).start();
 
+            }
+        };
+    }
+    public ThreadRunnerStateListener getNextEventStateListener(){
+        return new ThreadRunnerStateListener() {
+            @Override
+            public void run() {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(getState().equals(ThreadRunnerState.NONE)){
+                                    nextEventTaskNameLabel.setText(" - ");
+                                    nextEventTaskTimeLabel.setText(" - ");
+                                }
+                            }
+                        });
+                    }
+                }).start();
             }
         };
     }

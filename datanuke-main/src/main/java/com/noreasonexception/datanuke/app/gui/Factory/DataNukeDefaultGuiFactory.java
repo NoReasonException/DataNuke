@@ -3,19 +3,11 @@ package com.noreasonexception.datanuke.app.gui.Factory;
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
-import com.noreasonexception.datanuke.app.gui.RightBorder.DataNukeGuiOption;
 import com.noreasonexception.datanuke.app.gui.RightBorder.OptionsTable;
-import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-
-import java.util.Date;
-
 public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
 
@@ -69,6 +61,7 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
     public Node getRightBorder() {
         OptionsTable table=new OptionsTable(this);
         getCoreFactory().getThreadRunner().subscribeStateListener(table.getOnOffSwitchStateListener());
+        getCoreFactory().getThreadRunner().subscribeStateListener(table.getNextEventStateListener());
         return table;
 
     }
