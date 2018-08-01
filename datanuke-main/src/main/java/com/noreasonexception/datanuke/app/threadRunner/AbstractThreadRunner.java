@@ -280,7 +280,7 @@ public class AbstractThreadRunner implements    Runnable ,
                             tmp.getInterval()));
             try{
                 System.out.println("will wait "+getWaitTime(tmp)/1000/60+"min(s)"+tmp.getClassname()+")");
-                
+
                 wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
@@ -363,10 +363,11 @@ public class AbstractThreadRunner implements    Runnable ,
      *
      */
     synchronized public void run() {
-        this.stateEventsDispacher.start();
-        this.taskEventsDispacher.start();
+
+        changeStateTo(NONE);
         changeStateTo(INITIALIZATION);
         changeStateTo(LOAD_CONF);
+        startMessageDispachers();
         try{loadConfiguration();changeStateTo(LOAD_CONF_SUCC);}catch (ConfigurationLoaderException e){ changeStateTo(LOAD_CONF_ERR);e.printStackTrace();return; }
         changeStateTo(LOAD_SRC);
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
@@ -379,11 +380,13 @@ public class AbstractThreadRunner implements    Runnable ,
 
 
     public boolean subscribeStateListener(ThreadRunnerStateListener listener) {
+        System.out.println("listener subscribed");
         return this.stateListeners.add(listener);
     }
     public boolean subscribeTaskListener(ThreadRunnerTaskListener listener){
+        System.out.println("listener  TASK subscribed");
 
-        return taskListeners.add(listener);
+        return this.taskListeners.add(listener);
     }
 
     public AbstractThreadRunner(AtlasLoader classLoader,
@@ -400,22 +403,28 @@ public class AbstractThreadRunner implements    Runnable ,
         }catch (Exception e){}
         this.stateListeners = new LinkedList<>();
         this.taskListeners=new LinkedList<>();
+        this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
+        this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
+
         this.classLoader=classLoader;
         this.configProvider=configProvider;
         this.sourceProvider=sourceProvider;
         this.valueFilter=valueFilter;
         this.randomGenerator=random;
+
         reset();
     }
 
 
     private void reset(){
-        this.stateEventsDispacher =new ThreadRunnerStateEventsDispacher(stateListeners);
-        this.taskEventsDispacher=new ThreadRunnerTaskEventsDispacher(taskListeners);
         this.classSourcesDT=new BST_EDF();
-        changeStateTo(NONE);
-
-
+    }
+    public AbstractThreadRunner startMessageDispachers(){
+        if(this.stateEventsDispacher!=null&&!this.stateEventsDispacher.isAlive()) {
+            this.stateEventsDispacher.start();
+            this.taskEventsDispacher.start();
+        }
+        return this;
     }
     public ThreadRunnerState getCurrentState() {
         return currentState;
@@ -441,9 +450,8 @@ public class AbstractThreadRunner implements    Runnable ,
     public void stopMainThread(){
         System.out.println("Stopping the main thread...");
         if(mainThread==null)return;
-        stateEventsDispacher.interrupt();
-        taskEventsDispacher.interrupt();
         mainThread.interrupt();
         mainThread=null;
+        changeStateTo(NONE);
     }
 }

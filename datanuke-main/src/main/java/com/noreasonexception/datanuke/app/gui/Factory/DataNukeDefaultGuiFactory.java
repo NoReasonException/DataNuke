@@ -67,7 +67,9 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
     @Override
     public Node getRightBorder() {
-        return new OptionsTable(this);
+        OptionsTable table=new OptionsTable(this);
+        getCoreFactory().getThreadRunner().subscribeStateListener(table.getOnOffSwitchStateListener());
+        return table;
 
     }
 }

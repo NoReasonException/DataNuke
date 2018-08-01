@@ -2,12 +2,17 @@ package com.noreasonexception.datanuke.app.gui.RightBorder;
 
 
 import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
+import com.sun.deploy.uitoolkit.impl.fx.ui.FXAppContext;
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableStringValue;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.geometry.Orientation;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -29,6 +34,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
     private TableColumn<DataNukeGuiOption,String>      configName;
     private TableColumn<DataNukeGuiOption,Node>        configNode;
     private DataNukeAbstractGuiFactory parentfactory =null;
+    private Button                     onOffBtn=null;
     private TableColumn<DataNukeGuiOption,String> getConfigName(){
         configName =new TableColumn<>(configNameColumnString);
         configName.setSortable(false);
@@ -109,7 +115,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         return configNode;
     }
     protected ObservableList<DataNukeGuiOption> getOptions(){
-        ObservableList<DataNukeGuiOption> options=FXCollections.observableArrayList();
+        ObservableList<DataNukeGuiOption> options=FXCollections.observableList(FXCollections.observableArrayList());
         HBox box=new HBox();
         ComboBox<String> e = new ComboBox<>();
         e.setOnAction(getStatusComboBoxHandler());
@@ -117,7 +123,7 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         e.getItems().add("OFF");
         box.getChildren().add(e);
         box.getChildren().add(new Separator(Orientation.HORIZONTAL));
-        box.getChildren().add(new Button("OFF"));
+        box.getChildren().add(onOffBtn=new Button("OFF"));
         options.add(new DataNukeGuiOption("Status",box));
         options.add(new DataNukeGuiOption("Uptime",new Label(new Date().toString())));
         options.add(new DataNukeGuiOption("Next Event",new Label("A12")));
@@ -144,10 +150,41 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
     public OptionsTable(DataNukeAbstractGuiFactory factory) {
         this.parentfactory=factory;
         items=FXCollections.observableArrayList();
-        setItems(items);
+
             setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
         getColumns().addAll(getConfigName(),
                             getConfigNode());
         items.addAll(getOptions());
+        setItems(items);
+    }
+    public ThreadRunnerStateListener getOnOffSwitchStateListener(){
+        return new ThreadRunnerStateListener(){
+            @Override
+            public void run() {
+                System.out.println("on offfff");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            private ThreadRunnerState currState=null;
+                            @Override
+                            public void run() {
+                                if(currState.equals(ThreadRunnerState.NONE)){
+                                    onOffBtn.setText(statusOptionOFFString);
+                                }
+                                else{
+                                    onOffBtn.setText(statusOptionONString);
+                                }
+                            }
+                            public Runnable init(ThreadRunnerState currState){
+                                this.currState=currState;
+                                return this;
+                            }
+                        }.init(getState()));
+                    }
+                }).start();
+
+            }
+        };
     }
 }
