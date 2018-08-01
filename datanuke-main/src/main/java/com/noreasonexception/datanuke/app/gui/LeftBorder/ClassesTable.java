@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.LeftBorder;
 
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
@@ -133,6 +134,7 @@ public class ClassesTable extends TableView<ClassInfo> {
         return new ThreadRunnerStateListener() {
             @Override
             public void run() {
+                if(getState().equals(ThreadRunnerState.NONE))items.clear();
             }
         };
     }
