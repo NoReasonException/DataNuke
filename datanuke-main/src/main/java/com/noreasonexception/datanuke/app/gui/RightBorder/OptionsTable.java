@@ -5,6 +5,7 @@ import com.noreasonexception.datanuke.app.gui.Colors;
 import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import com.sun.deploy.uitoolkit.impl.fx.ui.FXAppContext;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
@@ -25,9 +26,8 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
     private final java.lang.String configNameColumnString = "Name";
     private final java.lang.String configNodeColumnString = "Option";
     private final java.lang.String statusOptionNameString = "Status";
-        private final java.lang.String statusOptionONString = "ON";
-        private final java.lang.String statusOptionOFFString = "OFF";
-
+    private final java.lang.String statusOptionONString = "ON";
+    private final java.lang.String statusOptionOFFString = "OFF";
     private TableColumn<DataNukeGuiOption,String>      configName;
     private TableColumn<DataNukeGuiOption,Node>        configNode;
     private DataNukeAbstractGuiFactory parentfactory =null;
@@ -126,8 +126,8 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         onOffBtn.setStyle("-fx-background-color:"+Colors.ΟFF_COLOR);
         options.add(new DataNukeGuiOption("Status",box));
         options.add(new DataNukeGuiOption("Uptime",new Label(new Date().toString())));
-        options.add(new DataNukeGuiOption("Next Event",nextEventTaskNameLabel=new Label("A12")));
-        options.add(new DataNukeGuiOption("Next Event(Time)",nextEventTaskTimeLabel=new Label(new Date().toString())));
+        options.add(new DataNukeGuiOption("Next Event",nextEventTaskNameLabel=new Label("-")));
+        options.add(new DataNukeGuiOption("Next Event(Time)",nextEventTaskTimeLabel=new Label("-")));
         return options;
     }
     protected javafx.event.EventHandler<javafx.event.ActionEvent> getStatusComboBoxHandler(){
@@ -204,6 +204,26 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
                                     nextEventTaskNameLabel.setText(" - ");
                                     nextEventTaskTimeLabel.setText(" - ");
                                 }
+                            }
+                        });
+                    }
+                }).start();
+            }
+        };
+    }
+    public ThreadRunnerTaskListener getNextEventTaskListener(){
+        return new ThreadRunnerTaskListener() {
+            @Override
+            public void onClassWaitUntillDeadline(String classname, Object[] args) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                String[]e;
+                                nextEventTaskNameLabel.setText((e=classname.split("\\."))[e.length-1]);
+                                nextEventTaskTimeLabel.setText(new Date((Long)args[0]).toString());
                             }
                         });
                     }

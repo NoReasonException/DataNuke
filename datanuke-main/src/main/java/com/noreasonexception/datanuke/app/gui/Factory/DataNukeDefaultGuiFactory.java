@@ -62,6 +62,7 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
         OptionsTable table=new OptionsTable(this);
         getCoreFactory().getThreadRunner().subscribeStateListener(table.getOnOffSwitchStateListener());
         getCoreFactory().getThreadRunner().subscribeStateListener(table.getNextEventStateListener());
+        getCoreFactory().getThreadRunner().subscribeTaskListener(table.getNextEventTaskListener());
         return table;
 
     }
