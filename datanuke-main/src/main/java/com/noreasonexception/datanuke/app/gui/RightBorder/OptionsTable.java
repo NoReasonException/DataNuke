@@ -118,8 +118,8 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
         HBox box=new HBox();
         ComboBox<String> e = new ComboBox<>();
         e.setOnAction(getStatusComboBoxHandler());
-        e.getItems().add("ON");
-        e.getItems().add("OFF");
+        e.getItems().add(statusOptionOFFString);
+        e.getItems().add(statusOptionONString);
         box.getChildren().add(e);
         box.getChildren().add(new Separator(Orientation.HORIZONTAL));
         box.getChildren().add(onOffBtn=new Button(statusOptionOFFString));

@@ -220,7 +220,6 @@ public class AbstractThreadRunner implements    Runnable ,
                     break;
                 }catch (InvalidParameterException e){
                     ensureOffset=getEnsureOffset();
-                    System.out.println("SAME");
                 }
             }
 
@@ -380,12 +379,9 @@ public class AbstractThreadRunner implements    Runnable ,
 
 
     public boolean subscribeStateListener(ThreadRunnerStateListener listener) {
-        System.out.println("listener subscribed");
         return this.stateListeners.add(listener);
     }
     public boolean subscribeTaskListener(ThreadRunnerTaskListener listener){
-        System.out.println("listener  TASK subscribed");
-
         return this.taskListeners.add(listener);
     }
 

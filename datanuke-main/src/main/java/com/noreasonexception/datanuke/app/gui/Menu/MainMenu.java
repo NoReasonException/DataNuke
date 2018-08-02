@@ -1,10 +1,18 @@
 package com.noreasonexception.datanuke.app.gui.Menu;
 
+import com.noreasonexception.datanuke.app.gui.Menu.StaticWindows.AboutDialog;
+import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class MainMenu extends MenuBar {
     private static final java.lang.String fileMenuString=   "File";
@@ -27,7 +35,7 @@ public class MainMenu extends MenuBar {
         private MenuItem traceMenu_ShowLogWindow;
         private MenuItem traceMenu_ShowErrorWindow;
     private Menu helpMenu;
-    private Menu aboutMenu;
+        private MenuItem aboutMenu;
 
     public MainMenu() {
         getMenus().addAll(topLevelStructureInit());
@@ -38,8 +46,7 @@ public class MainMenu extends MenuBar {
         menus.addAll(fileMenuInitializer(),
                 optionsMenuInitializer(),
                 traceMenuInitializer(),
-                helpMenuInitializer(),
-                aboutMenuInitializer());
+                helpMenuInitializer());
         return menus;
     }
     public Menu fileMenuInitializer(){
@@ -64,12 +71,17 @@ public class MainMenu extends MenuBar {
 
     public Menu helpMenuInitializer(){
         helpMenu=new Menu(helpMenuString);
+        helpMenu.getItems().add(aboutMenu=new MenuItem(aboutMenuString));
+        aboutMenu.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    new AboutDialog().start(new Stage());
+                }catch (Exception e){
+
+                }
+            }
+        });
         return helpMenu;
     }
-
-    public Menu aboutMenuInitializer(){
-        aboutMenu=new Menu(aboutMenuString);
-        return aboutMenu;
-    }
-
 }
