@@ -234,7 +234,7 @@ public class AbstractThreadRunner implements    Runnable ,
                 throw new RuntimeException("valueFilter in invalid state");
             }
             long j;
-            System.out.println(klass+"have deadline in "+
+            logMessageExporter.sendMessage(klass+" have deadline in "+
                     (new Date(j=getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)))))+" wait ->"+
                     getWaitTime(
                             Long.valueOf(array.getString(0)),

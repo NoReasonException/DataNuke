@@ -60,7 +60,6 @@ public class ClassesTable extends TableView<ClassInfo> {
                     if(getIndex()==0){
                         setTextFill(Color.rgb(255,0,0));
                     }
-                    System.out.println(getIndex());
                     setText(ci);
                 }
             };
