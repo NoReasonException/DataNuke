@@ -1,18 +1,14 @@
 package com.noreasonexception.datanuke.app.gui.Menu;
 
+import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.gui.Factory.DataNukeDefaultGuiFactory;
 import com.noreasonexception.datanuke.app.gui.Menu.StaticWindows.AboutDialog;
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainMenu extends MenuBar {
     private static final java.lang.String fileMenuString=   "File";
@@ -37,7 +33,10 @@ public class MainMenu extends MenuBar {
     private Menu helpMenu;
         private MenuItem aboutMenu;
 
-    public MainMenu() {
+    private DataNukeAbstractGuiFactory parentFactory=null;
+
+    public MainMenu(DataNukeAbstractGuiFactory parentFactory) {
+        this.parentFactory=parentFactory;
         getMenus().addAll(topLevelStructureInit());
     }
 
@@ -65,6 +64,12 @@ public class MainMenu extends MenuBar {
     public Menu traceMenuInitializer(){
         traceMenu=new Menu(traceMenuString);
         traceMenu.getItems().add(traceMenu_ShowLogWindow=new MenuItem(traceMenuString_ShowLogWindow));
+        traceMenu_ShowLogWindow.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ((DataNukeDefaultGuiFactory)parentFactory).toggleLogWindow();
+            }
+        });
         traceMenu.getItems().add(traceMenu_ShowErrorWindow=new MenuItem(traceMenuString_ShowErrorWindow));
         return traceMenu;
     }

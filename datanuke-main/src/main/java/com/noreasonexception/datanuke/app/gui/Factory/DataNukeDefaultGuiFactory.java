@@ -8,16 +8,21 @@ import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
+import javafx.scene.control.Separator;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
 
+public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
+    private TextArea logWindowTextArea=null;
+    private final java.lang.String logWindowTextAreaInitialString = "> Log Window Ready...";
 
     public DataNukeDefaultGuiFactory(DataNukeAbstractFactory coreFactory) {
         super(coreFactory);
     }
-
+    private VBox bottomBox = null;
     @Override
     public Node getTopBorder() {
-        return new MainMenu();
+        return new MainMenu(this);
     }
 
     @Override
@@ -54,9 +59,24 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
     @Override
     public Node getBottomBorder() {
-        return null;
+        this.bottomBox=new VBox();
+        return bottomBox;
+    }
+    public void toggleLogWindow(){
+        if(logWindowTextArea!=null&&bottomBox.getChildren().contains(logWindowTextArea)){
+            bottomBox.getChildren().remove(logWindowTextArea);
+            return ;
+        }
+        bottomBox.getChildren().add((logWindowTextArea!=null)?
+                                    (logWindowTextArea):
+                                    (logWindowTextArea=new  TextArea(logWindowTextAreaInitialString)));
+
+        return ;
     }
 
+    public VBox toggleErrorWindow(){
+        return bottomBox;
+    }
     @Override
     public Node getRightBorder() {
         OptionsTable table=new OptionsTable(this);

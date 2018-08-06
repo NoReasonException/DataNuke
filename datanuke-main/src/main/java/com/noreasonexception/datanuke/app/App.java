@@ -49,6 +49,7 @@ public class App extends Application {
         p.setLeft(guiFactory.getLeftBorder());
         p.setRight(guiFactory.getRightBorder());
         p.setCenter(guiFactory.getCenterBorder());
+        p.setBottom(guiFactory.getBottomBorder());
         primaryStage.setScene(scene=new Scene(p,600,400));
         primaryStage.setTitle("DataNuke");
         primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
