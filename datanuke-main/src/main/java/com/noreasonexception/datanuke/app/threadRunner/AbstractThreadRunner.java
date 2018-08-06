@@ -5,6 +5,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterIncons
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 
+import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.intefaces.MessageExporter;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
@@ -437,7 +438,7 @@ public class AbstractThreadRunner implements    Runnable ,
         this.stateEventsDispacher.interrupt();
         this.taskEventsDispacher.interrupt();
     }
-    public void startMainThread(){
+    public void startMainThread(MessageExporter logExporter , MessageExporter errorExporter){
         System.out.println("Starting the main thread...");
         this.mainThread=new Thread(this);
         reset();

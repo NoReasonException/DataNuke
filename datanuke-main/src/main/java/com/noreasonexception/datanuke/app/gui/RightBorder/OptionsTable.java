@@ -136,7 +136,9 @@ public class OptionsTable extends TableView<DataNukeGuiOption> {
                 String res;
                 System.out.println(res=((ComboBox<String>)event.getSource()).getValue());
                 if(res!=null&&res.equals(statusOptionONString))
-                    getParentfactory().getCoreFactory().getThreadRunner().startMainThread();
+                    getParentfactory().getCoreFactory().getThreadRunner().startMainThread(
+                            parentfactory.getMessageExporter(),
+                            parentfactory.getMessageExporter());
                 else getParentfactory().getCoreFactory().getThreadRunner().stopMainThread();
             }
         };
