@@ -3,13 +3,15 @@ package com.noreasonexception.datanuke.app.gui.menu.dynamicwindows;
 import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.intefaces.MessageExporter;
 import javafx.scene.control.TextArea;
 
+import java.util.Date;
+
 
 public class TextInfoNode extends TextArea implements MessageExporter {
     private java.lang.String messagePrefix = null;
 
     @Override
     public void sendMessage(String msg) {
-        setText(getText()+"\n"+messagePrefix+msg);
+        setText(getText()+"\n"+messagePrefix+(new Date().toString())+": "+msg);
     }
 
     public TextInfoNode(java.lang.String prefix) {

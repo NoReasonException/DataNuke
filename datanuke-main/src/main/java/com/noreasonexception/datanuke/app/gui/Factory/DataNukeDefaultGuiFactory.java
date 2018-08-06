@@ -17,10 +17,12 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
 
     private TextInfoNode logWindowTextArea=null;
-    private final java.lang.String logWindowTextAreaInitialString = "> Log Window Ready...";
+    private final java.lang.String logWindowTextAreaPrefix = "> Log ";
 
     public DataNukeDefaultGuiFactory(DataNukeAbstractFactory coreFactory) {
         super(coreFactory);
+        logWindowTextArea=new TextInfoNode(logWindowTextAreaPrefix);
+
     }
     private VBox bottomBox = null;
     @Override
@@ -66,13 +68,11 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
         return bottomBox;
     }
     public void toggleLogWindow(){
-        if(logWindowTextArea!=null&&bottomBox.getChildren().contains(logWindowTextArea)){
+        if(bottomBox.getChildren().contains(logWindowTextArea)){
             bottomBox.getChildren().remove(logWindowTextArea);
             return ;
         }
-        bottomBox.getChildren().add((logWindowTextArea!=null)?
-                                    (logWindowTextArea):
-                                    (logWindowTextArea=new TextInfoNode("Log>")));
+        bottomBox.getChildren().add(logWindowTextArea);
 
         return ;
     }

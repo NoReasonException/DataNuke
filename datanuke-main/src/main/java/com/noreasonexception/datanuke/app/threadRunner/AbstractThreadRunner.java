@@ -49,11 +49,12 @@ import java.util.*;
 public class AbstractThreadRunner implements    Runnable ,
                                                 ThreadRunnerStateObservable,
                                                 ThreadRunnerTaskObservable{
+
     private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
-    private ThreadRunnerStateEventsDispacher      stateEventsDispacher;   //The thread to inform all state - observers for events
+    private ThreadRunnerStateEventsDispacher            stateEventsDispacher;   //The thread to inform all state - observers for events
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
-    private ThreadRunnerTaskEventsDispacher       taskEventsDispacher;    //The thread to inform all task - observers
+    private ThreadRunnerTaskEventsDispacher             taskEventsDispacher;    //The thread to inform all task - observers
     private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
     private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
@@ -65,7 +66,8 @@ public class AbstractThreadRunner implements    Runnable ,
     private int                                         initializationTime;     //initializationTime
     private int                                         startupTarget;          //--
 
-
+    private MessageExporter                             logMessageExporter = null;
+    private MessageExporter                             errorMessageExporter=null;
 
     int getEnsureOffset(){
         return (randomGenerator.nextInt()%5)+5;
@@ -279,7 +281,7 @@ public class AbstractThreadRunner implements    Runnable ,
                             System.currentTimeMillis(),
                             tmp.getInterval()));
             try{
-                System.out.println("will wait "+getWaitTime(tmp)/1000/60+"min(s)"+tmp.getClassname()+")");
+                logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
                 wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
@@ -299,8 +301,6 @@ public class AbstractThreadRunner implements    Runnable ,
                 }).start();
 
             }catch (InterruptedException e){
-                //interrupted by user
-                System.out.println("Interrupted by user");
                 Thread.currentThread().interrupt();
             }
             catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
@@ -373,7 +373,7 @@ public class AbstractThreadRunner implements    Runnable ,
         try{loadSources();changeStateTo(LOAD_SRC_SUCC);}catch (SourcesLoaderException e){ changeStateTo(LOAD_SRC_ERR);e.printStackTrace();return; }
         changeStateTo(PREPARE_LOOP);
         try{prepareLoop();changeStateTo(PREPARE_LOOP_SUCC);}catch (LoopPrepareException e){ changeStateTo(PREPARE_LOOP_ERR);e.printStackTrace();return; }
-        System.out.println("run");
+
 
         loop();
     }
@@ -439,13 +439,16 @@ public class AbstractThreadRunner implements    Runnable ,
         this.taskEventsDispacher.interrupt();
     }
     public void startMainThread(MessageExporter logExporter , MessageExporter errorExporter){
-        System.out.println("Starting the main thread...");
+        this.logMessageExporter=logExporter;
+        this.errorMessageExporter=errorExporter;
+        logMessageExporter.sendMessage("Starting the main thread...");
+
         this.mainThread=new Thread(this);
         reset();
         mainThread.start();
     }
     public void stopMainThread(){
-        System.out.println("Stopping the main thread...");
+        logMessageExporter.sendMessage("Stopping the main thread...");
         if(mainThread==null)return;
         mainThread.interrupt();
         mainThread=null;
