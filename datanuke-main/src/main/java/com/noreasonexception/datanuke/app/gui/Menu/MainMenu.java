@@ -1,8 +1,8 @@
-package com.noreasonexception.datanuke.app.gui.Menu;
+package com.noreasonexception.datanuke.app.gui.menu;
 
-import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
-import com.noreasonexception.datanuke.app.gui.Factory.DataNukeDefaultGuiFactory;
-import com.noreasonexception.datanuke.app.gui.Menu.StaticWindows.AboutDialog;
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeDefaultGuiFactory;
+import com.noreasonexception.datanuke.app.gui.menu.staticWindows.AboutDialog;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

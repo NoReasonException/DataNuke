@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.gui.RightBorder;
+package com.noreasonexception.datanuke.app.gui.rightBorder;
 
 import javafx.scene.Node;
 

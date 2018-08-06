@@ -1,12 +1,11 @@
-package com.noreasonexception.datanuke.app.gui.RightBorder;
+package com.noreasonexception.datanuke.app.gui.rightBorder;
 
 
 import com.noreasonexception.datanuke.app.gui.Colors;
-import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
-import com.sun.deploy.uitoolkit.impl.fx.ui.FXAppContext;
 import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;

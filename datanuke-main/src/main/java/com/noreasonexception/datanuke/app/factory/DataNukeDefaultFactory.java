@@ -38,7 +38,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     private AbstractThreadRunner        threadRunner                               =null;
     /****
      * loadConfiguration
-     * This method loads the configurations needed to start the Factory and pass in every subsystem
+     * This method loads the configurations needed to start the factory and pass in every subsystem
      * the proper configuration file and e.t.c
      * Please use the .loadDefaultConfiguration()
      * @param confProvider the data provider

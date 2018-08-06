@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.gui.Menu.StaticWindows;
+package com.noreasonexception.datanuke.app.gui.menu.staticWindows;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;

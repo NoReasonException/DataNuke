@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.gui.LeftBorder;
+package com.noreasonexception.datanuke.app.gui.leftBorder;
 
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
@@ -13,8 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.util.Callback;
-
-import java.util.Date;
 
 public class ClassesTable extends TableView<ClassInfo> {
     private ObservableList<ClassInfo> items;

@@ -1,21 +1,14 @@
 package com.noreasonexception.datanuke.app;
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
-import com.noreasonexception.datanuke.app.gui.Factory.DataNukeAbstractGuiFactory;
-import com.noreasonexception.datanuke.app.gui.Factory.DataNukeDefaultGuiFactory;
-import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
-import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
-import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
-import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeDefaultGuiFactory;
 
-import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
-import java.util.Date;
 
 import static javafx.application.Application.launch;
 

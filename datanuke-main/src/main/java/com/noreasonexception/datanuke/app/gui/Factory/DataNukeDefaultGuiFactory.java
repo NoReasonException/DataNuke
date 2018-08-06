@@ -1,14 +1,13 @@
-package com.noreasonexception.datanuke.app.gui.Factory;
+package com.noreasonexception.datanuke.app.gui.factory;
 
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
-import com.noreasonexception.datanuke.app.gui.LeftBorder.ClassesTable;
-import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
-import com.noreasonexception.datanuke.app.gui.RightBorder.OptionsTable;
+import com.noreasonexception.datanuke.app.gui.leftBorder.ClassesTable;
+import com.noreasonexception.datanuke.app.gui.menu.MainMenu;
+import com.noreasonexception.datanuke.app.gui.rightBorder.OptionsTable;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 

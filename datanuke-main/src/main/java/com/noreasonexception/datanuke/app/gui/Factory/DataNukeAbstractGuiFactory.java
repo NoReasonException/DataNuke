@@ -1,10 +1,7 @@
-package com.noreasonexception.datanuke.app.gui.Factory;
+package com.noreasonexception.datanuke.app.gui.factory;
 
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
-import com.noreasonexception.datanuke.app.gui.Menu.MainMenu;
 import javafx.scene.Node;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TableView;
 
 
 abstract public class DataNukeAbstractGuiFactory {
