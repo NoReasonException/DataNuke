@@ -154,7 +154,7 @@ public class BinarySearchTree<Key extends Comparable<Key>,Value> {
     protected boolean isRoot(BinarySearchTree.Node n){
         return n==root;
     }
-    ///==================Utills section
+    ///==================utills section
     /***
      * Returns true if the given node is leaf
      * @param n the node to check
