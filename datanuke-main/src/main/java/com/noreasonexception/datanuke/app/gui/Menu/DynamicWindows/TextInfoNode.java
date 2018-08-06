@@ -1,8 +1,8 @@
 package com.noreasonexception.datanuke.app.gui.menu.dynamicwindows;
 
 import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.intefaces.MessageExporter;
+import javafx.scene.control.TextArea;
 
-import java.awt.*;
 
 public class TextInfoNode extends TextArea implements MessageExporter {
     private java.lang.String messagePrefix = null;
@@ -12,7 +12,7 @@ public class TextInfoNode extends TextArea implements MessageExporter {
         setText(getText()+"\n"+messagePrefix+msg);
     }
 
-    public TextInfoNode(java.lang.String prefix) throws HeadlessException {
+    public TextInfoNode(java.lang.String prefix) {
         super();
         messagePrefix=prefix;
     }

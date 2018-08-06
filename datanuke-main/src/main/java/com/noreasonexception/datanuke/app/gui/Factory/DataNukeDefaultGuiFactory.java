@@ -3,6 +3,8 @@ package com.noreasonexception.datanuke.app.gui.factory;
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.gui.leftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.menu.MainMenu;
+import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.TextInfoNode;
+import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.intefaces.MessageExporter;
 import com.noreasonexception.datanuke.app.gui.rightBorder.OptionsTable;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
@@ -12,7 +14,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
 public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
-    private TextArea logWindowTextArea=null;
+
+
+    private TextInfoNode logWindowTextArea=null;
     private final java.lang.String logWindowTextAreaInitialString = "> Log Window Ready...";
 
     public DataNukeDefaultGuiFactory(DataNukeAbstractFactory coreFactory) {
@@ -68,7 +72,7 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
         }
         bottomBox.getChildren().add((logWindowTextArea!=null)?
                                     (logWindowTextArea):
-                                    (logWindowTextArea=new  TextArea(logWindowTextAreaInitialString)));
+                                    (logWindowTextArea=new TextInfoNode("Log>")));
 
         return ;
     }
@@ -84,5 +88,9 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
         getCoreFactory().getThreadRunner().subscribeTaskListener(table.getNextEventTaskListener());
         return table;
 
+    }
+    @Override
+    public MessageExporter getMessageExporter() {
+        return (MessageExporter) logWindowTextArea;
     }
 }
