@@ -29,6 +29,7 @@ abstract public class DataProvider {
             for (int i = 0; i < buff.limit();i++) {
                 stringBuilder.append((char)buff.get());
             }
+
             return stringBuilder.toString();
 
         }

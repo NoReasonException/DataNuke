@@ -146,31 +146,7 @@ public class AbstractThreadRunner implements    Runnable ,
         return getWaitTime(e.getDate().getTime(),System.currentTimeMillis(),e.getInterval());
     }
 
-    /***
-     * Builds a JsonObject using a DataProvider object
-     * @param dataProvider the @see DataProvider Object used to construct the Json String and pass it in JsonObject
-     * @return a JsonObject
-     * @throws NoSuchElementException if DataProvider return no data
-     * @throws JsonParsingException if a JSON object cannot be created due to incorrect representation
-     * @throws JsonException  if a JSON object cannot be created due to i/o error (IOException would be cause of JsonException)
-     */
-    private static JsonObject dataProviderToJsonObject(DataProvider dataProvider) throws ConvertException {
 
-        java.lang.StringBuilder builder = new StringBuilder();
-        String str;
-        JsonObject object;
-        try{
-            str=DataProvider.Utills.DataProviderToString(dataProvider);
-            JsonReader reader= Json.createReader(new StringReader(str));
-            object=reader.readObject();
-        }catch(NoSuchElementException e){throw new ConvertException("DataProvider returned nothing",e);}
-        catch(JsonParsingException e){  throw new ConvertException("Configuration file corrupted",e);}
-        catch(JsonException e){         throw new ConvertException("Configuration load failed due to I/O error",e);}
-
-        return object;
-
-
-    }
 
     /**
      * Loads the fields with proper values loaded by configuration file
@@ -181,7 +157,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private void loadConfiguration() throws ConfigurationLoaderException{
         JsonObject obj;
         try{
-            obj=AbstractThreadRunner.dataProviderToJsonObject(configProvider);
+            obj=Utills.dataProviderToJsonObject(configProvider);
         }
         catch(ConvertException e){throw new ConfigurationLoaderException("Convert DataProvider to JsonObject gone bad :( ",e);}
         initializationTime=obj.getInt("initializationTime");            //remember , values in mils
@@ -199,7 +175,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private void loadSources() throws SourcesLoaderException {
         JsonObject obj;
         try{
-            obj=AbstractThreadRunner.dataProviderToJsonObject(sourceProvider);
+            obj=Utills.dataProviderToJsonObject(sourceProvider);
         }
         catch(ConvertException e){throw new SourcesLoaderException("Convert DataProvider to JsonObject gone bad :(",e);}
         ClassInfo info;
