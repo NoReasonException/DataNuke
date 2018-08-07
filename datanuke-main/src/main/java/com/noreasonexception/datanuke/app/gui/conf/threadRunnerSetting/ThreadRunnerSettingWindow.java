@@ -2,6 +2,7 @@ package com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting;
 
 
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
+import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs.SaveDialog;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -57,11 +58,8 @@ public class ThreadRunnerSettingWindow extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Alert alert= new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information");
-                alert.setGraphic(new ImageView(new Image("file:logos/faviconhd.png")));
-                ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("file:logos/faviconhd.png"));
-                alert.setContentText("Save Completed");
+                Alert alert= new SaveDialog();
+
                 alert.show();
             }
         };
