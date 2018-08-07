@@ -5,12 +5,12 @@ import com.noreasonexception.datanuke.app.gui.leftBorder.ClassesTable;
 import com.noreasonexception.datanuke.app.gui.menu.MainMenu;
 import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.TextInfoNode;
 import com.noreasonexception.datanuke.app.gui.menu.dynamicwindows.intefaces.MessageExporter;
-import com.noreasonexception.datanuke.app.gui.rightBorder.OptionsTable;
+import com.noreasonexception.datanuke.app.gui.rightBorder.UserOptionTable;
+import com.noreasonexception.datanuke.app.gui.utills.OptionsTable;
 import javafx.scene.Node;
 import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 
 public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
@@ -82,7 +82,7 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
     }
     @Override
     public Node getRightBorder() {
-        OptionsTable table=new OptionsTable(this);
+        UserOptionTable table=new UserOptionTable(this);
         getCoreFactory().getThreadRunner().subscribeStateListener(table.getOnOffSwitchStateListener());
         getCoreFactory().getThreadRunner().subscribeStateListener(table.getNextEventStateListener());
         getCoreFactory().getThreadRunner().subscribeTaskListener(table.getNextEventTaskListener());
