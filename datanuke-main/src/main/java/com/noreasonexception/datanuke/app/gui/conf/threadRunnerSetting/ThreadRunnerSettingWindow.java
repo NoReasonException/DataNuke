@@ -35,20 +35,21 @@ public class ThreadRunnerSettingWindow extends Application {
         VBox box=new VBox();
         box.getChildren().add(this.settingView=new ThreadRunnerSettingView(parentFactory));
         box.getChildren().add(new Separator());
-        box.getChildren().add(this.menuNode=getMenuNode());
+        box.getChildren().add(this.menuNode=getMenuNode(primaryStage));
         box.getChildren().add(new Separator());
 
         primaryStage.setScene(new Scene(box,400,200));
         primaryStage.show();
     }
-    public Node getMenuNode(){
+    public Node getMenuNode(Stage parentStage){
         Button button;
         this.saveMenuPane=new BorderPane();
         HBox box=new HBox();
         box.getChildren().add(button=new Button("Save"));
         button.setOnAction(getSaveButtonHandler());
         box.getChildren().add(new Separator());
-        box.getChildren().add(new Button("Cancel"));
+        box.getChildren().add(button=new Button("Cancel"));
+        button.setOnAction(getCancelButtonHandler(parentStage));
         box.getChildren().add(new Separator());
 
         saveMenuPane.setRight(box);
@@ -58,10 +59,21 @@ public class ThreadRunnerSettingWindow extends Application {
         return new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                Alert alert= new SaveDialog();
-
-                alert.show();
+                new SaveDialog().show();
             }
         };
+    }
+    public EventHandler<ActionEvent> getCancelButtonHandler(Stage parentStage){
+        return new EventHandler<ActionEvent>() {
+            private Stage parentStage=null;
+            @Override
+            public void handle(ActionEvent event) {
+                parentStage.close();
+            }
+            public EventHandler<ActionEvent> init(Stage stage){
+                this.parentStage=stage;
+                return this;
+            }
+        }.init(parentStage);
     }
 }
