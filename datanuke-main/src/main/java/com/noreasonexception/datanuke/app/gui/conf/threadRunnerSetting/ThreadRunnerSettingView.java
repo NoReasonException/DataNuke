@@ -29,7 +29,7 @@ public class ThreadRunnerSettingView extends OptionsTable {
             obj=Utills.dataProviderToJsonObject(getParentfactory().getCoreFactory().getThreadRunnersConfigProvider());
             for (String confName:obj.keySet()) {
                 options.add(new DataNukeGuiOption(confName, new Label(String.valueOf(obj.getInt(confName)))));
-                System.out.println(confName);
+
             }
         }
         catch(Exception e){
