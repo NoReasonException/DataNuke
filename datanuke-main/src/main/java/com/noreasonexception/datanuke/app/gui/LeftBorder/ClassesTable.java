@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.leftBorder;
 
+import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.leftBorder.dialogs.ClassInfoDialog;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
@@ -20,7 +21,7 @@ public class ClassesTable extends TableView<ClassInfo> {
     private ObservableList<ClassInfo> items;
     private TableColumn<ClassInfo,String> id;
     private TableColumn<ClassInfo,Button> status;
-
+    private DataNukeAbstractGuiFactory parentFactory=null;
     private TableColumn<ClassInfo,String> getIdColumn(){
         id=new TableColumn<>("ID");
         id.setSortable(false);
@@ -119,12 +120,15 @@ public class ClassesTable extends TableView<ClassInfo> {
                 try {
 
                     ClassInfo i=(ClassInfo) newValue.getTableView().getItems().get(newValue.getRow());
-                    new ClassInfoDialog().setClassInfo(i).start(new Stage());
+                    new ClassInfoDialog().
+                            setClassInfo(i).
+                            setParentFactory(parentFactory).start(new Stage());
                 }catch (Exception e){}
             }
         };
     }
-    public ClassesTable() {
+    public ClassesTable(DataNukeAbstractGuiFactory parentFactory) {
+        this.parentFactory=parentFactory;
         items=FXCollections.observableArrayList();
         setItems(items);
         setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);

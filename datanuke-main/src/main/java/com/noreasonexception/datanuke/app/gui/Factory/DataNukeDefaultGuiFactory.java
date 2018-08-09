@@ -32,7 +32,7 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
 
     @Override
     public Node getLeftBorder() {
-        ClassesTable classesTable = new ClassesTable();
+        ClassesTable classesTable = new ClassesTable(this);
         //make sure that ClassesTable will be able to hear about core changes...
         getCoreFactory().getThreadRunner().subscribeStateListener(classesTable.getCoreStateListener());
         getCoreFactory().getThreadRunner().subscribeTaskListener(classesTable.getCoreTaskListener());
