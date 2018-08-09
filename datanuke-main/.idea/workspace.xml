@@ -21,31 +21,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SettingWindow.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingWindow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="689">
-              <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2381#2382#0" expanded="true" />
-                <element signature="e#2436#2437#0" expanded="true" />
-                <element signature="e#2820#2821#0" expanded="true" />
-                <element signature="e#2856#2857#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SourcesSettingWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/SourcesSettingWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
+            <state relative-caret-position="383">
               <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#562#563#0" expanded="true" />
-                <element signature="e#598#599#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,12 +36,10 @@
       <file leaf-file-name="GeneralSettingsWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/GeneralSettingsWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
+            <state relative-caret-position="340">
               <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#403#404#0" expanded="true" />
-                <element signature="e#439#440#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -68,17 +48,17 @@
       <file leaf-file-name="DataNukeAbstractFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
+            <state relative-caret-position="561">
               <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataNukeDefaultFactory.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DataNukeDefaultFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
+            <state relative-caret-position="289">
+              <caret line="112" column="91" selection-start-line="112" selection-start-column="91" selection-end-line="112" selection-end-column="91" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -94,7 +74,7 @@
       <file leaf-file-name="threadRunnerSources.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/conf/threadRunnerSources.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
+            <state relative-caret-position="4845">
               <caret line="285" column="8" selection-start-line="285" selection-start-column="8" selection-end-line="285" selection-end-column="8" />
             </state>
           </provider>
@@ -103,12 +83,10 @@
       <file leaf-file-name="ThreadRunnerSettingWindow.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
+            <state relative-caret-position="391">
               <caret line="34" column="80" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#564#565#0" expanded="true" />
-                <element signature="e#600#601#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -117,17 +95,29 @@
       <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="-731">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingView.java">
+      <file leaf-file-name="ClassesTable.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="32" column="94" selection-start-line="32" selection-start-column="94" selection-end-line="32" selection-end-column="94" />
+            <state relative-caret-position="374">
+              <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassInfoDialog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,7 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerTaskObservable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerTaskListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/TaskEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/AbstractParser.java" />
@@ -189,7 +178,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/dynamicwindows/intefaces/MessageExporter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/factory/DataNukeAbstractGuiFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/rightBorder/OptionsTable.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/staticWindows/AboutDialog.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/ThreadRunnerSettingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/factory/DataNukeDefaultGuiFactory.java" />
@@ -206,13 +194,15 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingWindow.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingView.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/SourcesSettingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/GeneralSettingsWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java" />
       </list>
     </option>
   </component>
@@ -243,8 +233,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -377,6 +365,29 @@
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="leftBorder" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+              <item name="leftBorder" type="462c0819:PsiDirectoryNode" />
+              <item name="dialogs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
               <item name="menu" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -392,7 +403,9 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -755,27 +768,28 @@
       <workItem from="1533204175293" duration="3645000" />
       <workItem from="1533589587329" duration="11757000" />
       <workItem from="1533810563163" duration="4373000" />
+      <workItem from="1533815303465" duration="3557000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308056000" />
+    <option name="totallyTimeSpent" value="311613000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.2" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.2" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50078124" side_tool="true" weight="0.23502825" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5015625" side_tool="true" visible="true" weight="0.26327685" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49921876" weight="0.26327685" />
-      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3296875" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4984375" visible="true" weight="0.26327685" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
@@ -791,23 +805,24 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28338763" />
       <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01015625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -817,13 +832,13 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3984799" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.20124805" />
       <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01015625" />
+      <window_info id="Favorites" order="5" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -845,13 +860,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/ThreadRunnerStateObservable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/etc/TaskEvent.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -955,13 +963,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="50" lean-forward="true" selection-start-line="3" selection-start-column="50" selection-end-line="3" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -1099,9 +1100,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="103" selection-start-line="11" selection-start-column="103" selection-end-line="11" selection-end-column="103" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1112,20 +1110,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#456#457#0" expanded="true" />
-            <element signature="e#483#484#0" expanded="true" />
-            <element signature="e#557#558#0" expanded="true" />
-            <element signature="e#587#588#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingView.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/utills/OptionsTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1136,30 +1121,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="689">
+        <state relative-caret-position="1020">
           <caret line="76" column="13" selection-start-line="76" selection-start-column="13" selection-end-line="76" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2381#2382#0" expanded="true" />
-            <element signature="e#2436#2437#0" expanded="true" />
-            <element signature="e#2820#2821#0" expanded="true" />
-            <element signature="e#2856#2857#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/SettingView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
+        <state relative-caret-position="238">
           <caret line="32" column="94" selection-start-line="32" selection-start-column="94" selection-end-line="32" selection-end-column="94" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1169,32 +1143,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/ThreadRunnerSettingWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
+        <state relative-caret-position="391">
           <caret line="34" column="80" selection-start-line="34" selection-start-column="80" selection-end-line="34" selection-end-column="80" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#564#565#0" expanded="true" />
-            <element signature="e#600#601#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/conf/threadRunnerSources.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
+        <state relative-caret-position="4845">
           <caret line="285" column="8" selection-start-line="285" selection-start-column="8" selection-end-line="285" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/SourcesSettingWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#562#563#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1203,30 +1163,65 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
+        <state relative-caret-position="561">
           <caret line="40" column="75" selection-start-line="40" selection-start-column="75" selection-end-line="40" selection-end-column="75" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/GeneralSettingsWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
+        <state relative-caret-position="340">
           <caret line="30" column="64" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="112" column="24" selection-start-line="112" selection-start-column="24" selection-end-line="112" selection-end-column="24" />
+        <state relative-caret-position="289">
+          <caret line="112" column="91" selection-start-line="112" selection-start-column="91" selection-end-line="112" selection-end-column="91" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-731">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/threadRunnerSetting/ThreadRunnerSettingWindow/SourcesSettingWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="35" column="27" selection-start-line="35" selection-start-column="27" selection-end-line="35" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="122" column="37" lean-forward="true" selection-start-line="122" selection-start-column="37" selection-end-line="122" selection-end-column="37" />
         </state>
       </provider>
     </entry>

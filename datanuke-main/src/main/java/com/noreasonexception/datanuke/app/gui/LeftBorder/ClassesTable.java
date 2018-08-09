@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.leftBorder;
 
+import com.noreasonexception.datanuke.app.gui.leftBorder.dialogs.ClassInfoDialog;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
@@ -12,6 +13,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 public class ClassesTable extends TableView<ClassInfo> {
@@ -110,12 +112,27 @@ public class ClassesTable extends TableView<ClassInfo> {
         });
         return status;
     }
+    protected ChangeListener<TablePosition> getFocusedChangeListener(){
+        return new ChangeListener<TablePosition>() {
+            @Override
+            public void changed(ObservableValue<? extends TablePosition> observable, TablePosition oldValue, TablePosition newValue) {
+                try {
+
+                    ClassInfo i=(ClassInfo) newValue.getTableView().getItems().get(newValue.getRow());
+                    new ClassInfoDialog().setClassInfo(i).start(new Stage());
+                }catch (Exception e){}
+            }
+        };
+    }
     public ClassesTable() {
         items=FXCollections.observableArrayList();
         setItems(items);
         setColumnResizePolicy(CONSTRAINED_RESIZE_POLICY);
+        getFocusModel().focusedCellProperty().addListener(getFocusedChangeListener());
         getColumns().addAll(getIdColumn(),
                             getStatusColumn());
+
+
 
     }
     public ThreadRunnerTaskListener getCoreTaskListener(){
@@ -135,4 +152,5 @@ public class ClassesTable extends TableView<ClassInfo> {
             }
         };
     }
+
 }
