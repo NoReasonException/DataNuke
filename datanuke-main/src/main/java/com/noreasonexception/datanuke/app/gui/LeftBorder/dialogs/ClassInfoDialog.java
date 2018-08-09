@@ -1,5 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.leftBorder.dialogs;
 
+import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs.SaveDialog;
+import com.noreasonexception.datanuke.app.gui.etc.SaveOrCancelNode;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
 import com.noreasonexception.datanuke.app.gui.utills.OptionsTable;
@@ -8,17 +10,19 @@ import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.DateCell;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 
 public class ClassInfoDialog extends Application {
@@ -28,20 +32,43 @@ public class ClassInfoDialog extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox box= new VBox();
         box.getChildren().add(getConfigurationArea());
+        box.getChildren().add(new DatePicker());
         box.getChildren().add(new Separator());
-        box.getChildren().add(getButtonArea());
+        box.getChildren().add(getButtonArea(primaryStage));
         primaryStage.setScene(new Scene(box,700,300));
         primaryStage.show();
 
 
     }
-    public Node getButtonArea(){
-        BorderPane pane=new BorderPane();
-        HBox box = new HBox();
-        box.getChildren().add(new Button("Save"));
-        box.getChildren().add(new Button("Cancel"));
-        pane.setRight(box);
-        return pane;
+    public Node getButtonArea(Stage primaryStage) {
+        return new SaveOrCancelNode(primaryStage) {
+            @Override
+            public EventHandler<ActionEvent> getSaveButtonHandler() {
+                return new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        new SaveDialog().show();
+                    }
+                };
+            }
+
+            @Override
+            public EventHandler<ActionEvent> getCancelButtonHandler(Stage parentStage) {
+                return new EventHandler<ActionEvent>() {
+                    private Stage parentStage = null;
+
+                    @Override
+                    public void handle(ActionEvent event) {
+                        parentStage.close();
+                    }
+
+                    public EventHandler<ActionEvent> init(Stage stage) {
+                        this.parentStage = stage;
+                        return this;
+                    }
+                }.init(parentStage);
+            }
+        };
     }
     public Node getConfigurationArea(){
         return new OptionsTable(parentFactory) {
@@ -65,10 +92,12 @@ public class ClassInfoDialog extends Application {
             }
             public Node getNextEventArea(){
                 HBox box=new HBox();
-                box.getChildren().add(new Label(new Date(Utills.getDeadline(
-                        info.getDate().getTime(),System.currentTimeMillis(),info.getInterval())).toString()));
-                box.getChildren().add(new Separator());
-                box.getChildren().add(new Button("Change"));
+                Date next=new Date(Utills.getDeadline(
+                        info.getDate().getTime(),System.currentTimeMillis(),info.getInterval()));
+                LocalDate localDate;
+                box.getChildren().add(new DatePicker(localDate=Instant.ofEpochMilli(next.getTime()).atZone(ZoneId.systemDefault()).toLocalDate()));
+
+
                 return box;
             }
         };
