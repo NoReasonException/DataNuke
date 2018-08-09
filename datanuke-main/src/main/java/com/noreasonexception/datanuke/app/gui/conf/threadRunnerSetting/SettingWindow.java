@@ -1,7 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting;
 
 
-import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs.SaveDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.SaveDialog;
 import com.noreasonexception.datanuke.app.gui.etc.SaveOrCancelNode;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import javafx.application.Application;
@@ -11,8 +11,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 

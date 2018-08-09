@@ -1,6 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.leftBorder.dialogs;
 
-import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs.SaveDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.InvalidFieldsError;
+import com.noreasonexception.datanuke.app.gui.dialog.SaveDialog;
 import com.noreasonexception.datanuke.app.gui.etc.SaveOrCancelNode;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
@@ -15,23 +16,32 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
+import java.time.*;
 import java.util.Date;
 
 public class ClassInfoDialog extends Application {
     ClassInfo info=null;
     DataNukeAbstractGuiFactory parentFactory=null;
+    TableView<DataNukeGuiOption> optionTableView = null;
+
+    private static String IDString="ID";
+    private static Integer IDIndex=0;
+
+
+    private static String NameString="Name";
+    private static Integer NameIndex=1;
+
+
+    private static String NextEventString="Next Event";
+    private static Integer NextEventIndex=2;
     @Override
     public void start(Stage primaryStage) throws Exception {
         VBox box= new VBox();
-        box.getChildren().add(getConfigurationArea());
+        box.getChildren().add(optionTableView=(TableView<DataNukeGuiOption>)getConfigurationArea());
         box.getChildren().add(new DatePicker());
         box.getChildren().add(new Separator());
         box.getChildren().add(getButtonArea(primaryStage));
@@ -47,6 +57,23 @@ public class ClassInfoDialog extends Application {
                 return new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
+                        HBox h=(HBox)optionTableView.getColumns().get(1).getCellData(NextEventIndex);
+                        LocalDate newDate=((DatePicker)h.getChildren().get(0)).getValue();
+                        HBox dateTimeBox=(HBox) h.getChildren().get(2);
+                        Integer newTimeHour;
+                        Integer newTimeMins;
+                        try {
+                           newTimeHour=Integer.valueOf(((TextField)dateTimeBox.getChildren().get(0)).getText());
+                           newTimeMins=Integer.valueOf(((TextField)dateTimeBox.getChildren().get(4)).getText());
+
+                        }catch (NumberFormatException e){
+                           new InvalidFieldsError().show();
+                            return;
+                        }
+                        if(newTimeHour>23||newTimeMins>59){
+                            new InvalidFieldsError().show();
+                            return;
+                        }
                         new SaveDialog().show();
                     }
                 };
@@ -75,32 +102,51 @@ public class ClassInfoDialog extends Application {
             @Override
             protected ObservableList<DataNukeGuiOption> getOptions() {
                 ObservableList<DataNukeGuiOption> options=FXCollections.observableArrayList();
-                options.add(new DataNukeGuiOption("ID",getIDArea()));
-                options.add(new DataNukeGuiOption("Name",getNameArea()));
-                options.add(new DataNukeGuiOption("Interval",getIntervalArea()));
-                options.add(new DataNukeGuiOption("Next Event",getNextEventArea()));
+                options.add(new DataNukeGuiOption(IDString,getIDArea()));
+                options.add(new DataNukeGuiOption(NameString,getNameArea()));
+                options.add(new DataNukeGuiOption(NextEventString,getNextEventArea()));
                 return options;
             }
+
+
             public Node getIDArea(){
                 return new Label(info.getID());
             }
             public Node getNameArea(){
                 return new Label(info.getClassname());
             }
-            public Node getIntervalArea(){
-                return new Label(String.valueOf(info.getInterval()));
-            }
             public Node getNextEventArea(){
                 HBox box=new HBox();
                 Date next=new Date(Utills.getDeadline(
                         info.getDate().getTime(),System.currentTimeMillis(),info.getInterval()));
                 LocalDate localDate;
-                box.getChildren().add(new DatePicker(localDate=Instant.ofEpochMilli(next.getTime()).atZone(ZoneId.systemDefault()).toLocalDate()));
-
+                LocalDateTime localDateTime;
+                box.getChildren().add(getDateEditNode(next.getTime()));
+                localDateTime=Instant.ofEpochMilli(next.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+                box.getChildren().add(new Separator());
+                box.getChildren().add(getTimeEditNode(localDateTime.getHour(),localDateTime.getMinute()));
 
                 return box;
             }
+            public Node getDateEditNode(long mills){
+                DatePicker p=new DatePicker((Instant.ofEpochMilli(mills).
+                        atZone(ZoneId.systemDefault()).toLocalDate()));
+                p.setEditable(false);
+                return p;
+            }
+            public Node getTimeEditNode(int hour,int mins){
+                HBox box=new HBox();
+                TextField tmp;
+                box.getChildren().add(tmp=new TextField(String.valueOf(hour)));
+                box.getChildren().add(new Separator());
+                box.getChildren().add(new Label(":"));
+                box.getChildren().add(new Separator());
+                box.getChildren().add(new TextField(String.valueOf(mins)));
+                box.getChildren().add(new Separator());
+                return box;
+            }
         };
+
     }
 
     public ClassInfoDialog setClassInfo(ClassInfo info){

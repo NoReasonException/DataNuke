@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs;
+package com.noreasonexception.datanuke.app.gui.dialog;
 
 import com.noreasonexception.datanuke.app.gui.dialog.AbstractDataNukeDialog;
 
