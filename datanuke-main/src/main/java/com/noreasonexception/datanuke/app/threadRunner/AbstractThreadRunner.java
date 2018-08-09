@@ -76,6 +76,12 @@ public class AbstractThreadRunner implements    Runnable ,
         return (randomGenerator.nextInt()%5)+5;
     }
 
+    public Date getScheduledStart() {
+        return scheduledStart;
+    }
+
+
+
 
 
 

@@ -3,6 +3,7 @@ package com.noreasonexception.datanuke.app.gui.leftBorder.dialogs;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
 import com.noreasonexception.datanuke.app.gui.utills.OptionsTable;
+import com.noreasonexception.datanuke.app.threadRunner.Utills;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -18,6 +19,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.Date;
+
 public class ClassInfoDialog extends Application {
     ClassInfo info=null;
     DataNukeAbstractGuiFactory parentFactory=null;
@@ -27,7 +30,7 @@ public class ClassInfoDialog extends Application {
         box.getChildren().add(getConfigurationArea());
         box.getChildren().add(new Separator());
         box.getChildren().add(getButtonArea());
-        primaryStage.setScene(new Scene(box,200,200));
+        primaryStage.setScene(new Scene(box,700,300));
         primaryStage.show();
 
 
@@ -48,7 +51,7 @@ public class ClassInfoDialog extends Application {
                 options.add(new DataNukeGuiOption("ID",getIDArea()));
                 options.add(new DataNukeGuiOption("Name",getNameArea()));
                 options.add(new DataNukeGuiOption("Interval",getIntervalArea()));
-                options.add(new DataNukeGuiOption("Previous Event",getPreviousEventArea()));
+                options.add(new DataNukeGuiOption("Next Event",getNextEventArea()));
                 return options;
             }
             public Node getIDArea(){
@@ -60,8 +63,13 @@ public class ClassInfoDialog extends Application {
             public Node getIntervalArea(){
                 return new Label(String.valueOf(info.getInterval()));
             }
-            public Node getPreviousEventArea(){
-                return new Label(info.getDate().toString());
+            public Node getNextEventArea(){
+                HBox box=new HBox();
+                box.getChildren().add(new Label(new Date(Utills.getDeadline(
+                        info.getDate().getTime(),System.currentTimeMillis(),info.getInterval())).toString()));
+                box.getChildren().add(new Separator());
+                box.getChildren().add(new Button("Change"));
+                return box;
             }
         };
     }
