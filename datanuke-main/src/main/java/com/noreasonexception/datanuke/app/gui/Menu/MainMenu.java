@@ -1,6 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.menu;
 
-import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.ThreadRunnerSettingWindow;
+import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.SettingWindow;
+import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.ThreadRunnerSettingWindow.ThreadRunnerSettingWindow;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeDefaultGuiFactory;
 import com.noreasonexception.datanuke.app.gui.menu.staticWindows.AboutDialog;

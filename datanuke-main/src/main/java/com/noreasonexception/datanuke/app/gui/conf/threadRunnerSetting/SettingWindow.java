@@ -1,30 +1,26 @@
 package com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting;
 
 
-import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.dialogs.SaveDialog;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ThreadRunnerSettingWindow extends Application {
+abstract public class SettingWindow extends Application {
     private DataNukeAbstractGuiFactory parentFactory=null;
     BorderPane saveMenuPane;
     Node menuNode;
-    ThreadRunnerSettingView settingView;
-    public ThreadRunnerSettingWindow(DataNukeAbstractGuiFactory parentFactory) {
+    SettingView settingView;
+    public SettingWindow(DataNukeAbstractGuiFactory parentFactory) {
         this.parentFactory=parentFactory;
 
     }
@@ -33,7 +29,7 @@ public class ThreadRunnerSettingWindow extends Application {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
         VBox box=new VBox();
-        box.getChildren().add(this.settingView=new ThreadRunnerSettingView(parentFactory));
+        box.getChildren().add(this.settingView=onSettingViewGet());
         box.getChildren().add(new Separator());
         box.getChildren().add(this.menuNode=getMenuNode(primaryStage));
         box.getChildren().add(new Separator());
@@ -75,5 +71,10 @@ public class ThreadRunnerSettingWindow extends Application {
                 return this;
             }
         }.init(parentStage);
+    }
+    abstract protected SettingView onSettingViewGet();
+
+    protected DataNukeAbstractGuiFactory getParentFactory() {
+        return parentFactory;
     }
 }

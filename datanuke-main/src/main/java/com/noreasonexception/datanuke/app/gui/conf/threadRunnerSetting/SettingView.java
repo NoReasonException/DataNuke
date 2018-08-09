@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting;
 
+import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
 import com.noreasonexception.datanuke.app.gui.utills.OptionsTable;
@@ -16,8 +17,8 @@ import javax.json.JsonObject;
 import java.io.IOException;
 import java.util.Date;
 
-public class ThreadRunnerSettingView extends OptionsTable {
-    public ThreadRunnerSettingView(DataNukeAbstractGuiFactory factory) {
+abstract public class SettingView extends OptionsTable {
+    public SettingView(DataNukeAbstractGuiFactory factory) {
         super(factory);
     }
 
@@ -26,10 +27,9 @@ public class ThreadRunnerSettingView extends OptionsTable {
         ObservableList<DataNukeGuiOption> options = FXCollections.observableArrayList();
         JsonObject obj;
         try{
-            obj=Utills.dataProviderToJsonObject(getParentfactory().getCoreFactory().getThreadRunnersConfigProvider());
+            obj=Utills.dataProviderToJsonObject(onDataProviderGet());
             for (String confName:obj.keySet()) {
                 options.add(new DataNukeGuiOption(confName, new Label(String.valueOf(obj.getInt(confName)))));
-
             }
         }
         catch(Exception e){
@@ -38,5 +38,8 @@ public class ThreadRunnerSettingView extends OptionsTable {
 
         return options;
     }
+
+    abstract public DataProvider onDataProviderGet();
+
 
 }
