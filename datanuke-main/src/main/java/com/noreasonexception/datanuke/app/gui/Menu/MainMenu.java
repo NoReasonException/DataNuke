@@ -1,6 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.menu;
 
-import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.SettingWindow;
+import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.ThreadRunnerSettingWindow.GeneralSettingsWindow;
 import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.ThreadRunnerSettingWindow.SourcesSettingWindow;
 import com.noreasonexception.datanuke.app.gui.conf.threadRunnerSetting.ThreadRunnerSettingWindow.ThreadRunnerSettingWindow;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
@@ -59,6 +59,16 @@ public class MainMenu extends MenuBar {
     public Menu optionsMenuInitializer(){
         optionsMenu=new Menu(optionsMenuString);
         optionsMenu.getItems().add(optionsMenu_GeneralSettings=new MenuItem(optionsMenuString_GeneralSettings));
+        optionsMenu_GeneralSettings.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                    new GeneralSettingsWindow(parentFactory).start(new Stage());
+                }catch (Exception e){
+
+                }
+            }
+        });
         optionsMenu.getItems().add(optionsMenu_SourceSettings=new MenuItem(optionsMenuString_SourcesSettings));
         optionsMenu_SourceSettings.setOnAction(new EventHandler<ActionEvent>() {
             @Override
