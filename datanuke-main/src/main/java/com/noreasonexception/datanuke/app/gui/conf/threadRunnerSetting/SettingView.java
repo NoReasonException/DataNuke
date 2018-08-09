@@ -10,6 +10,7 @@ import com.noreasonexception.datanuke.app.threadRunner.error.ConfigurationLoader
 import com.noreasonexception.datanuke.app.threadRunner.error.ConvertException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -29,7 +30,7 @@ abstract public class SettingView extends OptionsTable {
         try{
             obj=Utills.dataProviderToJsonObject(onDataProviderGet());
             for (String confName:obj.keySet()) {
-                options.add(new DataNukeGuiOption(confName, new Label(String.valueOf(obj.getInt(confName)))));
+                options.add(new DataNukeGuiOption(confName, onNodeGetByOptionName(confName,obj)));
             }
         }
         catch(Exception e){
@@ -40,6 +41,7 @@ abstract public class SettingView extends OptionsTable {
     }
 
     abstract public DataProvider onDataProviderGet();
+    abstract public Node onNodeGetByOptionName(String optionName,JsonObject jsonObject);
 
 
 }
