@@ -8,7 +8,6 @@ import javafx.stage.Stage;
 public class AbstractDataNukeDialog extends Alert {
     public AbstractDataNukeDialog(AlertType alertType) {
         super(alertType);
-        this.setGraphic(new ImageView(new Image("file:logos/faviconhd.png")));
         ((Stage)this.getDialogPane().getScene().getWindow()).getIcons().add(new Image("file:logos/size7.png"));
 
     }

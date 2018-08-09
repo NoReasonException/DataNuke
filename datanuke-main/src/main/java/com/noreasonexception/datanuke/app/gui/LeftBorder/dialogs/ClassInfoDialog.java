@@ -2,6 +2,7 @@ package com.noreasonexception.datanuke.app.gui.leftBorder.dialogs;
 
 import com.noreasonexception.datanuke.app.gui.dialog.InvalidFieldsError;
 import com.noreasonexception.datanuke.app.gui.dialog.SaveDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.UnknownIOErrorDialog;
 import com.noreasonexception.datanuke.app.gui.etc.SaveOrCancelNode;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
@@ -20,7 +21,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import java.time.*;
+import java.util.Arrays;
 import java.util.Date;
 
 public class ClassInfoDialog extends Application {
@@ -42,7 +48,6 @@ public class ClassInfoDialog extends Application {
     public void start(Stage primaryStage) throws Exception {
         VBox box= new VBox();
         box.getChildren().add(optionTableView=(TableView<DataNukeGuiOption>)getConfigurationArea());
-        box.getChildren().add(new DatePicker());
         box.getChildren().add(new Separator());
         box.getChildren().add(getButtonArea(primaryStage));
         primaryStage.setScene(new Scene(box,700,300));
@@ -62,6 +67,18 @@ public class ClassInfoDialog extends Application {
                         HBox dateTimeBox=(HBox) h.getChildren().get(2);
                         Integer newTimeHour;
                         Integer newTimeMins;
+                        JsonObject obj;
+                        try{
+
+                            obj=Utills.dataProviderToJsonObject(
+                                    parentFactory.getCoreFactory().getThreadRunnersSourceProvider()
+                            );
+                        }catch (Exception e){
+                            new UnknownIOErrorDialog().show();
+                            return;
+                        }
+
+                        long nextInterval;
                         try {
                            newTimeHour=Integer.valueOf(((TextField)dateTimeBox.getChildren().get(0)).getText());
                            newTimeMins=Integer.valueOf(((TextField)dateTimeBox.getChildren().get(4)).getText());
@@ -74,6 +91,35 @@ public class ClassInfoDialog extends Application {
                             new InvalidFieldsError().show();
                             return;
                         }
+                        LocalDateTime localDateTime=LocalDateTime.of(newDate.getYear(),
+                                                                    newDate.getMonth(),
+                                                                    newDate.getDayOfMonth(),
+                                                                    newTimeHour,
+                                                                    newTimeMins);
+
+                        String className=((Label)(optionTableView.getItems().get(1).getNode())).getText();
+
+
+
+                        JsonArrayBuilder builder=javax.json.Json.createArrayBuilder();
+                        builder.add((String.valueOf(System.currentTimeMillis())));
+
+                        builder.add((
+                                String.valueOf(
+                                        localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()-
+                                                System.currentTimeMillis())));
+
+                        JsonObjectBuilder rebuilder = Json.createObjectBuilder();
+                        for (String k:
+                             obj.keySet()) {
+                            if(className.equals(k))continue;
+                            rebuilder.add(k,obj.get(k));
+                        }
+                        rebuilder.add(className,builder.build());
+
+                        obj=rebuilder.build();
+                        System.out.println(System.currentTimeMillis());
+                        System.out.println(obj.toString());
                         new SaveDialog().show();
                     }
                 };

@@ -33,8 +33,9 @@
       <dependency>
           <groupId>javax.json</groupId>
           <artifactId>javax.json-api</artifactId>
-          <version>1.1.2</version>
+          <version>1.1</version>
       </dependency>
+
       <dependency>
           <groupId>org.glassfish</groupId>
           <artifactId>javax.json</artifactId>
