@@ -14,18 +14,18 @@ import java.util.Date;
 public class ThreadRunnerStaticTests {
     @Test
     public void millsToSecTest(){
-        assertEquals(AbstractThreadRunner.millsToSec(1000),1);
+        assertEquals(Utills.millsToSec(1000),1);
     }
 
     @Test
     public void secToMillsTest(){
-        assertEquals(AbstractThreadRunner.secToMills(1),1000);
+        assertEquals(Utills.secToMills(1),1000);
 
     }
 
     @Test
     public void getRemainingTimeTest() throws ThreadRunnerStaticTestException{
-        if(AbstractThreadRunner.getRemainingTime(System.currentTimeMillis()+1500)<1400){
+        if(Utills.getRemainingTime(System.currentTimeMillis()+1500)<1400){
             throw new ThreadRunnerStaticTestException("getRemainingTime failed in the .getRemainingTimeTest() Test");
         }
     }
@@ -33,7 +33,7 @@ public class ThreadRunnerStaticTests {
     @Test
     public void getDeadlineTest(){
         long i;
-        assertEquals(AbstractThreadRunner.getDeadline((i=System.currentTimeMillis())-1500,i,500),
+        assertEquals(Utills.getDeadline((i=System.currentTimeMillis())-1500,i,500),
                 i+500);
     }
 
@@ -42,7 +42,7 @@ public class ThreadRunnerStaticTests {
     @Test
     public void getWaitTimeTest(){
         long i;
-        assertEquals(AbstractThreadRunner.getWaitTime((i=System.currentTimeMillis())-1500,i,500),
+        assertEquals(Utills.getWaitTime((i=System.currentTimeMillis())-1500,i,500),
                 500);
     }
 

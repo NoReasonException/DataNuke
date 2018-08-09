@@ -45,30 +45,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DataNukeDefaultFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="112" column="91" selection-start-line="112" selection-start-column="91" selection-end-line="112" selection-end-column="91" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainMenu.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/MainMenu.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ClassesTable.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -123,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClassInfoDialog.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ClassInfoDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="145">
-              <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+            <state relative-caret-position="242">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1753#1754#0" expanded="true" />
@@ -139,6 +115,27 @@
                 <element signature="e#2098#2099#0" expanded="true" />
                 <element signature="e#2147#2148#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AbstractThreadRunner.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Utills.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/Utills.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -200,8 +197,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/conf/ThreadRunnerSettingWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/utills/OptionsTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/menu/dynamicwindows/TextInfoNode.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/Utills.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/rightBorder/UserOptionTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/DataProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/dialogs/AbstractDataNukeDialog.java" />
@@ -221,6 +216,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/factory/DataNukeDefaultGuiFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/ClassesTable.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/Utills.java" />
       </list>
     </option>
   </component>
@@ -257,16 +254,6 @@
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
               <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="logos" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
@@ -318,111 +305,13 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="dataProvider" type="462c0819:PsiDirectoryNode" />
+              <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
               <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="threadRunnerSetting" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="threadRunnerSetting" type="462c0819:PsiDirectoryNode" />
-              <item name="ThreadRunnerSettingWindow" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="dialog" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="leftBorder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="leftBorder" type="462c0819:PsiDirectoryNode" />
-              <item name="dialogs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
@@ -797,12 +686,12 @@
       <workItem from="1533204175293" duration="3645000" />
       <workItem from="1533589587329" duration="11757000" />
       <workItem from="1533810563163" duration="4373000" />
-      <workItem from="1533815303465" duration="5213000" />
+      <workItem from="1533815303465" duration="5575000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="313269000" />
+    <option name="totallyTimeSpent" value="313631000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1296" height="1000" extended-state="6" />
@@ -814,16 +703,16 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.503125" side_tool="true" visible="true" weight="0.26327685" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50078124" side_tool="true" weight="0.26892656" />
       <window_info anchor="right" id="Maven Projects" order="7" />
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.496875" visible="true" weight="0.26327685" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.496875" weight="0.26327685" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26015624" />
-      <window_info anchor="bottom" id="Statistic" order="12" weight="0.26892656" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26015624" />
+      <window_info anchor="bottom" id="Statistic" order="12" sideWeight="0.49921876" weight="0.26892656" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1033,16 +922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-758">
-          <caret line="122" column="15" selection-start-line="122" selection-start-column="15" selection-end-line="122" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/rightBorder/UserOptionTable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -1052,13 +931,6 @@
             <element signature="e#326#327#0" expanded="true" />
             <element signature="e#356#357#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/Utills.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="28" column="56" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -1246,8 +1118,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="145">
-          <caret line="26" column="50" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+        <state relative-caret-position="242">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1753#1754#0" expanded="true" />
@@ -1258,6 +1130,23 @@
             <element signature="e#2015#2016#0" expanded="true" />
             <element signature="e#2098#2099#0" expanded="true" />
             <element signature="e#2147#2148#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/Utills.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="53" column="34" selection-start-line="53" selection-start-column="34" selection-end-line="53" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
