@@ -7,7 +7,11 @@ public class SaveDialog extends AbstractDataNukeDialog {
         super(AlertType.INFORMATION);
         this.setTitle("Operation completed");
         this.setHeaderText(null);
-        this.setContentText("Save Completed");
+        this.setContentText("Save Completed.");
 
+    }
+    public SaveDialog setAdditionalMessage(String str){
+        this.setContentText(this.getContentText()+" "+str);
+        return this;
     }
 }

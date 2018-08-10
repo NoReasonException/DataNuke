@@ -134,7 +134,8 @@ public class ClassInfoDialog extends Application {
                             return;
 
                         }
-                        new SaveDialog().show();
+                        new SaveDialog().
+                                setAdditionalMessage("In order the changes to take effect , it is essential to restart your program").show();
                     }
                 };
             }
