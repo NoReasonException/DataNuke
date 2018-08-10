@@ -29,6 +29,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.*;
 import java.util.Arrays;
@@ -113,6 +114,7 @@ public class ClassInfoDialog extends Application {
                                 String.valueOf(
                                         localDateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()-
                                                 System.currentTimeMillis())));
+                        builder.add(((Label)optionTableView.getItems().get(0).getNode()).getText());
 
                         JsonObjectBuilder rebuilder = Json.createObjectBuilder();
                         for (String k:
@@ -127,7 +129,7 @@ public class ClassInfoDialog extends Application {
                             DataProvider.Utills.writeDataProviderToFile(
                                     DataProvider.Utills.jsonObjectToDataProvider(obj), Paths.get(parentFactory.getCoreFactory().getThreadRunnersSourceProviderFile()));
 
-                        }catch (ConvertException e){
+                        }catch (IOException|ConvertException e){
                             new UnknownIOErrorDialog("Convert of json To DataProvider failed").show();
                             return;
 

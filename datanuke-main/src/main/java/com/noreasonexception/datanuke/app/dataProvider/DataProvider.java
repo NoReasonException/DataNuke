@@ -7,10 +7,14 @@ import javax.json.JsonException;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 import javax.json.stream.JsonParsingException;
+import java.io.IOException;
 import java.io.StringReader;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.channels.SeekableByteChannel;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -43,8 +47,9 @@ abstract public class DataProvider {
 
         }
 
-        public static void writeDataProviderToFile(DataProvider provider, Path file){
-
+        public static void writeDataProviderToFile(DataProvider provider, Path file)throws IOException{
+            SeekableByteChannel channel= Files.newByteChannel(file,StandardOpenOption.WRITE,StandardOpenOption.TRUNCATE_EXISTING);
+            channel.write((ByteBuffer) provider.provide().get());
         }
         /***
          * Builds a JsonObject using a DataProvider object
