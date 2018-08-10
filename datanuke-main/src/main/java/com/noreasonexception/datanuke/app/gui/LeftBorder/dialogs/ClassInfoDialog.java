@@ -29,6 +29,7 @@ import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
 import javax.xml.crypto.Data;
+import java.nio.file.Paths;
 import java.time.*;
 import java.util.Arrays;
 import java.util.Date;
@@ -124,8 +125,7 @@ public class ClassInfoDialog extends Application {
                         try {
 
                             DataProvider.Utills.writeDataProviderToFile(
-                                    DataProvider.Utills.jsonObjectToDataProvider(obj)
-                            );
+                                    DataProvider.Utills.jsonObjectToDataProvider(obj), Paths.get(parentFactory.getCoreFactory().getThreadRunnersSourceProviderFile()));
 
                         }catch (ConvertException e){
                             new UnknownIOErrorDialog("Convert of json To DataProvider failed").show();

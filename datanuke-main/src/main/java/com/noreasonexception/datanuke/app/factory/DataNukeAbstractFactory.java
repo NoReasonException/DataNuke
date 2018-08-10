@@ -37,8 +37,11 @@ abstract public class DataNukeAbstractFactory {
      * @return a @see DataProvider
      * @throws IOException
      */
+    abstract public String                  getThreadRunnersConfigProviderFile();
     abstract public DataProvider            getThreadRunnersSourceProvider() throws IOException;
-    abstract public DataProvider            getFactoryDefaultConfigProvider() throws IOException;
+    abstract public String                  getThreadRunnersSourceProviderFile();
+
+    abstract public DataProvider            getFactoryConfigProvider() throws IOException;
 
     abstract public Random                  getThreadRunnersRandomGenerator() throws Exception;
 

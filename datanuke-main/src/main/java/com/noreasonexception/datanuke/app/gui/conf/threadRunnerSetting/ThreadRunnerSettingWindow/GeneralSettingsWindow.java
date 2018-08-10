@@ -21,7 +21,7 @@ public class GeneralSettingsWindow extends SettingWindow {
             @Override
             public DataProvider onDataProviderGet() {
                 try {
-                    return getParentFactory().getCoreFactory().getFactoryDefaultConfigProvider();
+                    return getParentFactory().getCoreFactory().getFactoryConfigProvider();
 
                 }catch (IOException e){e.printStackTrace();return null;}
             }

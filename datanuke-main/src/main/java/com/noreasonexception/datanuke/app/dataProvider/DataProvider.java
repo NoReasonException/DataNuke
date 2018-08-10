@@ -10,6 +10,7 @@ import javax.json.stream.JsonParsingException;
 import java.io.StringReader;
 import java.nio.Buffer;
 import java.nio.ByteBuffer;
+import java.nio.file.Path;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ abstract public class DataProvider {
 
         }
 
-        public static void writeDataProviderToFile(DataProvider provider){
+        public static void writeDataProviderToFile(DataProvider provider, Path file){
 
         }
         /***
