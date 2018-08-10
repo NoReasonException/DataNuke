@@ -28,7 +28,7 @@ abstract public class SettingView extends OptionsTable {
         ObservableList<DataNukeGuiOption> options = FXCollections.observableArrayList();
         JsonObject obj;
         try{
-            obj=Utills.dataProviderToJsonObject(onDataProviderGet());
+            obj=DataProvider.Utills.dataProviderToJsonObject(onDataProviderGet());
             for (String confName:obj.keySet()) {
                 options.add(new DataNukeGuiOption(confName, onNodeGetByOptionName(confName,obj)));
             }

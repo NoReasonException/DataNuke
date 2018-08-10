@@ -94,7 +94,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private void loadConfiguration() throws ConfigurationLoaderException{
         JsonObject obj;
         try{
-            obj=Utills.dataProviderToJsonObject(configProvider);
+            obj=DataProvider.Utills.dataProviderToJsonObject(configProvider);
         }
         catch(ConvertException e){throw new ConfigurationLoaderException("Convert DataProvider to JsonObject gone bad :( ",e);}
         initializationTime=obj.getInt("initializationTime");            //remember , values in mils
@@ -112,7 +112,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private void loadSources() throws SourcesLoaderException {
         JsonObject obj;
         try{
-            obj=Utills.dataProviderToJsonObject(sourceProvider);
+            obj=DataProvider.Utills.dataProviderToJsonObject(sourceProvider);
         }
         catch(ConvertException e){throw new SourcesLoaderException("Convert DataProvider to JsonObject gone bad :(",e);}
         ClassInfo info;

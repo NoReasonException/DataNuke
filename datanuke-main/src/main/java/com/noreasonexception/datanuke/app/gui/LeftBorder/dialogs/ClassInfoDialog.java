@@ -1,5 +1,7 @@
 package com.noreasonexception.datanuke.app.gui.leftBorder.dialogs;
 
+import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import com.noreasonexception.datanuke.app.dataProvider.StringDataProvider;
 import com.noreasonexception.datanuke.app.gui.dialog.InvalidFieldsError;
 import com.noreasonexception.datanuke.app.gui.dialog.SaveDialog;
 import com.noreasonexception.datanuke.app.gui.dialog.UnknownIOErrorDialog;
@@ -8,6 +10,7 @@ import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
 import com.noreasonexception.datanuke.app.gui.utills.OptionsTable;
 import com.noreasonexception.datanuke.app.threadRunner.Utills;
+import com.noreasonexception.datanuke.app.threadRunner.error.ConvertException;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,6 +28,7 @@ import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
 import javax.json.JsonObjectBuilder;
+import javax.xml.crypto.Data;
 import java.time.*;
 import java.util.Arrays;
 import java.util.Date;
@@ -70,11 +74,11 @@ public class ClassInfoDialog extends Application {
                         JsonObject obj;
                         try{
 
-                            obj=Utills.dataProviderToJsonObject(
+                            obj=DataProvider.Utills.dataProviderToJsonObject(
                                     parentFactory.getCoreFactory().getThreadRunnersSourceProvider()
                             );
                         }catch (Exception e){
-                            new UnknownIOErrorDialog().show();
+                            new UnknownIOErrorDialog("Sources Provider IOError").show();
                             return;
                         }
 
@@ -84,7 +88,7 @@ public class ClassInfoDialog extends Application {
                            newTimeMins=Integer.valueOf(((TextField)dateTimeBox.getChildren().get(4)).getText());
 
                         }catch (NumberFormatException e){
-                           new InvalidFieldsError().show();
+                            new InvalidFieldsError().show();
                             return;
                         }
                         if(newTimeHour>23||newTimeMins>59){
@@ -116,10 +120,18 @@ public class ClassInfoDialog extends Application {
                             rebuilder.add(k,obj.get(k));
                         }
                         rebuilder.add(className,builder.build());
-
                         obj=rebuilder.build();
-                        System.out.println(System.currentTimeMillis());
-                        System.out.println(obj.toString());
+                        try {
+
+                            DataProvider.Utills.writeDataProviderToFile(
+                                    DataProvider.Utills.jsonObjectToDataProvider(obj)
+                            );
+
+                        }catch (ConvertException e){
+                            new UnknownIOErrorDialog("Convert of json To DataProvider failed").show();
+                            return;
+
+                        }
                         new SaveDialog().show();
                     }
                 };
