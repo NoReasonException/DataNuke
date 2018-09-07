@@ -22,10 +22,10 @@ import java.util.Random;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     ///Configuration Section
-    private static final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="src/main/conf/threadRunnerConf.json";
-    private static final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="src/main/conf/threadRunnerSources.json";
-    private static final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="src/main/conf/dataNukeClassLoaderDir/";
-    public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="src/main/conf/dataNukeDefaultFactoryConf.json/";
+    private static final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="conf\\threadRunnerConf.json";
+    private static final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="conf\\threadRunnerSources.json";
+    private static final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="conf\\dataNukeClassLoaderDir\\";
+    public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="conf\\dataNukeDefaultFactoryConf.json";
     public static  final java.lang.String CSV_VALUE_FILTER_FILE_PATH_DEFAULT               ="dat.csv";
     ///===========================Configuration================================================\\\
     private java.lang.String threadRunnerConfigFile                                =null;
@@ -67,16 +67,19 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
             else if((csvValueFilterFile=object.getString("CsvValueFilterFileDestination"))==null){
                 throw new NoSuchElementException();
             }
-            System.out.println(csvValueFilterFile);
 
         }catch (NoSuchElementException e){
-            threadRunnerConfigFile=THREAD_RUNNER_CONFIG_FILE_DEFAULT;
-            threadRunnerSourcesFile=THREAD_RUNNER_SOURCES_FILE_DEFAULT;
-            customClassLoaderPATH=DATA_NUKE_CLASS_LOADER_DEFAULT_PATH;
-            csvValueFilterFile=CSV_VALUE_FILTER_FILE_PATH_DEFAULT;
+            System.out.println(">");
+            threadRunnerConfigFile=getRelativeDefaultPath(THREAD_RUNNER_CONFIG_FILE_DEFAULT);
+            threadRunnerSourcesFile=getRelativeDefaultPath(THREAD_RUNNER_SOURCES_FILE_DEFAULT);
+            customClassLoaderPATH=getRelativeDefaultPath(DATA_NUKE_CLASS_LOADER_DEFAULT_PATH);
+            csvValueFilterFile=getRelativeDefaultPath(CSV_VALUE_FILTER_FILE_PATH_DEFAULT);
         }
         return this;
 
+    }
+    private static java.lang.String getRelativeDefaultPath(java.lang.String path){
+        return System.getProperty("user.dir")+"\\"+path;
     }
     public DataNukeDefaultFactory loadDefaultConfiguration()throws IOException{
         Path p;

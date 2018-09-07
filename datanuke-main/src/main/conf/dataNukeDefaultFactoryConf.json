@@ -1,6 +1,0 @@
-{
-  "threadRunnerConfigFile":       "src/main/conf/threadRunnerConf.json",
-  "threadRunnerSourcesFile":      "src/main/conf/threadRunnerSources.json",
-  "customClassLoaderPATH":        "src/main/conf/dataNukeClassLoaderDir",
-  "CsvValueFilterFileDestination":"dat.csv"
-}

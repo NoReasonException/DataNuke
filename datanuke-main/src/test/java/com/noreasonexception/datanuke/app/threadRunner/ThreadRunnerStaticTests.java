@@ -3,6 +3,7 @@ package com.noreasonexception.datanuke.app.threadRunner;
 import com.noreasonexception.datanuke.app.threadRunner.error.ThreadRunnerStaticTestException;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import junit.framework.TestFailure;
+import org.junit.Ignore;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -10,7 +11,7 @@ import static org.junit.Assert.*;
 
 import java.security.InvalidParameterException;
 import java.util.Date;
-
+@Ignore
 public class ThreadRunnerStaticTests {
     @Test
     public void millsToSecTest(){
