@@ -13,6 +13,7 @@ import com.noreasonexception.datanuke.app.threadRunner.Utills;
 import com.noreasonexception.datanuke.app.threadRunner.error.ConvertException;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import javafx.application.Application;
+import javafx.collections.ArrayChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -24,16 +25,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import javax.json.*;
 import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ClassInfoDialog extends Application {
     ClassInfo info=null;
@@ -69,6 +69,7 @@ public class ClassInfoDialog extends Application {
                     @Override
                     public void handle(ActionEvent event) {
                         HBox h=(HBox)optionTableView.getColumns().get(1).getCellData(NextEventIndex);
+
                         LocalDate newDate=((DatePicker)h.getChildren().get(0)).getValue();
                         HBox dateTimeBox=(HBox) h.getChildren().get(2);
                         Integer newTimeHour;
@@ -119,10 +120,14 @@ public class ClassInfoDialog extends Application {
                         JsonObjectBuilder rebuilder = Json.createObjectBuilder();
                         for (String k:
                              obj.keySet()) {
-                            if(className.equals(k))continue;
+                            if(className.equals(k)){
+                                JsonArray e;
+                                rebuilder.add(className,e=builder.build());
+                                System.out.println(e);
+                                continue;
+                            }
                             rebuilder.add(k,obj.get(k));
                         }
-                        rebuilder.add(className,builder.build());
                         obj=rebuilder.build();
                         try {
 
