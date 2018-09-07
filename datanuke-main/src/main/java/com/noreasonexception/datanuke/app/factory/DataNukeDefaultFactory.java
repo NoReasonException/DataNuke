@@ -15,6 +15,7 @@ import javax.json.JsonReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.nio.ByteBuffer;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.NoSuchElementException;
@@ -44,9 +45,10 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
      * @param confProvider the data provider
      * @return this object
      */
-    public DataNukeDefaultFactory loadConfiguration(DataProvider confProvider){
+    public DataNukeDefaultFactory loadConfiguration(DataProvider confProvider) throws NoSuchFileException{
         StringBuilder stringBuilder = new StringBuilder();
         try{
+
             ByteBuffer buff=(ByteBuffer)confProvider.provide().get();
             for (int i = 0;  i<buff.limit(); i++) {
                 stringBuilder.append((char)buff.get());
@@ -55,21 +57,26 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
             JsonReader reader = Json.createReader(new StringReader(stringBuilder.toString()));
             JsonObject object=reader.readObject();
             object.getString("customClassLoaderPATH");
-            if((customClassLoaderPATH=object.getString("customClassLoaderPATH"))==null){
-                throw new NoSuchElementException();
+            String filename;
+            if((customClassLoaderPATH=object.getString(filename="customClassLoaderPATH"))==null){
+
+                throw new NoSuchFileException(filename);
             }
-            else if((threadRunnerConfigFile=object.getString("threadRunnerConfigFile"))==null){
-                throw new NoSuchElementException();
+            else if((threadRunnerConfigFile=object.getString(filename="threadRunnerConfigFile"))==null|| !Paths.get(threadRunnerConfigFile).toFile().exists()){
+                throw new NoSuchFileException(filename);
+
             }
-            else if((threadRunnerSourcesFile=object.getString("threadRunnerSourcesFile"))==null){
-                throw new NoSuchElementException();
+            else if((threadRunnerSourcesFile=object.getString(filename="threadRunnerSourcesFile"))==null || !Paths.get(threadRunnerSourcesFile).toFile().exists()){
+                throw new NoSuchFileException(filename);
+
             }
-            else if((csvValueFilterFile=object.getString("CsvValueFilterFileDestination"))==null){
-                throw new NoSuchElementException();
+            else if((csvValueFilterFile=object.getString(filename="CsvValueFilterFileDestination"))==null || !Paths.get(csvValueFilterFile).toFile().exists()){
+                throw new NoSuchFileException(filename);
+
             }
 
-        }catch (NoSuchElementException e){
-            System.out.println(">");
+        }catch (NoSuchFileException e){
+            System.out.println("Configuration file is inconsistent -> provider of file "+e.getFile()+"failed due to NoSuchFileException , Proceed with defaults!");
             threadRunnerConfigFile=getRelativeDefaultPath(THREAD_RUNNER_CONFIG_FILE_DEFAULT);
             threadRunnerSourcesFile=getRelativeDefaultPath(THREAD_RUNNER_SOURCES_FILE_DEFAULT);
             customClassLoaderPATH=getRelativeDefaultPath(DATA_NUKE_CLASS_LOADER_DEFAULT_PATH);
@@ -113,6 +120,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
 
     @Override
     public DataProvider getFactoryConfigProvider() throws IOException {
+        
         return new FileDataProvider(Paths.get(DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT));
     }
 
