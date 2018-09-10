@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.util.ArrayList;
 
-abstract public class CsvParser extends PattermParser {
+abstract public class CsvParser extends PatternParser{
     public CsvParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }

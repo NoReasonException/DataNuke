@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 
-abstract public class PdfParser extends PattermParser {
+abstract public class PdfParser extends PatternParser {
     public PdfParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp,valueFilter);
     }

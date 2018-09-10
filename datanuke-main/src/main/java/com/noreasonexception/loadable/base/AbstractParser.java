@@ -4,12 +4,22 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 
+import java.util.regex.Matcher;
+
 abstract public class AbstractParser implements Runnable {
     private AbstractValueFilter<Double> valueFilter;
     private ThreadRunnerTaskEventsDispacher dispacher;
+    public static class Utills{
+        public static void triggerMacherMethodFindNTimes(Matcher m, int n){
+            for (int i = 0; i < n; i++) {
+                m.find();
+            }
+        }
+    }
     protected AbstractValueFilter<Double> getValueFilter() {
         return this.valueFilter;
     }
+
     AbstractParser(ThreadRunnerTaskEventsDispacher dispacher,AbstractValueFilter<Double> valueFilter){
         this.valueFilter=valueFilter;
         this.dispacher=dispacher;
@@ -53,7 +63,7 @@ abstract public class AbstractParser implements Runnable {
         getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
     /****
-     * The main loop of PattermParser
+     * The main loop of RequestParser
      * the .run() method calls it
      * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
      * //TODO in case of changed date in source , this will fail in infinite loop , so a maximum inteval is needed!
