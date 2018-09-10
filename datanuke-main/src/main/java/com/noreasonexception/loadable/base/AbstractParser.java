@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.util.regex.Matcher;
 
@@ -77,5 +78,5 @@ abstract public class AbstractParser implements Runnable {
         getDispacher().submitTaskThreadReleasedEvent(getClass().getName());
     }
 
-    abstract protected Double onValueExtract(Object context);
+    abstract protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException;
 }

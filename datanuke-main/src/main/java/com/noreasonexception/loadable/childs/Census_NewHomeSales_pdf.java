@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.PdfParser;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,7 +20,7 @@ public final class Census_NewHomeSales_pdf extends PdfParser {
     protected String         onUrlLoad(){
         return "\"https://www.census.gov/construction/nrs/pdf/newressales.pdf\"";
     }
-    protected Double         onValueExtract(Object context){
+    protected Double         onValueExtract(Object context) throws InvalidSourceArchitectureException {
         Pattern p = getPattern();
         Matcher m = p.matcher((String) context);
         if(!m.find()){

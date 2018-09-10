@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.XlsParser;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -22,7 +23,7 @@ public class A22_OnsGov_RetailSalesRevisionsTriangles_UK extends XlsParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object context){
+    protected Double    onValueExtract(Object context) throws InvalidSourceArchitectureException {
         return null;
     }
 

@@ -2,11 +2,8 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.regex.Pattern;
 
 abstract public class PatternParser extends StringParser {
@@ -61,6 +58,8 @@ abstract public class PatternParser extends StringParser {
                 i+=1;
             }catch (NumberFormatException e){
                 System.out.println(getClass().getName()+": This Event need update , the page format is unknown");
+            }catch (InvalidSourceArchitectureException e){
+                throw new RuntimeException(e.getMessage());
             }
 
         }

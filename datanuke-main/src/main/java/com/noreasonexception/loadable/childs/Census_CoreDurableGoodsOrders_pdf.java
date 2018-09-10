@@ -4,6 +4,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.RequestParser;
 import com.noreasonexception.loadable.base.PdfParser;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.security.InvalidParameterException;
 import java.util.regex.Matcher;
@@ -21,7 +22,7 @@ public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
     protected String         onUrlLoad(){
         return "https://www.census.gov/manufacturing/m3/adv/pdf/table1a.pdf";
     }
-    protected Double         onValueExtract(Object context){
+    protected Double         onValueExtract(Object context) throws InvalidSourceArchitectureException {
         Pattern p = getPattern();
         Matcher m = p.matcher((String) context);
         RequestParser.Utills.triggerMacherMethodFindNTimes(m,41);

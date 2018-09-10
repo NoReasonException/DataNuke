@@ -3,12 +3,10 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.XlsParser;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
-
-import java.io.IOException;
-import java.util.regex.Pattern;
 
 public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US extends XlsParser {
     public A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US(ThreadRunnerTaskEventsDispacher disp,
@@ -16,7 +14,7 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
         super(disp, valueFilter);
     }
     @Override
-    protected Double onValueExtract(Object context) {
+    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
         Workbook workbook;
         HSSFSheet sheet=getSheet(workbook=(Workbook)context);
         for (Row row:sheet){
@@ -33,7 +31,7 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
                 }
             }catch (Exception e){e.printStackTrace();}
         }
-        return 0d;
+        throw new InvalidSourceArchitectureException(getClass());
     }
 
     @Override
@@ -46,17 +44,5 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
         return "https://www.census.gov/construction/nrc/xls/newresconst.xls";
     }
 
-    @Override
-    protected Workbook getXlsWorkbook() {
 
-        try {
-
-            return new HSSFWorkbook(onConnection().getInputStream());
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-        return new HSSFWorkbook();
-    }
 }
