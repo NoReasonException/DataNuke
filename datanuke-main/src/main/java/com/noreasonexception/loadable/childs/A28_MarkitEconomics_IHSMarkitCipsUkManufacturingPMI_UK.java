@@ -23,7 +23,7 @@ public class A28_MarkitEconomics_IHSMarkitCipsUkManufacturingPMI_UK extends Html
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

@@ -18,7 +18,7 @@ public class A31_GovUk_PublicationsConsumerPriceInflation_UK extends HtmlParser 
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 

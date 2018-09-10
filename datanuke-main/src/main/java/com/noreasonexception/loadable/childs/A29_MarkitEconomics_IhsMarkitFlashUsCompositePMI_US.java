@@ -23,7 +23,7 @@ public class A29_MarkitEconomics_IhsMarkitFlashUsCompositePMI_US extends HtmlPar
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

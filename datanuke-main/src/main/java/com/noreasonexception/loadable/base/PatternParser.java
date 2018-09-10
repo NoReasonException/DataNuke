@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 
 abstract public class PatternParser extends StringParser {
     private java.util.regex.Pattern         pattern;
-    private final int REQUESTS_MAX=5000;
 
     public PatternParser(ThreadRunnerTaskEventsDispacher dispacher, AbstractValueFilter<Double> valueFilter) {
         super(dispacher, valueFilter);

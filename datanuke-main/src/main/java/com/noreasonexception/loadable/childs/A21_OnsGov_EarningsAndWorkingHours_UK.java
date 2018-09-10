@@ -19,7 +19,7 @@ public class A21_OnsGov_EarningsAndWorkingHours_UK extends HtmlParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 

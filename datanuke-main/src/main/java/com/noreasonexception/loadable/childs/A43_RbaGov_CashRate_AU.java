@@ -18,7 +18,7 @@ public class A43_RbaGov_CashRate_AU extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 

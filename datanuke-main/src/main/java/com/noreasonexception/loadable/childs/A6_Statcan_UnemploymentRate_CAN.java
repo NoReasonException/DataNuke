@@ -18,7 +18,7 @@ public class A6_Statcan_UnemploymentRate_CAN extends HtmlParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 

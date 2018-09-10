@@ -3,7 +3,11 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.XlsParser;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
 
+import java.io.IOException;
 import java.util.regex.Pattern;
 
 public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US extends XlsParser {
@@ -11,15 +15,48 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
                                                                                   AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
+    @Override
+    protected Double onValueExtract(Object context) {
+        Workbook workbook;
+        HSSFSheet sheet=getSheet(workbook=(Workbook)context);
+        for (Row row:sheet){
+            try {
 
-    protected Pattern onPatternLoad(){
-        return null;
+                HSSFCell cell=(HSSFCell) row.getCell(1);
+                if(cell==null)continue;
+                HSSFCellStyle style = cell.getCellStyle();
+                HSSFFont font = style.getFont(workbook);
+                System.out.println(row.getCell(1));
+                if(font.getBold()) {
+                    return Double.valueOf(row.getCell(1).toString());
 
+                }
+            }catch (Exception e){e.printStackTrace();}
+        }
+        return 0d;
     }
-    protected String    onUrlLoad(){
-        return null;
+
+    @Override
+    protected HSSFSheet getSheet(Workbook workbook) {
+        return (HSSFSheet) workbook.getSheetAt(0);
     }
-    protected Double    onValueExtract(Object tmpString){
-        return null;
+
+    @Override
+    protected String onUrlLoad() {
+        return "https://www.census.gov/construction/nrc/xls/newresconst.xls";
+    }
+
+    @Override
+    protected Workbook getXlsWorkbook() {
+
+        try {
+
+            return new HSSFWorkbook(onConnection().getInputStream());
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
+        return new HSSFWorkbook();
     }
 }

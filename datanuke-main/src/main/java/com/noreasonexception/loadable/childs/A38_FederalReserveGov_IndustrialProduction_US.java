@@ -23,7 +23,7 @@ public class A38_FederalReserveGov_IndustrialProduction_US extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

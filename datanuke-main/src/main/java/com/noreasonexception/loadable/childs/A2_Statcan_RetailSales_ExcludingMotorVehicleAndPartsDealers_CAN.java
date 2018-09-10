@@ -19,7 +19,7 @@ public class A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN ext
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         return null;
     }
 

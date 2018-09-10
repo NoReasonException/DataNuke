@@ -23,7 +23,7 @@ public class A42_EcbEuropa_MainRefinancingOperations_EUR extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

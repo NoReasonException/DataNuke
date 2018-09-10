@@ -23,7 +23,7 @@ public class A35_InstituteForSupplyManagment_mostRecentPMIReport_US extends Html
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

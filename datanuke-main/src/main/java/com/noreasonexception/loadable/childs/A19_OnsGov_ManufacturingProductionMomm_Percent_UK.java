@@ -19,9 +19,9 @@ public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends CsvParser
     protected String    onUrlLoad(){
         return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/economicoutputandproductivity/output/timeseries/k27y/diop";
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         String e[];
-        return Double.valueOf((e = tmpString.toString().split(","))[e.length - 1].replace("\"",""));
+        return Double.valueOf((e = context.toString().split(","))[e.length - 1].replace("\"",""));
     }
 
 }

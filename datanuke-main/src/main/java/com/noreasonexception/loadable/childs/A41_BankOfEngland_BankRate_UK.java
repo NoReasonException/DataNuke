@@ -23,7 +23,7 @@ public class A41_BankOfEngland_BankRate_UK extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

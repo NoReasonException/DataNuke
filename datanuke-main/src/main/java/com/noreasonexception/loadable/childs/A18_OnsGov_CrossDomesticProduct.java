@@ -19,7 +19,7 @@ public class A18_OnsGov_CrossDomesticProduct extends HtmlParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 }

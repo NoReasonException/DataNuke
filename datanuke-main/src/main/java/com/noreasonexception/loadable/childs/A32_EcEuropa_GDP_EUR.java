@@ -23,7 +23,7 @@ public class A32_EcEuropa_GDP_EUR extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

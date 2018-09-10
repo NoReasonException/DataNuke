@@ -19,7 +19,7 @@ public class A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_A
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         return null;
     }
 }

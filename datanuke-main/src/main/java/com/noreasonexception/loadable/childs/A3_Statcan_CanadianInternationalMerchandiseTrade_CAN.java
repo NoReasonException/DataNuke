@@ -19,7 +19,7 @@ public class A3_Statcan_CanadianInternationalMerchandiseTrade_CAN extends HtmlPa
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         return null;
     }
 

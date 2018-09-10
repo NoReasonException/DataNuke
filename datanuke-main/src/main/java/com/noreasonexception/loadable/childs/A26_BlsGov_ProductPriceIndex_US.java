@@ -23,7 +23,7 @@ public class A26_BlsGov_ProductPriceIndex_US extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(Object tmpString) {
+    protected Double onValueExtract(Object context) {
         return null;
     }
 }

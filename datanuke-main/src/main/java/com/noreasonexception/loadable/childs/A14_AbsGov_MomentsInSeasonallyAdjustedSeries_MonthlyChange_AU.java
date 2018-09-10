@@ -18,7 +18,7 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 

@@ -21,9 +21,9 @@ public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
     protected String         onUrlLoad(){
         return "https://www.census.gov/manufacturing/m3/adv/pdf/table1a.pdf";
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         Pattern p = getPattern();
-        Matcher m = p.matcher((String)tmpString);
+        Matcher m = p.matcher((String) context);
         RequestParser.Utills.triggerMacherMethodFindNTimes(m,41);
         if(!m.find()){
             System.out.println("not found");

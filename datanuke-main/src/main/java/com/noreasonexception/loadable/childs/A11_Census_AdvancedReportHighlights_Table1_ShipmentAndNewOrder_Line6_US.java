@@ -18,7 +18,7 @@ public class A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 

@@ -19,9 +19,9 @@ public final class Census_NewHomeSales_pdf extends PdfParser {
     protected String         onUrlLoad(){
         return "\"https://www.census.gov/construction/nrs/pdf/newressales.pdf\"";
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         Pattern p = getPattern();
-        Matcher m = p.matcher((String)tmpString);
+        Matcher m = p.matcher((String) context);
         if(!m.find()){
             System.out.println("not found"); return null;/* throw exception that changhed pattern*/ }
         return Double.valueOf(m.group(3).replace(",","."));

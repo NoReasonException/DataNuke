@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
  * @implNote In some steps , the ThreadRunnerTaskEventsDispacher must informed by corresponding methods
  */
 abstract public class RequestParser extends AbstractParser{
+    protected final int REQUESTS_MAX=5000;
 
 
     /***
@@ -53,7 +54,8 @@ abstract public class RequestParser extends AbstractParser{
      * @throws IOException           in case of any IOE (not internet found for example)
      */
     protected HttpURLConnection onConnection() throws MalformedURLException,IOException{
-        return (HttpURLConnection)(new URL(onUrlLoad())).openConnection();
+        return (HttpURLConnection)
+                new URL(onUrlLoad()).openConnection();
     }
 
 

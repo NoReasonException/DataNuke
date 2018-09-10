@@ -19,7 +19,7 @@ public class A10_Census_AdvanceMonthlySales_US extends PdfParser {
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(Object tmpString){
+    protected Double         onValueExtract(Object context){
         return null;
     }
 

@@ -18,7 +18,7 @@ public class A15_AbsGov_SeasonallyAdjusted_Change_AU extends HtmlParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(Object tmpString){
+    protected Double    onValueExtract(Object context){
         return null;
     }
 
