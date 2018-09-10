@@ -18,7 +18,7 @@ public class A5_Statcan_BuildingPermits_CAN extends HtmlParser {
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(String tmpString){
+    protected Double         onValueExtract(Object tmpString){
         return null;
     }
 }

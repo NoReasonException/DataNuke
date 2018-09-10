@@ -18,7 +18,7 @@ public class A13_AbsGov_UnemploymentRate_AU extends HtmlParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 

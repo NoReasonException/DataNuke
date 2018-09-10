@@ -76,12 +76,6 @@ abstract public class AbstractParser implements Runnable {
     protected void finalize() {
         getDispacher().submitTaskThreadReleasedEvent(getClass().getName());
     }
-    /****
-     * @Overridable_By_Children
-     * This routine is combines the results of convertSourceToText( given in tmpString parameter)
-     * with the given pattern (using getPattern()) to extract the value needed
-     * @param tmpString the source text provided by convertSourceToText
-     * @return a Double Object //TODO maybe this methods need to return a plain Object object?
-     */
-    abstract protected Double onValueExtract(String tmpString);
+
+    abstract protected Double onValueExtract(Object context);
 }

@@ -23,7 +23,7 @@ public class A34_Destatis_ConsumerPrices_GER extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

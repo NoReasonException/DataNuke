@@ -3,7 +3,6 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.CsvParser;
-import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
@@ -20,7 +19,7 @@ public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends CsvParser
     protected String    onUrlLoad(){
         return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/economicoutputandproductivity/output/timeseries/k27y/diop";
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         String e[];
         return Double.valueOf((e = tmpString.toString().split(","))[e.length - 1].replace("\"",""));
     }

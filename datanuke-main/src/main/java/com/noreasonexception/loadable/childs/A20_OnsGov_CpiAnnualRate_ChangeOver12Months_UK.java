@@ -18,7 +18,7 @@ public class A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK extends CsvParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 

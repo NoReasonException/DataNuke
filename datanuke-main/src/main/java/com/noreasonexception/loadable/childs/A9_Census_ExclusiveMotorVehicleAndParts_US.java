@@ -19,7 +19,7 @@ public class A9_Census_ExclusiveMotorVehicleAndParts_US extends PdfParser {
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(String tmpString){
+    protected Double         onValueExtract(Object tmpString){
         return null;
     }
 

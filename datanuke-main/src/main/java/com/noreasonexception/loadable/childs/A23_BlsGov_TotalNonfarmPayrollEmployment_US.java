@@ -23,7 +23,7 @@ public class A23_BlsGov_TotalNonfarmPayrollEmployment_US extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

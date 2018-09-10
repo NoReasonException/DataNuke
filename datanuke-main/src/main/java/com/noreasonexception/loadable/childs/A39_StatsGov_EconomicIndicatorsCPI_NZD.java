@@ -23,7 +23,7 @@ public class A39_StatsGov_EconomicIndicatorsCPI_NZD extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

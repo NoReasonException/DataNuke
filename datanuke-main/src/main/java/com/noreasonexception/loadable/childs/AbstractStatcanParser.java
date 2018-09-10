@@ -22,7 +22,7 @@ public class AbstractStatcanParser extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

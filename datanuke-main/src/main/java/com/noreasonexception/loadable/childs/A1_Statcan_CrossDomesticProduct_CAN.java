@@ -19,7 +19,7 @@ public class A1_Statcan_CrossDomesticProduct_CAN extends HtmlParser {
     protected String         onUrlLoad(){
         return null;
     }
-    protected Double         onValueExtract(String tmpString){
+    protected Double         onValueExtract(Object tmpString){
         return null;
     }
 

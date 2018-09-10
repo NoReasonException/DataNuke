@@ -23,7 +23,7 @@ public class A37_FederalReserveGov_InterestRate_US extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

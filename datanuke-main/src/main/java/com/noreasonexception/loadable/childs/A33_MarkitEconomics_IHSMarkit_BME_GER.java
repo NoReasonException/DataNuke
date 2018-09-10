@@ -23,7 +23,7 @@ public class A33_MarkitEconomics_IHSMarkit_BME_GER extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

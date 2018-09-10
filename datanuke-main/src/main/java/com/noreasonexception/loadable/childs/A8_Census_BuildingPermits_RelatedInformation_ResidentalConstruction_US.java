@@ -2,7 +2,6 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.XlsParser;
 
 import java.util.regex.Pattern;
@@ -20,7 +19,7 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 }

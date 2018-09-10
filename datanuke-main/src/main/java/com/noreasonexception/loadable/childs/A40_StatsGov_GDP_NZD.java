@@ -23,7 +23,7 @@ public class A40_StatsGov_GDP_NZD extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

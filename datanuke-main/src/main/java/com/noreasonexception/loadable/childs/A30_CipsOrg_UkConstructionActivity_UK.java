@@ -23,7 +23,7 @@ public class A30_CipsOrg_UkConstructionActivity_UK extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

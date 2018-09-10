@@ -19,7 +19,7 @@ public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends Htm
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 

@@ -18,7 +18,7 @@ public class A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU extends HtmlP
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 }

@@ -20,7 +20,7 @@ public class A22_OnsGov_RetailSalesRevisionsTriangles_UK extends XlsParser {
     protected String    onUrlLoad(){
         return null;
     }
-    protected Double    onValueExtract(String tmpString){
+    protected Double    onValueExtract(Object tmpString){
         return null;
     }
 

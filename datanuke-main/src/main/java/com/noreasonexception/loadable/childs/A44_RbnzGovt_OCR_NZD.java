@@ -23,7 +23,7 @@ public class A44_RbnzGovt_OCR_NZD extends HtmlParser {
     }
 
     @Override
-    protected Double onValueExtract(String tmpString) {
+    protected Double onValueExtract(Object tmpString) {
         return null;
     }
 }

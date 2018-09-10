@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Pattern;
 
-abstract public class PatternParser extends RequestParser {
+abstract public class PatternParser extends StringParser {
     private java.util.regex.Pattern         pattern;
     private final int REQUESTS_MAX=5000;
 
@@ -33,6 +33,14 @@ abstract public class PatternParser extends RequestParser {
 
 
 
+
+    /****
+     * The main loop of PatternParser
+     * the .run() method calls it
+     * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
+     * //TODO in case of changed date in source , this will fail in infinite loop , so a maximum inteval is needed!
+     * @return true in success
+     */
     protected boolean loop() {
         setPattern(onPatternLoad());
         System.out.println("started"+getClass().getName());
