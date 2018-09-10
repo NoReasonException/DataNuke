@@ -74,6 +74,7 @@ public class UserOptionTable extends OptionsTable {
                             private ThreadRunnerState currState=null;
                             @Override
                             public void run() {
+
                                 if(currState.equals(ThreadRunnerState.NONE)){
                                     onOffBtn.setText(statusOptionOFFString);
                                     onOffBtn.setStyle("-fx-background-color:"+Colors.ΟFF_COLOR);
@@ -127,6 +128,7 @@ public class UserOptionTable extends OptionsTable {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
+
                                 if(getState().equals(ThreadRunnerState.NONE)){
                                     nextEventTaskNameLabel.setText(" - ");
                                     nextEventTaskTimeLabel.setText(" - ");

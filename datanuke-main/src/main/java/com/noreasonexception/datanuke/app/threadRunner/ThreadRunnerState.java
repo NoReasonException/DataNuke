@@ -1,6 +1,6 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
-public enum ThreadRunnerState {
+public enum ThreadRunnerState implements Cloneable {
     NONE                ("threadRunner is in NONE mode(nothing happened yet)",0),
     INITIALIZATION      ("threadRunner initialize started...",1),
     LOAD_CONF           ("threadRunner initializes configurations...",2),
@@ -20,6 +20,7 @@ public enum ThreadRunnerState {
         this.message=message;
         this.id=id;
     }
+
 
     public String getMessage() {
         return message;

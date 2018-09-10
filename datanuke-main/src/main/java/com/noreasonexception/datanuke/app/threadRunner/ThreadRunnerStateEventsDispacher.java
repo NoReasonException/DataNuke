@@ -28,7 +28,9 @@ public class ThreadRunnerStateEventsDispacher extends Thread {
                 ThreadRunnerState state=null;
                 try{
                     state= states.take();
-                }catch (InterruptedException e){e.printStackTrace();}
+                }catch (InterruptedException e){
+                    System.out.println("ThreadRunnerStateEventsDispacher interrupted by user..");
+                }
 
                 synchronized (listeners){
                     for (ThreadRunnerStateListener l:listeners) {

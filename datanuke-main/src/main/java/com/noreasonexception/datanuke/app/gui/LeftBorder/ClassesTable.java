@@ -152,7 +152,12 @@ public class ClassesTable extends TableView<ClassInfo> {
         return new ThreadRunnerStateListener() {
             @Override
             public void run() {
-                if(getState().equals(ThreadRunnerState.NONE))items.clear();
+                try {
+                    if(getState().equals(ThreadRunnerState.NONE))items.clear();
+
+                }catch (NullPointerException e){
+                    System.out.println("NullPointerException ignored due to termination procedure.");
+                }
             }
         };
     }

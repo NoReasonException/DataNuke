@@ -3,10 +3,11 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.HtmlParser;
+import com.noreasonexception.loadable.base.XlsParser;
 
 import java.util.regex.Pattern;
 
-public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US extends HtmlParser {
+public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US extends XlsParser {
     public A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US(ThreadRunnerTaskEventsDispacher disp,
                                                                                   AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);

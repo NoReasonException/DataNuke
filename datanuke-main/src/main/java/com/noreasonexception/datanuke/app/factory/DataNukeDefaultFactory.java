@@ -23,10 +23,10 @@ import java.util.Random;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     ///Configuration Section
-    private static final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="conf\\threadRunnerConf.json";
-    private static final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="conf\\threadRunnerSources.json";
-    private static final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="conf\\dataNukeClassLoaderDir\\";
-    public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="conf\\dataNukeDefaultFactoryConf.json";
+    private static final java.lang.String THREAD_RUNNER_CONFIG_FILE_DEFAULT                ="conf/threadRunnerConf.json";
+    private static final java.lang.String THREAD_RUNNER_SOURCES_FILE_DEFAULT               ="conf/threadRunnerSources.json";
+    private static final java.lang.String DATA_NUKE_CLASS_LOADER_DEFAULT_PATH              ="conf/dataNukeClassLoaderDir/";
+    public static  final java.lang.String DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT      ="conf/dataNukeDefaultFactoryConf.json";
     public static  final java.lang.String CSV_VALUE_FILTER_FILE_PATH_DEFAULT               ="dat.csv";
     ///===========================Configuration================================================\\\
     private java.lang.String threadRunnerConfigFile                                =null;
@@ -120,7 +120,8 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
 
     @Override
     public DataProvider getFactoryConfigProvider() throws IOException {
-        
+        //if(!Paths.get(DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT).toFile().exists())throw new RuntimeException("" +
+             //   "The configuration file not found , fatal error ");
         return new FileDataProvider(Paths.get(DATA_NUKE_DEFAULT_FACTORY_CONF_FILE_DEFAULT));
     }
 

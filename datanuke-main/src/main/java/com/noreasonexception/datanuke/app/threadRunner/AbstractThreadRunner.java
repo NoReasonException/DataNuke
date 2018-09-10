@@ -183,6 +183,7 @@ public class AbstractThreadRunner implements    Runnable ,
         Class kl;
         Thread taskThread;
         Runnable task;
+        boolean b=false;
         while (true){
 
             tmp=classSourcesDT.pollMin();//TODO fix , maybe need update the tmp.date!?
@@ -196,7 +197,10 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-                wait(getWaitTime(tmp));
+                if(b){
+                    wait(getWaitTime(tmp));
+                }
+                b=true;
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
@@ -214,7 +218,8 @@ public class AbstractThreadRunner implements    Runnable ,
                 }).start();
 
             }catch (InterruptedException e){
-                Thread.currentThread().interrupt();
+                if(Thread.currentThread().isAlive())
+                    Thread.currentThread().interrupt();
             }
             catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
@@ -361,10 +366,26 @@ public class AbstractThreadRunner implements    Runnable ,
         mainThread.start();
     }
     public void stopMainThread(){
-        logMessageExporter.sendMessage("Stopping the main thread...");
         if(mainThread==null)return;
+        logMessageExporter.sendMessage("Stopping the main thread...");
         mainThread.interrupt();
         mainThread=null;
-        changeStateTo(NONE);
+        if(stateEventsDispacher!=null){
+            changeStateTo(NONE);
+
+        }
+    }
+    public void dismiss(){
+        if(stateEventsDispacher!=null && stateEventsDispacher.isAlive()) {
+            stateEventsDispacher.interrupt();
+            stateEventsDispacher = null;
+        }
+
+        if(taskEventsDispacher!=null && taskEventsDispacher.isAlive()){
+            taskEventsDispacher.interrupt();
+            taskEventsDispacher=null;
+        }
+        stopMainThread();
+
     }
 }

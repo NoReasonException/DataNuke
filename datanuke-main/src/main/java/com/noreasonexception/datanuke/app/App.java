@@ -10,8 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-import static javafx.application.Application.launch;
-
 
 public class App extends Application {
     DataNukeAbstractFactory coreFactory=null;
@@ -30,10 +28,12 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
+        coreFactory.getThreadRunner().dismiss();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         BorderPane p = new BorderPane();
         Scene scene;
         primaryStage.setMinHeight(350);
@@ -48,4 +48,5 @@ public class App extends Application {
         primaryStage.getIcons().add(new Image("file:logos/faviconhd.png"));
         primaryStage.show();
     }
+
 }

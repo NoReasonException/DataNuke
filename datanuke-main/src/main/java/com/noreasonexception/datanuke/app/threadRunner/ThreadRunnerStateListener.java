@@ -4,11 +4,11 @@ abstract public class ThreadRunnerStateListener implements Runnable {
     private ThreadRunnerState state=null;
     abstract public void run() ;
 
-    public ThreadRunnerState getState() {
+    public synchronized ThreadRunnerState getState() {
         return state;
     }
 
-    public ThreadRunnerStateListener setState(ThreadRunnerState state) {
+    public synchronized ThreadRunnerStateListener setState(ThreadRunnerState state) {
         this.state = state;
         return this;
     }

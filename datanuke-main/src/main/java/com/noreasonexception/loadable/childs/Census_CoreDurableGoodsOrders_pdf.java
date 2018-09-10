@@ -2,7 +2,7 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.AbstractParser;
+import com.noreasonexception.loadable.base.PattermParser;
 import com.noreasonexception.loadable.base.PdfParser;
 
 import java.security.InvalidParameterException;
@@ -24,7 +24,7 @@ public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
     protected Double         onValueExtract(String tmpString){
         Pattern p = getPattern();
         Matcher m = p.matcher(tmpString);
-        AbstractParser.Utills.triggerMacherMethodFindNTimes(m,41);
+        PattermParser.Utills.triggerMacherMethodFindNTimes(m,41);
         if(!m.find()){
             System.out.println("not found");
             throw new InvalidParameterException("Pattern is not find anything!");/* throw exception that changhed pattern*/ }

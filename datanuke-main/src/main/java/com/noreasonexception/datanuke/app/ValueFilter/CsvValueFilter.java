@@ -35,7 +35,7 @@ import java.util.NoSuchElementException;
  * The first call will correlate the first class into the first value came from file and vice versa
  *
  * =====================================================================================================================
- * Every call into .submitValue() will return true if the AbstractParser class finds an new value
+ * Every call into .submitValue() will return true if the PattermParser class finds an new value
  *
  */
 public class CsvValueFilter extends AbstractValueFilter<Double> {

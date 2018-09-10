@@ -6,22 +6,23 @@ import com.noreasonexception.loadable.base.HtmlParser;
 
 import java.util.regex.Pattern;
 
-public class A1_Statcan_CrossDomesticProduct_CAN extends HtmlParser {
-
-    public A1_Statcan_CrossDomesticProduct_CAN(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+public class AbstractStatcanParser extends HtmlParser {
+    public AbstractStatcanParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
-    protected Pattern onPatternLoad(){
-        return null;
-
-    }
-    protected String         onUrlLoad(){
-        return null;
-    }
-    protected Double         onValueExtract(String tmpString){
+    @Override
+    protected Pattern onPatternLoad() {
         return null;
     }
 
+    @Override
+    protected String onUrlLoad() {
+        return null;
+    }
 
+    @Override
+    protected Double onValueExtract(String tmpString) {
+        return null;
+    }
 }
