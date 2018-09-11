@@ -32,17 +32,19 @@ public class A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
         Workbook workbook;
-        HSSFSheet sheet=getSheet(workbook=(Workbook)context);
+        HSSFSheet sheet = getSheet(workbook = (Workbook) context);
         String v;
-        for (Row row:sheet){
+        for (Row row : sheet) {
             try {
 
-                HSSFCell cell=(HSSFCell) row.getCell(0);
-                if(cell==null)continue;
-                if(cell.toString().contains("New Orders")&&row.getRowNum()>1) {
-                       return Double.valueOf(row.getCell(5).toString());
+                HSSFCell cell = (HSSFCell) row.getCell(0);
+                if (cell == null) continue;
+                if (cell.toString().contains("New Orders") && row.getRowNum() > 1) {
+                    return Double.valueOf(row.getCell(5).toString());
                 }
-            }catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         throw new InvalidSourceArchitectureException(getClass());
     }
