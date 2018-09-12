@@ -16,29 +16,6 @@ abstract public class CsvParser extends StringParser{
     public CsvParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
-
-    @Override
-    protected String convertSourceToText() throws ConvertionSourceToTextException {
-        HttpURLConnection c;
-        InputStream s;
-        StringBuilder text = new StringBuilder();
-        int j;
-
-        try {
-            c = onConnection();
-            s = c.getInputStream();
-
-            while ((j = s.read()) != -1) {
-                text.append((char) j);
-            }
-            return text.toString();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
     @Override
     @SuppressWarnings("unchecked")
 
@@ -57,9 +34,10 @@ abstract public class CsvParser extends StringParser{
             while (true) {
                 if(informValueFilter(tempValue=onValueExtract(csvParts=convertSourceToArrayList()))){
                     getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
-                    System.out.println("temp -> "+tempValue);
                     return true;
                 }
+                System.out.println("temp -> "+tempValue);
+
             }
         } catch (Exception e) {
             e.printStackTrace();
