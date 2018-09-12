@@ -13,13 +13,10 @@ public class A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK extends CsvParser {
         super(disp, valueFilter);
     }
 
-    @Override
-    protected int onCsvValueIndexLoad(int numberOfValues) {
-        return 0;
+    protected String    onUrlLoad(){
+        return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/inflationandpriceindices/timeseries/l55o/mm23";
     }
-
-    @Override
-    protected String onUrlLoad() {
-        return null;
+    protected int onCsvValueIndexLoad(int numberOfValues){
+        return numberOfValues-1;
     }
 }

@@ -8,12 +8,15 @@ import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureExcept
 import java.util.regex.Pattern;
 
 public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK
-        extends A18_OnsGov_CrossDomesticProduct {
+        extends CsvParser {
     public A19_OnsGov_ManufacturingProductionMomm_Percent_UK(ThreadRunnerTaskEventsDispacher disp,
                                                              AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
     protected String    onUrlLoad(){
         return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/economicoutputandproductivity/output/timeseries/k27y/diop";
+    }
+    protected int onCsvValueIndexLoad(int numberOfValues){
+        return numberOfValues-1;
     }
 }
