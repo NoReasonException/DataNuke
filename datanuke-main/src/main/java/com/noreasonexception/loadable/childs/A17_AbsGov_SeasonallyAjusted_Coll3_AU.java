@@ -53,12 +53,9 @@ public class A17_AbsGov_SeasonallyAjusted_Coll3_AU extends TableParser {
 
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-
-        Double d;
         String actualTable = getTableElement((String) context); //getTable
         String row = getRawRow(actualTable, onRowIndexLoad());
-        System.out.println(cellToValue(getCell(row, onCellIndexLoad())));
-        return 0d;
+        return Double.valueOf(cellToValue(getCell(row, onCellIndexLoad())));
 
     }
 
