@@ -2,6 +2,7 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 
 abstract public class StringParser extends RequestParser {
     public StringParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
@@ -15,7 +16,7 @@ abstract public class StringParser extends RequestParser {
      *                   the PdfParser will convert and return the .pdf file into simple text and vise versa
      * @return           The contexts of Source in java.lang.String object
      * */
-    abstract protected String         convertSourceToText();
+    abstract protected String         convertSourceToText() throws ConvertionSourceToTextException;
 
 
 }

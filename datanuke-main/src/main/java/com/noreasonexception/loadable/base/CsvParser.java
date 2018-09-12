@@ -2,6 +2,7 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +15,7 @@ abstract public class CsvParser extends PatternParser{
     }
 
     @Override
-    protected String convertSourceToText() {
+    protected String convertSourceToText() throws ConvertionSourceToTextException {
         HttpURLConnection c;
         InputStream s;
         StringBuilder text = new StringBuilder();

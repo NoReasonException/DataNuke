@@ -2,6 +2,7 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 import com.snowtide.PDF;
 import com.snowtide.pdf.OutputTarget;
 import java.io.IOException;
@@ -19,7 +20,7 @@ abstract public class PdfParser extends PatternParser {
      * @return
      */
     @Override
-    protected String convertSourceToText() {
+    protected String convertSourceToText() throws ConvertionSourceToTextException {
         HttpURLConnection c;
         InputStream s;
         try {

@@ -45,9 +45,9 @@ abstract public class PatternParser extends StringParser {
         int i=0;
 
         while(true){
-            temp=convertSourceToText();
             System.out.println("attempt on -> "+getClass().getName());
             try{
+                temp=convertSourceToText();
                 tempValue=onValueExtract(temp);
                 if(informValueFilter(tempValue)){
                     getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
@@ -60,6 +60,8 @@ abstract public class PatternParser extends StringParser {
                 System.out.println(getClass().getName()+": This Event need update , the page format is unknown");
             }catch (InvalidSourceArchitectureException e){
                 throw new RuntimeException(e.getMessage());
+            }catch (com.noreasonexception.loadable.base.error.ConvertionSourceToTextException e){
+                e.printStackTrace();
             }
 
         }
