@@ -4,6 +4,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.AbstractParser;
 import com.noreasonexception.loadable.base.TableParser;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,17 +34,13 @@ public class A13_AbsGov_UnemploymentRate_AU extends TableParser {
         return Pattern.compile("div align=\"right\"><font size=\"2\">(.*) </font></div",Pattern.DOTALL);
     }@Override
     protected int onRowIndexLoad(){
-        return 5;
+        return 6;
     }
     @Override
     protected int onCellIndexLoad(){
-        return 4;
+        return 3;
     }
-    @Override
-    protected String cellToValue(String cell){
-        Matcher matcher=getValuePattern().matcher(cell);
-        AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
-        return matcher.group(1);
-    }
+
+
 
 }

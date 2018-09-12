@@ -48,16 +48,19 @@ abstract public class TableParser extends HtmlParser {
         AbstractParser.Utills.triggerMacherMethodFindNTimes(cellMacher, cellIndex);
         return cellMacher.group(2);
     }
-    //override
-    abstract protected String cellToValue(String cell);
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
 
-
+        Double d;
         String actualTable = getTableElement((String)context); //getTable
         String row = getRawRow(actualTable,onRowIndexLoad());
-        return Double.valueOf(cellToValue(getCell(row,onCellIndexLoad())));
+        System.out.println(d=Double.valueOf(cellToValue(getCell(row,onCellIndexLoad()))));
+        return d;
 
-
+    }
+    protected String cellToValue(String cell){
+        Matcher matcher=getValuePattern().matcher(cell);
+        AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
+        return matcher.group(1);
     }
 }

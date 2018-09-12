@@ -49,10 +49,4 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
     protected String onUrlLoad() {
         return "http://www.abs.gov.au/ausstats/abs@.nsf/mf/6202.0/";
     }
-    @Override
-    protected String cellToValue(String cell){
-        Matcher matcher=getValuePattern().matcher(cell);
-        AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
-        return matcher.group(1);
-    }
 }
