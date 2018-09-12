@@ -2,25 +2,24 @@ package com.noreasonexception.loadable.childs;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.CsvParser;
 import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.util.regex.Pattern;
 
-public class A18_OnsGov_CrossDomesticProduct extends HtmlParser {
+public class A18_OnsGov_CrossDomesticProduct extends CsvParser {
     public A18_OnsGov_CrossDomesticProduct(ThreadRunnerTaskEventsDispacher disp,
                                            AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
 
-    protected Pattern onPatternLoad(){
-        return null;
+    protected int onCsvValueIndexLoad(int numberOfValues){
+        return numberOfValues-1;
+    }
+    @Override
+    protected String onUrlLoad() {
+        return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/grossdomesticproductgdp/timeseries/abmi/pgdp";
+    }
 
-    }
-    protected String    onUrlLoad(){
-        return null;
-    }
-    protected Double    onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
-    }
 }

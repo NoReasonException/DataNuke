@@ -25,4 +25,8 @@ public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends CsvParser
         return Double.valueOf((e = context.toString().split(","))[e.length - 1].replace("\"",""));
     }
 
+    @Override
+    protected int onCsvValueIndexLoad(int numberOfValues) {
+        return 0;
+    }
 }

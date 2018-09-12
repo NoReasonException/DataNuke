@@ -12,15 +12,14 @@ public class A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK extends CsvParser {
                                                           AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
-    protected Pattern onPatternLoad(){
-        return null;
 
-    }
-    protected String    onUrlLoad(){
-        return null;
-    }
-    protected Double    onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
+    @Override
+    protected int onCsvValueIndexLoad(int numberOfValues) {
+        return 0;
     }
 
+    @Override
+    protected String onUrlLoad() {
+        return null;
+    }
 }
