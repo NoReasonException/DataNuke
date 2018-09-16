@@ -5,18 +5,17 @@ import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterClassN
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterMailformedFileException;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.ValueFilter.interfaces.MostRecentUnixTimestampFileFilter;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 
+import java.io.File;
 import java.nio.file.StandardOpenOption;
 import java.nio.channels.FileChannel;
 import java.nio.ByteBuffer;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.*;
 import java.nio.file.Path;
-import java.util.Arrays;
-import java.util.NoSuchElementException;
 
 /***
  * This is the main implementation of Save Subsystem
@@ -41,14 +40,14 @@ import java.util.NoSuchElementException;
 public class CsvValueFilter extends AbstractValueFilter<Double> {
     private Hashtable<String,Integer> classIDs;
     private ArrayList<Double>           classValues;
-    private java.lang.String            filename;
+    private java.lang.String            directory;
     private DataProvider                fileDataProvider;
     private static int                  cnt=0;
 
 
-    public CsvValueFilter(String filename){
+    public CsvValueFilter(String directory){
         this.classIDs=new Hashtable<>();
-        this.filename=filename;
+        this.directory =directory;
     }
 
     /****
@@ -71,8 +70,25 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     /*Package-Private*/String fileContextToString() throws CsvValueFilterException {
         Path p;
         return DataProvider.Utills.DataProviderToString(this.fileDataProvider = new FileDataProvider(
-                p = Paths.get(this.filename)));
+                p = Paths.get(getMostRecentFile(this.directory))));
 
+    }
+    @SuppressWarnings("unchecked")
+    private static String getMostRecentFile(String directory){
+        List e;
+        (e=Arrays.asList(
+                new File(directory).
+                        list(new MostRecentUnixTimestampFileFilter()))).
+                sort((a1,a2)->{
+                    String ref1,ref2;
+                    return Integer.valueOf((ref1=(String)a1).substring(0,ref1.length()-4))<
+                        Integer.valueOf((ref2=(String)a2).substring(0,ref2.length()-4))?1:-1;
+        });
+        System.out.println(e.get(0));
+        return directory+e.get(0);
+    }
+    private static String getNewFilename(String directory){
+        return directory+(System.currentTimeMillis()/1000)+".csv";
     }
 
     /****
@@ -88,6 +104,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
             String str = fileContextToString();
             ArrayList<Double> retval=new ArrayList<>();
             for (String s:str.split(",")){ //NumberFormatException
+                System.out.println(s);
                 retval.add(Double.valueOf(tmp=s));
             }
             return retval;
@@ -127,10 +144,9 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      * @return true on success
      */
     synchronized protected boolean  saveCSVContext() {
-        ByteBuffer buffer = ByteBuffer.allocate((122 * getCSVContext().size()));
-
         try {
-            FileChannel byteChannel = (FileChannel) FileChannel.open(Paths.get(filename),StandardOpenOption.WRITE);
+            Path filePath=Paths.get(getNewFilename(directory));
+            FileChannel byteChannel = (FileChannel) FileChannel.open(filePath,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);
 
             byteChannel.write(
                     ByteBuffer.wrap(
@@ -150,8 +166,6 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         return true;
 
     }
-
-
     /****
      * .submitValue()
      * @param className the class submitted the value

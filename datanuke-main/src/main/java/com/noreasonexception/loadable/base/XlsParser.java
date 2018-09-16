@@ -23,6 +23,7 @@ abstract public class XlsParser extends RequestParser {
                     System.out.println(tmp);
                     return true;
                 }
+                System.out.println(tmp);
             }catch (InvalidSourceArchitectureException e){
                 throw new RuntimeException(e.getMessage());
 

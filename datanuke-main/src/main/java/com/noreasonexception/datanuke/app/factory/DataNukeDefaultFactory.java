@@ -18,7 +18,6 @@ import java.nio.ByteBuffer;
 import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.NoSuchElementException;
 import java.util.Random;
 
 public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
@@ -32,7 +31,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     private java.lang.String threadRunnerConfigFile                                =null;
     private java.lang.String threadRunnerSourcesFile                               =null;
     private java.lang.String customClassLoaderPATH                                 =null;
-    private java.lang.String csvValueFilterFile                                    =null;
+    private java.lang.String csvValueFilterDir =null;
     //===========================Siglentons======================================================\\\
     private AbstractValueFilter<Double> valueFilter                                =null;
     private AtlasLoader                 customClassLoader                          =null;
@@ -70,7 +69,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
                 throw new NoSuchFileException(filename);
 
             }
-            else if((csvValueFilterFile=object.getString(filename="CsvValueFilterFileDestination"))==null || !Paths.get(csvValueFilterFile).toFile().exists()){
+            else if((csvValueFilterDir =object.getString(filename="CsvValueFilterFileDestination"))==null){
                 throw new NoSuchFileException(filename);
 
             }
@@ -80,7 +79,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
             threadRunnerConfigFile=getRelativeDefaultPath(THREAD_RUNNER_CONFIG_FILE_DEFAULT);
             threadRunnerSourcesFile=getRelativeDefaultPath(THREAD_RUNNER_SOURCES_FILE_DEFAULT);
             customClassLoaderPATH=getRelativeDefaultPath(DATA_NUKE_CLASS_LOADER_DEFAULT_PATH);
-            csvValueFilterFile=getRelativeDefaultPath(CSV_VALUE_FILTER_FILE_PATH_DEFAULT);
+            csvValueFilterDir =getRelativeDefaultPath(CSV_VALUE_FILTER_FILE_PATH_DEFAULT);
         }
         return this;
 
@@ -146,7 +145,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     public AbstractValueFilter<Double> getDataNukeValueFilter() throws CsvValueFilterException {
         return (this.valueFilter!=null)?
                 (this.valueFilter):
-                (this.valueFilter=(new CsvValueFilter(this.csvValueFilterFile).buildFromFile()));
+                (this.valueFilter=(new CsvValueFilter(this.csvValueFilterDir).buildFromFile()));
     }
 
     @Override
