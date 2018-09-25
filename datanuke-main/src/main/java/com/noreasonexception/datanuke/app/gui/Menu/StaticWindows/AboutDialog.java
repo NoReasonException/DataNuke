@@ -38,7 +38,7 @@ public class AboutDialog extends Application {
 
 
 
-        textPane.getChildren().add(programmName=new Label("DataNuke v2.0"));
+        textPane.getChildren().add(programmName=new Label("DataNuke v2.1"));
         programmName.setPadding(new Insets(0,0,0,10));
         programmName.setStyle("-fx-font-size: 25px;");
         textPane.getChildren().add(versionDialog=new Label("Economic Calendar bot"));

@@ -199,14 +199,11 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-                if(b){
-                    wait(getWaitTime(tmp));
 
-                }
-                b=true;
+                wait(getWaitTime(tmp));
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
-                //kl=classLoader.loadClass(tmp.getClassname());
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A15_AbsGov_SeasonallyAdjusted_Change_AU");
+                kl=classLoader.loadClass(tmp.getClassname());
+                //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A15_AbsGov_SeasonallyAdjusted_Change_AU");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
