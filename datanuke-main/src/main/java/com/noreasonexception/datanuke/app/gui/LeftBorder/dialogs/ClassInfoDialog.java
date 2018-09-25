@@ -38,21 +38,32 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class ClassInfoDialog extends Application {
-    ClassInfo info=null;
-    DataNukeAbstractGuiFactory parentFactory=null;
     TableView<DataNukeGuiOption> optionTableView = null;
+    DataNukeAbstractGuiFactory parentFactory=null;
+    ClassInfo info=null;
 
+
+    /***
+     * The String just before the Class ID
+     */
     private static String IDString="ID";
     private static Integer IDIndex=0;
 
-
+    /***
+     * The String just before Class Name
+     */
     private static String NameString="Name";
     private static Integer NameIndex=1;
 
 
+    /***
+     * The String just before Next Event widget
+     */
     private static String NextEventString="Next Event";
     private static Integer NextEventIndex=2;
     @Override
+
+
     public void start(Stage primaryStage) throws Exception {
         VBox box= new VBox();
         box.getChildren().add(optionTableView=(TableView<DataNukeGuiOption>)getConfigurationArea());
@@ -63,6 +74,11 @@ public class ClassInfoDialog extends Application {
 
 
     }
+
+    /***
+     * Constructs and returns the save-cancel button area . performs the save operation
+     * ///TODO Refactor ! may create a central system for save and just call it from here?!?
+     */
     public Node getButtonArea(Stage primaryStage) {
         return new SaveOrCancelNode(primaryStage) {
             @Override
@@ -165,6 +181,10 @@ public class ClassInfoDialog extends Application {
             }
         };
     }
+
+    /***
+     * Constructs and returns the whole configuration area , as OptionsTable
+     */
     public Node getConfigurationArea(){
         return new OptionsTable(parentFactory) {
             @Override
@@ -177,12 +197,23 @@ public class ClassInfoDialog extends Application {
             }
 
 
+            /***
+             * @return the ID of that area (A1,A2 ...)
+             */
             public Node getIDArea(){
                 return new Label(info.getID());
             }
+
+            /***
+             * @return the name of the class...
+             */
             public Node getNameArea(){
                 return new Label(info.getClassname());
             }
+
+            /***
+             * constructs and returns the next-event configuration area
+             */
             public Node getNextEventArea(){
                 HBox box=new HBox();
                 Date next=new Date(Utills.getDeadline(
@@ -196,6 +227,11 @@ public class ClassInfoDialog extends Application {
 
                 return box;
             }
+
+            /***
+             * Returns the Date widget
+             * @param mills the current next timestamp , in order to config the Date widget
+             */
             public Node getDateEditNode(long mills){
                 DatePicker p=new DatePicker((Instant.ofEpochMilli(mills).
                         atZone(ZoneId.systemDefault()).toLocalDate()));
@@ -204,6 +240,13 @@ public class ClassInfoDialog extends Application {
 
                 return p;
             }
+
+            /***
+             * getDayCellFactory
+             * This method returns a cell factory , when applied to a DatePicker , makes unable
+             * to choice every day before today!
+             * @return a CallBack in order to create every cell
+             */
             public javafx.util.Callback<DatePicker,DateCell> getDayCellFactory(){
                 return new javafx.util.Callback<DatePicker, DateCell>() {
                     @Override
