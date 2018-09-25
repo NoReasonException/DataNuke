@@ -26,10 +26,12 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import javax.json.*;
+import javax.security.auth.callback.Callback;
 import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.time.*;
+import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -198,7 +200,26 @@ public class ClassInfoDialog extends Application {
                 DatePicker p=new DatePicker((Instant.ofEpochMilli(mills).
                         atZone(ZoneId.systemDefault()).toLocalDate()));
                 p.setEditable(false);
+                p.setDayCellFactory(getDayCellFactory());
+
                 return p;
+            }
+            public javafx.util.Callback<DatePicker,DateCell> getDayCellFactory(){
+                return new javafx.util.Callback<DatePicker, DateCell>() {
+                    @Override
+                    public DateCell call(DatePicker param) {
+                        return new DateCell(){
+                            @Override
+                            public void updateItem(LocalDate item, boolean empty) {
+                                super.updateItem(item, empty);
+                                if(item.isBefore(ChronoLocalDate.from(LocalDate.now()))){
+                                    setDisable(true);
+                                    setStyle("-fx-background-color: #ffc0cb;");
+                                }
+                            }
+                        };
+                    }
+                };
             }
             public Node getTimeEditNode(int hour,int mins){
                 HBox box=new HBox();

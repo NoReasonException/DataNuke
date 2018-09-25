@@ -73,8 +73,6 @@ public class DataNukeDefaultGuiFactory extends DataNukeAbstractGuiFactory {
             return ;
         }
         bottomBox.getChildren().add(logWindowTextArea);
-
-        return ;
     }
 
     public VBox toggleErrorWindow(){

@@ -53,7 +53,7 @@ public class AbstractThreadRunner implements    Runnable ,
                                                 ThreadRunnerStateObservable,
                                                 ThreadRunnerTaskObservable{
 
-    private ITree<Long,ClassInfo> classSourcesDT=null;    //The Data Structure to implement EDF
+    private ITree<Long,ClassInfo>                       classSourcesDT=null;    //The Data Structure to implement EDF
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
     private ThreadRunnerStateEventsDispacher            stateEventsDispacher;   //The thread to inform all state - observers for events
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
