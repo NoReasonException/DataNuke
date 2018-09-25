@@ -2,9 +2,9 @@ package com.noreasonexception.datanuke.app.gui.leftBorder;
 
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.leftBorder.dialogs.ClassInfoDialog;
-import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerStateListener;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskListener;
+import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState;
 import com.noreasonexception.datanuke.app.threadRunner.etc.ClassInfo;
 import javafx.beans.InvalidationListener;
 import javafx.beans.value.ChangeListener;

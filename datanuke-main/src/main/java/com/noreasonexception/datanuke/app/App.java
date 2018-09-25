@@ -4,6 +4,7 @@ import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeDefaultGuiFactory;
 
+import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -28,7 +29,10 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-        coreFactory.getThreadRunner().dismiss();
+        AbstractThreadRunner th;
+        if((th=coreFactory.getThreadRunner())!=null){
+            coreFactory.getThreadRunner().dismiss();
+        }
     }
 
     @Override

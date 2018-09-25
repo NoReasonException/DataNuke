@@ -81,6 +81,13 @@ public class ClassInfoDialog extends Application {
      */
     public Node getButtonArea(Stage primaryStage) {
         return new SaveOrCancelNode(primaryStage) {
+
+            /**
+             * Save button handler
+             * Saves the new data into the source file.
+             * TODO needs refactor
+             * @return EventHandler<ActionEvent>
+             */
             @Override
             public EventHandler<ActionEvent> getSaveButtonHandler() {
                 return new EventHandler<ActionEvent>() {
@@ -163,6 +170,9 @@ public class ClassInfoDialog extends Application {
                 };
             }
 
+            /***
+             * Cancel button handler
+             */
             @Override
             public EventHandler<ActionEvent> getCancelButtonHandler(Stage parentStage) {
                 return new EventHandler<ActionEvent>() {
