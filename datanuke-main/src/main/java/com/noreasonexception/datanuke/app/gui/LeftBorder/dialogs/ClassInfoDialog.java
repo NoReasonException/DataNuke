@@ -128,7 +128,10 @@ public class ClassInfoDialog extends Application {
                                                                     newDate.getDayOfMonth(),
                                                                     newTimeHour,
                                                                     newTimeMins);
-
+                        if(localDateTime.isBefore(LocalDateTime.now())){
+                            new InvalidFieldsError().show();
+                            return;
+                        }
                         String className=((Label)(optionTableView.getItems().get(1).getNode())).getText();
 
 
