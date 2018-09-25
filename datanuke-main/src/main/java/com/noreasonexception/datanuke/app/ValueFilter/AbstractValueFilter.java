@@ -35,4 +35,11 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
      * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
      */
     abstract public AbstractValueFilter<Double> buildFromFile() throws CsvValueFilterException;
+
+    /***
+     * this method covers the new event - same value exception . create a new file with a new timestamp , identical to previous one!
+     * @return true on success
+     * @throws CsvValueFilterException in case of any error(IOE probably)
+     */
+    abstract public boolean enforcesubmitValue() throws CsvValueFilterException;
 }

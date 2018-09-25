@@ -65,6 +65,6 @@ abstract public class PatternParser extends StringParser {
             }
 
         }
-        return false;
+        return super.loop();
     }
 }

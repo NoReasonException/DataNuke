@@ -84,7 +84,6 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
                     return Integer.valueOf((ref1=(String)a1).substring(0,ref1.length()-4))<
                         Integer.valueOf((ref2=(String)a2).substring(0,ref2.length()-4))?1:-1;
         });
-        System.out.println(e.get(0));
         return directory+e.get(0);
     }
     private static String getNewFilename(String directory){
@@ -104,7 +103,6 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
             String str = fileContextToString();
             ArrayList<Double> retval=new ArrayList<>();
             for (String s:str.split(",")){ //NumberFormatException
-                System.out.println(s);
                 retval.add(Double.valueOf(tmp=s));
             }
             return retval;
@@ -128,6 +126,11 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         if((id=classIDs.get(className))==null)return -1;
         return id;
 
+    }
+
+    @Override
+    public boolean enforcesubmitValue() throws CsvValueFilterException {
+        return saveCSVContext();
     }
 
     protected Object getLockObject(){return this;}

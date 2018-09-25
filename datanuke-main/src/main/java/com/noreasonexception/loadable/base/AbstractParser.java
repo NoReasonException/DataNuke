@@ -1,6 +1,7 @@
 package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
@@ -53,6 +54,15 @@ abstract public class AbstractParser implements Runnable {
             return false;
         }
     }
+    protected boolean declareSameValueSituation(){
+        try{
+            return getValueFilter().enforcesubmitValue();
+        }catch (CsvValueFilterException e){
+            e.printStackTrace();
+            return false;
+        }
+
+    }
     @Override
     public void run() {
         System.out.println("run \t"+getClass().getName());
@@ -67,10 +77,11 @@ abstract public class AbstractParser implements Runnable {
      * The main loop of RequestParser
      * the .run() method calls it
      * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
-     * //TODO in case of changed date in source , this will fail in infinite loop , so a maximum inteval is needed!
      * @return true in success
      */
-    abstract protected boolean loop();
+    protected boolean loop(){
+        return declareSameValueSituation();
+    }
 
 
     @Override

@@ -42,7 +42,7 @@ abstract public class CsvParser extends StringParser{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
+        return super.loop();
     }
     protected ArrayList<String> convertSourceToArrayList() throws ConvertionSourceToTextException{
         ArrayList<String> retval=new ArrayList<>();

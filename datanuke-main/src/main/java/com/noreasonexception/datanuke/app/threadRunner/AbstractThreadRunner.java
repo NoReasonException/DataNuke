@@ -57,6 +57,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private LinkedList<ThreadRunnerStateListener>       stateListeners = null;  //The observers for state changes inside threadRunner
     private ThreadRunnerStateEventsDispacher            stateEventsDispacher;   //The thread to inform all state - observers for events
     private LinkedList<ThreadRunnerTaskListener>        taskListeners = null;   //The task observers(task changes inside threadRunner)
+    private ArrayList<Thread>                           killClassesThreads=null;
     private ThreadRunnerTaskEventsDispacher             taskEventsDispacher;    //The thread to inform all task - observers
     private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
     private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
@@ -183,6 +184,7 @@ public class AbstractThreadRunner implements    Runnable ,
         Class kl;
         Thread taskThread;
         Runnable task;
+        Thread killClassThread;
         boolean b=false;
         while (true){
 
@@ -197,13 +199,11 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-                if(b){
-                    wait(getWaitTime(tmp));
-                }
-                b=true;
+                wait(getWaitTime(tmp));
+
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
-                //kl=classLoader.loadClass(tmp.getClassname());
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A22_OnsGov_RetailSalesRevisionsTriangles_UK");
+                kl=classLoader.loadClass(tmp.getClassname());
+                //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A22_OnsGov_RetailSalesRevisionsTriangles_UK");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
@@ -214,9 +214,10 @@ public class AbstractThreadRunner implements    Runnable ,
                 task=null;
                 taskThread=null;
                 tmp=null;
-                new Thread(()->{
+                killClassesThreads.add(killClassThread=new Thread(()->{
                     AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
-                }).start();
+                }));
+                killClassThread.start();
 
             }catch (InterruptedException e){
                 if(Thread.currentThread().isAlive())
@@ -327,7 +328,7 @@ public class AbstractThreadRunner implements    Runnable ,
         this.sourceProvider=sourceProvider;
         this.valueFilter=valueFilter;
         this.randomGenerator=random;
-
+        this.killClassesThreads=new ArrayList<>();
         reset();
     }
 
@@ -373,8 +374,14 @@ public class AbstractThreadRunner implements    Runnable ,
         mainThread=null;
         if(stateEventsDispacher!=null){
             changeStateTo(NONE);
-
         }
+    }
+    private void stopKillThreads(){
+        for (Thread th:killClassesThreads){
+            logMessageExporter.sendMessage("Thread "+th.getName()+": Start interrupt sequence");
+            th.interrupt();
+        }
+        logMessageExporter.sendMessage("All KillThreads interrupted");
     }
     public void dismiss(){
         if(stateEventsDispacher!=null && stateEventsDispacher.isAlive()) {
@@ -387,6 +394,8 @@ public class AbstractThreadRunner implements    Runnable ,
             taskEventsDispacher=null;
         }
         stopMainThread();
+        stopKillThreads();
+
 
     }
 }
