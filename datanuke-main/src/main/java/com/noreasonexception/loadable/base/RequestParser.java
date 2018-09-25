@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  * @implNote In some steps , the ThreadRunnerTaskEventsDispacher must informed by corresponding methods
  */
 abstract public class RequestParser extends AbstractParser{
-    protected final int REQUESTS_MAX=5000;
+    protected final int REQUESTS_MAX=400;
 
 
     /***
