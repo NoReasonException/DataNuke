@@ -18,9 +18,4 @@ public class A5_Statcan_BuildingPermits_CAN extends CanStatParser {
         return "Building permits";
     }
 
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        System.out.println(".onValueExtract(Object context) called");
-        return 0d;
-    }
 }
