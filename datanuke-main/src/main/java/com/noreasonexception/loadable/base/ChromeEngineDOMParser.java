@@ -2,10 +2,11 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class ChromeEngineDOMParser extends DOMParser {
+abstract public class ChromeEngineDOMParser extends DOMParser {
     public ChromeEngineDOMParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
     }
