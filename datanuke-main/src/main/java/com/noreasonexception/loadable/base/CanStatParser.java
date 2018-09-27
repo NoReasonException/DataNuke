@@ -66,4 +66,14 @@ abstract public class CanStatParser extends ChromeEngineDOMParser {
         driver.close();
         return super.loop();
     }
+
+
+
+    @Override
+    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
+        WebDriver driver = (WebDriver)context;
+        WebElement growthIndicator = driver.findElements(By.className("sd-indicator-growth")).get(0);
+        System.out.println(growthIndicator.getText().replace("%",""));
+        return Double.valueOf(growthIndicator.getText().replace("%",""));
+    }
 }

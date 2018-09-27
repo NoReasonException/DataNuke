@@ -5,7 +5,11 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDis
 import com.noreasonexception.loadable.base.CanStatParser;
 import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class A3_Statcan_CanadianInternationalMerchandiseTrade_CAN extends CanStatParser {
@@ -16,13 +20,6 @@ public class A3_Statcan_CanadianInternationalMerchandiseTrade_CAN extends CanSta
     }
     @Override
     protected String onEventNameLoad() {
-        return "Building permits";
+        return "Canadian international merchandise trade";
     }
-
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        System.out.println(".onValueExtract(Object context) called");
-        return 0d;
-    }
-
 }

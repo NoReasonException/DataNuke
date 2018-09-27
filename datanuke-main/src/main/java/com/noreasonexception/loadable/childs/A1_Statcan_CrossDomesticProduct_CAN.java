@@ -5,7 +5,11 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDis
 import com.noreasonexception.loadable.base.CanStatParser;
 import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class A1_Statcan_CrossDomesticProduct_CAN extends CanStatParser {
@@ -16,12 +20,6 @@ public class A1_Statcan_CrossDomesticProduct_CAN extends CanStatParser {
 
     @Override
     protected String onEventNameLoad() {
-        return "Building permits";
-    }
-
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        System.out.println(".onValueExtract(Object context) called");
-        return 0d;
+        return "Gross domestic product by industry";
     }
 }
