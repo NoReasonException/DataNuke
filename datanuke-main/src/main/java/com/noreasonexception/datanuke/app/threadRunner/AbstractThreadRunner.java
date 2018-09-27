@@ -63,6 +63,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
+    private boolean                                     terminationFlag=false;  //in order to kill this
     private Random                                      randomGenerator=null;
     private Thread                                      mainThread=null;
     private AtlasLoader                                 classLoader = null;     //The ClassLoader of threadRunner , responsible for removing everything after finish
@@ -201,6 +202,11 @@ public class AbstractThreadRunner implements    Runnable ,
 
 
                 wait(getWaitTime(tmp));
+                if(terminationFlag){
+                    terminationFlag=false;//reset the termination flag in case of re-start
+                    Thread.currentThread().interrupt();// kill myself.
+
+                }
                 b=true;
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
@@ -237,6 +243,9 @@ public class AbstractThreadRunner implements    Runnable ,
             }
             catch (InstantiationException|IllegalAccessException e){
                 e.printStackTrace();
+            }catch (NullPointerException e){
+                e.printStackTrace();
+                logMessageExporter.sendMessage("NullPointerException ingnored due to termination proccess");
             }
 
 
@@ -377,7 +386,12 @@ public class AbstractThreadRunner implements    Runnable ,
     public void stopMainThread(){
         if(mainThread==null)return;
         logMessageExporter.sendMessage("Stopping the main thread...");
-        mainThread.interrupt();
+        terminationFlag=true;
+        synchronized (mainThread){
+            mainThread.notify();
+
+        }
+
         mainThread=null;
         if(stateEventsDispacher!=null){
             changeStateTo(NONE);
@@ -390,7 +404,18 @@ public class AbstractThreadRunner implements    Runnable ,
         }
         logMessageExporter.sendMessage("All KillThreads interrupted");
     }
+
+    /***
+     * Termination procedure
+     * 1) We terminate (if necessary) the StateEventDispacher Thread
+     * 2) We terminate (if necessary) The TaskEventDispacher Thread
+     * 3) We stop the main Thread
+     * 4 ) We kill all KillThreads (@See KillThreads on top of this file)
+     */
     public void dismiss(){
+        stopMainThread();
+        stopKillThreads();
+/*
         if(stateEventsDispacher!=null && stateEventsDispacher.isAlive()) {
             stateEventsDispacher.interrupt();
             stateEventsDispacher = null;
@@ -400,9 +425,7 @@ public class AbstractThreadRunner implements    Runnable ,
             taskEventsDispacher.interrupt();
             taskEventsDispacher=null;
         }
-        stopMainThread();
-        stopKillThreads();
-
+*/
 
     }
 }
