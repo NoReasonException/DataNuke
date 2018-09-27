@@ -402,6 +402,7 @@ public class AbstractThreadRunner implements    Runnable ,
             logMessageExporter.sendMessage("Thread "+th.getName()+": Start interrupt sequence");
             th.interrupt();
         }
+        //TODO produces nullPointer on termination...FIX
         logMessageExporter.sendMessage("All KillThreads interrupted");
     }
 
@@ -415,6 +416,8 @@ public class AbstractThreadRunner implements    Runnable ,
     public void dismiss(){
         stopMainThread();
         stopKillThreads();
+        ///After version 2.1.1 , and due to many problems , from now on , in OFF signal , the StateEventDispachers will not be interrupted
+        //TODO clean all remaining code.
 /*
         if(stateEventsDispacher!=null && stateEventsDispacher.isAlive()) {
             stateEventsDispacher.interrupt();
