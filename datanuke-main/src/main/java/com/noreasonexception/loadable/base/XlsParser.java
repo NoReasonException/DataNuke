@@ -25,13 +25,15 @@ abstract public class XlsParser extends RequestParser {
                 }
                 System.out.println(tmp);
             }catch (InvalidSourceArchitectureException e){
+                e.printStackTrace();
                 throw new RuntimeException(e.getMessage());
 
             }
 
 
         }
-        return false;
+        System.out.println("return false ");
+        return super.loop();
 
     }
 

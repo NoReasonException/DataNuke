@@ -201,6 +201,7 @@ public class AbstractThreadRunner implements    Runnable ,
 
 
                 wait(getWaitTime(tmp));
+                b=true;
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 kl=classLoader.loadClass(tmp.getClassname());
                 //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A15_AbsGov_SeasonallyAdjusted_Change_AU");
@@ -214,9 +215,17 @@ public class AbstractThreadRunner implements    Runnable ,
                 task=null;
                 taskThread=null;
                 tmp=null;
-                killClassesThreads.add(killClassThread=new Thread(()->{
-                    AbstractThreadRunner.this.classLoader.removeClass(tmpclassname,true);
-                }));
+                killClassesThreads.add(killClassThread=new Thread(new Runnable() {
+                    private String className=null;
+                    @Override
+                    public void run() {
+                        AbstractThreadRunner.this.classLoader.removeClass("",true);
+                    }
+                    public Runnable init(String tempClassName){
+                        this.className=tempClassName;
+                        return this;
+                    }
+                }.init(tmpclassname)));
                 killClassThread.start();
 
             }catch (InterruptedException e){
@@ -229,11 +238,6 @@ public class AbstractThreadRunner implements    Runnable ,
                 e.printStackTrace();
             }
             System.gc();
-            try{
-                Thread.currentThread().sleep(2000);
-
-            }catch (InterruptedException e){}
-            return;
 
         }
     }

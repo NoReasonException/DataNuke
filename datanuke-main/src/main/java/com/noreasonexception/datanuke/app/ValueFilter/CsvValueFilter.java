@@ -147,8 +147,10 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      * @return true on success
      */
     synchronized protected boolean  saveCSVContext() {
+        String filePathStr;
         try {
-            Path filePath=Paths.get(getNewFilename(directory));
+            Path filePath=Paths.get(filePathStr=getNewFilename(directory));
+            System.out.println(filePathStr+" created !");
             FileChannel byteChannel = (FileChannel) FileChannel.open(filePath,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);
 
             byteChannel.write(

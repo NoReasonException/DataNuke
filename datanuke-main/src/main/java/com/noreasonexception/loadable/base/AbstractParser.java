@@ -77,6 +77,8 @@ abstract public class AbstractParser implements Runnable {
      * The main loop of RequestParser
      * the .run() method calls it
      * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
+     * if a new value if not found , the abstractParser implementation declares a SameValueSituation()
+     * in this case , the program just creates a new file with a new timestamp.
      * @return true in success
      */
     protected boolean loop(){
