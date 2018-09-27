@@ -234,9 +234,12 @@ public class AbstractThreadRunner implements    Runnable ,
             }
             catch (ClassNotFoundException|NoSuchMethodException|InvocationTargetException e){
                 e.printStackTrace();
-            }catch (InstantiationException|IllegalAccessException e){
+            }
+            catch (InstantiationException|IllegalAccessException e){
                 e.printStackTrace();
             }
+
+
             System.gc();
 
         }

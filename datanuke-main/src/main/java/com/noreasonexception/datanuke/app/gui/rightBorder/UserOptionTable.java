@@ -1,5 +1,6 @@
 package com.noreasonexception.datanuke.app.gui.rightBorder;
 
+
 import com.noreasonexception.datanuke.app.gui.Colors;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.utills.DataNukeGuiOption;
@@ -43,7 +44,7 @@ public class UserOptionTable extends OptionsTable {
         box.getChildren().add(this.onOffBtn = new Button(statusOptionOFFString));
         onOffBtn.setStyle("-fx-background-color:" + Colors.ΟFF_COLOR);
         options.add(new DataNukeGuiOption("Status", box));
-        options.add(new DataNukeGuiOption("Uptime", new Label(new Date().toString())));
+        options.add(new DataNukeGuiOption("Started at", new Label(new Date().toString())));
         options.add(new DataNukeGuiOption("Next Event", nextEventTaskNameLabel = new Label("-")));
         options.add(new DataNukeGuiOption("Next Event(Time)", nextEventTaskTimeLabel = new Label("-")));
         return options;
