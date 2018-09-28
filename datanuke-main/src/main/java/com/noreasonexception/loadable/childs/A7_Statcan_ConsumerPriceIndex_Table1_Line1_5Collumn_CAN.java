@@ -3,8 +3,8 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.CanStatParser;
+import com.noreasonexception.loadable.base.ComplexCsvParserAdapter;
 import com.noreasonexception.loadable.base.CsvParser;
-import com.noreasonexception.loadable.base.TableParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +24,7 @@ public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends Can
 
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
+        System.out.println(getClass()+" is the main class name" );
         CsvParser secondaryParser=null;
         String tempUrlToCsv=null;
         WebDriver mainDriver=(WebDriver)context;
@@ -31,20 +32,21 @@ public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends Can
         mainDriver.navigate().to(tempUrlToCsv=table1.findElement(By.tagName("a")).getAttribute("href"));
 
         secondaryParser= OnA7SecondaryCsvParserLoad(
-                mainDriver.findElement(
-                        By.cssSelector(".release_nav"))
+                mainDriver.findElement(By.cssSelector(".release_nav"))
                 .findElements(By.cssSelector(".btn.btn-default.btn-sm"))
                 .get(1).getAttribute("href"));
-        secondaryParser.run();
-
-
-        return 0d;
+        return new ComplexCsvParserAdapter(this,
+                                            secondaryParser,
+                                            getDispacher(),
+                                            getValueFilter()).onValueExtract();
     }
 
     private CsvParser OnA7SecondaryCsvParserLoad(final String csvUrl){
         return new CsvParser(getDispacher(),getValueFilter()) {
+
             @Override
             protected int onCsvValueIndexLoad(int numberOfValues) {
+
                 return 20;
             }
 
