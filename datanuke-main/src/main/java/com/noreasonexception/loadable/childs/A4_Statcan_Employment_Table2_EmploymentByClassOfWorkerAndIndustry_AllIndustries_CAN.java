@@ -31,6 +31,8 @@ public class A4_Statcan_Employment_Table2_EmploymentByClassOfWorkerAndIndustry_A
         for (int i = 0; i < super.REQUESTS_MAX; i++) {
             WebElement element = driver.findElement(By.id("release-list")); //get the q element (query element)
             List<WebElement> firstTableElementlist = element.findElements(By.className("odd"));
+            firstTableElementlist.addAll(element.findElements(By.className("even")));
+
             WebElement firstTableElement=null;
             for (WebElement e:
                     firstTableElementlist) {

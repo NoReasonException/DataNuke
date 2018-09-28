@@ -12,6 +12,7 @@ C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonex
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\error\InvalidSourceArchitectureException.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\RequestParser.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java
+C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\CanStatParser.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\threadRunner\AbstractThreadRunner.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\PatternParser.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\Census_CoreDurableGoodsOrders_pdf.java
@@ -36,6 +37,8 @@ C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonex
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\gui\dialog\InvalidFieldsError.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\ValueFilter\error\CsvValueFilterMailformedFileException.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\threadRunner\etc\TaskEventException.java
+C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\ChromeEngineDOMParser.java
+C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\DOMParser.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\A40_StatsGov_GDP_NZD.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction_US.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\threadRunner\Utills.java

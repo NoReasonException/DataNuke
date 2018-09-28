@@ -31,7 +31,7 @@ abstract public class CsvParser extends StringParser{
         ArrayList<String> csvParts=null;
         Double tempValue;
         try {
-            while (true) {
+            for (int i = 0; i < super.REQUESTS_MAX; i++) {
                 if(informValueFilter(tempValue=onValueExtract(csvParts=convertSourceToArrayList()))){
                     getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
                     return true;

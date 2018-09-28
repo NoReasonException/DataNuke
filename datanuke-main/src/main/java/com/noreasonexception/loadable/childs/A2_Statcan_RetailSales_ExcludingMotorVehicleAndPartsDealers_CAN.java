@@ -45,6 +45,8 @@ public class A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN ext
         for (int i = 0; i < super.REQUESTS_MAX; i++) {
             WebElement element = driver.findElement(By.id("release-list")); //get the q element (query element)
             List<WebElement> firstTableElementlist = element.findElements(By.className("odd"));
+            firstTableElementlist.addAll(element.findElements(By.className("even")));
+
             WebElement firstTableElement=null;
             for (WebElement e:
                     firstTableElementlist) {

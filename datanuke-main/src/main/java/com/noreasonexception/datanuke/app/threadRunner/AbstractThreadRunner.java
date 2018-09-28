@@ -200,20 +200,15 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-
-                if(b){
-                    wait(getWaitTime(tmp));
-
-                }
+                wait(getWaitTime(tmp));
                 if(terminationFlag){
                     terminationFlag=false;//reset the termination flag in case of re-start
                     Thread.currentThread().interrupt();// kill myself.
 
                 }
-                b=true;
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
-                //kl=classLoader.loadClass(tmp.getClassname());
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A5_Statcan_BuildingPermits_CAN");
+                kl=classLoader.loadClass(tmp.getClassname());
+                //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
