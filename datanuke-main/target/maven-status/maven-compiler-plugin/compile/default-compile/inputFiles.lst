@@ -45,6 +45,7 @@ C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonex
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\dataProvider\NetworkDataProvider.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\datanuke\app\threadRunner\error\SourcesLoaderException.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\A44_RbnzGovt_OCR_NZD.java
+C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\ComplexCsvParserAdapter.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\A2_Statcan_RetailSales_ExcludingMotorVehicleAndPartsDealers_CAN.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\base\AbstractParser.java
 C:\Users\Stefan\Desktop\repo\DataNuke\datanuke-main\src\main\java\com\noreasonexception\loadable\childs\AbstractStatcanParser.java
