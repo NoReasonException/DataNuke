@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- Thread Runner Config Provider , loads the default file with settings-->
+    <bean id="threadRunnersConfigProvider" class="com.noreasonexception.datanuke.app.dataProvider.FileDataProvider" c:_0="conf/threadRunnerConf.json"/> >
+
+    <!-- Thread Runner Source Provider , loads the default file with the classes set .
+    Default location , [pwd]/conf/threadRunnerSources.json-->
+    <bean id="threadRunnersSourceProvider" class="com.noreasonexception.datanuke.app.dataProvider.FileDataProvider" c:_0="conf/threadRunnerSources.json"/> >
+
+    <!-- Thread Runner Source Provider , loads the default file with the classes set .
+    Default location , [pwd]/conf/threadRunnerSources.json-->
+    <bean id="threadRunnersFactoryConfigProvider" class="com.noreasonexception.datanuke.app.dataProvider.FileDataProvider" c:_0="conf/dataNukeDefaultFactoryConf.json"/> >
+</beans>
