@@ -56,10 +56,7 @@ public class A17_AbsGov_SeasonallyAjusted_Coll3_AU extends TableParser {
         Double t;
         String actualTable = getTableElement((String) context); //getTable
         String row = getRawRow(actualTable, onRowIndexLoad());
-        System.out.println(t=Double.valueOf(cellToValue(getCell(row, onCellIndexLoad()))));
-        return t;
-
-
+        return Double.valueOf(cellToValue(getCell(row, onCellIndexLoad())));
     }
 
     protected String cellToValue(String cell){
