@@ -61,7 +61,7 @@ public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends Can
      *  //TODO REMOVE!
      *  ///TODO It must happen at least 1 time to be able to see the architecture of the page
      */
-    @Override
+    /*@Override
     protected boolean loop() {
 
         WebDriver driver    = getWebDriver();
@@ -108,5 +108,5 @@ public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends Can
         }catch (InterruptedException e){}
         driver.close();
         return super.loop();
-    }
+    }*/
 }

@@ -43,7 +43,7 @@ public class A17_AbsGov_SeasonallyAjusted_Coll3_AU extends TableParser {
 
     @Override
     protected int onCellIndexLoad() {
-        return 3;
+        return 5;
     }
 
     @Override
@@ -53,9 +53,12 @@ public class A17_AbsGov_SeasonallyAjusted_Coll3_AU extends TableParser {
 
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
+        Double t;
         String actualTable = getTableElement((String) context); //getTable
         String row = getRawRow(actualTable, onRowIndexLoad());
-        return Double.valueOf(cellToValue(getCell(row, onCellIndexLoad())));
+        System.out.println(t=Double.valueOf(cellToValue(getCell(row, onCellIndexLoad()))));
+        return t;
+
 
     }
 
