@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--Import the file locations in order to create the DataProviders -->
+    <import resource="DataProviderFilesStrConfig.xml" />
+    <!-- Default location of ThreadRunnerConfig file!
+    Watch how i created a Path ! magic right?
+    -->
+    <bean id="ThreadRunnerConfigProviderPath"
+          class="java.nio.file.Paths"
+          factory-method="get"
+          c:_0="ThreadRunnerConfigProviderPathString" />
+
+    <!-- Default location of ThreadRunnerConfig file!
+        Watch how i created a Path ! magic right?
+        -->
+    <bean id="ThreadRunnerSourceProviderPath"
+          class="java.nio.file.Paths"
+          factory-method="get"
+          c:_0="ThreadRunnerSourceProviderPathString" />
+
+    <!-- Default location of ThreadRunnerConfig file!
+        Watch how i created a Path ! magic right?
+        -->
+    <bean id="ThreadRunnerFactoryConfigProviderPath"
+          class="java.nio.file.Paths"
+          factory-method="get"
+          c:_0="ThreadRunnerFactoryConfigProviderPathString" />
+
+
+</beans>

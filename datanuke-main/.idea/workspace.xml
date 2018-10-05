@@ -24,20 +24,29 @@
     <splitter split-orientation="vertical" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN.java">
+          <file leaf-file-name="TableParser.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/TableParser.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1309">
-                  <caret line="91" selection-start-line="91" selection-end-line="91" />
+                <state relative-caret-position="272">
+                  <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="A6_Statcan_UnemploymentRate_CAN.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A6_Statcan_UnemploymentRate_CAN.java">
+          <file leaf-file-name="DataProviderConfig.xml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderConfig.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+                <state relative-caret-position="204">
+                  <caret line="15" column="165" selection-start-line="15" selection-start-column="165" selection-end-line="15" selection-end-column="165" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DataProviderFilesStrConfig.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderFilesStrConfig.xml">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="153">
+                  <caret line="10" column="50" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="50" />
                 </state>
               </provider>
             </entry>
@@ -54,17 +63,26 @@
           <file leaf-file-name="DataNukeDefaultFactory.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="97">
-                  <caret line="116" column="35" selection-start-line="116" selection-start-column="19" selection-end-line="116" selection-end-column="35" />
+                <state relative-caret-position="85">
+                  <caret line="116" column="44" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="1538682181.csv" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/data/1538682181.csv">
+          <file leaf-file-name="Paths.java" pinned="false" current-in-tab="false">
+            <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/nio/file/Paths.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="30" selection-start-column="30" selection-end-column="30" />
+                <state relative-caret-position="170">
+                  <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DataNukeAbstractFactory.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-357">
+                  <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
@@ -72,7 +90,7 @@
           <file leaf-file-name="DataNukeDefaultGuiFactory.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/factory/DataNukeDefaultGuiFactory.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="17">
+                <state relative-caret-position="89">
                   <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
                 </state>
               </provider>
@@ -81,26 +99,8 @@
           <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/pom.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="293">
-                  <caret line="139" column="41" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DataProviderConfig.xml" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderConfig.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="87">
-                  <caret line="13" column="165" selection-start-line="13" selection-start-column="165" selection-end-line="13" selection-end-column="165" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="DataNukeAbstractFactory.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+                <state relative-caret-position="337">
+                  <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
                 </state>
               </provider>
             </entry>
@@ -118,20 +118,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="DataNukeDefaultFactory.java" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
+          <file leaf-file-name="DataProviderFilesStrConfig.xml" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderFilesStrConfig.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="114">
-                  <caret line="28" column="137" selection-start-line="28" selection-start-column="137" selection-end-line="28" selection-end-column="137" />
+                <state relative-caret-position="221">
+                  <caret line="13" column="57" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="57" />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="FileDataProvider.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/FileDataProvider.java">
+          <file leaf-file-name="DataProviderFilesConfig.xml" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderFilesConfig.xml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+                <state relative-caret-position="92">
+                  <caret line="25" column="51" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="51" />
                 </state>
               </provider>
             </entry>
@@ -177,8 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/DataProvider.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/dialog/SaveDialog.java" />
         <option value="$PROJECT_DIR$/src/main/conf/threadRunnerConf.json" />
         <option value="$PROJECT_DIR$/src/main/conf/threadRunnerSources.json" />
@@ -226,8 +224,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A17_AbsGov_SeasonallyAjusted_Coll3_AU.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/Factory/DataNukeDefaultGuiFactory.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/factoryconf/DataProviderConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java" />
+        <option value="$PROJECT_DIR$/factoryconf/DataProviderFilesConfig.xml" />
+        <option value="$PROJECT_DIR$/factoryconf/DataProviderFilesStrConfig.xml" />
+        <option value="$PROJECT_DIR$/factoryconf/DataProviderConfig.xml" />
       </list>
     </option>
   </component>
@@ -274,10 +274,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="937" />
-    <option name="height" value="1038" />
+    <option name="x" value="-10" />
+    <option name="y" value="-10" />
+    <option name="width" value="1939" />
+    <option name="height" value="1049" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -285,7 +285,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -341,43 +340,13 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="dataProvider" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="gui" type="462c0819:PsiDirectoryNode" />
               <item name="factory" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -772,27 +741,28 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="386744000" />
+    <option name="totallyTimeSpent" value="389428000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="5" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.4984375" weight="0.14915255" />
+      <window_info anchor="bottom" id="TODO" order="7" />
+      <window_info anchor="bottom" id="Messages" order="17" sideWeight="0.4984375" weight="0.52689654" />
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50078124" side_tool="true" weight="0.26892656" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50078124" side_tool="true" weight="0.26892656" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.08828125" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info x="570" y="352" width="930" height="294" id="Run" order="7" sideWeight="0.496875" type="WINDOWED" visible="true" weight="0.3984375" />
-      <window_info anchor="bottom" id="Spring" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="6" visible="true" weight="0.27034482" />
+      <window_info anchor="bottom" id="Database Changes" order="15" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
+      <window_info x="0" y="23" width="1536" height="801" id="Run" order="7" sideWeight="0.496875" type="WINDOWED" visible="true" weight="0.3984375" />
+      <window_info anchor="bottom" id="Spring" order="20" />
+      <window_info anchor="bottom" id="Terminal" order="6" visible="true" weight="0.049655173" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19921875" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28580728" />
       <window_info anchor="bottom" id="Statistic" order="11" sideWeight="0.49921876" weight="0.2259887" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -801,44 +771,37 @@
       <window_info anchor="right" id="Theme Preview" order="5" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="2" weight="0.3299435" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50078124" side_tool="true" weight="0.26892656" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19921875" />
+      <window_info id="Favorites" order="5" side_tool="true" />
       <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.3296875" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
-    </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.28338763" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.01015625" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3299435" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.27034482" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.08828125" />
+      <window_info anchor="bottom" id="Database Changes" order="16" show_stripe_button="false" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Statistic" order="19" sideWeight="0.49921876" weight="0.2259887" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="14" show_stripe_button="false" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="TODO" order="8" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Database" order="6" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32934782" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984799" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32932165" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.20124805" />
-      <window_info anchor="right" id="Maven Projects" order="7" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-    </layout-to-restore>
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32881355" />
+      <window_info x="570" y="352" width="930" height="294" id="Run" order="7" sideWeight="0.496875" type="WINDOWED" visible="true" weight="0.3984375" />
+      <window_info anchor="bottom" id="Messages" order="18" sideWeight="0.4984375" weight="0.14915255" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info id="Designer" order="3" />
+    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -860,35 +823,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/OpenDocumentParser.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_NewHomeSales_pdf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/Census_CoreDurableGoodsOrders_pdf.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/net/URL.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="566" selection-start-line="566" selection-end-line="566" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/CsvParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/HtmlParser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1153,8 +1087,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="139" column="41" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="41" />
+        <state relative-caret-position="337">
+          <caret line="121" column="18" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1165,16 +1099,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/factory/DataNukeDefaultGuiFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="89">
           <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
         </state>
       </provider>
@@ -1186,17 +1113,59 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderConfig.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/TableParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="13" column="165" selection-start-line="13" selection-start-column="165" selection-end-line="13" selection-end-column="165" />
+        <state relative-caret-position="272">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeAbstractFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="28" column="137" selection-start-line="28" selection-start-column="137" selection-end-line="28" selection-end-column="137" />
+        <state relative-caret-position="85">
+          <caret line="116" column="44" selection-start-line="116" selection-start-column="39" selection-end-line="116" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A15_AbsGov_SeasonallyAdjusted_Change_AU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/nio/file/Paths.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderFilesStrConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="50" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderFilesConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="25" column="51" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/factoryconf/DataProviderConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="165" selection-start-line="15" selection-start-column="165" selection-end-line="15" selection-end-column="165" />
         </state>
       </provider>
     </entry>
