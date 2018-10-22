@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import sun.plugin.dom.exception.InvalidStateException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -120,7 +121,7 @@ abstract public class TableParser extends HtmlParser {
      * @param context the whole html file
      * @return the <table> ... </table> code
      */
-    protected String getTableElement(String context){
+    protected String getTableElement(String context) throws  java.lang.IllegalStateException {
 
         Matcher m = getPattern().matcher((String) context);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(m, 1);
@@ -133,7 +134,7 @@ abstract public class TableParser extends HtmlParser {
      * @param rowIndex the row index that you want
      * @return the code inside the <tr>...</tr>
      */
-    protected String getRawRow(String tableElement,int rowIndex){
+    protected String getRawRow(String tableElement,int rowIndex)  throws java.lang.IllegalStateException{
         Matcher rowMatcher = getRowPattern().matcher(tableElement);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(rowMatcher, rowIndex);
         return rowMatcher.group(0);
@@ -145,7 +146,7 @@ abstract public class TableParser extends HtmlParser {
      * @param cellIndex the cell you want
      * @return the code inside the <td>...</td>
      */
-    protected String getCell(String rawRow,int cellIndex){
+    protected String getCell(String rawRow,int cellIndex) throws  java.lang.IllegalStateException{
         Matcher cellMacher = getCellPattern().matcher(rawRow);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(cellMacher, cellIndex);
         return cellMacher.group(2);
@@ -157,7 +158,7 @@ abstract public class TableParser extends HtmlParser {
      * @param cell the code inside the <td>...</td>
      * @return the actual value
      */
-    protected String cellToValue(String cell){
+    protected String cellToValue(String cell) throws  java.lang.IllegalStateException{
         Matcher matcher=getValuePattern().matcher(cell);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
         return matcher.group(1);
@@ -167,16 +168,18 @@ abstract public class TableParser extends HtmlParser {
      * Entry point of TableParser
      * @param context here the context is the cell code (inside <td>...</td>)
      * @return the final value
-     * @throws InvalidSourceArchitectureException in case that something changed
+     * @throws InvalidSourceArchitectureException in case that something changed and the regular expressions is unable to detect the value
      */
     @Override
     protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
 
         Double d;
-        String actualTable = getTableElement((String)context); //getTable
-        String row = getRawRow(actualTable,onRowIndexLoad());//get needed row
-        System.out.println(row+"THIS IS THE RAW STUFF");    //just debug
-        System.out.println(d=Double.valueOf(cellToValue(getCell(row,onCellIndexLoad())))); //get the final value
+        try{
+
+            String actualTable = getTableElement((String)context); //getTable
+            String row = getRawRow(actualTable,onRowIndexLoad());//get needed row
+            System.out.println(d=Double.valueOf(cellToValue(getCell(row,onCellIndexLoad())))); //get the final value
+        }catch (IllegalStateException e){throw new InvalidSourceArchitectureException(getClass());}
         return d;
 
     }

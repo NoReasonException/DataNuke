@@ -18,7 +18,8 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
 
     @Override
     protected String onTableSignatureStartLoad() {
-        return "282218292822995348992822182928229950\"></a>\n" +
+        return "\n" +
+                "<p><a name=\"282218292822995348992822182928229950\"></a>\n" +
                 "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
     }
 
@@ -28,12 +29,13 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
                 " <br>\n" +
                 " <br>\n" +
                 "<b>INQUIRIES</b><br>\n" +
-                " <br>";
+                " <br>\n" +
+                "For further";
     }
 
     @Override
     protected Pattern getValuePattern() {
-        return Pattern.compile("<tr valign=\"top\"><td class=\"TableText\" width=\"26%\" valign=\"middle\"><font size=\"2\">Unemployment rate </font></td><td class=\"TableText\" width=\"25%\" valign=\"middle\"><div align=\"right\"><font size=\"2\">-0.3 pts </font></div></td><td class=\"TableText\" width=\"18%\" valign=\"middle\"><div align=\"right\"><font size=\"2\">-0.5 pts </font></div></td><td class=\"TableText\" width=\"14%\" valign=\"middle\"><div align=\"right\"><font size=\"2\">to </font></div></td><td class=\"TableText\" width=\"17%\" valign=\"middle\"><div align=\"right\"><font size=\"2\">(-?)(.*) pts </font></div.*?");
+        return Pattern.compile("<font size=\"2\">(.*?) pts </font>");
     }
 
     @Override
