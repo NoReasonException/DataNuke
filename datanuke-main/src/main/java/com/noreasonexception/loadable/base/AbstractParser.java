@@ -91,7 +91,8 @@ abstract public class AbstractParser implements Runnable {
      * @return true in success
      */
     protected boolean loop(){
-        return declareSameValueSituation();
+        declareSameValueSituation();
+        return false; //failed to get the new value
     }
 
     /***

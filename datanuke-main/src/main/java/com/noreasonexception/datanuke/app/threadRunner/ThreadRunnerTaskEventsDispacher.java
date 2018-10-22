@@ -140,7 +140,7 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
                             IllegalAccessException|
                             InvocationTargetException|
                             InterruptedException e){
-                        System.out.println("ThreadRunnerTaskEventsDispacher interrupted by user..");
+                        e.printStackTrace();
 
                     }
 
