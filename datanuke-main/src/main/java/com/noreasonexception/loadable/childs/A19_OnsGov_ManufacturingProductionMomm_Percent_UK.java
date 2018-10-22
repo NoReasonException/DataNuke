@@ -4,11 +4,12 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.CsvParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
+import com.noreasonexception.loadable.base.requestParserEtc.UserAgent;
 
 import java.util.regex.Pattern;
 
-public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK
-        extends CsvParser {
+public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK extends CsvParser {
     public A19_OnsGov_ManufacturingProductionMomm_Percent_UK(ThreadRunnerTaskEventsDispacher disp,
                                                              AbstractValueFilter<Double> valueFilter) {
         super(disp, valueFilter);
@@ -18,5 +19,10 @@ public class A19_OnsGov_ManufacturingProductionMomm_Percent_UK
     }
     protected int onCsvValueIndexLoad(int numberOfValues){
         return numberOfValues-1;
+    }
+
+    @Override
+    protected UserAgent onUserAgentFieldLoad() throws NoUserAgentRequired {
+        return UserAgent.DATANUKE;
     }
 }
