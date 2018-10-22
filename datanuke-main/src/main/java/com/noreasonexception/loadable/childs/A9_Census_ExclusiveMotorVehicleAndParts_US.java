@@ -30,11 +30,12 @@ public class A9_Census_ExclusiveMotorVehicleAndParts_US extends XlsParser {
         Workbook workbook;
         HSSFSheet sheet=getSheet(workbook=(Workbook)context);
         String v;
+
         for (Row row:sheet){
             try {
 
                 HSSFCell cell=(HSSFCell) row.getCell(1);
-
+                if(cell==null)continue; //the initial headlines does not have always second cells
                 System.out.println(row.getCell(2));
                 if(cell.toString().contains("Total (excl. motor vehicle & parts) ")) {
                     System.out.println(v=row.getCell(2).toString());
