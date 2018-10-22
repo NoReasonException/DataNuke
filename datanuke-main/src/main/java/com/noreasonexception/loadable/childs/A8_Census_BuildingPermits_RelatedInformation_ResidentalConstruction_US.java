@@ -24,7 +24,6 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
                 if(cell==null)continue;
                 HSSFCellStyle style = cell.getCellStyle();
                 HSSFFont font = style.getFont(workbook);
-                System.out.println(row.getCell(1));
                 if(font.getBold()) {
                     return Double.valueOf(row.getCell(1).toString());
 

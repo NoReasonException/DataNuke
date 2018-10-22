@@ -3,6 +3,8 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
+import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
+import com.noreasonexception.loadable.base.requestParserEtc.UserAgent;
 import com.snowtide.pdf.V;
 
 import java.io.IOException;
@@ -27,6 +29,7 @@ import java.util.regex.Pattern;
  */
 abstract public class RequestParser extends AbstractParser{
     protected final int REQUESTS_MAX=5;
+    protected final String USER_AGENT_FIELD="User-Agent";
 
 
     /***
@@ -54,8 +57,14 @@ abstract public class RequestParser extends AbstractParser{
      * @throws IOException           in case of any IOE (not internet found for example)
      */
     protected HttpURLConnection onConnection() throws MalformedURLException,IOException{
-        return (HttpURLConnection)
-                new URL(onUrlLoad()).openConnection();
+        HttpURLConnection conn=(HttpURLConnection) new URL(onUrlLoad()).openConnection();
+        try{
+            conn.addRequestProperty(USER_AGENT_FIELD,onUserAgentFieldLoad().getUserAgentField());
+        }catch (NoUserAgentRequired e){}
+        return conn;
+    }
+    protected UserAgent onUserAgentFieldLoad() throws NoUserAgentRequired{
+        throw new NoUserAgentRequired();
     }
 
 

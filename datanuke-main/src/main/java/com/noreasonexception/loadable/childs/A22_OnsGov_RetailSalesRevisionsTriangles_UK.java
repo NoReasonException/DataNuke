@@ -4,6 +4,8 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.XlsParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
+import com.noreasonexception.loadable.base.requestParserEtc.UserAgent;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -48,5 +50,10 @@ public class A22_OnsGov_RetailSalesRevisionsTriangles_UK extends XlsParser {
             }
         }
         throw new InvalidSourceArchitectureException(getClass());
+    }
+
+    @Override
+    protected UserAgent onUserAgentFieldLoad() throws NoUserAgentRequired {
+        return UserAgent.DATANUKE;
     }
 }

@@ -20,10 +20,8 @@ abstract public class XlsParser extends RequestParser {
             Double tmp;
             try{
                 if(informValueFilter(tmp=onValueExtract(getXlsWorkbook()))){
-                    System.out.println(tmp);
                     return true;
                 }
-                System.out.println(tmp);
             }catch (InvalidSourceArchitectureException e){
                 e.printStackTrace();
                 throw new RuntimeException(e.getMessage());
@@ -32,7 +30,6 @@ abstract public class XlsParser extends RequestParser {
 
 
         }
-        System.out.println("return false ");
         return super.loop();
 
     }
