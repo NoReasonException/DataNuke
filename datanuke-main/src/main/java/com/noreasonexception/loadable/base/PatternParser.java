@@ -42,9 +42,7 @@ abstract public class PatternParser extends StringParser {
         System.out.println("started"+getClass().getName());
         String temp;
         Double tempValue;
-        int i=0;
-
-        while(true){
+        for (int j = 0; j < REQUESTS_MAX; j++) {
             System.out.println("attempt on -> "+getClass().getName());
             try{
                 temp=convertSourceToText();
@@ -54,17 +52,17 @@ abstract public class PatternParser extends StringParser {
                     System.out.println("temp -> "+tempValue);
                     return true;
                 }
-                if(i>REQUESTS_MAX)break;
-                i+=1;
-            }catch (NumberFormatException e){
+            }catch (NumberFormatException|InvalidSourceArchitectureException e){
                 System.out.println(getClass().getName()+": This Event need update , the page format is unknown");
-            }catch (InvalidSourceArchitectureException e){
-                throw new RuntimeException(e.getMessage());
+                break;
             }catch (com.noreasonexception.loadable.base.error.ConvertionSourceToTextException e){
-                e.printStackTrace();
+                System.out.println(getClass().getName()+": Connection error maybe? "+getClass().getName()+"Failed");
+                break;
             }
-
         }
+
+
+
         return super.loop();
     }
 }

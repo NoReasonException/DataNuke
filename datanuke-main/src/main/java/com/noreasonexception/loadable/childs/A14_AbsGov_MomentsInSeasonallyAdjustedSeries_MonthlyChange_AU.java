@@ -18,7 +18,7 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
 
     @Override
     protected String onTableSignatureStartLoad() {
-        return "<p><a name=\"2822182928229952992822182928229950\"></a>\n" +
+        return "282218292822995348992822182928229950\"></a>\n" +
                 "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";
     }
 
@@ -33,7 +33,7 @@ public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU exten
 
     @Override
     protected Pattern getValuePattern() {
-        return Pattern.compile("div align=\"right\"><font size=\"2\">(.*) pts </font></div");
+        return Pattern.compile("div align=\"right\"><font size=\"2\">(-?)(.*) pts </font></div");
     }
 
     @Override
