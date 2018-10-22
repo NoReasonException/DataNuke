@@ -41,5 +41,5 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
      * @return true on success
      * @throws CsvValueFilterException in case of any error(IOE probably)
      */
-    abstract public boolean enforcesubmitValue() throws CsvValueFilterException;
+    abstract public boolean sameValueSituation() throws CsvValueFilterException;
 }

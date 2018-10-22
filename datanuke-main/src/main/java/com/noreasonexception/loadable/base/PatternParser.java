@@ -6,6 +6,9 @@ import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureExcept
 
 import java.util.regex.Pattern;
 
+/***
+ * Uses the Standard .regex package to extract values
+ */
 abstract public class PatternParser extends StringParser {
     private java.util.regex.Pattern         pattern;
 
@@ -60,9 +63,6 @@ abstract public class PatternParser extends StringParser {
                 break;
             }
         }
-
-
-
-        return super.loop();
+        return super.loop(); //in case of nothing found , call superclass loop , (declare same value situation)
     }
 }

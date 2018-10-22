@@ -129,7 +129,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     }
 
     @Override
-    public boolean enforcesubmitValue() throws CsvValueFilterException {
+    public boolean sameValueSituation() throws CsvValueFilterException {
         return saveCSVContext();
     }
 
