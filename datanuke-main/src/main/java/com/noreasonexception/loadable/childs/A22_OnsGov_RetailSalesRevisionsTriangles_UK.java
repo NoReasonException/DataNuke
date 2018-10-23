@@ -5,14 +5,11 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDis
 import com.noreasonexception.loadable.base.XlsParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
-import com.noreasonexception.loadable.base.requestParserEtc.UserAgent;
+import com.noreasonexception.loadable.base.etc.UserAgent;
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
-
-import java.util.regex.Pattern;
 
 public class A22_OnsGov_RetailSalesRevisionsTriangles_UK extends XlsParser {
     public A22_OnsGov_RetailSalesRevisionsTriangles_UK(ThreadRunnerTaskEventsDispacher disp,

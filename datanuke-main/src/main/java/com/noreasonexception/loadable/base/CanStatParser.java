@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -37,7 +38,7 @@ abstract public class CanStatParser extends ChromeEngineDOMParser {
      * @return true on success
      */
     @Override
-    protected boolean loop() {
+    protected LoopOperationStatus loop() {
         WebDriver driver    = getWebDriver();
         String    eventName = onEventNameLoad();
         Double    temp      = null;
@@ -53,18 +54,17 @@ abstract public class CanStatParser extends ChromeEngineDOMParser {
                     driver.navigate().to(abchorToFirstNew.getAttribute("href"));
                     if(informValueFilter(temp=onValueExtract(driver))){
                         System.out.println(temp);
-                        return true;
+                        return LoopOperationStatus.buildSuccess(temp);
                     }
                     break;
                 }catch (InvalidSourceArchitectureException e){
-                    e.printStackTrace();
-                    break;
+                   LoopOperationStatus.buildExceptionThrown(e);
                 }
             }
             driver.navigate().refresh();
         }
         driver.close();
-        return super.loop();
+        return LoopOperationStatus.buildSameValueSituation(temp);
     }
 
 

@@ -200,8 +200,7 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-                //wait(getWaitTime(tmp));
-                wait(1);
+                wait(getWaitTime(tmp));
                 if(terminationFlag){
                     terminationFlag=false;//reset the termination flag in case of re-start
                     Thread.currentThread().interrupt();// kill myself.
@@ -209,8 +208,8 @@ public class AbstractThreadRunner implements    Runnable ,
                 }
 
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
-                //kl=classLoader.loadClass(tmp.getClassname());
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A19_OnsGov_ManufacturingProductionMomm_Percent_UK");
+                kl=classLoader.loadClass(tmp.getClassname());
+                //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A19_OnsGov_ManufacturingProductionMomm_Percent_UK");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
@@ -247,9 +246,7 @@ public class AbstractThreadRunner implements    Runnable ,
                 e.printStackTrace();
                 logMessageExporter.sendMessage("NullPointerException ingnored due to termination proccess");
             }
-
-            while (true);
-            //System.gc();
+            System.gc();
 
         }
     }

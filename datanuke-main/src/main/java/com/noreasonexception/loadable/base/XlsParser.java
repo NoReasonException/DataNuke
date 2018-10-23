@@ -3,6 +3,8 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.etc.LoopOperationResult;
+import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
 
@@ -14,23 +16,20 @@ abstract public class XlsParser extends RequestParser {
     }
 
     @Override
-    protected boolean loop() {
+    protected LoopOperationStatus loop() {
+        Double tmp=0d;
         for (int i = 0; i < REQUESTS_MAX; i++)
         {
-            Double tmp;
+
             try{
                 if(informValueFilter(tmp=onValueExtract(getXlsWorkbook()))){
-                    return true;
+                    return LoopOperationStatus.buildSuccess(tmp);
                 }
             }catch (InvalidSourceArchitectureException e){
-                e.printStackTrace();
-                throw new RuntimeException(e.getMessage());
-
+                return LoopOperationStatus.buildExceptionThrown(e);
             }
-
-
         }
-        return super.loop();
+        return LoopOperationStatus.buildSameValueSituation(tmp);
 
     }
 

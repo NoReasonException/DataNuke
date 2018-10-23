@@ -1,18 +1,14 @@
 package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
-import com.noreasonexception.loadable.base.requestParserEtc.UserAgent;
-import com.snowtide.pdf.V;
+import com.noreasonexception.loadable.base.etc.UserAgent;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /***
  * RequestParser

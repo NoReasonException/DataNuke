@@ -4,6 +4,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,22 +28,21 @@ abstract public class CsvParser extends StringParser{
     abstract protected int onCsvValueIndexLoad(int numberOfValues);
 
     @Override
-    protected boolean loop() {
+    protected LoopOperationStatus loop() {
         ArrayList<String> csvParts=null;
-        Double tempValue;
+        Double tempValue=0d;
         try {
             for (int i = 0; i < super.REQUESTS_MAX; i++) {
                 if(informValueFilter(tempValue=onValueExtract(csvParts=convertSourceToArrayList()))){
-                    getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
-                    return true;
+                    return LoopOperationStatus.buildSuccess(tempValue);
                 }
-                System.out.println("temp -> "+tempValue);
+                System.out.println(tempValue);
 
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            return LoopOperationStatus.buildExceptionThrown(e);
         }
-        return super.loop();
+        return LoopOperationStatus.buildSameValueSituation(tempValue);
     }
     protected ArrayList<String> convertSourceToArrayList() throws ConvertionSourceToTextException{
         ArrayList<String> retval=new ArrayList<>();

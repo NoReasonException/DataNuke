@@ -2,8 +2,13 @@ package com.noreasonexception.loadable.base;
 
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.gui.dialog.GeneralExceptionDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.SameValueSituationDialog;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.etc.LoopOperationResult;
+import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
+import javafx.application.Platform;
 
 import java.util.regex.Matcher;
 
@@ -75,25 +80,31 @@ abstract public class AbstractParser implements Runnable {
     @Override
     public void run() {
         System.out.println("run \t"+getClass().getName());
-        if(!loop()){
-            getDispacher().submitTaskThreadValueRetrievedEventFailed(
-                    getClass().getName(),
-                    new CsvValueFilterException("Value Not found after 10000 request , a broken pattern maybe?"));
+        LoopOperationStatus status=loop();
+        switch (status.getStatus()){
+            case Success:
+                getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),status.getValue());
+                break;
+            case SameValueSituation:
+                declareSameValueSituation();
+                getDispacher().submitTaskThreadValueRetrievedEventButSame(
+                        getClass().getName());
+                break;
+            case ExceptionThrown:
+                getDispacher().submitTaskThreadValueRetrievedEventFailed(
+                        getClass().getName(),
+                        status.getError());
         }
+
         getDispacher().submitTaskThreadTerminatedEvent(getClass().getName());
     }
     /****
      * The main loop of RequestParser
      * the .run() method calls it
-     * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
-     * if a new value if not found , the abstractParser implementation declares a SameValueSituation()
-     * in this case , the program just creates a new file with a new timestamp.
-     * @return true in success
+     * It is basically an  loop , stopping only if the ValueFilter detects the new value
+     * @return LoopOperationStatus with further info
      */
-    protected boolean loop(){
-        declareSameValueSituation();
-        return false; //failed to get the new value
-    }
+    abstract protected LoopOperationStatus loop();
 
     /***
      * just informs the listeners for the destruction of this object.

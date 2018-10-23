@@ -23,7 +23,7 @@ public class A6_Statcan_UnemploymentRate_CAN extends CanStatParser {
      *  //TODO REMOVE!
      *  ///TODO It must happen at least 1 time to be able to see the architecture of the page
      */
-    @Override
+    /*@Override
     protected boolean loop() {
         /*
         WebDriver driver    = getWebDriver();
@@ -70,7 +70,7 @@ public class A6_Statcan_UnemploymentRate_CAN extends CanStatParser {
 
         }catch (InterruptedException e){}
         driver.close();
-*/
+
         return super.loop();
-    }
+    }*/
 }

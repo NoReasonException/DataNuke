@@ -3,6 +3,7 @@ package com.noreasonexception.loadable.base;
 import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 
 import java.util.regex.Pattern;
 
@@ -40,29 +41,25 @@ abstract public class PatternParser extends StringParser {
      * //TODO in case of changed date in source , this will fail in infinite loop , so a maximum inteval is needed!
      * @return true in success
      */
-    protected boolean loop() {
+    protected LoopOperationStatus loop() {
         setPattern(onPatternLoad());
         System.out.println("started"+getClass().getName());
         String temp;
-        Double tempValue;
+        Double tempValue=0d;
         for (int j = 0; j < REQUESTS_MAX; j++) {
             System.out.println("attempt on -> "+getClass().getName());
             try{
                 temp=convertSourceToText();
                 tempValue=onValueExtract(temp);
                 if(informValueFilter(tempValue)){
-                    getDispacher().submitTaskThreadValueRetrievedEvent(getClass().getName(),tempValue);
-                    System.out.println("temp -> "+tempValue);
-                    return true;
+                    return LoopOperationStatus.buildSuccess(tempValue);
                 }
-            }catch (NumberFormatException|InvalidSourceArchitectureException e){
-                System.out.println(getClass().getName()+": This Event need update , the page format is unknown");
-                break;
-            }catch (com.noreasonexception.loadable.base.error.ConvertionSourceToTextException e){
-                System.out.println(getClass().getName()+": Connection error maybe? "+getClass().getName()+"Failed");
-                break;
+            }catch (NumberFormatException|
+                    InvalidSourceArchitectureException|
+                    com.noreasonexception.loadable.base.error.ConvertionSourceToTextException e){
+                return LoopOperationStatus.buildExceptionThrown(e);
             }
         }
-        return super.loop(); //in case of nothing found , call superclass loop , (declare same value situation)
+        return LoopOperationStatus.buildSameValueSituation(tempValue);
     }
 }

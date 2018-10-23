@@ -2,7 +2,9 @@ package com.noreasonexception.datanuke.app;
 import com.noreasonexception.datanuke.app.factory.DataNukeAbstractFactory;
 import com.noreasonexception.datanuke.app.factory.DataNukeDefaultFactory;
 import com.noreasonexception.datanuke.app.gui.dialog.GeneralExceptionDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.SameValueSituationDialog;
 import com.noreasonexception.datanuke.app.gui.dialog.SaveDialog;
+import com.noreasonexception.datanuke.app.gui.dialog.SuccessRetrievalDialog;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeAbstractGuiFactory;
 import com.noreasonexception.datanuke.app.gui.factory.DataNukeDefaultGuiFactory;
 
@@ -77,6 +79,20 @@ public class App extends Application {
             @Override
             public void onTaskThreadValueRetrievedFailed(String classname, Throwable e, Object[] args) {
                 callGeneralExceptionGuiDialog(classname,e);
+            }
+
+            @Override
+            public void onTaskThreadValueRetrievedButSame(String classname, Object[] args) {
+                Platform.runLater(()->{
+                    new SameValueSituationDialog(classname).show();
+                });
+            }
+
+            @Override
+            public void onTaskThreadValueRetrieved(String classname, Object[] args) {
+                Platform.runLater(()->{
+                    new SuccessRetrievalDialog(classname,(Double) args[0]).show();
+                });
             }
         };
     }

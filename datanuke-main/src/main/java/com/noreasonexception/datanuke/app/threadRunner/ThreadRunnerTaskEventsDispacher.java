@@ -80,6 +80,14 @@ public class ThreadRunnerTaskEventsDispacher extends Thread {
 
     }
     /***
+     * Called when the new value is retrieved but is the same as previous
+     */
+    public void submitTaskThreadValueRetrievedEventButSame(String classname){
+        while(!events.offer(new TaskEvent("onTaskThreadValueRetrievedButSame",
+                classname)));
+
+    }
+    /***
      * Called when the new value is not retrieved due to some error
      */
     public void submitTaskThreadValueRetrievedEventFailed(String classname,Throwable e){

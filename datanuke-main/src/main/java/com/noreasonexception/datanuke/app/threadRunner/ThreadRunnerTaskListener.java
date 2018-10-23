@@ -45,6 +45,11 @@ public abstract class ThreadRunnerTaskListener  {
      * it returns the new value in args[0] as Double Object
      */
     public void onTaskThreadValueRetrieved(String classname,Object[]args){}
+    /***
+     * Called when the new value is retrieved but is the same as before
+     * it returns the new value in args[0] as Double Object
+     */
+    public void onTaskThreadValueRetrievedButSame(String classname,Object[]args){}
 
     /****
      * Called when something gone wrong about retrieving some value
