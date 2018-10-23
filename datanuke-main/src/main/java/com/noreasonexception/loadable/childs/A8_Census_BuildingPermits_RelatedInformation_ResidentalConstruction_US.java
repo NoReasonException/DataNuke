@@ -28,7 +28,7 @@ public class A8_Census_BuildingPermits_RelatedInformation_ResidentalConstruction
                     return Double.valueOf(row.getCell(1).toString());
 
                 }
-            }catch (Exception e){e.printStackTrace();}
+            }catch (Exception e){break;}
         }
         throw new InvalidSourceArchitectureException(getClass());
     }

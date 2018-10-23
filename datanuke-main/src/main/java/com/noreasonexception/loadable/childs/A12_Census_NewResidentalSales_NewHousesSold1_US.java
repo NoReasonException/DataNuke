@@ -24,7 +24,6 @@ public class A12_Census_NewResidentalSales_NewHousesSold1_US extends PdfParser {
 
     }
     protected Double    onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        System.out.println((String)context);
         Matcher matcher=getPattern().matcher((String)context);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
         return Double.valueOf(matcher.group(2).replace(",","."));

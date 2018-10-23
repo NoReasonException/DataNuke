@@ -5,6 +5,8 @@ import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDis
 import com.noreasonexception.loadable.base.CsvParser;
 import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
+import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
+import com.noreasonexception.loadable.base.etc.UserAgent;
 
 import java.util.regex.Pattern;
 
@@ -22,4 +24,8 @@ public class A18_OnsGov_CrossDomesticProduct extends CsvParser {
         return "https://www.ons.gov.uk/generator?format=csv&uri=/economy/grossdomesticproductgdp/timeseries/abmi/pgdp";
     }
 
+    @Override
+    protected UserAgent onUserAgentFieldLoad() throws NoUserAgentRequired {
+        return UserAgent.DATANUKE;
+    }
 }

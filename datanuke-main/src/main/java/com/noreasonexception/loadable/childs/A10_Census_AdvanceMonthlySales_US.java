@@ -25,7 +25,6 @@ public class A10_Census_AdvanceMonthlySales_US extends PdfParser {
     }
     protected Double         onValueExtract(Object context) throws InvalidSourceArchitectureException {
 
-        System.out.println((String)context);
         Matcher matcher=getPattern().matcher((String)context);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
         try {

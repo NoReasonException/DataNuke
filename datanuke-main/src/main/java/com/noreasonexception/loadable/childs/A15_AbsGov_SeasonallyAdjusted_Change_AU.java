@@ -18,8 +18,7 @@ public class A15_AbsGov_SeasonallyAdjusted_Change_AU extends TableParser {
 
     @Override
     protected String onTableSignatureStartLoad() {
-        return "\n" +
-                "<p><b><font size=\"4\">JULY KEY FIGURES</font></b><br>\n" +
+        return
                 "<a name=\"101112131415995353\"></a> \n" +
                 "<p><a name=\"253028282010995357992530282820109951\"></a>\n" +
                 "<table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">";

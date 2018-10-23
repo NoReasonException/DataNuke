@@ -179,7 +179,7 @@ abstract public class TableParser extends HtmlParser {
             String actualTable = getTableElement((String)context); //getTable
             String row = getRawRow(actualTable,onRowIndexLoad());//get needed row
             System.out.println(d=Double.valueOf(cellToValue(getCell(row,onCellIndexLoad())))); //get the final value
-        }catch (IllegalStateException e){throw new InvalidSourceArchitectureException(getClass());}
+        }catch (IllegalStateException e){e.printStackTrace();throw new InvalidSourceArchitectureException(getClass());}
         return d;
 
     }
