@@ -75,7 +75,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private MessageExporter                             errorMessageExporter=null;
 
     int getEnsureOffset(){
-        return (randomGenerator.nextInt()%5)+5;
+        return (randomGenerator.nextInt()%200)+200;
     }
 
     public Date getScheduledStart() {
@@ -120,26 +120,16 @@ public class AbstractThreadRunner implements    Runnable ,
         ClassInfo info;
         for (String klass: obj.keySet()) {
             JsonArray array=obj.getJsonArray(klass);
-            //ensure offset will ensure that the same specific deadline will not exists 2 times , in order to be
-            //succeed the insert operation
-            //
-
-            int ensureOffset=0;
-            while(true){
-                try{
-
-                    this.classSourcesDT.insert(
-                            Utills.getDeadlineFromScheduledStart(Long.valueOf(array.getString(0)),Long.valueOf(array.getString(1)),scheduledStart.getTime())-ensureOffset,
-                            info=new ClassInfo(array.getString(2),
-                                    new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
-                                    Long.valueOf(array.getString(1)),
-                                    klass));
-                    ensureOffset=0;
-                    break;
-                }catch (InvalidParameterException e){
-                    ensureOffset=getEnsureOffset();
-                }
-            }
+            System.out.println("load klass "+klass);
+            this.addToBstWithCollisionDetection(
+                    Utills.getDeadlineFromScheduledStart(
+                            Long.valueOf(array.getString(0)),
+                            Long.valueOf(array.getString(1)),
+                            scheduledStart.getTime()),
+                    info=new ClassInfo(array.getString(2),
+                            new Date(Long.valueOf(array.getString(0))),         //remember! Date works with mils
+                            Long.valueOf(array.getString(1)),
+                            klass));
 
             this.taskEventsDispacher.submitClassReadInfoEvent(klass,info);
             try{
@@ -158,7 +148,19 @@ public class AbstractThreadRunner implements    Runnable ,
 
         }
     }
+    private void addToBstWithCollisionDetection(long deadline,ClassInfo info){
+        do {
 
+            try{
+                this.classSourcesDT.insert(deadline-getEnsureOffset(),info);
+
+            }catch (InvalidParameterException e){
+                continue;
+            }
+            break;
+        }while (true);
+
+    }
     /****
      * .prepareLoop() method has the responsibility to set the scene for .loop() method
      * Also must wait until scheduled start
@@ -190,7 +192,7 @@ public class AbstractThreadRunner implements    Runnable ,
         while (true){
 
             tmp=classSourcesDT.pollMin();//TODO fix , maybe need update the tmp.date!?
-            classSourcesDT.insert(tmp.getDate().getTime()+tmp.getInterval(),tmp);
+            this.addToBstWithCollisionDetection(tmp.getDate().getTime()+tmp.getInterval(),tmp);
             this.taskEventsDispacher.submitClassWaitUntillDeadlineEvent(
                     tmp.getClassname(),
                     getDeadline(
