@@ -1,4 +1,14 @@
 package com.noreasonexception.datanuke.app.fileprotocol;
 
-public class ClientRequirementFileProtocol implements AbstractFileProtocol {
+import java.util.ArrayList;
+
+public class ClientRequirementFileProtocol extends ListToFileProtocol<Double> {
+    public ClientRequirementFileProtocol(String directoryPath) {
+        super(directoryPath);
+    }
+
+    @Override
+    public boolean saveList(ArrayList<Double> elementsToSave) {
+        return false;
+    }
 }
