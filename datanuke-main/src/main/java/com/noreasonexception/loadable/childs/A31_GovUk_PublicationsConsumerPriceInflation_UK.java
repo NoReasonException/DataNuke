@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
@@ -24,7 +24,7 @@ public class A31_GovUk_PublicationsConsumerPriceInflation_UK extends HtmlParser 
     }
 
     public A31_GovUk_PublicationsConsumerPriceInflation_UK(ThreadRunnerTaskEventsDispacher disp,
-                                                           AbstractValueFilter<Double> valueFilter) {
+                                                           SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
 }

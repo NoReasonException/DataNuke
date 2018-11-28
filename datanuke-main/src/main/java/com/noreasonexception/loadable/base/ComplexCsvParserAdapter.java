@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
@@ -9,7 +9,7 @@ import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureExcept
     private CsvParser simpleParser;
     private AbstractParser parent;
 
-    public ComplexCsvParserAdapter(AbstractParser parent,CsvParser simpleParser, ThreadRunnerTaskEventsDispacher dispacher, AbstractValueFilter<Double> valueFilter) {
+    public ComplexCsvParserAdapter(AbstractParser parent,CsvParser simpleParser, ThreadRunnerTaskEventsDispacher dispacher, SaveRequestFilterHandler<Double> valueFilter) {
         super(dispacher, valueFilter);
         this.simpleParser=simpleParser;
         this.parent=parent;

@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.NoUserAgentRequired;
 import com.noreasonexception.loadable.base.etc.UserAgent;
@@ -18,8 +18,8 @@ import java.net.URL;
  *
  * 1) Take arbitrary data via a DataProvider in a known interval
  * 2) Retrieves specific information inside these data
- * 3) Informs the ValueFilter
- * 4) When a new value is discovered , the ValueFilter.submitValue() returns true .
+ * 3) Informs the SaveRequestFilterHandler
+ * 4) When a new value is discovered , the SaveRequestFilterHandler.submitValue() returns true .
  * 5) When the @4 happens , the Parser must kill himself
  * @implNote In some steps , the ThreadRunnerTaskEventsDispacher must informed by corresponding methods
  */
@@ -32,7 +32,7 @@ abstract public class RequestParser extends AbstractParser{
      * Returns the value filter , to inform the .csv file with the new values!
      * @return the CsvValueFilter
      */
-    public RequestParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter)
+    public RequestParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter)
     {
         super(disp,valueFilter);
     }

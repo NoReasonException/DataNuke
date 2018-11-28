@@ -1,13 +1,12 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 abstract public class ChromeEngineDOMParser extends DOMParser {
-    public ChromeEngineDOMParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public ChromeEngineDOMParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 
 
 abstract public class CanStatParser extends ChromeEngineDOMParser {
-    public CanStatParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public CanStatParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

@@ -1,18 +1,14 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.AbstractParser;
-import com.noreasonexception.loadable.base.HtmlParser;
 import com.noreasonexception.loadable.base.TableParser;
-import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU extends TableParser {
     public A14_AbsGov_MomentsInSeasonallyAdjustedSeries_MonthlyChange_AU(ThreadRunnerTaskEventsDispacher disp,
-                                                                         AbstractValueFilter<Double> valueFilter) {
+                                                                         SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

@@ -1,20 +1,16 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.ConvertionSourceToTextException;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.regex.Pattern;
 
 abstract public class CsvParser extends StringParser{
-    public CsvParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public CsvParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
     @Override

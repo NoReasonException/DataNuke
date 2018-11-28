@@ -1,14 +1,10 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.gui.dialog.GeneralExceptionDialog;
-import com.noreasonexception.datanuke.app.gui.dialog.SameValueSituationDialog;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
-import com.noreasonexception.loadable.base.etc.LoopOperationResult;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
-import javafx.application.Platform;
 
 import java.util.regex.Matcher;
 
@@ -17,12 +13,12 @@ import java.util.regex.Matcher;
  * used as main interface between parsers
  */
 abstract public class AbstractParser implements Runnable {
-    private AbstractValueFilter<Double> valueFilter;        //value filter is the object who manages the values into the external medium(file,network,etc)
+    private SaveRequestFilterHandler<Double> valueFilter;        //value filter is the object who manages the values into the external medium(file,network,etc)
     private ThreadRunnerTaskEventsDispacher dispacher;      //populate changes and events to subscribed listeners
 
 
 
-    AbstractParser(ThreadRunnerTaskEventsDispacher dispacher,AbstractValueFilter<Double> valueFilter){
+    AbstractParser(ThreadRunnerTaskEventsDispacher dispacher, SaveRequestFilterHandler<Double> valueFilter){
         this.valueFilter=valueFilter;
         this.dispacher=dispacher;
 
@@ -37,7 +33,7 @@ abstract public class AbstractParser implements Runnable {
             }
         }
     }
-    protected AbstractValueFilter<Double> getValueFilter() {
+    protected SaveRequestFilterHandler<Double> getValueFilter() {
         return this.valueFilter;
     }
 
@@ -101,7 +97,7 @@ abstract public class AbstractParser implements Runnable {
     /****
      * The main loop of RequestParser
      * the .run() method calls it
-     * It is basically an  loop , stopping only if the ValueFilter detects the new value
+     * It is basically an  loop , stopping only if the SaveRequestFilterHandler detects the new value
      * @return LoopOperationStatus with further info
      */
     abstract protected LoopOperationStatus loop();

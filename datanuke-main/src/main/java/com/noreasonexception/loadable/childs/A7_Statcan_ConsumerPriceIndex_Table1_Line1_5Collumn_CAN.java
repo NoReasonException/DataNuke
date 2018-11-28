@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.CanStatParser;
 import com.noreasonexception.loadable.base.ComplexCsvParserAdapter;
@@ -10,11 +10,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
 public class A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN extends CanStatParser {
     public A7_Statcan_ConsumerPriceIndex_Table1_Line1_5Collumn_CAN(ThreadRunnerTaskEventsDispacher disp,
-                                                                   AbstractValueFilter<Double> valueFilter) {
+                                                                   SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
     @Override

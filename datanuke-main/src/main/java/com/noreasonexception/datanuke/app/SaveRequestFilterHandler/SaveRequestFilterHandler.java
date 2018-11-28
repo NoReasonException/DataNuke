@@ -1,21 +1,16 @@
-package com.noreasonexception.datanuke.app.ValueFilter;
+package com.noreasonexception.datanuke.app.SaveRequestFilterHandler;
 
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
 
 /****
- * This class will be extended by Save subsystem .
- * How it works?
- * This class , has only one method . the .submitValue()
- * This method updates the value associated with the classname given
- *
- * If the value is different , then automatically will saved in file , in the expected position .
- *
+ * This interface will be implemented by Save subsystem .
+
  * @param <T> the type of value to save
  */
-abstract public class AbstractValueFilter<T extends Comparable>  {
+public interface SaveRequestFilterHandler<T extends Comparable>  {
     /****
-     * submits a new value to Filter
+     * submits a new value to the filter
      * @param klassName the class submitted the value
      * @param value the actual value
      * @return true if submit is completed(old!=new) else false
@@ -31,10 +26,11 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
     abstract public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException;
     /****
      * Call always before any operation , otherwise , a CsvValueFilterInconsistentStateException will be thrown.
+     * TODO remove it , consider creating a builder instead
      * @return this object
      * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
      */
-    abstract public AbstractValueFilter<Double> buildFromFile() throws CsvValueFilterException;
+    abstract public SaveRequestFilterHandler<Double> buildFromFile() throws CsvValueFilterException;
 
     /***
      * this method covers the new event - same value exception . create a new file with a new timestamp , identical to previous one!

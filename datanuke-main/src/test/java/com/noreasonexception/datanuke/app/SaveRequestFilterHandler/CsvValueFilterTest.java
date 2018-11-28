@@ -1,6 +1,6 @@
-package com.noreasonexception.datanuke.app.ValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
+package com.noreasonexception.datanuke.app.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

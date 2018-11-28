@@ -1,21 +1,17 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
-import com.noreasonexception.loadable.base.PdfParser;
 import com.noreasonexception.loadable.base.XlsParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import java.util.regex.Pattern;
-
 public class A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US extends XlsParser {
     public A11_Census_AdvancedReportHighlights_Table1_ShipmentAndNewOrder_Line6_US(ThreadRunnerTaskEventsDispacher disp,
-                                                                                   AbstractValueFilter<Double> valueFilter) {
+                                                                                   SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
 

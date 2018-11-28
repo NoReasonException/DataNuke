@@ -1,8 +1,8 @@
 package com.noreasonexception.datanuke.app.factory;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.CsvValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.classloader.AtlasLoader;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
@@ -33,7 +33,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     private java.lang.String customClassLoaderPATH                                 =null;
     private java.lang.String csvValueFilterDir =null;
     //===========================Siglentons======================================================\\\
-    private AbstractValueFilter<Double> valueFilter                                =null;
+    private SaveRequestFilterHandler<Double> valueFilter                                =null;
     private AtlasLoader                 customClassLoader                          =null;
     private AbstractThreadRunner        threadRunner                               =null;
     /****
@@ -142,7 +142,7 @@ public class DataNukeDefaultFactory extends DataNukeAbstractFactory {
     }
 
     @Override
-    public AbstractValueFilter<Double> getDataNukeValueFilter() throws CsvValueFilterException {
+    public SaveRequestFilterHandler<Double> getDataNukeValueFilter() throws CsvValueFilterException {
         return (this.valueFilter!=null)?
                 (this.valueFilter):
                 (this.valueFilter=(new CsvValueFilter(this.csvValueFilterDir).buildFromFile()));

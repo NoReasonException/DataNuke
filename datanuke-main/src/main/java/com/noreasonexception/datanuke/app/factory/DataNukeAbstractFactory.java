@@ -1,7 +1,7 @@
 package com.noreasonexception.datanuke.app.factory;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 import com.noreasonexception.datanuke.app.factory.error.MissingResourcesException;
 import com.noreasonexception.datanuke.app.threadRunner.AbstractThreadRunner;
@@ -60,11 +60,11 @@ abstract public class DataNukeAbstractFactory {
     abstract public ClassLoader             getDataNukeCustomClassLoader();
 
     /****
-     * Constructs and returns the ValueFilter subsystem , responsible for writing the values into an external source
+     * Constructs and returns the SaveRequestFilterHandler subsystem , responsible for writing the values into an external source
      * @return a @CsvValueFilter
      * @throws CsvValueFilterException
      */
-    abstract public AbstractValueFilter<Double> getDataNukeValueFilter() throws CsvValueFilterException;
+    abstract public SaveRequestFilterHandler<Double> getDataNukeValueFilter() throws CsvValueFilterException;
 
 
 }

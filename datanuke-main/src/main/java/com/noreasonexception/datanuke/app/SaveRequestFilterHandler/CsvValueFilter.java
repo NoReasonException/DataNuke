@@ -1,14 +1,13 @@
-package com.noreasonexception.datanuke.app.ValueFilter;
+package com.noreasonexception.datanuke.app.SaveRequestFilterHandler;
 
 
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterClassNotRegisteredException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterMailformedFileException;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.ValueFilter.interfaces.MostRecentUnixTimestampFileFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterClassNotRegisteredException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterMailformedFileException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.interfaces.MostRecentUnixTimestampFileFilter;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
-import org.apache.http.annotation.Obsolete;
 
 import java.io.File;
 import java.nio.file.StandardOpenOption;
@@ -38,11 +37,11 @@ import java.nio.file.Path;
  * Every call into .submitValue() will return true if the RequestParser class finds an new value
  *
  */
-public class CsvValueFilter extends AbstractValueFilter<Double> {
-    private Hashtable<String,Integer> classIDs;
+public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
+    private Hashtable<String,Integer>   classIDs;
     private ArrayList<Double>           classValues;
     private java.lang.String            directory;
-    private java.lang.String lastClassAquiredLock;
+    private java.lang.String            lastClassAquiredLock;
     private DataProvider                fileDataProvider;
     private static int                  cnt=0;
 
@@ -135,7 +134,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
             return retval;
         }catch (NumberFormatException|NoSuchElementException e){
             throw new CsvValueFilterMailformedFileException(
-                    "The parser detected something that we cannot say for sure that is an number "+e.getMessage()+"("+tmp+")",e);
+                    "The parser detected something is not an number "+e.getMessage()+"("+tmp+")",e);
         }
 
     }
@@ -233,7 +232,8 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
                 if((id= getIdByClassObj(klassName))==-1){
                     throw new CsvValueFilterClassNotRegisteredException(klassName);
                 }
-                if(getCSVContext().get(id).compareTo(value)!=0){
+
+                if(!sameRejectionCheck || getCSVContext().get(id).compareTo(value)!=0){
                     getCSVContext().set(id,value);
                     saveCSVContext();
                     return true;

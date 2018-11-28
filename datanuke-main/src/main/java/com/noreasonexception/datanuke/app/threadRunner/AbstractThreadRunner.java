@@ -1,7 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
-import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterInconsistentStateException;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 import static com.noreasonexception.datanuke.app.threadRunner.Utills.getDeadline;
@@ -17,9 +17,7 @@ import com.noreasonexception.datanuke.app.threadRunner.error.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.security.InvalidParameterException;
-import javax.json.stream.JsonParsingException;
 
-import java.io.StringReader;
 import javax.json.*;
 import java.util.*;
 
@@ -60,7 +58,7 @@ public class AbstractThreadRunner implements    Runnable ,
     private ArrayList<Thread>                           killClassesThreads=null;
     private ThreadRunnerTaskEventsDispacher             taskEventsDispacher;    //The thread to inform all task - observers
     private ThreadRunnerState                           currentState = null;    //Current state of threadRunner subsystem
-    private AbstractValueFilter<Double>                 valueFilter=null;       //The value filter subsystem
+    private SaveRequestFilterHandler<Double> valueFilter=null;       //The value filter subsystem
     private DataProvider                                configProvider = null;  //The Configuration Data Provider
     private DataProvider                                sourceProvider = null;  //The Sources Data Provider
     private boolean                                     terminationFlag=false;  //in order to kill this
@@ -214,7 +212,7 @@ public class AbstractThreadRunner implements    Runnable ,
                 //kl=classLoader.loadClass(tmp.getClassname()); TODO
                 kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A12_Census_NewResidentalSales_NewHousesSold1_US");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
-                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
+                task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class, SaveRequestFilterHandler.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
                 this.taskEventsDispacher.submitTaskThreadStartedEvent(tmp.getClassname());
                 taskThread.start();
@@ -325,7 +323,7 @@ public class AbstractThreadRunner implements    Runnable ,
     public AbstractThreadRunner(AtlasLoader classLoader,
                                 DataProvider configProvider,
                                 DataProvider sourceProvider,
-                                AbstractValueFilter<Double> valueFilter,
+                                SaveRequestFilterHandler<Double> valueFilter,
                                 Random random) {
         try{
             getClass().getClassLoader().loadClass("java.util.regex.Pattern");

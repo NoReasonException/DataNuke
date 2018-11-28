@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 abstract public class PatternParser extends StringParser {
     private java.util.regex.Pattern         pattern;
 
-    public PatternParser(ThreadRunnerTaskEventsDispacher dispacher, AbstractValueFilter<Double> valueFilter) {
+    public PatternParser(ThreadRunnerTaskEventsDispacher dispacher, SaveRequestFilterHandler<Double> valueFilter) {
         super(dispacher, valueFilter);
     }
     /****
@@ -37,7 +37,7 @@ abstract public class PatternParser extends StringParser {
     /****
      * The main loop of PatternParser
      * the .run() method calls it
-     * It is basically an infinite loop , stopping only if the ValueFilter detects the new value
+     * It is basically an infinite loop , stopping only if the SaveRequestFilterHandler detects the new value
      * //TODO in case of changed date in source , this will fail in infinite loop , so a maximum inteval is needed!
      * @return true in success
      */

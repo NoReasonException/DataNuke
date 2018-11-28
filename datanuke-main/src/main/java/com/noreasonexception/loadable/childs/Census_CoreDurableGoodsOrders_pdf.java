@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.CsvValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.CsvValueFilter;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.RequestParser;
 import com.noreasonexception.loadable.base.PdfParser;

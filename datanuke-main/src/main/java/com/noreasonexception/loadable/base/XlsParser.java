@@ -1,9 +1,8 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
-import com.noreasonexception.loadable.base.etc.LoopOperationResult;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -11,7 +10,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import java.io.IOException;
 
 abstract public class XlsParser extends RequestParser {
-    public XlsParser(ThreadRunnerTaskEventsDispacher disp, AbstractValueFilter<Double> valueFilter) {
+    public XlsParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp,valueFilter);
     }
 

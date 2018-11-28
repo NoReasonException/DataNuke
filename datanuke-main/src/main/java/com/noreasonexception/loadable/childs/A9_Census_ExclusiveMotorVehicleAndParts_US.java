@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.ValueFilter.AbstractValueFilter;
+import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.XlsParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class A9_Census_ExclusiveMotorVehicleAndParts_US extends XlsParser {
     public A9_Census_ExclusiveMotorVehicleAndParts_US(ThreadRunnerTaskEventsDispacher disp,
-                                                      AbstractValueFilter<Double> valueFilter) {
+                                                      SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
 
     }
