@@ -142,11 +142,21 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         return this.classValues;
     }
 
+
+    /****
+     * a thin wrapper over real __saveCSVContext
+     * Why?
+     *      After a request of changed requirements , i am forced 
+     * @return
+     */
+    synchronized protected boolean saveCSVContext(){
+        return true;
+    }
     /****
      * saves every value of this.classValues into actual file
      * @return true on success
      */
-    synchronized protected boolean  saveCSVContext() {
+    synchronized protected boolean  __saveCSVContext() {
         String filePathStr;
         try {
             Path filePath=Paths.get(filePathStr=getNewFilename(directory));
