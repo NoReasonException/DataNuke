@@ -16,11 +16,11 @@ import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterIncons
 abstract public class AbstractValueFilter<T extends Comparable>  {
     /****
      * submits a new value to Filter
-     * @param className the class submitted the value
+     * @param klassName the class submitted the value
      * @param value the actual value
      * @return true if submit is completed(old!=new) else false
      */
-    abstract public boolean submitValue(String className,T value) throws CsvValueFilterException;
+    abstract public boolean submitValue(String klassName,T value) throws CsvValueFilterException;
     /****
      * Submit a class by his name before use
      *
@@ -41,5 +41,5 @@ abstract public class AbstractValueFilter<T extends Comparable>  {
      * @return true on success
      * @throws CsvValueFilterException in case of any error(IOE probably)
      */
-    abstract public boolean sameValueSituation() throws CsvValueFilterException;
+    abstract public boolean sameValueSituation(String klassName) throws CsvValueFilterException;
 }

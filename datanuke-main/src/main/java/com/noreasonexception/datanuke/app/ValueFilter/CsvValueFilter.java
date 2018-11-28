@@ -8,6 +8,7 @@ import com.noreasonexception.datanuke.app.ValueFilter.error.CsvValueFilterExcept
 import com.noreasonexception.datanuke.app.ValueFilter.interfaces.MostRecentUnixTimestampFileFilter;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
+import org.apache.http.annotation.Obsolete;
 
 import java.io.File;
 import java.nio.file.StandardOpenOption;
@@ -41,6 +42,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     private Hashtable<String,Integer> classIDs;
     private ArrayList<Double>           classValues;
     private java.lang.String            directory;
+    private java.lang.String lastClassAquiredLock;
     private DataProvider                fileDataProvider;
     private static int                  cnt=0;
 
@@ -86,10 +88,35 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         });
         return directory+e.get(0);
     }
-    private static String getNewFilename(String directory){
-        return directory+(System.currentTimeMillis()/1000)+".csv";
+
+    /***
+     * .getNewInternalFileName()
+     * This method returns the filename used to save the runtime context
+     * @return a string representing the filename
+     */
+    private  String getNewInternalFileName(){
+        return (System.currentTimeMillis()/1000)+".csv";
     }
 
+    /****
+     * .getnewUserDefinedFileName()
+     * This method returns the filename used to interfere with the another product .is a terrible way of communication
+     * i know , but whatever the client wants
+     * @implNote luckily , the client-defined file name is simmilar with our internal file name
+     *              just add a "news" prefix :) ;)
+     * TODO consider making a major refactor to a more-flexible design
+     * @return a string representing the filename
+     */
+    private  String getNewUserDefinedFileName(){
+        return "news"+getNewInternalFileName();
+    }
+
+    /***
+     * Returns the filename with the proper directory as prefix
+     * @param filename  the name of the file
+     * @return          the full path(use that to open a stream maybe?)
+     */
+    private String  getFullPathOf(String filename){return directory+filename;}
     /****
      * parser of .csv files , returns a ArrayList with the values per-class
      * @return the ArrayList with the values
@@ -129,8 +156,8 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     }
 
     @Override
-    public boolean sameValueSituation() throws CsvValueFilterException {
-        return saveCSVContext();
+    public boolean sameValueSituation(String className) throws CsvValueFilterException {
+        return __submitValue(className,getCSVContext().get(getIdByClassObj(className)),false);
     }
 
     protected Object getLockObject(){return this;}
@@ -146,21 +173,24 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
     /****
      * a thin wrapper over real __saveCSVContext
      * Why?
-     *      After a request of changed requirements , i am forced 
-     * @return
+     *      After a request of changed requirements , i am forced to save the actual contents into two files
+     *      one file is the <<interface>> with another product . It is a terrible way but , whatever the client wants :/
+     *
+     *      starting with version 4.0 , all content will be saved in two files
+     * @see .saveCSVContext()
      */
-    synchronized protected boolean saveCSVContext(){
-        return true;
+    protected boolean saveCSVContext(){
+        return  __saveCSVContext(getFullPathOf(getNewInternalFileName())) &&
+                __saveCSVContext(getFullPathOf(getNewUserDefinedFileName()));
+
     }
     /****
      * saves every value of this.classValues into actual file
      * @return true on success
      */
-    synchronized protected boolean  __saveCSVContext() {
-        String filePathStr;
+    protected boolean  __saveCSVContext(String filename) {
         try {
-            Path filePath=Paths.get(filePathStr=getNewFilename(directory));
-            System.out.println(filePathStr+" created !");
+            Path filePath=Paths.get(filename);
             FileChannel byteChannel = (FileChannel) FileChannel.open(filePath,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);
 
             byteChannel.write(
@@ -172,7 +202,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
             );
 
             byteChannel.close();
-
+            System.out.println("Operation on "+filename+" completed");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -181,21 +211,27 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
         return true;
 
     }
+    @Override
+    public boolean submitValue(String klassName, Double value) throws CsvValueFilterException{
+        return __submitValue(klassName,value,true);
+    }
     /****
-     * .submitValue()
-     * @param className the class submitted the value
+     * the real submitValue()
+     * @param klassName the class submitted the value
      * @param value the actual value
+     * @param sameRejectionCheck , if a request for a submit value received ,
+     *                           with this option engaged , if the value is the same the call will be just return false (will fail)
      * @return true in success.
      */
-    @Override
-    public boolean submitValue(String className, Double value) throws CsvValueFilterException {
+    synchronized public boolean __submitValue(String klassName, Double value,boolean sameRejectionCheck) throws CsvValueFilterException {
         synchronized (getLockObject()){
+            lastClassAquiredLock=klassName;
             try {
                 int id;
                 if(this.classValues.size()!=this.classIDs.size())
                     throw new CsvValueFilterInconsistentStateException(classValues.size()+"-"+classIDs.size());
-                if((id= getIdByClassObj(className))==-1){
-                    throw new CsvValueFilterClassNotRegisteredException(className);
+                if((id= getIdByClassObj(klassName))==-1){
+                    throw new CsvValueFilterClassNotRegisteredException(klassName);
                 }
                 if(getCSVContext().get(id).compareTo(value)!=0){
                     getCSVContext().set(id,value);
@@ -219,7 +255,7 @@ public class CsvValueFilter extends AbstractValueFilter<Double> {
      * @throws CsvValueFilterInconsistentStateException
      */
     @Override
-    public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
+    synchronized public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
         if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
         this.classIDs.put(klassName,cnt);
         cnt+=1;

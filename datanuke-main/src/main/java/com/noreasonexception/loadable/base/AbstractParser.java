@@ -67,7 +67,7 @@ abstract public class AbstractParser implements Runnable {
      */
     protected boolean declareSameValueSituation(){
         try{
-            return getValueFilter().sameValueSituation();
+            return getValueFilter().sameValueSituation(getClass().getName());
         }catch (CsvValueFilterException e){
             e.printStackTrace();
             return false;

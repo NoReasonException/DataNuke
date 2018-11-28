@@ -202,8 +202,8 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 logMessageExporter.sendMessage("will wait "+getWaitTime(tmp)/1000/60+" min(s) "+tmp.getClassname()+" )");
 
-                wait(getWaitTime(tmp));
-                //wait(1);
+                //wait(getWaitTime(tmp)); TODO
+                wait(1);
                 if(terminationFlag){
                     terminationFlag=false;//reset the termination flag in case of re-start
                     Thread.currentThread().interrupt();// kill myself.
@@ -211,8 +211,8 @@ public class AbstractThreadRunner implements    Runnable ,
                 }
 
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
-                kl=classLoader.loadClass(tmp.getClassname());
-                //kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A12_Census_NewResidentalSales_NewHousesSold1_US");
+                //kl=classLoader.loadClass(tmp.getClassname()); TODO
+                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A12_Census_NewResidentalSales_NewHousesSold1_US");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class,AbstractValueFilter.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
@@ -235,7 +235,7 @@ public class AbstractThreadRunner implements    Runnable ,
                     }
                 }.init(tmpclassname)));
                 killClassThread.start();
-
+                wait();                 //TODO
             }catch (InterruptedException e){
                 if(Thread.currentThread().isAlive())
                     Thread.currentThread().interrupt();
