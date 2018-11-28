@@ -1,6 +1,8 @@
 package com.noreasonexception.datanuke.app.saverequestfilterhandler;
 
 
+import com.noreasonexception.datanuke.app.fileprotocol.IntervalCsvFileProtocol;
+import com.noreasonexception.datanuke.app.fileprotocol.ListToFileProtocol;
 import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.ClassNotRegisteredException;
 import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.InconsistentStateException;
 import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.MailformedFileException;
@@ -43,12 +45,15 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
     private java.lang.String            directory;
     private java.lang.String            lastClassAquiredLock;
     private DataProvider                fileDataProvider;
+    private ListToFileProtocol<Double>  internalCsvFileProtocol;
     private static int                  cnt=0;
 
 
     public DoubleSaveRequestFilterHandler(String directory){
         this.classIDs=new Hashtable<>();
-        this.directory =directory;
+        this.directory =directory; //TODO Remove , pass directly to InternalCsvFileProtocol
+        this.internalCsvFileProtocol=new IntervalCsvFileProtocol(this.directory);
+
     }
 
     /****
@@ -179,8 +184,9 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
      * @see .saveCSVContext()
      */
     protected boolean saveCSVContext(){
-        return  __saveCSVContext(getFullPathOf(getNewInternalFileName())) &&
-                __saveCSVContext(getFullPathOf(getNewUserDefinedFileName()));
+        return /*__saveCSVContext(getFullPathOf(getNewInternalFileName())) &&
+                __saveCSVContext(getFullPathOf(getNewUserDefinedFileName()));*/
+                this.internalCsvFileProtocol.saveList(this.classValues,null);
 
     }
     /****

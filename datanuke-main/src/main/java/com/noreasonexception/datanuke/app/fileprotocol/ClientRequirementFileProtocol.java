@@ -8,7 +8,7 @@ public class ClientRequirementFileProtocol extends ListToFileProtocol<Double> {
     }
 
     @Override
-    public boolean saveList(ArrayList<Double> elementsToSave) {
+    public boolean saveList(ArrayList<Double> elementsToSave,String[] generic_args) {
         return false;
     }
 }

@@ -7,6 +7,9 @@ abstract public class  ListToFileProtocol <TypeOfElements>{
     ListToFileProtocol(String directoryPath){
         this.directoryPath=directoryPath;
     }
-    abstract public boolean saveList(ArrayList<TypeOfElements> elementsToSave);
+    abstract public boolean saveList(ArrayList<TypeOfElements> elementsToSave,String [] generic_args);
 
+    public String getDirectoryPath() {
+        return directoryPath;
+    }
 }
