@@ -13,9 +13,6 @@ import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 
 import java.io.File;
-import java.nio.file.StandardOpenOption;
-import java.nio.channels.FileChannel;
-import java.nio.ByteBuffer;
 import java.nio.file.Paths;
 import java.util.*;
 import java.nio.file.Path;
@@ -53,7 +50,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
 
     public DoubleSaveRequestFilterHandler(String directory){
         this.classIDs=new Hashtable<>();
-        this.directory =directory; //TODO Remove , pass directly to InternalCsvFileProtocol
+        this.directory =directory;
         this.internalCsvFileProtocol=new IntervalCsvFileProtocol(this.directory);
         this.clientRequirementFileProtocol=new ClientRequirementFileProtocol(this.directory);
 
@@ -96,40 +93,6 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
         return directory+e.get(0);
     }
 
-    /***
-     * .getNewInternalFileName()
-     * This method returns the filename used to save the runtime context
-     * @return a string representing the filename
-     */
-    private  String getNewInternalFileName(){
-        return (System.currentTimeMillis()/1000)+".csv";
-    }
-
-    /****
-     * .getnewUserDefinedFileName()
-     * This method returns the filename used to interfere with the another product .is a terrible way of communication
-     * i know , but whatever the client wants
-     * @implNote luckily , the client-defined file name is simmilar with our internal file name
-     *              just add a "news" prefix :) ;)
-     * TODO consider making a major refactor to a more-flexible design
-     * @return a string representing the filename
-     */
-    private  String getNewUserDefinedFileName(){
-        return "news"+getNewInternalFileName();
-    }
-
-    /***
-     * Returns the filename with the proper directory as prefix
-     * @param filename  the name of the file
-     * @return          the full path(use that to open a stream maybe?)
-     */
-    private String  getFullPathOf(String filename){return directory+filename;}
-    /****
-     * parser of .csv files , returns a ArrayList with the values per-class
-     * @return the ArrayList with the values
-     * @throws MailformedFileException in case of error in sundax of file
-     * @throws GenericSaveRequestFilterException in case of any IOException
-     */
     /*Package-Private*/ ArrayList<Double> fileContextToArray()throws GenericSaveRequestFilterException,
             MailformedFileException {
         String tmp="none";
@@ -164,7 +127,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
 
     @Override
     public boolean sameValueSituation(String className) throws GenericSaveRequestFilterException {
-        return __submitValue(className,getCSVContext().get(getIdByClassObj(className)),false);
+        return __submitValue(className, getClassesValues().get(getIdByClassObj(className)),false);
     }
 
     protected Object getLockObject(){return this;}
@@ -172,7 +135,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
     /***
      * just a funky getter
      */
-    protected ArrayList<Double> getCSVContext(){
+    protected ArrayList<Double> getClassesValues(){
         return this.classValues;
     }
 
@@ -186,38 +149,9 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
      *      starting with version 4.0 , all content will be saved in two files
      * @see .saveCSVContext()
      */
-    protected boolean saveCSVContext(int issuingClassID){
-        return /*__saveCSVContext(getFullPathOf(getNewInternalFileName())) &&
-                __saveCSVContext(getFullPathOf(getNewUserDefinedFileName()));*/
-                this.internalCsvFileProtocol.saveList(this.classValues,null) &&
+    protected boolean saveContext(int issuingClassID){
+        return  this.internalCsvFileProtocol.saveList(this.classValues,null) &&
                 this.clientRequirementFileProtocol.saveList(this.classValues,new Object[]{issuingClassID});
-
-    }
-    /****
-     * saves every value of this.classValues into actual file
-     * @return true on success
-     */
-    protected boolean  __saveCSVContext(String filename) {
-        try {
-            Path filePath=Paths.get(filename);
-            FileChannel byteChannel = (FileChannel) FileChannel.open(filePath,StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE);
-
-            byteChannel.write(
-                    ByteBuffer.wrap(
-                            Arrays.toString(
-                                    this.classValues.toArray()).
-                                    replace("[","").
-                                    replace("]","").getBytes())
-            );
-
-            byteChannel.close();
-            System.out.println("Operation on "+filename+" completed");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
 
     }
     @Override
@@ -243,9 +177,9 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
                     throw new ClassNotRegisteredException(klassName);
                 }
 
-                if(!sameRejectionCheck || getCSVContext().get(id).compareTo(value)!=0){
-                    getCSVContext().set(id,value);
-                    saveCSVContext(id);
+                if(!sameRejectionCheck || getClassesValues().get(id).compareTo(value)!=0){
+                    getClassesValues().set(id,value);
+                    saveContext(id);
                     return true;
                 }
                 return false;
