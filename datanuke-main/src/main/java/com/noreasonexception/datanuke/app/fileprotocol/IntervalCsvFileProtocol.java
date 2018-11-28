@@ -13,7 +13,7 @@ public class IntervalCsvFileProtocol extends ListToFileProtocol<Double> {
     }
 
     @Override
-    public boolean saveList(ArrayList<Double> elementsToSave,String[] generic_args) {
+    public boolean saveList(ArrayList<Double> elementsToSave,Object[] generic_args) {
         return __saveCSVContext(elementsToSave);
     }
 
