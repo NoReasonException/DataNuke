@@ -1,7 +1,7 @@
 package com.noreasonexception.datanuke.app.threadRunner;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.InconsistentStateException;
 import com.noreasonexception.datanuke.app.datastructures.interfaces.ITree;
 import static com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerState.*;
 import static com.noreasonexception.datanuke.app.threadRunner.Utills.getDeadline;
@@ -133,7 +133,7 @@ public class AbstractThreadRunner implements    Runnable ,
             try{
                 this.valueFilter.submitClass(klass);
 
-            }catch (CsvValueFilterInconsistentStateException e){
+            }catch (InconsistentStateException e){
                 throw new RuntimeException("valueFilter in invalid state");
             }
             long j;

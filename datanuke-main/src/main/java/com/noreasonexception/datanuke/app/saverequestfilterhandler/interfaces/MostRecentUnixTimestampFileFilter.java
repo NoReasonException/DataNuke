@@ -1,4 +1,4 @@
-package com.noreasonexception.datanuke.app.SaveRequestFilterHandler.interfaces;
+package com.noreasonexception.datanuke.app.saverequestfilterhandler.interfaces;
 
 import java.io.File;
 import java.io.FilenameFilter;

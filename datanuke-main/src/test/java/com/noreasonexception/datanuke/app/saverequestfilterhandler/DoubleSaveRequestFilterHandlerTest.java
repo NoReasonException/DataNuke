@@ -1,6 +1,6 @@
-package com.noreasonexception.datanuke.app.SaveRequestFilterHandler;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
+package com.noreasonexception.datanuke.app.saverequestfilterhandler;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.GenericSaveRequestFilterException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.InconsistentStateException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -10,9 +10,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 @Ignore
-public class CsvValueFilterTest {
-    private CsvValueFilter filterFoundFile;
-    private CsvValueFilter filterNonFoundFile;
+public class DoubleSaveRequestFilterHandlerTest {
+    private DoubleSaveRequestFilterHandler filterFoundFile;
+    private DoubleSaveRequestFilterHandler filterNonFoundFile;
     private static final String NOTFOUND_FILE="bla";
     private static final String FOUND_FILE="dat.csv";
     @Before
@@ -26,18 +26,18 @@ public class CsvValueFilterTest {
                 Files.createFile(p);
             }
         }catch (IOException e){}
-        this.filterNonFoundFile=new CsvValueFilter(NOTFOUND_FILE);
-        this.filterFoundFile=new CsvValueFilter(FOUND_FILE);
+        this.filterNonFoundFile=new DoubleSaveRequestFilterHandler(NOTFOUND_FILE);
+        this.filterFoundFile=new DoubleSaveRequestFilterHandler(FOUND_FILE);
     }
 
-    @Test(expected = CsvValueFilterInconsistentStateException.class)
-    public void invalidStateCheck() throws CsvValueFilterException{
+    @Test(expected = InconsistentStateException.class)
+    public void invalidStateCheck() throws GenericSaveRequestFilterException {
 
         System.out.println(filterFoundFile.getIdByClassObj(String.class.getName()));
 
     }
     @Test
-    public void buildTest() throws CsvValueFilterException{
+    public void buildTest() throws GenericSaveRequestFilterException {
 
         filterFoundFile.buildFromFile();
 
@@ -45,21 +45,21 @@ public class CsvValueFilterTest {
 
     /***
      * Tests if the builder method will throw Exception in case of any error(example nonexistent file)
-     * @throws CsvValueFilterException
+     * @throws GenericSaveRequestFilterException
      */
-    @Test(expected = CsvValueFilterException.class )
-    public void buildTestFail() throws CsvValueFilterException{
+    @Test(expected = GenericSaveRequestFilterException.class )
+    public void buildTestFail() throws GenericSaveRequestFilterException {
 
         filterNonFoundFile.buildFromFile();
 
     }
-    @Test(expected = CsvValueFilterInconsistentStateException.class)
-    public void classNotRegisteredTest() throws CsvValueFilterException{
+    @Test(expected = InconsistentStateException.class)
+    public void classNotRegisteredTest() throws GenericSaveRequestFilterException {
         filterFoundFile.buildFromFile().submitValue(String.class.getName(),0d);
     }
 
     @Test
-    public void registerValuesWithConsistentStateTest() throws CsvValueFilterException{
+    public void registerValuesWithConsistentStateTest() throws GenericSaveRequestFilterException {
         //TODO make test independent from real dat.csv file
         filterFoundFile.buildFromFile();
         filterFoundFile.submitClass(String.class.getName());
@@ -68,8 +68,8 @@ public class CsvValueFilterTest {
         System.out.println(filterFoundFile.submitValue(String.class.getName(),3d));
         //filterFoundFile.submitValue(Integer.class,0d); //when we submitClass , the initial value is zero
     }
-    @Test(expected = CsvValueFilterInconsistentStateException.class)
-    public void registerClassInInvalidState()throws CsvValueFilterInconsistentStateException{
+    @Test(expected = InconsistentStateException.class)
+    public void registerClassInInvalidState()throws InconsistentStateException {
         filterFoundFile.submitClass(String.class.getName());
     }
 

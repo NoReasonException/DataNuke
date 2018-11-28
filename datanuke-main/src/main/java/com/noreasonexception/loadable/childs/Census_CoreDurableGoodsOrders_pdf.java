@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.CsvValueFilter;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.DoubleSaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.RequestParser;
 import com.noreasonexception.loadable.base.PdfParser;
@@ -11,7 +11,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Census_CoreDurableGoodsOrders_pdf extends PdfParser {
-    public Census_CoreDurableGoodsOrders_pdf(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter) {
+    public Census_CoreDurableGoodsOrders_pdf(ThreadRunnerTaskEventsDispacher disp, DoubleSaveRequestFilterHandler valueFilter) {
         super(disp, valueFilter);
     }
 

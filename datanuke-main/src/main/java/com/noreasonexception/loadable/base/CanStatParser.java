@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;

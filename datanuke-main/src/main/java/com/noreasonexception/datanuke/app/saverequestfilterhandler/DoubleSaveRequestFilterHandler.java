@@ -1,11 +1,11 @@
-package com.noreasonexception.datanuke.app.SaveRequestFilterHandler;
+package com.noreasonexception.datanuke.app.saverequestfilterhandler;
 
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterClassNotRegisteredException;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterInconsistentStateException;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterMailformedFileException;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.interfaces.MostRecentUnixTimestampFileFilter;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.ClassNotRegisteredException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.InconsistentStateException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.MailformedFileException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.GenericSaveRequestFilterException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.interfaces.MostRecentUnixTimestampFileFilter;
 import com.noreasonexception.datanuke.app.dataProvider.FileDataProvider;
 import com.noreasonexception.datanuke.app.dataProvider.DataProvider;
 
@@ -23,12 +23,12 @@ import java.nio.file.Path;
  *
  * How it works?
  *
- * At first The CsvValueFilter reads all the contexts of the file given in constructor
+ * At first The DoubleSaveRequestFilterHandler reads all the contexts of the file given in constructor
  * Lets suppose that the file contains n values
  *
  * Now , the object has n values but 0 classes . so it is in Invalid State .
  * When the object is in invalid state ,every operation ,except .submitClass(),
- * will throw an CsvValueFilterInconsistentStateException .
+ * will throw an InconsistentStateException .
  *
  * The object , to be consistent , expect n .submitClass() calls
  * The first call will correlate the first class into the first value came from file and vice versa
@@ -37,7 +37,7 @@ import java.nio.file.Path;
  * Every call into .submitValue() will return true if the RequestParser class finds an new value
  *
  */
-public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
+public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<Double> {
     private Hashtable<String,Integer>   classIDs;
     private ArrayList<Double>           classValues;
     private java.lang.String            directory;
@@ -46,18 +46,18 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
     private static int                  cnt=0;
 
 
-    public CsvValueFilter(String directory){
+    public DoubleSaveRequestFilterHandler(String directory){
         this.classIDs=new Hashtable<>();
         this.directory =directory;
     }
 
     /****
-     * Call always before any operation , otherwise , a CsvValueFilterInconsistentStateException will be thrown.
+     * Call always before any operation , otherwise , a InconsistentStateException will be thrown.
      * @return this object
-     * @throws CsvValueFilterException in case of any error(IOE or corrupted file)
+     * @throws GenericSaveRequestFilterException in case of any error(IOE or corrupted file)
      */
     @Override
-    public CsvValueFilter buildFromFile() throws CsvValueFilterException{
+    public DoubleSaveRequestFilterHandler buildFromFile() throws GenericSaveRequestFilterException {
         this.classValues=this.fileContextToArray();
         return this;
     }
@@ -66,9 +66,9 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
      * .fileContextToString()
      * just reads the initial file data returs it as plain string
      * @return the contexts of file as String
-     * @throws CsvValueFilterException in case any type of IOException
+     * @throws GenericSaveRequestFilterException in case any type of IOException
      */
-    /*Package-Private*/String fileContextToString() throws CsvValueFilterException {
+    /*Package-Private*/String fileContextToString() throws GenericSaveRequestFilterException {
         Path p;
         return DataProvider.Utills.DataProviderToString(this.fileDataProvider = new FileDataProvider(
                 p = Paths.get(getMostRecentFile(this.directory))));
@@ -119,11 +119,11 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
     /****
      * parser of .csv files , returns a ArrayList with the values per-class
      * @return the ArrayList with the values
-     * @throws CsvValueFilterMailformedFileException in case of error in sundax of file
-     * @throws CsvValueFilterException in case of any IOException
+     * @throws MailformedFileException in case of error in sundax of file
+     * @throws GenericSaveRequestFilterException in case of any IOException
      */
-    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws    CsvValueFilterException,
-                                                                        CsvValueFilterMailformedFileException {
+    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws GenericSaveRequestFilterException,
+            MailformedFileException {
         String tmp="none";
         try{
             String str = fileContextToString();
@@ -133,7 +133,7 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
             }
             return retval;
         }catch (NumberFormatException|NoSuchElementException e){
-            throw new CsvValueFilterMailformedFileException(
+            throw new MailformedFileException(
                     "The parser detected something is not an number "+e.getMessage()+"("+tmp+")",e);
         }
 
@@ -144,10 +144,10 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
      *
      * @param className the class name as string
      * @return the class id to be used in this.classValues
-     * @throws CsvValueFilterInconsistentStateException in case of calling this method without call .buildFromFile() first
+     * @throws InconsistentStateException in case of calling this method without call .buildFromFile() first
      */
-    /*Package-Private*/ int getIdByClassObj(String className) throws CsvValueFilterException{
-        if (this.classValues==null)throw new CsvValueFilterInconsistentStateException();
+    /*Package-Private*/ int getIdByClassObj(String className) throws GenericSaveRequestFilterException {
+        if (this.classValues==null)throw new InconsistentStateException();
         Integer id;
         if((id=classIDs.get(className))==null)return -1;
         return id;
@@ -155,7 +155,7 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
     }
 
     @Override
-    public boolean sameValueSituation(String className) throws CsvValueFilterException {
+    public boolean sameValueSituation(String className) throws GenericSaveRequestFilterException {
         return __submitValue(className,getCSVContext().get(getIdByClassObj(className)),false);
     }
 
@@ -211,7 +211,7 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
 
     }
     @Override
-    public boolean submitValue(String klassName, Double value) throws CsvValueFilterException{
+    public boolean submitValue(String klassName, Double value) throws GenericSaveRequestFilterException {
         return __submitValue(klassName,value,true);
     }
     /****
@@ -222,15 +222,15 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
      *                           with this option engaged , if the value is the same the call will be just return false (will fail)
      * @return true in success.
      */
-    synchronized public boolean __submitValue(String klassName, Double value,boolean sameRejectionCheck) throws CsvValueFilterException {
+    synchronized public boolean __submitValue(String klassName, Double value,boolean sameRejectionCheck) throws GenericSaveRequestFilterException {
         synchronized (getLockObject()){
             lastClassAquiredLock=klassName;
             try {
                 int id;
                 if(this.classValues.size()!=this.classIDs.size())
-                    throw new CsvValueFilterInconsistentStateException(classValues.size()+"-"+classIDs.size());
+                    throw new InconsistentStateException(classValues.size()+"-"+classIDs.size());
                 if((id= getIdByClassObj(klassName))==-1){
-                    throw new CsvValueFilterClassNotRegisteredException(klassName);
+                    throw new ClassNotRegisteredException(klassName);
                 }
 
                 if(!sameRejectionCheck || getCSVContext().get(id).compareTo(value)!=0){
@@ -252,11 +252,11 @@ public class CsvValueFilter implements SaveRequestFilterHandler<Double> {
      *
      * @param klassName the class name
      * @return  true for success
-     * @throws CsvValueFilterInconsistentStateException
+     * @throws InconsistentStateException
      */
     @Override
-    synchronized public boolean submitClass(String klassName) throws CsvValueFilterInconsistentStateException{
-        if(this.classValues==null)throw new CsvValueFilterInconsistentStateException();
+    synchronized public boolean submitClass(String klassName) throws InconsistentStateException {
+        if(this.classValues==null)throw new InconsistentStateException();
         this.classIDs.put(klassName,cnt);
         cnt+=1;
         return true;

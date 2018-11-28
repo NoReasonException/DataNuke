@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 
 abstract public class HtmlParser extends PatternParser {

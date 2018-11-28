@@ -1,6 +1,6 @@
 package com.noreasonexception.loadable.childs;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.CsvValueFilter;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.DoubleSaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.PdfParser;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class Census_NewHomeSales_pdf extends PdfParser {
-    public Census_NewHomeSales_pdf(ThreadRunnerTaskEventsDispacher disp, CsvValueFilter valueFilter) {
+    public Census_NewHomeSales_pdf(ThreadRunnerTaskEventsDispacher disp, DoubleSaveRequestFilterHandler valueFilter) {
         super(disp,valueFilter);
     }
 

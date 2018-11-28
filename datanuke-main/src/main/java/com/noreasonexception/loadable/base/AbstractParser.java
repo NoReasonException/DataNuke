@@ -1,7 +1,7 @@
 package com.noreasonexception.loadable.base;
 
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.SaveRequestFilterHandler;
-import com.noreasonexception.datanuke.app.SaveRequestFilterHandler.error.CsvValueFilterException;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFilterHandler;
+import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.GenericSaveRequestFilterException;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 import com.noreasonexception.loadable.base.etc.LoopOperationStatus;
@@ -50,7 +50,7 @@ abstract public class AbstractParser implements Runnable {
         try{
             return getValueFilter().submitValue(getClass().getName(),value);
 
-        }catch (CsvValueFilterException e){
+        }catch (GenericSaveRequestFilterException e){
             e.printStackTrace();
             return false;
         }
@@ -64,7 +64,7 @@ abstract public class AbstractParser implements Runnable {
     protected boolean declareSameValueSituation(){
         try{
             return getValueFilter().sameValueSituation(getClass().getName());
-        }catch (CsvValueFilterException e){
+        }catch (GenericSaveRequestFilterException e){
             e.printStackTrace();
             return false;
         }
@@ -97,7 +97,7 @@ abstract public class AbstractParser implements Runnable {
     /****
      * The main loop of RequestParser
      * the .run() method calls it
-     * It is basically an  loop , stopping only if the SaveRequestFilterHandler detects the new value
+     * It is basically an  loop , stopping only if the saverequestfilterhandler detects the new value
      * @return LoopOperationStatus with further info
      */
     abstract protected LoopOperationStatus loop();
