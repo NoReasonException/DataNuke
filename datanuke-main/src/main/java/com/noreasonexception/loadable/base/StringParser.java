@@ -35,8 +35,17 @@ abstract public class StringParser extends RequestParser {
         }catch (IOException e){
             throw new ConvertionSourceToTextException(getClass(),e);
         }
+    }
 
-
+    /***
+     * performs optionally final ajustments
+     * for example , if the website has the value -> 12,34 we need to transform it to 12.34 in order to
+     * convert it to double :)
+     * @param returnedValue the value just before converting
+     * @return the final value
+     */
+    protected String finalTransformToDouble(String returnedValue){
+        return returnedValue;
     }
 
 

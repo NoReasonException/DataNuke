@@ -93,8 +93,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
         return directory+e.get(0);
     }
 
-    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws GenericSaveRequestFilterException,
-            MailformedFileException {
+    /*Package-Private*/ ArrayList<Double> fileContextToArray()throws GenericSaveRequestFilterException {
         String tmp="none";
         try{
             String str = fileContextToString();

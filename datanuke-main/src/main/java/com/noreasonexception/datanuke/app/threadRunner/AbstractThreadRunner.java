@@ -210,7 +210,7 @@ public class AbstractThreadRunner implements    Runnable ,
 
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 //kl=classLoader.loadClass(tmp.getClassname()); TODO
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A12_Census_NewResidentalSales_NewHousesSold1_US");
+                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A23_BlsGov_TotalNonfarmPayrollEmployment_US");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class, SaveRequestFilterHandler.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);

@@ -80,14 +80,14 @@ abstract public class TableParser extends HtmlParser {
      * @return a Standard Pattern for each row
      */
     protected Pattern getRowPattern(){
-        return Pattern.compile("<tr.*>(.*)(</td>)");
+        return Pattern.compile("<tr.*?>(.*?)(</tr>)",Pattern.MULTILINE|Pattern.DOTALL);
     }
     /***
      * In Every standard HTML table the cell pattern should be the same , but this is overridable ,just in case
      * @return a Standard Pattern for each cell
      */
     protected Pattern getCellPattern(){
-        return Pattern.compile("<td(.(?!<))*><((.(?!</td>))*)></td>",Pattern.DOTALL);
+        return Pattern.compile("<td(.(?!<))*><((.(?!</td>))*)></td>",Pattern.MULTILINE|Pattern.DOTALL);
     }
 
     /***
@@ -175,9 +175,9 @@ abstract public class TableParser extends HtmlParser {
         Double d;
         try{
 
-            String actualTable = getTableElement((String)context); //getTable
+            String actualTable = getTableElement((String)context);
             String row = getRawRow(actualTable,onRowIndexLoad());//get needed row
-            System.out.println(d=Double.valueOf(cellToValue(getCell(row,onCellIndexLoad())))); //get the final value
+            System.out.println(d=Double.valueOf(finalTransformToDouble(cellToValue(getCell(row,onCellIndexLoad()))))); //get the final value
         }catch (IllegalStateException e){e.printStackTrace();throw new InvalidSourceArchitectureException(getClass());}
         return d;
 
