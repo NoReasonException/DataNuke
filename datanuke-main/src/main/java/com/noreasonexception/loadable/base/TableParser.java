@@ -87,7 +87,7 @@ abstract public class TableParser extends HtmlParser {
      * @return a Standard Pattern for each cell
      */
     protected Pattern getCellPattern(){
-        return Pattern.compile("<td(.(?!<))*><((.(?!</td>))*)></td>",Pattern.MULTILINE|Pattern.DOTALL);
+        return Pattern.compile("<td(.(?!<))*><((.(?!</td>))*)></td>",Pattern.DOTALL);
     }
 
     /***
@@ -158,6 +158,7 @@ abstract public class TableParser extends HtmlParser {
      * @return the actual value
      */
     protected String cellToValue(String cell) throws  java.lang.IllegalStateException{
+        System.out.println("AAAAA"+cell);
         Matcher matcher=getValuePattern().matcher(cell);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
         return matcher.group(1);
