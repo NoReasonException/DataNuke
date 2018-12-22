@@ -35,7 +35,7 @@ public class A26_BlsGov_ProductPriceIndex_US extends TableParser {
 
     @Override
     protected int onRowIndexLoad() {
-        return 17;
+        return getRowCount()-2;
     }
 
     @Override

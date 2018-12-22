@@ -4,6 +4,8 @@ import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFi
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -42,8 +44,11 @@ import java.util.regex.Pattern;
  *
  */
 abstract public class TableParser extends HtmlParser {
+
+    private ArrayList<String> rawRows;
     public TableParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
+        this.rawRows=new ArrayList<>();
     }
 
     /***
@@ -56,7 +61,7 @@ abstract public class TableParser extends HtmlParser {
      */
     @Override
     protected Pattern onPatternLoad() {
-        return Pattern.compile(onTableSignatureStartLoad()+"(.*\\s)"+onTableSignatureEndLoad(),Pattern.MULTILINE|Pattern.DOTALL);
+        return Pattern.compile(onTableSignatureStartLoad()+"(.*?\\s)"+onTableSignatureEndLoad(),Pattern.MULTILINE|Pattern.DOTALL);
     }
 
     /***
@@ -114,6 +119,32 @@ abstract public class TableParser extends HtmlParser {
      */
     abstract protected int onCellIndexLoad();
 
+
+    /***
+     * returns the total number of rows
+     * @Note assume that before the .getRowCount() method returns , the .loadRows need to be
+     * @return the number of rows
+     */
+    protected int getRowCount() {return this.rawRows.size();}
+    /***
+    *TODO , make .getCellCount()
+     *
+    protected int getCellCount(int rowCount){...}
+    */
+    
+
+
+    /***
+     * loads the rows into memory
+     *
+     */
+    private ArrayList<String> __loadRawRows(Matcher matcher){
+        ArrayList<String> str=new ArrayList<>();
+        while(matcher.find()){
+            str.add(matcher.group(0));
+        }
+        return str;
+    }
     /***
      * Gets the html source code and returns the Code inside the <table><</table>
      * @param context the whole html file
@@ -126,16 +157,19 @@ abstract public class TableParser extends HtmlParser {
         return m.group(1);
     }
 
+
+    protected ArrayList<String> loadRawRows(String tableElement)  throws java.lang.IllegalStateException{
+        Matcher rowMatcher = getRowPattern().matcher(tableElement);
+        return __loadRawRows(rowMatcher);
+    }
     /***
      * returns the code inside the @param rowIndex row
      * @param tableElement the code inside the <table>...</table>
      * @param rowIndex the row index that you want
      * @return the code inside the <tr>...</tr>
      */
-    protected String getRawRow(String tableElement,int rowIndex)  throws java.lang.IllegalStateException{
-        Matcher rowMatcher = getRowPattern().matcher(tableElement);
-        AbstractParser.Utills.triggerMacherMethodFindNTimes(rowMatcher, rowIndex);
-        return rowMatcher.group(0);
+    protected String getRawRow(String tableElement,int rowIndex) throws java.lang.IllegalStateException{
+        return this.rawRows.get(rowIndex);
     }
 
     /***
@@ -176,6 +210,7 @@ abstract public class TableParser extends HtmlParser {
         try{
 
             String actualTable = getTableElement((String)context);
+            this.rawRows=loadRawRows(actualTable);
             String row = getRawRow(actualTable,onRowIndexLoad());//get needed row
             System.out.println(d=Double.valueOf(finalTransformToDouble(cellToValue(getCell(row,onCellIndexLoad()))))); //get the final value
         }catch (IllegalStateException e){e.printStackTrace();throw new InvalidSourceArchitectureException(getClass());}
