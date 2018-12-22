@@ -114,7 +114,6 @@ abstract public class TableParser extends HtmlParser {
      */
     abstract protected int onCellIndexLoad();
 
-
     /***
      * Gets the html source code and returns the Code inside the <table><</table>
      * @param context the whole html file
@@ -158,7 +157,7 @@ abstract public class TableParser extends HtmlParser {
      * @return the actual value
      */
     protected String cellToValue(String cell) throws  java.lang.IllegalStateException{
-        System.out.println("AAAAA"+cell);
+        System.out.println(cell);
         Matcher matcher=getValuePattern().matcher(cell);
         AbstractParser.Utills.triggerMacherMethodFindNTimes(matcher,1);
         return matcher.group(1);
