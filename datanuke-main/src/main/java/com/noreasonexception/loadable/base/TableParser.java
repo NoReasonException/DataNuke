@@ -131,7 +131,7 @@ abstract public class TableParser extends HtmlParser {
      *
     protected int getCellCount(int rowCount){...}
     */
-    
+
 
 
     /***

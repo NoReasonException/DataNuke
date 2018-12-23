@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 
+////TODO : make onValueExtract abstract!
 abstract public class PdfParser extends PatternParser {
     public PdfParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp,valueFilter);
     }
+
 
 
     /***

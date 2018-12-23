@@ -210,7 +210,7 @@ public class AbstractThreadRunner implements    Runnable ,
 
                 this.taskEventsDispacher.submitClassLoadingEvent(tmp.getClassname());
                 //kl=classLoader.loadClass(tmp.getClassname()); TODO
-                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A26_BlsGov_ProductPriceIndex_US");
+                kl=classLoader.loadClass("com.noreasonexception.loadable.childs.A27_MarkitEconomics_IhsMarkitFlashEMI_GER");
                 this.taskEventsDispacher.submitClassInstanceCreatedEvent(tmp.getClassname());
                 task=(Runnable) kl.getDeclaredConstructor(ThreadRunnerTaskEventsDispacher.class, SaveRequestFilterHandler.class).newInstance(this.taskEventsDispacher,this.valueFilter);
                 taskThread=new Thread(task);
@@ -245,7 +245,7 @@ public class AbstractThreadRunner implements    Runnable ,
                 e.printStackTrace();
             }catch (NullPointerException e){
                 e.printStackTrace();
-                logMessageExporter.sendMessage("NullPointerException ingnored due to termination proccess");
+                logMessageExporter.sendMessage("NullPointerException ignored due to termination proccess");
             }
             System.gc();
 

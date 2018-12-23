@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 
-abstract public class CanStatParser extends ChromeEngineDOMParser {
+abstract public class CanStatParser extends EventFromDynamicListParser {
     public CanStatParser(ThreadRunnerTaskEventsDispacher disp, SaveRequestFilterHandler<Double> valueFilter) {
         super(disp, valueFilter);
     }
@@ -19,7 +19,6 @@ abstract public class CanStatParser extends ChromeEngineDOMParser {
         return "https://www150.statcan.gc.ca/n1/dai-quo/ind1-eng.htm";
     }
 
-    abstract protected String onEventNameLoad();
 
     /***
      * Loop on CanStatParser
