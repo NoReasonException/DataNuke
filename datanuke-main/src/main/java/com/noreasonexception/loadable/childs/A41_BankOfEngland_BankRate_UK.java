@@ -15,16 +15,13 @@ public class A41_BankOfEngland_BankRate_UK extends HtmlParser {
 
     @Override
     protected Pattern onPatternLoad() {
-        return null;
+        return Pattern.compile("(\\d\\.\\d\\d)%",Pattern.MULTILINE);
     }
 
     @Override
     protected String onUrlLoad() {
-        return null;
+        return "https://www.bankofengland.co.uk/";
     }
 
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
-    }
+
 }
