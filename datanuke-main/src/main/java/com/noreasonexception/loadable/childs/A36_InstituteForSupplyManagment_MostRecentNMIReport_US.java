@@ -15,16 +15,11 @@ public class A36_InstituteForSupplyManagment_MostRecentNMIReport_US extends Html
 
     @Override
     protected Pattern onPatternLoad() {
-        return null;
+        return Pattern.compile("(\\d\\d\\.\\d)%");
     }
 
     @Override
     protected String onUrlLoad() {
-        return null;
-    }
-
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
+        return "https://www.instituteforsupplymanagement.org/ISMReport/NonMfgROB.cfm?navItemNumber=31090";
     }
 }

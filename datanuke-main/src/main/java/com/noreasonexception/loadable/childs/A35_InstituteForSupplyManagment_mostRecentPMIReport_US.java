@@ -15,16 +15,11 @@ public class A35_InstituteForSupplyManagment_mostRecentPMIReport_US extends Html
 
     @Override
     protected Pattern onPatternLoad() {
-        return null;
+        return Pattern.compile("(\\d\\d\\.\\d)%");
     }
 
     @Override
     protected String onUrlLoad() {
-        return null;
-    }
-
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
+        return "https://www.instituteforsupplymanagement.org/ISMReport/MfgROB.cfm?navItemNumber=31086";
     }
 }
