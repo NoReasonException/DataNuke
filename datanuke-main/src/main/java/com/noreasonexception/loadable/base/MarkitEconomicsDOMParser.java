@@ -58,7 +58,7 @@ abstract public class MarkitEconomicsDOMParser extends EventFromDynamicListParse
                         By.className(("releaseTitle")));
                 String linkurl=listItem.get(j).findElement(By.tagName("a")).getAttribute("href");
                 if(titleElement.getText().equals(eventName)){
-                    System.out.println("found at "+j);
+                    System.out.println("found at "+j+" - "+linkurl);
                     try {
                         if(informValueFilter(temp=onValueExtract(linkurl))){
 
