@@ -3,7 +3,6 @@ package com.noreasonexception.loadable.childs;
 import com.noreasonexception.datanuke.app.saverequestfilterhandler.SaveRequestFilterHandler;
 import com.noreasonexception.datanuke.app.threadRunner.ThreadRunnerTaskEventsDispacher;
 import com.noreasonexception.loadable.base.HtmlParser;
-import com.noreasonexception.loadable.base.error.InvalidSourceArchitectureException;
 
 import java.util.regex.Pattern;
 
@@ -15,16 +14,13 @@ public class A42_EcbEuropa_MainRefinancingOperations_EUR extends HtmlParser {
 
     @Override
     protected Pattern onPatternLoad() {
-        return null;
+        return Pattern.compile("(0\\.\\d\\d)&nbsp;%</td>",Pattern.MULTILINE|Pattern.DOTALL);
     }
 
     @Override
     protected String onUrlLoad() {
-        return null;
+        return "https://www.ecb.europa.eu/home/html/index.en.html";
     }
 
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
-    }
+
 }

@@ -10,18 +10,15 @@ import java.util.regex.Pattern;
 public class A43_RbaGov_CashRate_AU extends HtmlParser {
     @Override
     protected Pattern onPatternLoad() {
-        return null;
+        return Pattern.compile("(\\d\\.\\d\\d)",Pattern.MULTILINE|Pattern.DOTALL);
     }
 
     @Override
     protected String onUrlLoad() {
-        return null;
+        return "https://www.rba.gov.au/";
     }
 
-    @Override
-    protected Double onValueExtract(Object context) throws InvalidSourceArchitectureException {
-        return null;
-    }
+
 
     public A43_RbaGov_CashRate_AU(ThreadRunnerTaskEventsDispacher disp,
                                   SaveRequestFilterHandler<Double> valueFilter) {
