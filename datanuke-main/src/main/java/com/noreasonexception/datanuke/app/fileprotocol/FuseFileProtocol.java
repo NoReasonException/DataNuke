@@ -13,12 +13,13 @@ import ru.serce.jnrfuse.struct.FuseFileInfo;
 
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
-public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<Double> {
+public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<Double>{
 
     public static final String HELLO_PATH = "/hello";
-    public static final String HELLO_STR = "Hello World!";
+    public static  ArrayList<Double> HELLO_STR ;
     private static final String DRIVE_NAME = "J:/";
 
     @Override
@@ -30,7 +31,7 @@ public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<D
         } else if (HELLO_PATH.equals(path)) {
             stat.st_mode.set(FileStat.S_IFREG | 0444);
             stat.st_nlink.set(1);
-            stat.st_size.set(HELLO_STR.getBytes().length);
+            stat.st_size.set(Arrays.toString(HELLO_STR.toArray()).getBytes().length);
         } else {
             res = -ErrorCodes.ENOENT();
         }
@@ -63,7 +64,7 @@ public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<D
             return -ErrorCodes.ENOENT();
         }
 
-        byte[] bytes = HELLO_STR.getBytes();
+        byte[] bytes = Arrays.toString(HELLO_STR.toArray()).getBytes();
         int length = bytes.length;
         if (offset < length) {
             if (offset + size > length) {
@@ -77,12 +78,22 @@ public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<D
     }
 
     public FuseFileProtocol() {
-        this.mount(Paths.get(DRIVE_NAME), true, true);
+        //initial status until first .saveList() call
+        HELLO_STR=new ArrayList<Double>();
+        HELLO_STR.add(0d);
+        this.mount(Paths.get("J:\\"), false, true);
     }
-
-    @Override
     public boolean saveList(ArrayList<Double> elementsToSave, Object[] generic_args) {
-        return false;
+        this.HELLO_STR=elementsToSave;
+        for (int i = 0; i < elementsToSave.size(); i++) {
+            if(!generic_args[0].equals(i)){
+                this.HELLO_STR.set(i,0d);
+            }
+
+        }
+        System.out.println("Operation on "+HELLO_PATH+ " completed");
+        return true;
+
     }
 }
 

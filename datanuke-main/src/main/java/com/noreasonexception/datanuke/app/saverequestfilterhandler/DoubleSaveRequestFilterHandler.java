@@ -2,6 +2,7 @@ package com.noreasonexception.datanuke.app.saverequestfilterhandler;
 
 
 import com.noreasonexception.datanuke.app.fileprotocol.ClientRequirementFileProtocol;
+import com.noreasonexception.datanuke.app.fileprotocol.FuseFileProtocol;
 import com.noreasonexception.datanuke.app.fileprotocol.IntervalCsvFileProtocol;
 import com.noreasonexception.datanuke.app.fileprotocol.ListToFileProtocol;
 import com.noreasonexception.datanuke.app.saverequestfilterhandler.error.ClassNotRegisteredException;
@@ -45,6 +46,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
     private DataProvider                fileDataProvider;
     private ListToFileProtocol<Double>  internalCsvFileProtocol;
     private ListToFileProtocol<Double>  clientRequirementFileProtocol;
+    private ListToFileProtocol<Double>  fuseFileProtocol;
     private static int                  cnt=0;
 
 
@@ -53,6 +55,7 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
         this.directory =directory;
         this.internalCsvFileProtocol=new IntervalCsvFileProtocol(this.directory);
         this.clientRequirementFileProtocol=new ClientRequirementFileProtocol(this.directory);
+        this.fuseFileProtocol=new FuseFileProtocol();
 
     }
 
@@ -150,7 +153,8 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
      */
     protected boolean saveContext(int issuingClassID){
         return  this.internalCsvFileProtocol.saveList(this.classValues,null) &&
-                this.clientRequirementFileProtocol.saveList(this.classValues,new Object[]{issuingClassID});
+                this.clientRequirementFileProtocol.saveList(this.classValues,new Object[]{issuingClassID})&&
+                this.fuseFileProtocol.saveList(this.classValues,new Object[]{issuingClassID});
 
     }
     @Override

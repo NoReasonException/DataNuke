@@ -7,7 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2baa3a2d-f74d-4e4b-a8e6-fdf678082193" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,7 +52,7 @@
         <counts>
           <entry key="class" value="21" />
           <entry key="csv" value="23" />
-          <entry key="java" value="273" />
+          <entry key="java" value="277" />
           <entry key="json" value="6" />
           <entry key="xml" value="2" />
         </counts>
@@ -58,7 +60,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="21" />
-          <entry key="JAVA" value="273" />
+          <entry key="JAVA" value="277" />
           <entry key="JSON" value="6" />
           <entry key="PLAIN_TEXT" value="23" />
           <entry key="XML" value="2" />
@@ -69,14 +71,14 @@
           <entry key="class" value="2" />
           <entry key="csv" value="6" />
           <entry key="dummy" value="163" />
-          <entry key="java" value="17265" />
+          <entry key="java" value="17770" />
           <entry key="xml" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CLASS" value="2" />
-          <entry key="JAVA" value="17265" />
+          <entry key="JAVA" value="17770" />
           <entry key="PLAIN_TEXT" value="169" />
           <entry key="XML" value="12" />
         </counts>
@@ -85,42 +87,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/dataProvider/FileDataProvider.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="21" column="110" selection-start-line="21" selection-start-column="110" selection-end-line="21" selection-end-column="110" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/datastructures/BinarySearchTree.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/factory/DataNukeDefaultFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1547">
-              <caret line="109" column="62" selection-start-line="109" selection-start-column="62" selection-end-line="109" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/gui/leftBorder/dialogs/ClassInfoDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="82" column="6" selection-start-line="82" selection-start-column="6" selection-end-line="82" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/ListToFileProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -133,12 +99,50 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+            <state relative-caret-position="665">
+              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
               <folding>
-                <element signature="e#295#296#0" expanded="true" />
-                <element signature="e#323#324#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="419">
+              <caret line="210" column="85" lean-forward="true" selection-start-line="210" selection-start-column="85" selection-end-line="210" selection-end-column="85" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="603">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
             </state>
           </provider>
         </entry>
@@ -179,8 +183,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/IntervalCsvFileProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="9" column="98" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="102" />
+            <state relative-caret-position="578">
+              <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="74" />
               <folding>
                 <element signature="e#403#404#0" expanded="true" />
                 <element signature="e#439#440#0" expanded="true" />
@@ -255,7 +259,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/SaveRequestFilterHandler/CsvValueFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/SaveRequestFilterHandler/DoubleSaveRequestFilterHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/AbstractFileProtocol.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A23_BlsGov_TotalNonfarmPayrollEmployment_US.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A24_BlsGov_ConsumerPriceIndex_US.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A25_BlsGov_EmploymentSituationSummary_US.java" />
@@ -281,7 +284,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A42_EcbEuropa_MainRefinancingOperations_EUR.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/HtmlParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A43_RbaGov_CashRate_AU.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/StringParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/base/PatternParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A44_RbnzGovt_OCR_NZD.java" />
@@ -293,6 +295,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/ListToFileProtocol.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/IntervalCsvFileProtocol.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/ClientRequirementFileProtocol.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java" />
       </list>
     </option>
@@ -409,7 +413,76 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="classloader" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="dataProvider" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="datastructures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="fileprotocol" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="saverequestfilterhandler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="threadRunner" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="loadable" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="datanuke-main" type="b2602c69:ProjectViewProjectNode" />
+              <item name="datanuke-main" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="noreasonexception" type="462c0819:PsiDirectoryNode" />
+              <item name="loadable" type="462c0819:PsiDirectoryNode" />
+              <item name="childs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -423,7 +496,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546082729149" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546084505176" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Tree2_3" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -756,12 +829,12 @@
       <workItem from="1545534163470" duration="6007000" />
       <workItem from="1545653073639" duration="1828000" />
       <workItem from="1545661807995" duration="8260000" />
-      <workItem from="1546077930787" duration="2467000" />
+      <workItem from="1546077930787" duration="4185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="451071000" />
+    <option name="totallyTimeSpent" value="452789000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -783,7 +856,7 @@
       <window_info id="UI Designer" order="4" />
       <window_info id="Favorites" order="5" side_tool="true" />
       <window_info id="Capture Tool" order="6" />
-      <window_info x="8" y="31" width="624" height="878" id="Run" order="7" sideWeight="0.496875" type="WINDOWED" weight="0.3984375" />
+      <window_info x="8" y="31" width="624" height="878" id="Run" order="7" sideWeight="0.496875" type="WINDOWED" visible="true" weight="0.3984375" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32786885" />
       <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49919093" weight="0.042725172" />
@@ -865,7 +938,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A27_MarkitEconomics_IhsMarkitFlashEMI_GER.class" />
     <entry file="file://$PROJECT_DIR$/conf/dataNukeDefaultFactoryConf.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -898,13 +970,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A16_AbsGov_SeasonallyAdjusted_CrossDomesticProduct_AU.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -916,13 +981,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1008,13 +1066,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A43_RbaGov_CashRate_AU.class" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="244" column="36" lean-forward="true" selection-start-line="244" selection-start-column="36" selection-end-line="244" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A43_RbaGov_CashRate_AU.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -1165,21 +1216,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/IntervalCsvFileProtocol.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="98" lean-forward="true" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="102" />
-          <folding>
-            <element signature="e#403#404#0" expanded="true" />
-            <element signature="e#439#440#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#882#883#0" expanded="true" />
-            <element signature="e#1125#1126#0" expanded="true" />
-            <element signature="e#1177#1178#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/ClientRequirementFileProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -1194,13 +1230,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A19_OnsGov_ManufacturingProductionMomm_Percent_UK.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="4" column="39" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/loadable/childs/A20_OnsGov_CpiAnnualRate_ChangeOver12Months_UK.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/threadRunner/AbstractThreadRunner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="210" column="85" lean-forward="true" selection-start-line="210" selection-start-column="85" selection-end-line="210" selection-end-column="85" />
           <folding>
-            <element signature="e#295#296#0" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/saverequestfilterhandler/DoubleSaveRequestFilterHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/IntervalCsvFileProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="54" column="12" lean-forward="true" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="74" />
+          <folding>
+            <element signature="e#403#404#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#815#816#0" expanded="true" />
+            <element signature="e#882#883#0" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1177#1178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/noreasonexception/datanuke/app/fileprotocol/FuseFileProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
