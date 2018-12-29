@@ -1,7 +1,4 @@
 package com.noreasonexception.datanuke.app.fileprotocol;
-
-
-import jnr.ffi.Platform;
 import jnr.ffi.Pointer;
 import jnr.ffi.types.off_t;
 import jnr.ffi.types.size_t;
@@ -18,7 +15,7 @@ import java.util.Objects;
 
 public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<Double>{
 
-    public static final String HELLO_PATH = "/hello";
+    public static  String HELLO_PATH = "/hello";
     public static  ArrayList<Double> HELLO_STR ;
     private static final String DRIVE_NAME = "J:/";
 
@@ -64,7 +61,10 @@ public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<D
             return -ErrorCodes.ENOENT();
         }
 
-        byte[] bytes = Arrays.toString(HELLO_STR.toArray()).getBytes();
+        byte[] bytes = Arrays.toString(HELLO_STR.toArray())
+                .replace("[","")
+                .replace("]","")
+                .getBytes();
         int length = bytes.length;
         if (offset < length) {
             if (offset + size > length) {
@@ -85,6 +85,7 @@ public class FuseFileProtocol extends FuseStubFS implements ListToFileProtocol<D
     }
     public boolean saveList(ArrayList<Double> elementsToSave, Object[] generic_args) {
         this.HELLO_STR=elementsToSave;
+        this.HELLO_PATH="/news"+System.currentTimeMillis()/1000+".csv";
         for (int i = 0; i < elementsToSave.size(); i++) {
             if(!generic_args[0].equals(i)){
                 this.HELLO_STR.set(i,0d);
