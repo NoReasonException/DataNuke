@@ -8,7 +8,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ClientRequirementFileProtocol extends ListToFileProtocol<Double> {
+public class ClientRequirementFileProtocol extends StaticDirectoryFile implements ListToFileProtocol<Double> {
     public ClientRequirementFileProtocol(String directoryPath) {
         super(directoryPath);
     }

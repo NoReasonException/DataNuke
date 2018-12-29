@@ -81,8 +81,14 @@
             </plugin>
         </plugins>
     </build>
-  <repositories>
-    <repository>
+    <repositories>
+      <repository>
+          <id>central</id>
+          <name>bintray</name>
+          <url>http://jcenter.bintray.com</url>
+      </repository>
+
+      <repository>
       <id>snowtide-releases</id>
       <url>http://maven.snowtide.com/releases</url>
       <releases>
@@ -124,6 +130,11 @@
           <artifactId>javax.json</artifactId>
           <version>1.0.4</version>
       </dependency>
+          <dependency>
+              <groupId>com.github.serceman</groupId>
+              <artifactId>jnr-fuse</artifactId>
+              <version>0.5.2.1</version>
+          </dependency>
       <dependency>
           <groupId>com.snowtide</groupId>
           <artifactId>pdfxstream</artifactId>

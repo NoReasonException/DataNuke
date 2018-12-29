@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-public class IntervalCsvFileProtocol extends ListToFileProtocol<Double> {
+public class IntervalCsvFileProtocol extends StaticDirectoryFile implements ListToFileProtocol<Double> {
     public IntervalCsvFileProtocol(String directoryPath) {
         super(directoryPath);
     }

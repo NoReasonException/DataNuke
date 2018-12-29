@@ -57,6 +57,7 @@ abstract public class PatternParser extends StringParser {
             }catch (NumberFormatException|
                     InvalidSourceArchitectureException|
                     com.noreasonexception.loadable.base.error.ConvertionSourceToTextException e){
+
                 return LoopOperationStatus.buildExceptionThrown(e);
             }
         }

@@ -15,16 +15,13 @@ public class A44_RbnzGovt_OCR_NZD extends HtmlParser {
 
     @Override
     protected Pattern onPatternLoad() {
-        return Pattern.compile("(\\d\\.\\d\\d)",Pattern.MULTILINE|Pattern.DOTALL);
+        return Pattern.compile("(\\d\\.\\d\\d)");
     }
 
     @Override
     protected String onUrlLoad() {
         return "https://www.rbnz.govt.nz";
     }
-
-
-
 
 }
 

@@ -19,7 +19,7 @@ public class FileDataProvider extends DataProvider {
     ByteBuffer  buffer=null;
     public FileDataProvider(Path file){
         try{
-            this.buffer=ByteBuffer.allocate((int)Files.readAttributes(file,BasicFileAttributes.class).size());//TODO : check for possible overflow
+            this.buffer=ByteBuffer.allocate((int)Files.readAttributes(file,BasicFileAttributes.class).size());
             this.channel= Files.newByteChannel(file);
         }catch (IOException e){
             this.channel=null;

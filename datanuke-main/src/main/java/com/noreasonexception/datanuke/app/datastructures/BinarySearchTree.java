@@ -7,7 +7,6 @@ import java.security.spec.InvalidParameterSpecException;
 /****
  * Simple Binary Search Tree
  * TODO this problem need balanced tree , consider make a 2-3 Tree in future!
- * TODO write some tests
 
  */
 public class BinarySearchTree<Key extends Comparable<Key>,Value> {
