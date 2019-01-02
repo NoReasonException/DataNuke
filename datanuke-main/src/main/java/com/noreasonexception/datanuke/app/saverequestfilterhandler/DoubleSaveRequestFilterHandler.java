@@ -152,8 +152,8 @@ public class DoubleSaveRequestFilterHandler implements SaveRequestFilterHandler<
      * @see .saveCSVContext()
      */
     protected boolean saveContext(int issuingClassID){
-        return  this.internalCsvFileProtocol.saveList(this.classValues,null) &&
-                this.clientRequirementFileProtocol.saveList(this.classValues,new Object[]{issuingClassID})&&
+        return  //this.internalCsvFileProtocol.saveList(this.classValues,null) &&
+                //this.clientRequirementFileProtocol.saveList(this.classValues,new Object[]{issuingClassID})&&
                 this.fuseFileProtocol.saveList(this.classValues,new Object[]{issuingClassID});
 
     }
